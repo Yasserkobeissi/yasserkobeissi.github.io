@@ -1,0 +1,14 @@
+import gsap from 'gsap';
+/* Four channels as an accordion. The open strip is a live screen with broadcast graphics built in code. Channel change is a pixel cut. */
+export function createTV(root, channels, { onChannel, sound }) {
+  const acc = root.querySelector('.acc'); acc.innerHTML = channels.map((c, i) => `<div class="acc__strip" data-i="${i}"><div class="acc__label"><span class="mono">CH ${c.n}</span><b>${c.name}</b></div><div class="acc__screen"><div class="acc__px"></div><div class="acc__glass"></div></div></div>`).join('');
+  const strips = [...acc.children]; let cur = -1;
+  const render = (screen, c) => { screen.querySelectorAll('.bc').forEach((b) => b.remove()); const bc = document.createElement('div'); bc.className = `bc bc--${c.n}`; bc.innerHTML = `<div class="bc__bug">${c.name} · <span class="bc__live">LIVE</span></div><div class="bc__ident"><span>${c.name}</span></div><div class="bc__lower"><b>${c.lower[0]}</b><i>${c.lower[1]}</i></div><div class="bc__ticker"><span>${c.ticker} · ${c.ticker} · </span></div><div class="bc__clock">${new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}</div><div class="bc__bars"></div>`; screen.prepend(bc);
+    gsap.timeline().from(bc.querySelector('.bc__ident'), { xPercent: -120, duration: .6, ease: 'expo.out' }).to(bc.querySelector('.bc__ident'), { xPercent: 120, duration: .5, ease: 'expo.in', delay: 1.1 }).from(bc.querySelector('.bc__lower b'), { clipPath: 'inset(0 100% 0 0)', duration: .55, ease: 'expo.out' }, '-=.2').from(bc.querySelector('.bc__lower i'), { y: 18, opacity: 0, duration: .5, ease: 'expo.out' }, '-=.3').from(bc.querySelector('.bc__bug'), { y: -30, opacity: 0, duration: .4 }, .3).from(bc.querySelector('.bc__ticker'), { y: 40, duration: .5, ease: 'expo.out' }, .5);
+    gsap.to(bc.querySelector('.bc__ticker span'), { xPercent: -50, duration: 18, ease: 'none', repeat: -1 }); gsap.to(bc.querySelector('.bc__bars'), { backgroundPositionX: '200%', duration: 2.4, ease: 'none', repeat: -1 }); };
+  const pixelCut = (screen) => { const px = screen.querySelector('.acc__px'); px.innerHTML = Array.from({ length: 96 }, () => `<i style="background:hsl(${Math.random() * 360} 60% ${30 + Math.random() * 50}%)"></i>`).join(''); px.classList.add('on'); setTimeout(() => px.classList.remove('on'), 220); };
+  const set = (i) => { if (i === cur) return; cur = i; sound?.pin?.(); strips.forEach((s, k) => s.classList.toggle('on', k === i)); const screen = strips[i].querySelector('.acc__screen'); pixelCut(screen); setTimeout(() => render(screen, channels[i]), 120); root.querySelectorAll('.remote__btn').forEach((b, k) => b.classList.toggle('on', k === i)); onChannel?.(channels[i], i); };
+  strips.forEach((s, i) => s.querySelector('.acc__label').addEventListener('click', () => set(i)));
+  root.querySelectorAll('.remote__btn').forEach((b, k) => b.addEventListener('click', () => set(k)));
+  return { set, get channel() { return cur; } };
+}

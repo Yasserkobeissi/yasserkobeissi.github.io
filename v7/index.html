@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Yasser Kobeissi</title>
+  <meta name="description" content="Yasser Kobeissi, Creative Director in Riyadh via Beirut. He is typing. Scroll and he talks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,800;100,500;100,600&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <div class="cursor" aria-hidden="true"><i></i><b id="cursorSay"></b></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- OPENING: he types -->
+  <section class="opening" id="opening">
+    <div class="host" id="hostOpen"></div>
+    <form class="ask" id="askForm" autocomplete="off"><input id="askInput" type="text" maxlength="24" placeholder="type it" aria-label="Your name" /><button type="submit" aria-label="Send">↵</button></form>
+    <p class="mono opening__hint" id="openHint">scroll when he says so</p>
+  </section>
+
+  <header class="top" id="top">
+    <span class="top__name">Yasser Kobeissi</span>
+    <span class="mono top__clock" id="clock"></span>
+    <div class="top__right"><button class="mono top__btn" id="officeBtn">the office</button><button class="mono top__btn" id="archiveBtn">the work</button><button class="mono top__btn" id="soundBtn"><i></i>sound</button></div>
+  </header>
+  <aside class="aside mono" id="aside"><span id="asideLabel"></span></aside>
+
+  <main>
+    <!-- 01 THE FLIGHT -->
+    <section class="bit bit--flight" id="flight">
+      <div class="pin">
+        <svg class="map" viewBox="0 0 1200 700" aria-hidden="true">
+          <defs><radialGradient id="cityGlow"><stop offset="0" stop-color="#ffb45c" stop-opacity=".9"/><stop offset="1" stop-color="#ffb45c" stop-opacity="0"/></radialGradient></defs>
+          <path class="map__coast" d="M 60 80 C 160 60 220 140 300 150 C 360 158 380 220 420 260 C 470 310 520 300 560 340 C 600 380 640 460 720 470 C 820 482 900 440 980 470 C 1040 492 1100 560 1180 540" />
+          <path class="map__coast" d="M 980 120 C 1020 200 1060 280 1140 320" />
+          <g id="cityLights"></g>
+          <path id="route" class="map__route" d="M 330 150 C 520 120 760 360 1010 470" />
+          <circle class="map__city" cx="330" cy="150" r="6"/><circle class="map__city" cx="1010" cy="470" r="6"/>
+          <text class="map__label" x="330" y="128">BEIRUT</text><text class="map__label" x="1010" y="508">RIYADH</text>
+          <g id="plane"><path d="M 0 0 L -14 10 L -10 1 L -24 1 L -24 -1 L -10 -1 L -14 -10 Z" fill="#fff"/><path d="M -24 1 L -30 6 L -27 1 Z M -24 -1 L -30 -6 L -27 -1 Z" fill="#fff"/></g>
+        </svg>
+        <div class="flight__hud mono"><span id="flightKm">0 km</span><span id="flightYear">2006</span></div>
+        <div class="host host--side" id="hostFlight"></div><p class="note" data-note="flight"></p>
+      </div>
+    </section>
+
+    <!-- 02 TWENTY YEARS -->
+    <section class="bit bit--tl" id="timeline">
+      <div class="pin pin--tl">
+        <div class="tl" id="tl"><div class="tl__year" id="tlYear">2006</div><div class="tl__track"><div class="tl__ticks"></div><div class="tl__head"></div></div><p class="mono tl__hint">drag the playhead</p></div>
+        <div class="host host--side" id="hostTl"></div>
+        <p class="note" data-note="timeline"></p>
+      </div>
+    </section>
+
+    <!-- 03 THE TV YEARS -->
+    <section class="bit bit--tv" id="tv">
+      <div class="pin pin--tv">
+        <div class="tvset" id="tvset">
+          <div class="acc"></div>
+          <div class="remote"><div class="remote__pad" id="remotePad"></div><span class="mono">YK · REMOTE</span></div>
+        </div>
+        <p class="note" data-note="tv"></p>
+        <div class="host host--side" id="hostTv"></div>
+      </div>
+    </section>
+
+    <!-- 03 LOUD -->
+    <section class="bit bit--loud" id="loud">
+      <div class="pin pin--loud">
+        <h2 class="loud__big" id="loudBig"></h2><p class="note" data-note="loud"></p>
+        <div class="knobwrap" id="knobwrap"><div class="knob" aria-label="Volume"><div class="knob__needle"></div></div><div class="mono knob__val">0</div><p class="mono">drag · 0 to 11</p></div>
+        <div class="host host--side" id="hostLoud"></div>
+      </div>
+    </section>
+
+    <!-- 04 THE CAR GEEK -->
+    <section class="bit bit--car" id="car">
+      <div class="pin pin--car" id="carPin">
+        <div class="studio" id="studio">
+          <canvas id="carCanvas" class="carcanvas" aria-label="A car you can tune and turn"></canvas><p class="mono car__hint">scroll to turn it · drag to spin · sliders to ruin it</p>
+          <div class="sliders"><label><span class="mono">roof</span><input type="range" name="roof" min="0" max="100" value="50"/></label><label><span class="mono">wheels</span><input type="range" name="wheels" min="0" max="100" value="50"/></label><label><span class="mono">length</span><input type="range" name="length" min="0" max="100" value="50"/></label><label><span class="mono">stance</span><input type="range" name="stance" min="0" max="100" value="50"/></label></div>
+        </div>
+        <div class="host host--side" id="hostCar"></div><p class="note" data-note="car"></p>
+      </div>
+    </section>
+
+    <!-- 05 WHAT'S NEXT -->
+    <section class="bit bit--next" id="next">
+      <div class="pin pin--next">
+        <div class="slot" id="slot"><div class="slot__win"><div class="slot__reel"></div><div class="slot__reel"></div><div class="slot__reel"></div></div><button class="slot__lever" aria-label="Pull"><i></i><span class="mono">pull</span></button></div>
+        <div class="host host--side" id="hostNext"></div><p class="note" data-note="next"></p>
+      </div>
+    </section>
+
+    <!-- 06 THE DRAWER -->
+    <section class="bit bit--drawer" id="drawer">
+      <div class="drawer__head"><div class="host" id="hostDrawer"></div><div class="filters mono" id="filters"></div><p class="note" data-note="drawer"></p></div>
+      <div class="wall" id="wall"><div class="wall__plane" id="wallPlane"></div></div>
+    </section>
+
+    <!-- 07 GOODBYE -->
+    <section class="bit bit--bye" id="bye">
+      <div class="pin pin--bye">
+        <div class="host" id="hostBye"></div>
+        <div class="booth" id="booth"><canvas id="card"></canvas><button class="mono booth__dl" id="cardDl">save the card</button></div>
+        <div class="bye__meta mono"><a id="mailLink" href="#"></a><a id="behanceLink" href="#" target="_blank" rel="noopener">behance ↗</a><span id="phoneLine"></span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="office" id="office" aria-hidden="true"><div class="office__panel"><div class="office__bar"><span class="mono" id="officeTitle"></span><button class="office__close" id="officeClose" aria-label="Close"><i></i><i></i></button></div><dl class="office__list" id="officeList"></dl><div class="office__contact mono"><a id="officeMail" href="#"></a><a id="officeBe" href="#" target="_blank" rel="noopener">behance ↗</a><span id="officePhone"></span></div></div></div>
+  <div class="arc" id="archive" aria-hidden="true"><div class="arc__bar"><span class="mono">the work, if you insist · drag</span><button class="arc__close" aria-label="Close"><i></i><i></i></button></div><div class="arc__strip"></div></div>
+  <div class="case" id="case" aria-hidden="true"><div class="case__bar"><button class="case__close" id="caseClose" aria-label="Close"><i></i><i></i></button><span class="mono" id="caseKicker"></span></div><div class="case__scroll" id="caseScroll"><div class="case__hero"><img id="caseHero" alt="" /><h2 id="caseTitle"></h2></div><div class="case__info"><p class="serif" id="caseThought"></p><p id="caseLine"></p><dl class="mono"><div><dt>Client</dt><dd id="caseClient"></dd></div><div><dt>Kind</dt><dd id="caseKind"></dd></div><div><dt>Year</dt><dd id="caseYear"></dd></div><div><dt>Source</dt><dd><a id="caseLink" href="#" target="_blank" rel="noopener">Behance ↗</a></dd></div></dl></div><div class="case__gallery" id="caseGallery"></div><button class="case__next" id="caseNext"><span class="mono">Next</span><strong id="caseNextTitle"></strong></button></div></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

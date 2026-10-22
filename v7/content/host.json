@@ -1,0 +1,371 @@
+{
+  "name": "Yasser Kobeissi",
+  "role": "Creative Director",
+  "city": "Riyadh",
+  "opening": [
+    {
+      "t": "hi.",
+      "pause": 700
+    },
+    {
+      "t": "you found it. most people stop at the behance link.",
+      "pause": 900
+    },
+    {
+      "t": "i'm yasser. creative director. riyadh, via beirut. twenty years of making things that exist for one night and then i do it again.",
+      "pause": 800
+    },
+    {
+      "t": "before we go on. what do i call you?",
+      "ask": true
+    }
+  ],
+  "afterName": [
+    {
+      "t": "{name}.",
+      "pause": 600
+    },
+    {
+      "t": "{nameJoke}",
+      "pause": 900
+    },
+    {
+      "t": "ok {name}. it's {time} in riyadh. {timeJoke}",
+      "pause": 900
+    },
+    {
+      "t": "scroll. i'll talk. you'll touch things. that is the deal.",
+      "pause": 400
+    }
+  ],
+  "nameJokes": {
+    "short": "{len} letters. mine has fourteen. i win, but it's close.",
+    "long": "{len} letters. i've designed badges for less. we'll make it fit.",
+    "mid": "{len} letters. good badge name. not every name is a badge name."
+  },
+  "timeJokes": {
+    "night": "i'm up. of course i'm up.",
+    "morning": "i've had one coffee. ask me anything after the second.",
+    "day": "the client just called. the client always just called.",
+    "evening": "doors open in an hour somewhere. they always do."
+  },
+  "journey": {
+    "label": "01 · the flight",
+    "from": {
+      "city": "Beirut",
+      "lat": 33.89,
+      "lon": 35.5
+    },
+    "to": {
+      "city": "Riyadh",
+      "lat": 24.71,
+      "lon": 46.67
+    },
+    "km": 1515,
+    "stops": [
+      {
+        "at": 0.0,
+        "line": "beirut. a bookshop that needed posters. i was the guy with the markers."
+      },
+      {
+        "at": 0.25,
+        "line": "ten years of television. four channels. a thousand lower-thirds. i can still do one in my sleep, and i have."
+      },
+      {
+        "at": 0.55,
+        "line": "then the phone call. riyadh. 'can you build a stage by friday?' i said yes before i asked which friday."
+      },
+      {
+        "at": 0.85,
+        "line": "i came for the opportunity. i stayed because they let me build a village in a weekend."
+      },
+      {
+        "at": 1.0,
+        "line": "riyadh. 1,515 km from where it started. feels like further. feels like home."
+      }
+    ]
+  },
+  "tv": {
+    "label": "02 · the tv years",
+    "intro": "ten years of broadcast. i ran the graphics for four channels at once. press the remote. i'll tell you what each one did to me.",
+    "channels": [
+      {
+        "n": "01",
+        "name": "SPORTS",
+        "ticker": "LIVE · RIYADH DERBY · 88' · 2–2 · VAR CHECK IN PROGRESS",
+        "lower": [
+          "AL AHLI vs AL HILAL",
+          "SECOND HALF · 88:14"
+        ],
+        "line": "sports. ten lower-thirds a minute. the score changed faster than the graphics. i learned speed here."
+      },
+      {
+        "n": "02",
+        "name": "NEWS",
+        "ticker": "BREAKING · GRAPHICS DEPARTMENT ASKS FOR A SECOND COFFEE · MARKETS REACT",
+        "lower": [
+          "BREAKING NEWS",
+          "RIYADH · 21:00"
+        ],
+        "line": "news. eleven a minute, and every one of them had to be right. i learned precision here. and fear."
+      },
+      {
+        "n": "03",
+        "name": "TALK",
+        "ticker": "TONIGHT · THREE GUESTS · ONE OPINION · ZERO BREAKS",
+        "lower": [
+          "THE LATE SHOW",
+          "WITH NOBODY IN PARTICULAR"
+        ],
+        "line": "talk shows. one ident, forty bumpers, a host who changed his mind at 7:58. i learned patience here. briefly."
+      },
+      {
+        "n": "04",
+        "name": "DOCS",
+        "ticker": "DOCUMENTARY · THE MAKING OF EVERYTHING · PART 4 OF 4",
+        "lower": [
+          "EPISODE 04",
+          "THE DESERT, AT NIGHT"
+        ],
+        "line": "documentaries. slow, beautiful, nobody watched them live. i learned craft here. it is the one i miss."
+      }
+    ]
+  },
+  "loud": {
+    "label": "03 · loud",
+    "intro": "i am the loud one in the room. the work is the quiet one. both on purpose. turn it up.",
+    "levels": [
+      [
+        0,
+        "silence. my mother would be proud."
+      ],
+      [
+        3,
+        "office volume. acceptable. boring."
+      ],
+      [
+        6,
+        "mdl beast, edition one. pepsico. the ground moved."
+      ],
+      [
+        8,
+        "edition two. we added more. of everything."
+      ],
+      [
+        10,
+        "edition three. my ears still ring. worth it."
+      ],
+      [
+        11,
+        "ok. ok. turn it down. i have neighbours."
+      ]
+    ]
+  },
+  "car": {
+    "label": "04 · the car geek",
+    "intro": "nobody asks about this part. i learned car design principles from a professor out of the volkswagen audi group. proportions, stance, the line that goes from the headlight to the tail. here. tune one. i'll tell you the truth.",
+    "critique": {
+      "roofLow": "low roof. coupé energy. you want to be noticed. same.",
+      "roofHigh": "tall roof. practical. you have kids or you're lying.",
+      "wheelsBig": "big wheels. every designer does this first. every engineer takes them away.",
+      "wheelsSmall": "small wheels. honest. a little sad.",
+      "long": "long bonnet. power you don't need. i respect that.",
+      "short": "short overhangs. city car. fits in a riyadh parking spot, which is a design brief on its own.",
+      "stanceWide": "wide stance. planted. this one is good. i'd draw it twice.",
+      "default": "balanced. clean. you'd sell it. you wouldn't love it. keep going."
+    }
+  },
+  "next": {
+    "label": "05 · what's next",
+    "intro": "people ask what's next. honestly? no idea. that is the best part of this job. pull it.",
+    "reels": [
+      [
+        "a film",
+        "a bigger village",
+        "a car, a real one",
+        "a channel of my own",
+        "a stage in the desert",
+        "sleep"
+      ],
+      [
+        "in riyadh",
+        "in beirut",
+        "in the dark",
+        "by friday",
+        "with pepsico again",
+        "with you"
+      ],
+      [
+        "for 10,000 people",
+        "for one person",
+        "for one night",
+        "for the next twenty years",
+        "for my mother",
+        "for the fun of it"
+      ]
+    ],
+    "reactions": [
+      "that one. write it down.",
+      "no. pull again.",
+      "i've done that. twice.",
+      "hm. that could actually happen.",
+      "the machine has taste.",
+      "sleep. the machine is lying."
+    ]
+  },
+  "drawer": {
+    "label": "06 · the drawer",
+    "intro": "the work, if you insist. thirty-four things that existed for one night. drag the desk. open any."
+  },
+  "bye": {
+    "label": "07 · goodbye",
+    "lines": [
+      "that's me, {name}.",
+      "loud in the room, quiet in the work, and i still draw with a marker first.",
+      "if you have a date and a venue, i have a plan by friday. which friday is your call."
+    ],
+    "card": "A guest of Yasser Kobeissi · {date} · Riyadh"
+  },
+  "contact": {
+    "email": "yasserkobeissi98@gmail.com",
+    "phone": "+966 557905388",
+    "behance": "https://www.behance.net/yaserkobeissi"
+  },
+  "timeline": {
+    "label": "02 · twenty years",
+    "intro": "twenty years. drag the playhead. every year has an opinion.",
+    "years": [
+      [
+        "2006",
+        "a bookshop in beirut. posters. my first client paid in books."
+      ],
+      [
+        "2007",
+        "learned that a deadline is a deadline even when the printer disagrees."
+      ],
+      [
+        "2008",
+        "first motion job. 2d, 3d, whatever the producer called 3d."
+      ],
+      [
+        "2009",
+        "a production house. we made ads nobody remembers and i remember all of them."
+      ],
+      [
+        "2010",
+        "graduated. graphic design, lau. the degree arrived after the jobs did."
+      ],
+      [
+        "2011",
+        "bridge production. four years. learned to render overnight and sleep on the render."
+      ],
+      [
+        "2012",
+        "a film director course. i direct everything now, including this sentence."
+      ],
+      [
+        "2013",
+        "more broadcast. the lower-third became my handwriting."
+      ],
+      [
+        "2014",
+        "arabic tv. live. if it breaks, it breaks on air."
+      ],
+      [
+        "2015",
+        "tony robbins said something about business. i bought a better coffee machine."
+      ],
+      [
+        "2016",
+        "blue house films. cinematography. learned where the light goes."
+      ],
+      [
+        "2017",
+        "head of graphics, lebanese tv. the chair was mine, the deadlines were everyone's."
+      ],
+      [
+        "2018",
+        "a thousand idents. i stopped counting at a thousand."
+      ],
+      [
+        "2019",
+        "maestro group, sba. four channels at once. four."
+      ],
+      [
+        "2020",
+        "documentaries. slow, beautiful, nobody watched them live. i miss them."
+      ],
+      [
+        "2021",
+        "riyadh. the phone call. 'a stage by friday.' which friday was not discussed."
+      ],
+      [
+        "2022",
+        "thakwa events. my name on the door. the door was mine, the invoices too."
+      ],
+      [
+        "2023",
+        "booths, forums, a trophy or two. the marker came back out."
+      ],
+      [
+        "2024",
+        "sovyal events. head of creative. a village in a weekend."
+      ],
+      [
+        "2025",
+        "national day, founding day, ramadan nights. one night each. all of them, still here."
+      ],
+      [
+        "2026",
+        "this website. you. hi."
+      ]
+    ]
+  },
+  "office": {
+    "title": "the office",
+    "lines": [
+      [
+        "from",
+        "beirut, lebanon"
+      ],
+      [
+        "based",
+        "riyadh, since 2021"
+      ],
+      [
+        "runs",
+        "the creative department at sovyal events"
+      ],
+      [
+        "before",
+        "ten years of broadcast. four channels at once, at sba."
+      ],
+      [
+        "proud of",
+        "three editions of mdl beast, with pepsico"
+      ],
+      [
+        "the hand",
+        "copic markers, cinema 4d, lumion, after effects, premiere, photoshop, illustrator, openart"
+      ],
+      [
+        "the secret",
+        "car design principles, from a professor out of the volkswagen audi group"
+      ],
+      [
+        "volume",
+        "loud in the room. quiet in the work."
+      ]
+    ]
+  },
+  "notes": {
+    "flight": "1,515 km. he still says 'back home' about both ends.",
+    "tv": "press 02. he flinches. it's the news.",
+    "loud": "it goes to 11. don't ask why. ask why not.",
+    "car": "he will critique your car. he critiques his own.",
+    "next": "the machine has never once said 'sleep' twice.",
+    "drawer": "thirty-four. not all of them. the ones he'd show his mother.",
+    "timeline": "every year has an opinion. so does he."
+  },
+  "notFound": "this room does not exist. neither did most of mine until friday."
+}
