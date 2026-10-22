@@ -1,0 +1,1 @@
+{"name":"yasser-kobeissi-portfolio-v3","private":true,"version":"3.0.0","type":"module","scripts":{"dev":"vite --port 5182 --host 127.0.0.1","build":"vite build","preview":"vite preview --port 5183"},"devDependencies":{"vite":"^6.4.5"},"dependencies":{"gsap":"^3.15.0","lenis":"^1.3.27","three":"^0.170.0"}}

@@ -1,0 +1,41 @@
+{
+  "name": "Yasser Kobeissi", "ar": "ياسر قبيسي", "role": "Creative Director", "city": "Riyadh",
+  "intro": { "serif": "Rooms people walk into.", "sub": "Twenty years of creative direction for events, exhibitions and the objects people take home.", "status": "Available · Riyadh · GMT+3" },
+  "playground": {
+    "lines": [
+      { "id": "about", "text": "CALL ME YASSER, OR THE GUY WITH THE MARKER", "pos": "tl" },
+      { "id": "hi", "text": "SAY HI", "pos": "tr" },
+      { "id": "about", "text": "MORE ABOUT ME", "pos": "ml" },
+      { "id": "work", "text": "CHECK THE ROOMS", "pos": "mr" },
+      { "id": "tools", "text": "WHAT I USE", "pos": "bl" },
+      { "id": "poke", "text": "POKE ME", "pos": "br" }
+    ]
+  },
+  "about": {
+    "title": "about.txt",
+    "paras": [
+      "I am a Creative Director in Riyadh. I draw rooms before they exist: exhibition stands, national day villages, Ramadan tents, award nights, and the trophies and boxes people carry out of them.",
+      "Twenty years ago I was a graphic designer in a bookshop. Then ten years of broadcast motion, 2D and 3D, for TV in Lebanon. Then Riyadh, and events, where a render on Monday becomes a street on Friday.",
+      "Today I lead the creative department at Sovyal Events. I still sketch everything with a marker first. If it does not work as a line, it will not work as a build.",
+      "I am told I am the loud one in the room. The work is the quiet one. Both are on purpose."
+    ],
+    "facts": [["Born", "Lebanon"], ["Based", "Riyadh, since 2021"], ["Degree", "B.Sc. Graphic Design, LAU 2010"], ["Rooms drawn", "34 on this site, more in the drawer"], ["Coffee", "Black, before every sketch"]]
+  },
+  "tools": {
+    "title": "tools.app",
+    "groups": [
+      { "k": "3D", "items": ["Cinema 4D", "Lumion", "Blender", "Redshift"] },
+      { "k": "Motion", "items": ["After Effects", "Premiere Pro", "DaVinci Resolve"] },
+      { "k": "Design", "items": ["Photoshop", "Illustrator", "InDesign", "Figma"] },
+      { "k": "AI", "items": ["OpenArt", "Midjourney", "Magnific", "Runway"] },
+      { "k": "Hands", "items": ["Copic markers", "Layout paper", "A roll of trace"] }
+    ]
+  },
+  "philosophy": ["Clients arrive with a brief.", "Guests leave with a memory.", "The room is the bridge."],
+  "moves": [["01", "Listen", "The brief, the venue, the audience, the budget. Mostly the audience."], ["02", "Draw", "Marker first. One page. If the page works, the room will."], ["03", "Model", "Cinema 4D and Lumion. Every wall, cable and sightline before a single screw."], ["04", "Build", "Production, LED, motion content, the team on site at 3am."], ["05", "Open", "Doors open. I watch faces, not screens."]],
+  "clients": ["Othaim Mall", "PepsiCo", "Gold's Gym", "Joud Eskan", "McDonald's", "MDL Beast", "DJI Enterprise", "SBA", "EWC", "Monshaat", "Misk", "GOSI", "SIMAH", "Seder Group", "Al Rajhi Takaful", "Thiqah", "Urpay", "Neoleap", "Looptech", "The Financial Academy"],
+  "career": [["2024", "Sovyal Events", "Creative Director"], ["2022", "Thakwa Events", "Art Director / CEO"], ["2021", "Lezof-Hi Deer", "Creative Strategist"], ["2019", "Maestro Group · SBA", "Head of Creative"], ["2017", "Lebanese TV", "Head of Graphics"], ["2008", "Production houses", "2D & 3D motion"], ["2006", "Maliks Book Shop", "Graphic Designer"]],
+  "pokes": ["Ouch.", "Again?", "I was drawing.", "That tickles.", "Okay, okay.", "Last one.", "You are persistent. I like that."],
+  "contact": { "email": "yasserkobeissi98@gmail.com", "phone": "+966 557905388", "behance": "https://www.behance.net/yaserkobeissi", "line": "Tell me the date and the room. I will draw the rest." },
+  "featured": ["249506301", "250404065", "248381303", "248713431", "247988533", "247691629", "249047033", "249270879"]
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Yasser Kobeissi — Rooms people walk into</title>
+  <meta name="description" content="Yasser Kobeissi, Creative Director in Riyadh. Twenty years of events, exhibitions, trophies and the rooms people remember." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@90,500;90,800;100,500;100,800;112,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Kufi+Arabic:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <div class="loader" id="loader"><span class="loader__n" id="loaderN">0</span><span class="mono">Loading Yasser</span></div>
+  <canvas id="gl" class="gl" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true"><i></i><b id="cursorLabel"></b></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__mark" href="#top" data-go><b>YK</b><span>Yasser Kobeissi</span></a>
+    <nav class="nav__links mono"><a href="#play" data-go>Play</a><a href="#work" data-go>Rooms</a><a href="#index" data-go>Index</a><a href="#contact" data-go>Say hi</a></nav>
+    <div class="nav__clock mono"><span id="clock">00:00</span> Riyadh</div>
+  </header>
+
+  <main id="top">
+    <!-- INTRO -->
+    <section class="intro" id="intro">
+      <div class="intro__pin">
+        <div class="intro__copy">
+          <p class="mono intro__kicker" id="introStatus"></p>
+          <h1 class="intro__title serif" id="introTitle"></h1>
+          <p class="intro__sub" id="introSub"></p>
+        </div>
+        <div class="intro__meta mono"><span id="introAr" class="ar"></span><span>Scroll</span></div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="play" id="play">
+      <div class="play__pin" id="playPin">
+        <div class="play__lines" id="playLines"></div>
+        <div class="pokes mono" id="pokeCount"></div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="phil" id="phil">
+      <p class="mono">Philosophy</p>
+      <h2 class="phil__lines" id="philLines"></h2>
+      <ol class="moves" id="moves"></ol>
+    </section>
+
+    <!-- ROOMS -->
+    <section class="rooms" id="work">
+      <div class="rooms__head"><p class="mono">Selected rooms</p><p class="mono" id="roomsCount"></p></div>
+      <div id="scenes"></div>
+    </section>
+
+    <!-- INDEX -->
+    <section class="index" id="index">
+      <div class="index__head"><h2 class="big">EVERY<br/>ROOM</h2><p class="mono">Hover to preview · click to open</p><div class="filters mono" id="filters"></div></div>
+      <ol class="index__list" id="indexList"></ol>
+      <div class="peek" id="peek"><img alt="" /></div>
+    </section>
+
+    <!-- CLIENTS + CAREER -->
+    <section class="studio" id="studio">
+      <div class="clients"><div class="clients__track" id="clients"></div></div>
+      <div class="career" id="career"></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <h2 class="big contact__big">SAY<br/>HI</h2>
+      <div class="contact__body">
+        <p class="serif contact__line" id="contactLine"></p>
+        <div class="contact__links"><a id="mailLink" href="#" class="contact__mail"></a><div class="mono"><a id="behanceLink" href="#" target="_blank" rel="noopener">Behance ↗</a><span id="phoneLine"></span></div></div>
+      </div>
+      <footer class="footer mono"><span>Yasser Kobeissi · Creative Director · Riyadh</span><span>Drawn first, then built</span><span>© <span id="year"></span></span></footer>
+    </section>
+  </main>
+
+  <!-- WINDOWS -->
+  <div class="windows" id="windows"></div>
+
+  <!-- CASE -->
+  <div class="case" id="case" aria-hidden="true">
+    <div class="case__bar"><button class="case__close" id="caseClose" aria-label="Close"><i></i><i></i></button><span class="mono" id="caseCount"></span></div>
+    <div class="case__scroll" id="caseScroll">
+      <div class="case__hero"><img id="caseHero" alt="" /><div class="case__heroText"><p class="mono" id="caseKicker"></p><h2 id="caseTitle"></h2></div></div>
+      <div class="case__info"><p class="serif" id="caseThought"></p><p id="caseLine"></p><dl class="mono"><div><dt>Client</dt><dd id="caseClient"></dd></div><div><dt>Kind</dt><dd id="caseKind"></dd></div><div><dt>Year</dt><dd id="caseYear"></dd></div><div><dt>Source</dt><dd><a id="caseLink" href="#" target="_blank" rel="noopener">Behance ↗</a></dd></div></dl></div>
+      <div class="case__gallery" id="caseGallery"></div>
+      <button class="case__next" id="caseNext"><span class="mono">Next room</span><strong id="caseNextTitle"></strong></button>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
