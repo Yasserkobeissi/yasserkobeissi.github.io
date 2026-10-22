@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Yasser Kobeissi — Creative Director</title>
+  <meta name="description" content="Yasser Kobeissi, Creative Director. Creative direction for the nights a city remembers. Riyadh, from Beirut." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <div class="loader" id="loader"><span class="loader__mark">YK</span><span class="loader__n" id="loaderN">0</span></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><i></i></div>
+  <div class="curtain" id="curtain" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__name" href="#top" data-go><span>Yasser Kobeissi</span><small class="mono">Creative Director</small></a>
+    <nav class="nav__links mono"><a href="#director" data-go>Director</a><a href="#range" data-go>Range</a><a href="#work" data-go>Work</a><a href="#years" data-go>Years</a><a href="#contact" data-go>Contact</a></nav>
+    <span class="mono nav__clock" id="clock"></span>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__media"><canvas id="heroGl"></canvas></div>
+      <div class="hero__body">
+        <p class="mono hero__kicker" id="heroKicker"></p>
+        <h1 class="hero__title" id="heroTitle"></h1>
+        <p class="hero__sub" id="heroSub"></p>
+      </div>
+      <div class="hero__foot mono"><span>Riyadh · Beirut</span><span id="heroScroll">Scroll</span><span>2006 — 2026</span></div>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement" id="statement"><p class="statement__text" id="statementText"></p></section>
+
+    <!-- I · THE DIRECTOR -->
+    <section class="director" id="director">
+      <div class="director__media"><figure class="frame" id="portraitFrame"><img src="/yasser/portrait.jpg" alt="Yasser Kobeissi" /></figure></div>
+      <div class="director__body">
+        <p class="mono label" id="directorLabel"></p>
+        <div class="director__copy" id="directorCopy"></div>
+        <dl class="facts" id="facts"></dl>
+      </div>
+    </section>
+
+    <!-- II · THE RANGE -->
+    <section class="range" id="range">
+      <p class="mono label" id="rangeLabel"></p>
+      <ol class="range__list" id="rangeList"></ol>
+      <div class="peek" id="peek"><img alt="" /></div>
+    </section>
+
+    <!-- III · SELECTED WORK -->
+    <section class="work" id="work">
+      <p class="mono label" id="workLabel"></p>
+      <div class="work__spreads" id="spreads"></div>
+    </section>
+
+    <!-- IV · YEARS -->
+    <section class="years" id="years">
+      <p class="mono label" id="yearsLabel"></p>
+      <ol class="years__list" id="yearsList"></ol>
+      <div class="clients"><div class="clients__track" id="clients"></div></div>
+    </section>
+
+    <!-- V · CONTACT -->
+    <section class="contact" id="contact">
+      <p class="mono label" id="contactLabel"></p>
+      <h2 class="contact__title"><span class="w">Let's</span> <span class="w">talk.</span></h2>
+      <p class="contact__line" id="contactLine"></p>
+      <a class="contact__mail" id="mailLink" href="#"></a>
+      <div class="mono contact__meta"><a id="behanceLink" href="#" target="_blank" rel="noopener">Behance ↗</a><span id="phoneLine"></span><span>Riyadh</span></div>
+      <footer class="footer mono"><span>Yasser Kobeissi · Creative Director</span><span>© <span id="year"></span></span></footer>
+    </section>
+  </main>
+
+  <div class="case" id="case" aria-hidden="true"><div class="case__bar"><button class="case__close" id="caseClose" aria-label="Close"><i></i><i></i></button><span class="mono" id="caseKicker"></span></div><div class="case__scroll" id="caseScroll"><div class="case__hero"><img id="caseHero" alt="" /><h2 id="caseTitle"></h2></div><div class="case__info"><p class="serif" id="caseThought"></p><p id="caseLine"></p><dl class="mono"><div><dt>Client</dt><dd id="caseClient"></dd></div><div><dt>Kind</dt><dd id="caseKind"></dd></div><div><dt>Year</dt><dd id="caseYear"></dd></div><div><dt>Source</dt><dd><a id="caseLink" href="#" target="_blank" rel="noopener">Behance ↗</a></dd></div></dl></div><div class="case__gallery" id="caseGallery"></div><button class="case__next" id="caseNext"><span class="mono">Next</span><strong id="caseNextTitle"></strong></button></div></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
