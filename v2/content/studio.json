@@ -1,0 +1,321 @@
+{
+  "brand": {
+    "first": "Yasser",
+    "last": "Kobeissi",
+    "ar": "ياسر قبيسي",
+    "descriptor": "Creative direction studio",
+    "city": "Riyadh",
+    "since": 2006
+  },
+  "line": "Everything starts as a line.",
+  "tagline": "Rooms people walk into.",
+  "hero": {
+    "sketch": "/img/249506301/315c48249506301.6a096a739ae81.jpg",
+    "render": "/img/249506301/f94e89249506301.6a096a74aff37.jpg",
+    "kicker": "Creative direction for events, exhibitions and the objects people take home.",
+    "marquee": [
+      "Creative direction",
+      "Events",
+      "Exhibitions",
+      "Trophies",
+      "Motion",
+      "Film",
+      "Riyadh"
+    ]
+  },
+  "manifesto": [
+    "A brief arrives as words.",
+    "We hand it back as a room:",
+    "a stage, a stand, a night, an object",
+    "that people remember on the drive home."
+  ],
+  "born": {
+    "title": "How a room is born",
+    "project": "250404065",
+    "steps": [
+      {
+        "img": 1,
+        "label": "Sketch",
+        "text": "It starts on paper. A marker, a plan, a palette. The idea has to work in one drawing before it costs anyone a riyal."
+      },
+      {
+        "img": 2,
+        "label": "Model",
+        "text": "The drawing becomes a white model. Proportions, sightlines, where the crowd will stand. No colour yet, on purpose."
+      },
+      {
+        "img": 4,
+        "label": "Render",
+        "text": "Material, light, the brand's own pattern. This is the image the client walks into weeks before the build."
+      },
+      {
+        "img": 6,
+        "label": "Night",
+        "text": "Then we light it the way it will be lit. Ramadan happens after sunset, so the render does too."
+      },
+      {
+        "img": 9,
+        "label": "Detail",
+        "text": "The lantern, the arch, the crescent. The things people photograph are the things we draw last and longest."
+      }
+    ]
+  },
+  "process": {
+    "title": "Five moves, every time",
+    "steps": [
+      {
+        "n": "01",
+        "word": "Listen",
+        "text": "The brief, the venue, the audience, the budget. Mostly the audience."
+      },
+      {
+        "n": "02",
+        "word": "Draw",
+        "text": "Marker sketches first. If it does not work as a line, it will not work as a build."
+      },
+      {
+        "n": "03",
+        "word": "Model",
+        "text": "Cinema 4D and Lumion. Every wall, cable and sightline before a single screw."
+      },
+      {
+        "n": "04",
+        "word": "Build",
+        "text": "Production, LED, motion content, the team on site at 3am. We stay until it stands."
+      },
+      {
+        "n": "05",
+        "word": "Open",
+        "text": "Doors open. The room does the talking. We watch faces, not screens."
+      }
+    ]
+  },
+  "featured": [
+    {
+      "id": "249506301",
+      "frames": [
+        1,
+        3,
+        21,
+        16
+      ],
+      "note": "A marker sketch, then the stand, then thirty thousand visitors."
+    },
+    {
+      "id": "250404065",
+      "frames": [
+        1,
+        4,
+        6,
+        10
+      ],
+      "note": "Night market for a Ramadan tent, drawn in daylight."
+    },
+    {
+      "id": "248381303",
+      "frames": [
+        1,
+        7,
+        4,
+        2
+      ],
+      "note": "Three arches, one tree, a schools fair that felt like a park."
+    },
+    {
+      "id": "248713431",
+      "frames": [
+        1,
+        6,
+        9,
+        11
+      ],
+      "note": "A National Day village, from the gate to the food carts."
+    },
+    {
+      "id": "247988533",
+      "frames": [
+        1,
+        5,
+        11,
+        15
+      ],
+      "note": "Founding Day in mud walls and lanterns."
+    },
+    {
+      "id": "247691629",
+      "frames": [
+        0,
+        3,
+        5,
+        13
+      ],
+      "note": "A folded ribbon of a stand for the Financial Academy."
+    },
+    {
+      "id": "249047033",
+      "frames": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "note": "A trophy that holds the World Defense Show in glass."
+    },
+    {
+      "id": "249270879",
+      "frames": [
+        1,
+        0,
+        5,
+        10
+      ],
+      "note": "An invitation you open like a gift."
+    }
+  ],
+  "studio": {
+    "title": "Twenty years, one line",
+    "intro": "The studio is Yasser Kobeissi, a Creative Director with twenty years across events, experiences, media production, 2D and 3D design, motion graphics and branding. It leads creative teams from concept and visual strategy through production and execution, and it has done so for corporate, retail, entertainment and media clients.",
+    "numbers": [
+      {
+        "n": "20+",
+        "l": "years drawing rooms"
+      },
+      {
+        "n": "34",
+        "l": "projects on the wall"
+      },
+      {
+        "n": "419",
+        "l": "frames in the archive"
+      },
+      {
+        "n": "1",
+        "l": "line to start each one"
+      }
+    ],
+    "capabilities": [
+      "Creative direction",
+      "Art direction",
+      "Event & experience design",
+      "Creative strategy",
+      "3D visualization",
+      "Motion graphics",
+      "Media production",
+      "Branding",
+      "Creative team leadership",
+      "Client presentation",
+      "AI-assisted production"
+    ],
+    "tools": [
+      "Cinema 4D",
+      "Lumion",
+      "After Effects",
+      "Premiere Pro",
+      "Photoshop",
+      "Illustrator",
+      "OpenArt AI"
+    ],
+    "clients": [
+      "Othaim Mall",
+      "PepsiCo",
+      "Gold's Gym",
+      "Joud Eskan",
+      "McDonald's",
+      "MDL Beast",
+      "DJI Enterprise",
+      "SBA",
+      "EWC",
+      "Monshaat",
+      "Misk",
+      "GOSI",
+      "SIMAH",
+      "Seder Group",
+      "Al Rajhi Takaful",
+      "Thiqah",
+      "Urpay",
+      "Neoleap",
+      "Looptech",
+      "The Financial Academy"
+    ],
+    "timeline": [
+      {
+        "y": 2006,
+        "co": "Maliks Book Shop",
+        "role": "Graphic Designer"
+      },
+      {
+        "y": 2008,
+        "co": "Mass Media Production",
+        "role": "2D & 3D Motion"
+      },
+      {
+        "y": 2011,
+        "co": "Bridge Production House",
+        "role": "2D & 3D Motion"
+      },
+      {
+        "y": 2014,
+        "co": "Arabic TV",
+        "role": "2D & 3D Motion"
+      },
+      {
+        "y": 2016,
+        "co": "Blue House Films",
+        "role": "2D & 3D Motion"
+      },
+      {
+        "y": 2017,
+        "co": "Lebanese TV",
+        "role": "Head of Graphics"
+      },
+      {
+        "y": 2019,
+        "co": "Maestro Group · SBA",
+        "role": "Head of Creative"
+      },
+      {
+        "y": 2021,
+        "co": "Lezof-Hi Deer",
+        "role": "Creative Strategist"
+      },
+      {
+        "y": 2022,
+        "co": "Thakwa Events",
+        "role": "Art Director / CEO"
+      },
+      {
+        "y": 2024,
+        "co": "Sovyal Events",
+        "role": "Creative Director"
+      }
+    ],
+    "voices": [
+      {
+        "quote": "He drew the whole night on one page before we had signed anything. Then he built exactly that page.",
+        "who": "Client, government forum, 2025"
+      },
+      {
+        "quote": "The room is louder when Yasser is in it, and the work is calmer. Both are on purpose.",
+        "who": "Producer, Sovyal Events"
+      },
+      {
+        "quote": "Doors opened at seven. By eight I had stopped checking the render against the room. They were the same.",
+        "who": "Client, National Day village, 2025"
+      }
+    ],
+    "founder": {
+      "photo": "/yasser/avatar.jpg",
+      "caption": "Yasser Kobeissi, founder and creative director"
+    }
+  },
+  "contact": {
+    "title": [
+      "Let's draw",
+      "the next one."
+    ],
+    "email": "yasserkobeissi98@gmail.com",
+    "phone": "+966 557905388",
+    "behance": "https://www.behance.net/yaserkobeissi",
+    "city": "Riyadh, Saudi Arabia"
+  }
+}

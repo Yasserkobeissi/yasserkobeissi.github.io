@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Yasser Kobeissi — Inside</title>
+  <meta name="description" content="Yasser Kobeissi, creative direction studio in Riyadh. Walk into the mind that draws the rooms: events, exhibitions, trophies, motion." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <div class="loader" id="loader" aria-hidden="true"><div class="loader__bar"><i id="loaderBar"></i></div><span class="mono" id="loaderText">Loading him in</span></div>
+  <canvas id="gl" class="gl"></canvas>
+  <div class="cursor" aria-hidden="true"><i></i></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__mark" href="#top"><span class="nav__name">Yasser Kobeissi</span><span class="mono nav__sub">Creative direction · Riyadh</span></a>
+    <nav class="nav__links mono"><a href="#inside" data-go>Inside</a><a href="#rooms" data-go>Rooms</a><a href="#contact" data-go>Contact</a></nav>
+    <div class="nav__state mono" id="navState">Outside</div>
+  </header>
+
+  <main id="top">
+    <!-- 1 · THE HEAD -->
+    <section class="head" id="head">
+      <div class="head__pin">
+        <div class="head__ui">
+          <h1 class="head__title"><span id="titleA">A mind that</span><br/><span id="titleB" class="serif">draws rooms.</span></h1>
+          <p class="head__sub" id="headSub">Creative direction for events, exhibitions and the objects people take home. Twenty years. Riyadh.</p>
+          <p class="mono head__hint" id="headHint">Hover the head to look inside · scroll to walk in</p>
+        </div>
+        <div class="head__ar serif" aria-hidden="true">ياسر قبيسي</div>
+      </div>
+    </section>
+
+    <!-- 2 · INSIDE -->
+    <section class="inside" id="inside">
+      <div class="inside__pin">
+        <div class="chapter" id="chapter"><p class="mono" id="chapterK"></p><h2 id="chapterT"></h2><p id="chapterD"></p></div>
+        <div class="node" id="node"><img id="nodeImg" alt="" /><strong id="nodeT"></strong><span class="mono" id="nodeK"></span></div>
+        <div class="depth mono" id="depth"><span>Depth</span><i><b id="depthBar"></b></i><span id="depthN">00</span></div>
+      </div>
+    </section>
+
+    <!-- 3 · ROOMS (all projects) -->
+    <section class="rooms" id="rooms">
+      <div class="rooms__head"><p class="mono">Every room, in order of memory</p><h2>Thirty-four rooms.</h2></div>
+      <ul class="rooms__list" id="roomsList"></ul>
+      <div class="rooms__peek" id="roomsPeek"><img alt="" /></div>
+    </section>
+
+    <!-- 4 · CONTACT -->
+    <section class="contact" id="contact">
+      <h2 class="contact__title"><span>Think</span> <span class="serif">with us.</span></h2>
+      <div class="contact__row">
+        <a class="btn" id="mailBtn" href="#"><span>Start a project</span></a>
+        <div class="mono contact__meta"><a id="mailLink" href="#"></a><a id="behanceLink" href="#" target="_blank" rel="noopener">Behance ↗</a><span id="phoneLine"></span><span id="cityLine"></span></div>
+      </div>
+      <footer class="footer mono"><span>Yasser Kobeissi · Riyadh</span><span>© <span id="year"></span></span></footer>
+    </section>
+  </main>
+
+  <div class="case" id="case" aria-hidden="true">
+    <div class="case__bar"><button class="case__close" id="caseClose" aria-label="Close"><i></i><i></i></button><span class="mono" id="caseCount"></span></div>
+    <div class="case__scroll" id="caseScroll">
+      <div class="case__info"><h2 id="caseTitle"></h2><dl class="mono"><div><dt>Kind</dt><dd id="caseKind"></dd></div><div><dt>Year</dt><dd id="caseYear"></dd></div><div><dt>Fields</dt><dd id="caseFields"></dd></div><div><dt>Source</dt><dd><a id="caseLink" href="#" target="_blank" rel="noopener">Behance ↗</a></dd></div></dl></div>
+      <div class="case__gallery" id="caseGallery"></div>
+      <button class="case__next" id="caseNext"><span class="mono">Next room</span><strong id="caseNextTitle"></strong></button>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
