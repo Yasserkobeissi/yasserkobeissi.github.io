@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Yasser Kobeissi — Sketchbook</title>
+  <meta name="description" content="The sketchbook of Yasser Kobeissi, Creative Director in Riyadh. Every room he built started as a marker line. Scroll to draw it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,800;100,500&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&family=Noto+Kufi+Arabic:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <div class="loader" id="loader" aria-hidden="true">
+    <svg class="loader__yk" viewBox="0 0 200 150" fill="none" aria-hidden="true"><path id="ykPath" d="M18 22 L58 78 L98 22 L58 78 L58 128 M120 22 L120 128 L120 76 L172 22 L120 76 L172 128" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+    <p class="hand loader__t" id="loaderT">getting the markers…</p>
+  </div>
+  <canvas id="ink" class="inkc" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true"><span class="cursor__tip"></span><b class="cursor__label" id="cursorLabel"></b></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__mark" href="#top" data-go><b>YK</b><span class="hand">sketchbook</span></a>
+    <nav class="nav__links mono"><a href="#p1" data-go>Pages</a><a href="#drawer" data-go>The drawer</a><a href="#hand" data-go>The hand</a><a href="#back" data-go>Say hi</a></nav>
+    <div class="nav__right"><span class="mono" id="pageNo">Cover</span><button class="sound mono" id="soundBtn" data-label="Sound"><i></i>Sound off</button></div>
+  </header>
+
+  <main id="top">
+    <!-- COVER -->
+    <section class="cover page page--cover" id="cover">
+      <div class="cover__pin">
+        <div class="cover__stamp" id="coverStamp"><span>SKETCH</span><span>BOOK</span></div>
+        <div class="cover__name"><strong id="coverName"></strong><span class="hand" id="coverRole"></span><span class="ar" id="coverAr"></span></div>
+        <p class="hand cover__line" id="coverLine"></p>
+        <div class="cover__meta mono"><span id="coverYears"></span><span>34 rooms</span><span>Riyadh</span></div>
+        <div class="cover__open hand" id="coverOpen">scroll to open →</div>
+        <div class="cover__corner" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- FIRST PAGE: the line -->
+    <section class="page page--cream first" id="p1">
+      <div class="first__pin">
+        <p class="mono first__no">Page 01</p>
+        <h2 class="first__title"><span class="ln"><span>EVERYTHING</span></span><span class="ln"><span>STARTS AS</span></span><span class="ln"><span>A LINE.</span></span></h2>
+        <p class="hand first__note" id="firstNote">this one took eleven minutes and a cold coffee</p>
+        <div class="first__sheet" id="firstSheet" data-label="Draw"><canvas id="firstPaint"></canvas><img id="firstRender" alt="" /><span class="mono first__tag" id="firstTag">Sketch</span></div>
+        <p class="first__copy" id="firstCopy"></p>
+      </div>
+    </section>
+
+    <!-- PROJECT PAGES -->
+    <div id="pages"></div>
+
+    <!-- THE DRAWER -->
+    <section class="page page--kraft drawer" id="drawer">
+      <div class="drawer__head"><p class="mono">The drawer</p><h2 class="big">EVERY<br/>ROOM</h2><p class="hand">thirty-four of them. drag the desk, open any.</p><div class="filters mono" id="filters"></div></div>
+      <div class="wall" id="wall" data-label="Drag"><div class="wall__plane" id="wallPlane"></div></div>
+    </section>
+
+    <!-- THE HAND -->
+    <section class="page page--cream hand-page" id="hand">
+      <div class="hand__grid">
+        <div class="hand__col"><p class="mono">The hand</p><h2 class="big" id="handTitle">WHAT'S IN<br/>MY HAND</h2><ul class="tools" id="tools"></ul></div>
+        <div class="hand__col"><p class="mono">The moves</p><ol class="moves" id="moves"></ol><div class="about"><p class="mono">About</p><div id="aboutLines"></div><dl class="facts" id="facts"></dl></div></div>
+      </div>
+      <div class="clients"><div class="clients__track" id="clients"></div></div>
+    </section>
+
+    <!-- BACK COVER -->
+    <section class="page page--ink back" id="back">
+      <h2 class="big back__big">SAY<br/>HI</h2>
+      <div class="back__body">
+        <p class="hand back__line" id="backLine"></p>
+        <a id="mailLink" href="#" class="back__mail hand"></a>
+        <div class="mono back__meta"><a id="behanceLink" href="#" target="_blank" rel="noopener">Behance ↗</a><span id="phoneLine"></span><span>Riyadh</span></div>
+      </div>
+      <footer class="footer mono"><span>Yasser Kobeissi · Creative Director</span><span>Drawn first, then built</span><span>© <span id="year"></span></span></footer>
+    </section>
+  </main>
+
+  <div class="case" id="case" aria-hidden="true">
+    <div class="case__bar"><button class="case__close" id="caseClose" aria-label="Close"><i></i><i></i></button><span class="mono" id="caseKicker"></span></div>
+    <div class="case__scroll" id="caseScroll">
+      <div class="case__hero"><img id="caseHero" alt="" /><h2 id="caseTitle"></h2></div>
+      <div class="case__info"><p class="hand case__thought" id="caseThought"></p><p id="caseLine"></p><ul class="case__notes" id="caseNotes"></ul><dl class="mono"><div><dt>Client</dt><dd id="caseClient"></dd></div><div><dt>Kind</dt><dd id="caseKind"></dd></div><div><dt>Year</dt><dd id="caseYear"></dd></div><div><dt>Source</dt><dd><a id="caseLink" href="#" target="_blank" rel="noopener">Behance ↗</a></dd></div></dl></div>
+      <div class="case__gallery" id="caseGallery"></div>
+      <button class="case__next" id="caseNext"><span class="hand">next page →</span><strong id="caseNextTitle"></strong></button>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

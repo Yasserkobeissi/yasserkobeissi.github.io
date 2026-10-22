@@ -1,0 +1,26 @@
+{
+  "name": "Yasser Kobeissi", "ar": "ياسر قبيسي", "role": "Creative Director", "city": "Riyadh", "years": "2006 — 2026",
+  "cover": { "stamp": "SKETCHBOOK", "line": "Every room I ever built started on this paper.", "hint": "Open" },
+  "pages": {
+    "249506301": { "paper": "cream", "notes": ["corner stays open → people walk in, not past", "red = the brand. everything else stays quiet", "they sat here. for hours."], "stickers": ["APPROVED", "Riyadh Front"], "variant": "A" },
+    "250404065": { "paper": "night", "notes": ["lit for midnight, not noon", "lanterns at eye level", "crescent you can walk under"], "stickers": ["RAMADAN", "6 nights"], "variant": "B" },
+    "248381303": { "paper": "kraft", "notes": ["no walls. only canopies.", "a tree in the middle, kids run around it", "three arches = three schools"], "stickers": ["MISK", "schools fair"], "variant": "C" },
+    "248713431": { "paper": "green", "notes": ["a village for one night", "gate → carts → stage → horses", "pattern scaled to a street"], "stickers": ["95", "NATIONAL DAY"], "variant": "D" },
+    "247988533": { "paper": "clay", "notes": ["mud walls, real lanterns, real coffee", "built to look old on day one"], "stickers": ["FOUNDING DAY", "1727"], "variant": "A" },
+    "247691629": { "paper": "blue", "notes": ["one ribbon, folded until it stands", "the screen sits where the fold opens", "edge light, nothing else"], "stickers": ["SEAMLESS", "2025"], "variant": "B" },
+    "249047033": { "paper": "cream", "notes": ["glass + brass. let the light engrave it", "a room you can hold"], "stickers": ["TROPHY", "WDS"], "variant": "C" },
+    "249270879": { "paper": "teal", "notes": ["opens like a gift, kept like a secret", "badge · lanyard · card · tin"], "stickers": ["BIBAN", "invitation"], "variant": "D" }
+  },
+  "hand": {
+    "title": "What's in my hand",
+    "tools": [["Copic markers", "the first ten minutes of every room"], ["Layout paper", "cheap, so I can waste it"], ["Cinema 4D", "where the sketch grows walls"], ["Lumion", "where it gets light"], ["After Effects", "LED content, motion, projection"], ["Premiere Pro", "the film after the night"], ["Photoshop", "the render after the render"], ["Illustrator", "every plan, every logo, every sign"], ["OpenArt · Midjourney", "moods before the markers"], ["Coffee", "black"]],
+    "moves": [["Listen", "the brief, the venue, the audience. mostly the audience."], ["Draw", "one page. if the page works, the room will."], ["Model", "every wall, cable and sightline before a screw."], ["Build", "3am, on site, with the team."], ["Open", "doors open. I watch faces, not screens."]]
+  },
+  "about": {
+    "lines": ["Twenty years ago I drew for a bookshop in Lebanon.", "Then ten years of broadcast motion, 2D and 3D, for TV.", "Then Riyadh, and events, where a render on Monday is a street on Friday.", "Now I lead creative at Sovyal Events. I still draw first.", "People say I am the loud one in the room. The work is the quiet one."],
+    "facts": [["Born", "Lebanon"], ["Based", "Riyadh"], ["Degree", "B.Sc. Graphic Design, LAU"], ["Rooms", "34 in this book"], ["Markers", "Copic, red and grey"]]
+  },
+  "clients": ["Othaim Mall", "PepsiCo", "Gold's Gym", "Joud Eskan", "McDonald's", "MDL Beast", "DJI Enterprise", "SBA", "EWC", "Monshaat", "Misk", "GOSI", "SIMAH", "Seder Group", "Al Rajhi Takaful", "Thiqah", "Urpay", "Neoleap", "Looptech", "The Financial Academy"],
+  "contact": { "email": "yasserkobeissi98@gmail.com", "phone": "+966 557905388", "behance": "https://www.behance.net/yaserkobeissi", "line": "Tell me the date and the room. I'll draw the rest." },
+  "featured": ["249506301", "250404065", "248381303", "248713431", "247988533", "247691629", "249047033", "249270879"]
+}

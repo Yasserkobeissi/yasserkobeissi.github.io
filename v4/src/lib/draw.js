@@ -1,0 +1,6 @@
+/* Hand-drawn SVG helpers: circles, arrows and underlines that draw themselves. */
+const wob = (a) => a + (Math.random() - 0.5) * 6;
+export const circle = (w, h) => { const cx = w / 2, cy = h / 2, rx = w / 2 - 6, ry = h / 2 - 6; const pts = []; for (let i = 0; i <= 40; i++) { const t = i / 40 * Math.PI * 2.08 - 0.3; pts.push(`${(cx + Math.cos(t) * wob(rx)).toFixed(1)} ${(cy + Math.sin(t) * wob(ry)).toFixed(1)}`); } return `M ${pts.join(' L ')}`; };
+export const underline = (w) => `M 4 10 C ${w * 0.3} ${wob(2)}, ${w * 0.6} ${wob(16)}, ${w - 4} ${wob(8)}`;
+export const arrow = (x1, y1, x2, y2) => { const mx = (x1 + x2) / 2 + (y2 - y1) * 0.25, my = (y1 + y2) / 2 - (x2 - x1) * 0.25; const ang = Math.atan2(y2 - my, x2 - mx); const a1 = ang + 2.6, a2 = ang - 2.6; return `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2} M ${x2} ${y2} L ${x2 + Math.cos(a1) * 16} ${y2 + Math.sin(a1) * 16} M ${x2} ${y2} L ${x2 + Math.cos(a2) * 16} ${y2 + Math.sin(a2) * 16}`; };
+export const svg = (w, h, d, cls = '') => `<svg class="ink ${cls}" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" fill="none" aria-hidden="true"><path d="${d}" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>`;
