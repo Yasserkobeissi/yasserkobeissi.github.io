@@ -1,0 +1,45 @@
+{
+  "name": "Yasser Kobeissi",
+  "nameAr": "ياسر قبيسي",
+  "title": "Creative Director",
+  "tagline": "Events & Experiences · Creative Strategy",
+  "location": "Riyadh, Saudi Arabia",
+  "email": "yasserkobeissi98@gmail.com",
+  "phone": "+966 557905388",
+  "behance": "https://www.behance.net/yaserkobeissi",
+  "years": "20+",
+  "summary": "Creative Director and Art Director with 20+ years across events, experiences, media production, 2D/3D design, motion graphics, branding and marketing. Leads creative teams from concept and visual strategy through production and execution.",
+  "manifesto": "I design the rooms people remember. Booths, stages, trophies and the films that light them. Every project starts as a sketch and ends as a place you can walk into.",
+  "skills": ["Creative Direction", "Art Direction", "Event & Experience Design", "Creative Strategy", "3D Visualization", "Motion Graphics", "Media Production", "Branding", "Creative Team Leadership", "Client Presentation", "AI-Assisted Creative Production"],
+  "crafts": [
+    { "key": "booth", "word": "Booths", "line": "Exhibition stands built as small architecture.", "project": "249506301" },
+    { "key": "event", "word": "Events", "line": "National days, Ramadan nights, forums and launches.", "project": "248713431" },
+    { "key": "trophy", "word": "Trophies", "line": "Objects that hold a moment in the hand.", "project": "249047033" },
+    { "key": "motion", "word": "Motion", "line": "LED, projection and broadcast content in 2D and 3D.", "project": "250404065" },
+    { "key": "brand", "word": "Brand", "line": "Identities carried across print, screen and space.", "project": "249270879" },
+    { "key": "film", "word": "Film", "line": "Corporate films, documentaries and promos.", "project": "247988533" }
+  ],
+  "career": [
+    { "from": 2024, "to": 2026, "company": "Sovyal Events", "role": "Creative Director / Head of Creative", "note": "Leads creative across events, experiences, media production and visual communication. Directs 2D/3D motion, LED content, simulation and projection." },
+    { "from": 2022, "to": 2024, "company": "Thakwa Events", "role": "Art Director / CEO", "note": "3D animation, advertising, immersive content and media production from concept to delivery." },
+    { "from": 2021, "to": 2022, "company": "Lezof-Hi Deer", "role": "Creative Strategist", "note": "Built the visual identity and creative strategy across print, marketing, media and digital." },
+    { "from": 2019, "to": 2021, "company": "Maestro Group · SBA", "role": "Head of Creative Department", "note": "2D/3D motion, video, documentaries and promos for TV and digital platforms." },
+    { "from": 2017, "to": 2019, "company": "Lebanese TV", "role": "Head of Graphics", "note": "Broadcast visual packages and 2D/3D motion graphics." },
+    { "from": 2016, "to": 2017, "company": "Blue House Films", "role": "2D & 3D Motion Designer", "note": "" },
+    { "from": 2014, "to": 2016, "company": "Arabic TV", "role": "2D & 3D Motion Designer", "note": "" },
+    { "from": 2011, "to": 2014, "company": "Bridge Production House", "role": "2D & 3D Motion Designer", "note": "" },
+    { "from": 2008, "to": 2011, "company": "Mass Media Production", "role": "2D & 3D Motion Designer", "note": "" },
+    { "from": 2006, "to": 2008, "company": "Maliks Book Shop", "role": "Graphic Designer", "note": "" }
+  ],
+  "clients": ["Othaim Mall", "PepsiCo", "Gold's Gym", "Joud Eskan", "McDonald's", "MDL Beast", "DJI Enterprise", "SBA", "EWC", "Monshaat", "Misk", "GOSI", "SIMAH", "Seder Group", "Al Rajhi Takaful", "Thiqah", "Urpay", "Neoleap", "Looptech", "The Financial Academy"],
+  "education": [
+    { "year": "2010", "what": "B.Sc. Graphic Design, Lebanese American University" },
+    { "year": "2012", "what": "Film Director Course" },
+    { "year": "2014", "what": "Cinematography & Photography, Blue House Films" },
+    { "year": "2022", "what": "Leadership & Management, Mastry Academy" },
+    { "year": "2025", "what": "Planning Specialist, Mastry Academy" },
+    { "year": "2026", "what": "CPD Certificate, 50 hours" }
+  ],
+  "tools": ["Cinema 4D", "Lumion", "After Effects", "Premiere Pro", "Photoshop", "Illustrator", "OpenArt AI"],
+  "featured": ["249506301", "248713431", "248381303", "249047033", "250404065", "249270879", "247988533", "247691629"]
+}
