@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>One night with Yasser Kobeissi</title>
+  <meta name="description" content="You have a brief. He has a marker. By sunrise there will be a room. One night with Yasser Kobeissi, Creative Director, Riyadh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,800;100,500;100,600&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <div class="sky" id="sky" aria-hidden="true"><i class="sun" id="sun"></i><i class="grain"></i></div>
+  <canvas id="ink" class="inkc" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true"><span class="cursor__tip"></span><b class="cursor__label" id="cursorLabel"></b></div>
+
+  <div class="loader" id="loader" aria-hidden="true"><div class="loader__clock"><span id="loaderTime">17:58</span></div><p class="mono" id="loaderT">Riyadh · the call is at six</p></div>
+
+  <header class="hud" id="hud">
+    <a class="hud__mark" href="#top" data-go><b>YK</b><span>One night with Yasser</span></a>
+    <div class="hud__clock"><span class="hud__time mono" id="clock">18:00</span><span class="hud__beat mono" id="beat">The brief</span></div>
+    <div class="hud__right"><div class="hud__bar"><i id="nightBar"></i></div><button class="sound mono" id="soundBtn" data-label="Sound"><i></i>Sound off</button></div>
+  </header>
+
+  <main id="top">
+    <!-- 18:00 THE BRIEF -->
+    <section class="beat beat--brief" id="brief">
+      <div class="beat__pin">
+        <div class="brief__phone" id="phone">
+          <div class="phone__top mono"><span>Client</span><span id="phoneTime">17:58</span></div>
+          <div class="phone__msgs" id="msgs"></div>
+          <button class="phone__reply" id="replyBtn" data-label="Reply">Reply</button>
+        </div>
+        <div class="beat__copy">
+          <p class="mono beat__time">18:00 · The brief</p>
+          <h1 class="h1"><span class="ln"><span>ONE NIGHT</span></span><span class="ln"><span>WITH YASSER</span></span></h1>
+          <p class="serif beat__say" id="briefSay"></p>
+          <p class="beat__text" id="briefCopy"></p>
+          <p class="mono beat__hint">Scroll to start the night</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 19:30 THE FIRST LINE -->
+    <section class="beat beat--line" id="line">
+      <div class="beat__pin beat__pin--split">
+        <div class="beat__copy">
+          <p class="mono beat__time">19:30 · The first line</p>
+          <h2 class="h2">EVERYTHING<br/>STARTS AS<br/>A LINE.</h2>
+          <p class="serif beat__say" id="lineSay"></p>
+          <p class="beat__text" id="lineCopy"></p>
+          <div class="line__meter mono"><span>Sheet</span><i><b id="lineBar"></b></i><span id="linePct">0%</span></div>
+        </div>
+        <div class="sheet" id="sheet" data-label="Draw">
+          <canvas id="revealCanvas"></canvas>
+          <img class="sheet__render" id="lineRender" alt="" />
+          <p class="hand sheet__prompt" id="sheetPrompt">draw here. anything. the room is under your hand.</p>
+          <span class="mono sheet__tag" id="sheetTag">Blank sheet</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22:00 THE MODEL -->
+    <section class="beat beat--model" id="model">
+      <div class="beat__pin">
+        <div class="model__stage" id="modelStage">
+          <img id="modelWhite" alt="White model" /><img id="modelDay" alt="Render, day" /><img id="modelNight" alt="Render, night" />
+          <div class="model__sunline"><input type="range" id="sunRange" min="0" max="100" value="0" aria-label="Time of day" data-label="Drag" /><span class="mono" id="sunLabel">White model</span></div>
+        </div>
+        <div class="beat__copy beat__copy--over">
+          <p class="mono beat__time">22:00 · The model</p>
+          <h2 class="h2">THE RENDER<br/>IS THE PROMISE.</h2>
+          <p class="serif beat__say" id="modelSay"></p>
+          <p class="beat__text" id="modelCopy"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03:00 THE BUILD -->
+    <section class="beat beat--build" id="build">
+      <div class="beat__pin">
+        <div class="beat__copy">
+          <p class="mono beat__time">03:00 · The build</p>
+          <h2 class="h2">FLIP THE<br/>SWITCH.</h2>
+          <p class="serif beat__say" id="buildSay"></p>
+          <p class="beat__text" id="buildCopy"></p>
+          <p class="mono" id="ledStatus">0 of 40 panels on · click a panel</p>
+        </div>
+        <div class="wall" id="ledWall"></div>
+        <div class="napkin" id="napkin"><p class="hand">3:40am. nobody is looking.</p><svg viewBox="0 0 300 120" fill="none" aria-hidden="true"><path id="carPath" d="M20 85 L60 85 C70 60 95 45 130 45 L190 45 C215 45 240 60 255 80 L280 85 M40 85 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0 M220 85 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0 M110 48 L120 70 L185 70 L180 48" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg><p class="hand small" id="secret"></p></div>
+      </div>
+    </section>
+
+    <!-- 06:00 DOORS OPEN -->
+    <section class="beat beat--doors" id="doors">
+      <div class="beat__pin">
+        <img class="doors__room" id="doorsRoom" alt="Opening night" />
+        <div class="door door--l" id="doorL"><span class="mono">Push</span></div><div class="door door--r" id="doorR"></div>
+        <div class="beat__copy beat__copy--center" id="doorsCopy">
+          <p class="mono beat__time">06:00 · Doors open</p>
+          <h2 class="h2">DOORS<br/>OPEN.</h2>
+          <p class="serif beat__say" id="doorsSay"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07:30 CREDITS -->
+    <section class="beat beat--credits" id="credits">
+      <div class="credits__head"><p class="mono beat__time">07:30 · The drive home</p><h2 class="h2">EVERY ROOM<br/>HE DREW.</h2><p class="serif beat__say" id="creditsSay"></p></div>
+      <ol class="credits__list" id="creditsList"></ol>
+      <div class="peek" id="peek"><img alt="" /></div>
+      <div class="about" id="about"><p class="mono">Who he is</p><div class="about__grid"><ul id="proud"></ul><ul class="says" id="says"></ul></div><div class="clients"><div class="clients__track" id="clients"></div></div></div>
+    </section>
+
+    <!-- DAWN -->
+    <section class="beat beat--dawn" id="dawn">
+      <h2 class="dawn__big">NEXT<br/>ONE?</h2>
+      <div class="dawn__body"><p class="serif" id="dawnLine">Tell him the date and the room. He will draw the rest, and he will not know what it is until the marker is moving.</p><a id="mailLink" href="#" class="dawn__mail"></a><div class="mono dawn__meta"><a id="behanceLink" href="#" target="_blank" rel="noopener">Behance ↗</a><span id="phoneLine"></span><span>Riyadh</span></div></div>
+      <footer class="footer mono"><span>Yasser Kobeissi · Creative Director</span><span>One night, drawn first</span><span>© <span id="year"></span></span></footer>
+    </section>
+  </main>
+
+  <div class="case" id="case" aria-hidden="true">
+    <div class="case__bar"><button class="case__close" id="caseClose" aria-label="Close"><i></i><i></i></button><span class="mono" id="caseKicker"></span></div>
+    <div class="case__scroll" id="caseScroll"><div class="case__hero"><img id="caseHero" alt="" /><h2 id="caseTitle"></h2></div><div class="case__info"><p class="serif" id="caseThought"></p><p id="caseLine"></p><dl class="mono"><div><dt>Client</dt><dd id="caseClient"></dd></div><div><dt>Kind</dt><dd id="caseKind"></dd></div><div><dt>Year</dt><dd id="caseYear"></dd></div><div><dt>Source</dt><dd><a id="caseLink" href="#" target="_blank" rel="noopener">Behance ↗</a></dd></div></dl></div><div class="case__gallery" id="caseGallery"></div><button class="case__next" id="caseNext"><span class="mono">Next room</span><strong id="caseNextTitle"></strong></button></div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

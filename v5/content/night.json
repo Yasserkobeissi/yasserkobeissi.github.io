@@ -1,0 +1,119 @@
+{
+  "name": "Yasser Kobeissi",
+  "role": "Creative Director",
+  "city": "Riyadh",
+  "title": "One night with Yasser",
+  "sub": "You have a brief. He has a marker. By sunrise there will be a room. Scroll, and do the work with him.",
+  "beats": [
+    {
+      "id": "brief",
+      "time": "18:00",
+      "label": "The brief",
+      "line": "Three weeks? Fine. Two, if the coffee is good.",
+      "copy": "Every room starts as a message on a phone. A date, a venue, a budget that is never enough, and a client who needs to see it before they can believe it. That is the job: make them see it."
+    },
+    {
+      "id": "line",
+      "time": "19:30",
+      "label": "The first line",
+      "line": "If it doesn't work as a line, it won't work as a build.",
+      "copy": "He draws before he opens a single app. One sheet, one marker, ten minutes. The corner stays open so people walk in, not past. Now you. Draw on the sheet and watch the real sketch come up under your hand."
+    },
+    {
+      "id": "model",
+      "time": "22:00",
+      "label": "The model",
+      "line": "The render is the promise. The night is the proof.",
+      "copy": "The sketch grows walls in Cinema 4D and gets light in Lumion. First a white model, to get the proportions honest. Then colour. Then the time of day it will actually be seen. Drag the sun."
+    },
+    {
+      "id": "build",
+      "time": "03:00",
+      "label": "The build",
+      "line": "At 3am the stage is just a dark box. Then you flip the switch.",
+      "copy": "LED panels, trusses, forty people and a schedule that assumes nothing goes wrong. Something always goes wrong. Turn the screens on, panel by panel."
+    },
+    {
+      "id": "doors",
+      "time": "06:00",
+      "label": "Doors open",
+      "line": "I watch faces, not screens.",
+      "copy": "Push the doors. This is the only moment that matters, and the only one you cannot render. He stands at the back and watches faces."
+    },
+    {
+      "id": "credits",
+      "time": "07:30",
+      "label": "The drive home",
+      "line": "Then we do it again next week. He has never once known what the next one will be.",
+      "copy": ""
+    }
+  ],
+  "yasser": {
+    "from": "Lebanon",
+    "to": "Riyadh",
+    "proud": [
+      "Three editions of MDL Beast, with PepsiCo",
+      "Leading the creative team of SBA across four television channels",
+      "Beirut to Riyadh. Came for the opportunity, stayed for the rooms",
+      "A hundred rooms that only existed for one night"
+    ],
+    "secret": "At 3:40am, when nobody is looking, he sketches cars. He learned the principles from a professor who came out of the Volkswagen Audi group, and he never quite stopped.",
+    "says": [
+      "Loud in the room, quiet in the work.",
+      "I start with the idea and I finish with the screws. Nothing in between is someone else's job.",
+      "The budget is never enough. The idea has to be.",
+      "Doors open at seven. Nobody cares what time we finished.",
+      "What's next? Honestly, I don't know. That is the best part of this job."
+    ]
+  },
+  "sequence": {
+    "line": "249506301",
+    "lineSketch": 1,
+    "lineRender": 21,
+    "model": "250404065",
+    "modelWhite": 2,
+    "modelDay": 4,
+    "modelNight": 6,
+    "build": "247706733",
+    "buildFrame": 2,
+    "doors": "248713431",
+    "doorsFrame": 6
+  },
+  "clients": [
+    "Othaim Mall",
+    "PepsiCo",
+    "Gold's Gym",
+    "Joud Eskan",
+    "McDonald's",
+    "MDL Beast",
+    "DJI Enterprise",
+    "SBA",
+    "EWC",
+    "Monshaat",
+    "Misk",
+    "GOSI",
+    "SIMAH",
+    "Seder Group",
+    "Al Rajhi Takaful",
+    "Thiqah",
+    "Urpay",
+    "Neoleap",
+    "Looptech",
+    "The Financial Academy"
+  ],
+  "tools": [
+    "Copic markers",
+    "Cinema 4D",
+    "Lumion",
+    "After Effects",
+    "Premiere Pro",
+    "Photoshop",
+    "Illustrator",
+    "OpenArt"
+  ],
+  "contact": {
+    "email": "yasserkobeissi98@gmail.com",
+    "phone": "+966 557905388",
+    "behance": "https://www.behance.net/yaserkobeissi"
+  }
+}

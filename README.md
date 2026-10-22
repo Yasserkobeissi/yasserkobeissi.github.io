@@ -4,6 +4,7 @@ Four versions live side by side. Each is its own Vite project and its own git ta
 
 | Folder | Idea | Dev server |
 |---|---|---|
+| `v5/` | **One night with Yasser.** You live one event night with him from the brief at 18:00 to the doors at dawn and do the work yourself: reply to the client, draw the first line (the real sketch appears under your strokes), drag the sun over the render, power up the LED wall panel by panel, push the doors. A clock and the sky follow your scroll. | `cd v5 && npm run dev` → http://127.0.0.1:5184 |
 | `v4/` | **The Sketchbook.** Every page is drawn as you scroll: marker strokes paint his sketch, the render develops over it, the built photo is taped on. Marker cursor with ink and sound, handwritten notes, stickers, a polaroid drawer of all 34 rooms. | `cd v4 && npm run dev` → http://127.0.0.1:5183 |
 | `v3/` | Cinematic intro on his portrait, bold-type playground with windows, one full-screen scene per room in its own palette. | `cd v3 && npm run dev` → http://127.0.0.1:5182 |
 | `v2/` | Inside the mind: depth-mapped head, x-ray on hover, a walk through a neural space where rooms are neurons. | `cd v2 && npm run dev` → http://127.0.0.1:5181 |
