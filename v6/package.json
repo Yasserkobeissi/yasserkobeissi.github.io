@@ -1,0 +1,1 @@
+{"name":"yasser-kobeissi-show-control","private":true,"version":"6.0.0","type":"module","scripts":{"dev":"vite --port 5185 --host 127.0.0.1","build":"vite build","preview":"vite preview --port 5186"},"devDependencies":{"vite":"^6.4.5"},"dependencies":{"gsap":"^3.15.0","three":"^0.170.0"}}

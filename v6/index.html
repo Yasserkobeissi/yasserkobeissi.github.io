@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Yasser Kobeissi — Rooms that exist for one night</title>
+  <meta name="description" content="Walk through the rooms Yasser Kobeissi built for one night. Creative Director, Riyadh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <canvas id="gl" class="gl"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><i></i></div>
+  <div class="loader" id="loader"><span class="loader__dot"></span><p class="mono" id="loaderT">Building the first room</p></div>
+
+  <header class="hud" id="hud">
+    <a class="hud__name" href="#top"><span>Yasser Kobeissi</span><span class="mono">Creative Director · Riyadh</span></a>
+    <nav class="hud__right"><button class="mono hud__btn" id="roomsBtn">All rooms</button><button class="mono hud__btn" id="soundBtn"><i></i>Sound</button></nav>
+  </header>
+  <div class="walk mono" id="walk"><i id="walkBar"></i><span id="walkLabel">Walk in</span></div>
+
+  <main id="top">
+    <div class="track" id="track"></div>
+    <div class="stage" id="stage">
+      <div class="open" id="open"><h1 class="open__t serif"><span id="open1"></span><br/><span id="open2"></span></h1><p class="mono open__hint">Scroll to walk. Your cursor is the only light.</p></div>
+      <div class="chapters" id="chapters"></div>
+      <div class="end" id="end"><p class="serif end__line" id="endLine"></p><p class="end__sub" id="endSub"></p><a id="mailLink" href="#" class="end__mail"></a><div class="mono end__meta"><a id="behanceLink" href="#" target="_blank" rel="noopener">Behance ↗</a><span id="phoneLine"></span></div></div>
+    </div>
+  </main>
+
+  <div class="rooms" id="rooms" aria-hidden="true">
+    <div class="rooms__bar"><span class="mono">Every room · 34</span><button class="rooms__close" id="roomsClose" aria-label="Close"><i></i><i></i></button></div>
+    <ol class="rooms__list" id="roomsList"></ol>
+    <div class="peek" id="peek"><img alt="" /></div>
+  </div>
+  <div class="case" id="case" aria-hidden="true">
+    <div class="case__bar"><button class="case__close" id="caseClose" aria-label="Close"><i></i><i></i></button><span class="mono" id="caseKicker"></span></div>
+    <div class="case__scroll" id="caseScroll"><div class="case__hero"><img id="caseHero" alt="" /><h2 id="caseTitle"></h2></div><div class="case__info"><p class="serif" id="caseThought"></p><p id="caseLine"></p><dl class="mono"><div><dt>Client</dt><dd id="caseClient"></dd></div><div><dt>Kind</dt><dd id="caseKind"></dd></div><div><dt>Year</dt><dd id="caseYear"></dd></div><div><dt>Source</dt><dd><a id="caseLink" href="#" target="_blank" rel="noopener">Behance ↗</a></dd></div></dl></div><div class="case__gallery" id="caseGallery"></div><button class="case__next" id="caseNext"><span class="mono">Next room</span><strong id="caseNextTitle"></strong></button></div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "Yasser Kobeissi", "role": "Creative Director", "city": "Riyadh",
+  "open": ["Rooms that exist", "for one night."],
+  "chapters": [
+    { "id": "intro", "form": "swirl", "label": "", "line": "", "sub": "" },
+    { "id": "stand", "form": "stand", "room": "249506301", "screen": 21, "label": "01 · Riyadh Front · Quality of Life", "line": "A stand drawn as a courtyard.", "sub": "Open corners so people walk in, not past. Thirty thousand of them did." },
+    { "id": "tent", "form": "tent", "room": "250404065", "screen": 6, "label": "02 · Ramadan nights", "line": "Lit for midnight, not noon.", "sub": "Arches, lanterns at eye level, a crescent you walk under. The city sleeps late in Ramadan, so the render did too." },
+    { "id": "gate", "form": "gate", "room": "247988533", "screen": 5, "label": "03 · Founding Day", "line": "Built to look old on day one.", "sub": "Mud walls, lanterns, the smell of coffee. All of it drawn before any of it existed." },
+    { "id": "trophy", "form": "trophy", "room": "249047033", "screen": 2, "label": "04 · World Defense Show", "line": "A room you can hold.", "sub": "Glass and brass, cut so the light does the engraving." },
+    { "id": "stage", "form": "stage", "room": "248713431", "screen": 6, "label": "05 · National Day 95", "line": "I watch faces, not screens.", "sub": "A village for one night. Gate, carts, stage, horses. The only moment you cannot render." },
+    { "id": "line", "form": "line", "label": "", "line": "Then it is gone.", "sub": "Twenty years. Beirut to Riyadh. A hundred rooms that lasted one night and a few people who still talk about them. Tell him the date and the venue. He will draw the next one." }
+  ],
+  "contact": { "email": "yasserkobeissi98@gmail.com", "phone": "+966 557905388", "behance": "https://www.behance.net/yaserkobeissi" }
+}
