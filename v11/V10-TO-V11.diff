@@ -1,0 +1,401 @@
+--- handover/site/index.html	2026-10-23 23:43:50
++++ v11/index.html	2026-10-23 23:57:38
+@@ -70,6 +70,11 @@
+ @keyframes dotfade{to{opacity:0;transform:translate(-50%,-50%) scale(.2)}}
+ .cur.view{width:96px;height:96px;background:var(--tally);border-radius:50%}
+ .cur span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--ink);opacity:0;transition:opacity .2s}
++.curring{position:fixed;left:0;top:0;width:38px;height:38px;border:1px solid rgba(255,255,255,.75);border-radius:50%;pointer-events:none;z-index:69;mix-blend-mode:difference;transform:translate(-50%,-50%);transition:opacity .25s,width .3s var(--ease),height .3s var(--ease)}
++.cur.view~.curring,.cur.lbl~.curring,.cur.cross~.curring{opacity:0}
++.cur.down~.curring{width:26px;height:26px}
++@media (hover:none){.curring{display:none}}
++.navprog{position:fixed;left:0;top:0;height:2px;width:0;background:var(--tally);z-index:51;box-shadow:0 0 10px var(--tally);pointer-events:none}
+ .cur.view span{opacity:1}
+ @media (hover:none){.cur{display:none}}
+ @media (hover:hover) and (pointer:fine){html,body,a,button,[role=button],.row,.strip,canvas{cursor:none!important}}
+@@ -78,7 +83,12 @@
+ .pre{position:fixed;inset:0;z-index:80;background:var(--ink);color:var(--paper);overflow:hidden}
+ .pre .half{position:absolute;left:0;right:0;height:50%;background:var(--ink);z-index:2}
+ .pre .half.t{top:0;border-bottom:1px solid #2a2626}.pre .half.b{bottom:0}
+-.pre .mid{position:absolute;inset:0;z-index:3;display:grid;place-items:center;pointer-events:none}
++.pre .mid{position:absolute;inset:0;z-index:3;display:grid;align-content:center;justify-items:center;gap:clamp(18px,3vh,36px);pointer-events:none}
++.pre .yk{width:clamp(120px,16vw,220px);height:auto;overflow:visible}
++.pre .yk path{fill:none;stroke:var(--paper);stroke-width:22;stroke-linecap:round;stroke-linejoin:round}
++.pre .yk path.red{stroke:var(--tally);stroke-width:12;mix-blend-mode:screen}
++.pre .yk.hidden{display:none}
++#ykLottie{width:clamp(120px,16vw,220px);aspect-ratio:1;display:none}
+ .pre .name{font-family:var(--display);font-size:clamp(40px,9vw,150px);line-height:.9;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap;display:flex;gap:.3em}
+ .pre .name span{display:inline-block;min-width:.55em;text-align:center}
+ .pre .pct{position:absolute;right:var(--gutter-r);bottom:max(24px,env(safe-area-inset-bottom,0px));font-family:var(--display);font-size:clamp(60px,12vw,200px);line-height:.85;color:var(--tally);font-variant-numeric:tabular-nums;z-index:4}
+@@ -96,7 +106,7 @@
+ .tc{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;font-variant-numeric:tabular-nums;display:flex;gap:10px;align-items:center}
+ .tc i{width:8px;height:8px;border-radius:50%;background:var(--tally);box-shadow:0 0 12px var(--tally);animation:blink 1.4s steps(2) infinite}
+ @keyframes blink{50%{opacity:.25}}
+-@media (max-width:720px){.nav ul{display:none}}
++@media (max-width:720px){.nav ul{display:none}.pre .name{font-size:clamp(26px,7vw,150px)}}
+ 
+ /* ---------- HERO ---------- */
+ .hero{position:relative;height:200vh}
+@@ -133,6 +143,23 @@
+ .hero .scrollhint{z-index:4}
+ @media (max-width:720px){.hero .lede{display:none}.hero .title{bottom:clamp(84px,13vh,140px)}.hero .scrollhint{bottom:max(14px,env(safe-area-inset-bottom,0px))}.tally{bottom:clamp(90px,16vh,160px)}.hero .eyebrow{gap:10px;font-size:.62rem}.hero .eyebrow .sep{width:14px}}
+ 
++/* stage kickers carry the tally */
++.tk::before{content:"";display:inline-block;width:7px;height:7px;background:var(--tally);margin-right:10px;vertical-align:middle;box-shadow:0 0 8px rgba(255,42,28,.6)}
++
++/* ---------- ACT SLATES ---------- */
++.act{position:relative;height:170vh;background:var(--ink);color:var(--paper)}
++.act .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;align-content:center;justify-items:center;text-align:center;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
++.act .num{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--display);font-size:clamp(240px,48vw,820px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(239,233,223,.13);pointer-events:none;letter-spacing:-.02em;will-change:transform}
++.act .k{position:absolute;left:var(--gutter-l);top:var(--top);color:var(--fog)}
++.act .tc2{position:absolute;right:var(--gutter-r);top:var(--top);color:var(--fog);font-variant-numeric:tabular-nums}
++.act h2{position:relative;font-family:var(--display);font-size:clamp(64px,12vw,210px);line-height:.88;text-transform:uppercase;letter-spacing:-.005em;white-space:nowrap}
++.act h2 .al{display:inline-block;transform:translateY(70%) rotate(5deg);opacity:0;transition:transform .8s var(--ease),opacity .45s}
++.act h2 .al.on{transform:none;opacity:1}
++.act .rule{position:relative;width:0;max-width:38vw;height:3px;background:var(--tally);margin:clamp(18px,3vh,30px) 0 clamp(16px,2.6vh,26px);box-shadow:0 0 14px rgba(255,42,28,.5)}
++.act p{position:relative;margin:0;font-family:var(--serif);font-style:italic;font-size:var(--t-lede);line-height:1.3;color:var(--fog);max-width:32ch;opacity:0}
++.act p b{font-weight:400;color:var(--paper)}
++@media (max-width:720px){.act{height:150vh}.act h2{white-space:normal}}
++
+ /* ---------- MANIFESTO ---------- */
+ .manifesto{position:relative;height:170vh;background:var(--ink)}
+ .manifesto .stage{position:sticky;top:0;height:100vh;display:grid;align-content:center;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+@@ -439,6 +466,8 @@
+ .jour{position:relative;height:280vh;background:var(--ink)}
+ .jour .stage{position:sticky;top:0;height:100vh;overflow:hidden}
+ .jour canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
++.jour .iris{position:absolute;inset:0;z-index:1;pointer-events:none;background:var(--ink);--r:200vmax;--x:50%;--y:50%;-webkit-mask:radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0,transparent calc(100% - 2px),#000 100%);mask:radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0,transparent calc(100% - 2px),#000 100%)}
++.jour .iris::after{content:"";position:absolute;left:var(--x);top:var(--y);width:calc(var(--r) * 2);height:calc(var(--r) * 2);transform:translate(-50%,-50%);border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(255,42,28,var(--ring,0))}
+ .jour .k{position:absolute;left:var(--gutter-l);top:var(--top);color:var(--fog);z-index:2}
+ .jour .beat{position:absolute;left:var(--gutter-l);bottom:var(--stage-bot);z-index:2;max-width:min(44ch,60vw)}
+ .jour .beat .yr{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--tally);margin-bottom:12px}
+@@ -457,7 +486,7 @@
+ .por{background:var(--ink);padding-block:var(--sec-pad);position:relative;overflow:hidden}
+ .por .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,110px);align-items:center}
+ .por .cv{position:relative;aspect-ratio:1;max-width:min(100%,620px);width:100%;margin:0 auto}
+-.por canvas{width:100%;height:100%;display:block;cursor:none}
++.por canvas{width:100%;height:100%;display:block;cursor:none;clip-path:circle(var(--open,75%) at 50% 50%)}
+ .por .cv .lbl{position:absolute;left:0;right:0;bottom:-28px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fog)}
+ .por .cv .corner{position:absolute;width:18px;height:18px;border:1px solid var(--fog);opacity:.5}
+ .por .cv .corner.c-tl{left:-10px;top:-10px;border-right:0;border-bottom:0}.por .cv .corner.c-tr{right:-10px;top:-10px;border-left:0;border-bottom:0}.por .cv .corner.c-bl{left:-10px;bottom:-10px;border-right:0;border-top:0}.por .cv .corner.c-br{right:-10px;bottom:-10px;border-left:0;border-top:0}
+@@ -505,9 +534,24 @@
+ 
+ 
+ /* section wipes */
+-.wipe{position:absolute;left:0;right:0;top:-1px;height:24vh;z-index:6;pointer-events:none;--l:100%;--r:35%;clip-path:polygon(0 0,100% 0,100% var(--r),0 var(--l))}
+-.wipe.p{background:var(--paper)}.wipe.i{background:var(--ink)}.wipe.k{background:#000}
+-.wipe::after{content:"";position:absolute;left:0;right:0;top:var(--l);height:3px;background:var(--tally);transform:rotate(calc((var(--rn) - var(--ln)) * -0.12deg));transform-origin:left;opacity:.9}
++/* three marker strokes pulled off to the right, each a beat behind the last */
++.wipe{position:absolute;left:0;right:0;top:-1px;height:27vh;z-index:6;pointer-events:none;overflow:hidden;--e1:0;--e2:0;--e3:0}
++.wipe i{position:absolute;left:0;right:0;height:35%;border-radius:0 999px 999px 0;will-change:transform}
++.wipe i:nth-child(1){top:-1%;transform:translateX(calc(var(--e1) * 104%))}
++.wipe i:nth-child(2){top:32%;transform:translateX(calc(var(--e2) * 104%))}
++.wipe i:nth-child(3){top:65%;height:36%;transform:translateX(calc(var(--e3) * 104%))}
++.wipe i::after{content:"";position:absolute;right:0;top:0;bottom:0;width:4px;border-radius:999px;background:var(--tally);opacity:.85}
++.wipe.p i{background:var(--paper)}.wipe.i i{background:var(--ink)}.wipe.k i{background:#000}
++/* CRT switch-off: the paper collapses to one bright line */
++.wipe.crt{height:42vh;overflow:visible;--e:0;--glow:0;clip-path:inset(calc(var(--e) * 50%) 0 calc(var(--e) * 50%) 0)}
++.wipe.crt i{display:none}
++.wipe.crt::before{content:"";position:absolute;inset:0;background:var(--paper)}
++.wipe.crt::after{content:"";position:absolute;left:0;right:0;top:50%;height:3px;transform:translateY(-50%);background:#fff;opacity:var(--glow);box-shadow:0 0 18px #fff,0 0 46px var(--tally)}
++/* torn paper: the sketchbook rips open on the drift */
++.tear{position:absolute;left:0;right:0;top:-1px;height:46vh;z-index:6;pointer-events:none;--e:0;transform:translateY(calc(var(--e) * -118%));will-change:transform}
++.tear i{position:absolute;inset:0;clip-path:var(--jag)}
++.tear i:nth-child(1){background:var(--paper);filter:drop-shadow(0 10px 14px rgba(0,0,0,.45));z-index:1}
++.tear i:nth-child(2){background:#D8D0C1;transform:translateY(7px);opacity:.9}
+ 
+ /* scene slate */
+ .scene{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:58;pointer-events:none;display:flex;align-items:center;gap:18px;font-family:var(--mono);font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:14px 22px;border:1px solid var(--tally);opacity:0;clip-path:inset(0 100% 0 0)}
+@@ -598,6 +642,11 @@
+ .rgb::after{filter:url(#chB);transform:translateX(calc(var(--rgb,0px) * -1))}
+ .rgb img{filter:url(#chG)}
+ 
++/* word reveals */
++.sw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
++.swi{display:inline-block;transform:translateY(112%);will-change:transform}
++.feat .f .rgb img{scale:1.12}
++.clients .tape.b{color:transparent;-webkit-text-stroke:1px var(--fog);margin-top:18px}
+ /* magnetic */
+ .mag{display:inline-block;will-change:transform}
+ 
+@@ -635,6 +684,9 @@
+ @media (max-width:720px){:root{--sec-pad:clamp(64px,9vh,120px);--stage-bot:clamp(64px,8vh,100px)}}
+ @media (prefers-reduced-motion:reduce){
+  .grain{animation:none}
++ .swi{transform:none}
++ .act h2 .al{transform:none;opacity:1}
++ .act p{opacity:1}
+  .hero h1 .l{transform:none;opacity:1}
+  .line .built{clip-path:none}
+  .tally{opacity:1}
+@@ -648,11 +700,17 @@
+ 
+ <div class="grain" aria-hidden="true"></div>
+ <div class="cur" id="cur" aria-hidden="true"><i class="nib"></i><span>VIEW</span></div>
++<div class="curring" id="curring" aria-hidden="true"></div>
++<div class="navprog" id="navprog" aria-hidden="true"></div>
+ 
+ <div class="pre" id="pre" aria-hidden="true">
+   <div class="half t"></div><div class="half b"></div>
+   <div class="bar" id="prebar"></div>
+-  <div class="mid"><div class="name" id="prename"></div></div>
++  <div class="mid">
++    <svg class="yk" id="ykmono" viewBox="0 0 320 210" aria-hidden="true"><path d="M22 28 L82 108 L142 28"/><path d="M82 108 L82 182"/><path d="M186 28 L186 182"/><path d="M296 28 L190 112 L300 182"/><path class="red" d="M8 196 Q160 214 312 190"/></svg>
++    <div id="ykLottie" aria-hidden="true"></div>
++    <div class="name" id="prename"></div>
++  </div>
+   <div class="pct" id="prepct">000</div>
+   <div class="meta"><span>Yasser Kobeissi · Creative Director</span><span id="premsg">Loading the room</span></div>
+ </div>
+@@ -703,10 +761,23 @@
+   </div>
+ </section>
+ 
++<!-- ACT I -->
++<section class="act" id="act1" aria-label="Act I, Beirut">
++  <div class="stage">
++    <div class="num" aria-hidden="true">I</div>
++    <div class="k mono">Act I / three</div>
++    <div class="tc2 mono">2006 → 2019</div>
++    <h2>Beirut</h2>
++    <i class="rule" aria-hidden="true"></i>
++    <p>Born a designer. A bookshop on Hamra, then <b>ten years on air</b> in the city that taught him volume.</p>
++  </div>
++</section>
++
+ <!-- JOURNEY -->
+ <section class="jour" id="journey" aria-label="From Beirut to Riyadh">
+   <div class="stage" id="jstage">
+     <canvas id="globe"></canvas>
++    <div class="iris" id="jiris" aria-hidden="true"></div>
+     <div class="k mono">01b / Beyrouth → Riyad</div>
+     <div class="city a" id="cityA"><i></i><span>Beirut · 33.89° N</span></div>
+     <div class="city b" id="cityB"><i></i><span>Riyadh · 24.71° N</span></div>
+@@ -799,6 +870,18 @@
+   </div>
+   <h2>What the office says<em>when he is not in the room</em></h2>
+   <div class="hint">Push the words around</div>
++</section>
++
++<!-- ACT II -->
++<section class="act" id="act2" aria-label="Act II, Riyadh">
++  <div class="stage">
++    <div class="num" aria-hidden="true">II</div>
++    <div class="k mono">Act II / three</div>
++    <div class="tc2 mono">2019 → 2026</div>
++    <h2>Riyadh</h2>
++    <i class="rule" aria-hidden="true"></i>
++    <p>One flight. Four channels at once, then his own shop, then the events. <b>And the cars.</b></p>
++  </div>
+ </section>
+ 
+ <!-- CAR -->
+@@ -816,7 +899,7 @@
+ 
+ <!-- DRIFT -->
+ <section class="drift" id="drift" aria-label="He drifts. A top-down drift scene you steer with the mouse.">
+-  <div class="wipe p" data-wipe></div>
++  <div class="tear" data-wipe="tear" aria-hidden="true"><i></i><i></i></div>
+   <div class="stage" id="dstage">
+     <canvas id="dcv"></canvas>
+     <div class="k mono">03b / Crazy about cars</div>
+@@ -860,7 +943,7 @@
+ 
+ <!-- LIVE -->
+ <section class="live wrap" id="live" style="position:relative">
+-  <div class="wipe p" data-wipe></div>
++  <div class="wipe crt p" data-wipe="crt" aria-hidden="true"></div>
+   <div class="inner">
+     <div class="grid">
+       <div>
+@@ -881,6 +964,18 @@
+       <div class="stat"><div class="n" data-count="4"><span>0</span></div><div class="l">television channels led at once at SBA</div></div>
+       <div class="stat"><div class="n" data-count="3"><span>0</span><sup>×</sup></div><div class="l">editions of MDL Beast with PepsiCo</div></div>
+     </div>
++  </div>
++</section>
++
++<!-- ACT III -->
++<section class="act" id="act3" aria-label="Act III, The room">
++  <div class="stage">
++    <div class="num" aria-hidden="true">III</div>
++    <div class="k mono">Act III / three</div>
++    <div class="tc2 mono">Now</div>
++    <h2>The room</h2>
++    <i class="rule" aria-hidden="true"></i>
++    <p>An idea is only real when it stands in a room and <b>the lights come on.</b> This is the work.</p>
+   </div>
+ </section>
+ 
+@@ -1002,6 +1097,7 @@
+   </div>
+   <div class="clients" aria-label="Clients">
+     <div class="tape" id="tape"><span>PepsiCo <b>●</b> MDL Beast <b>●</b> Saudi Broadcasting Authority <b>●</b> McDonald's <b>●</b> Gold's Gym <b>●</b> Othaim Mall <b>●</b> DJI Enterprise <b>●</b> Monshaat <b>●</b> Misk <b>●</b> GOSI <b>●</b> SIMAH <b>●</b> Seder Group <b>●</b> Bank Al Jazira <b>●</b> Al Rajhi Takaful <b>●</b> Thiqah <b>●</b> Urpay <b>●</b> neoleap <b>●</b> Looptech <b>●</b> The Financial Academy <b>●</b> Quality of Life Program <b>●</b></span></div>
++    <div class="tape b" id="tape2" aria-hidden="true"><span>Riyadh <b>●</b> Jeddah <b>●</b> Diriyah <b>●</b> Beirut <b>●</b> Events <b>●</b> Exhibitions <b>●</b> Motion <b>●</b> 3D <b>●</b> Objects <b>●</b> Direction <b>●</b> Two markers <b>●</b> No second take <b>●</b></span></div>
+   </div>
+ </section>
+ 
+@@ -1099,6 +1195,8 @@
+     addEventListener('pointermove', e => { cur.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`; }, { passive: true });
+     let lastDot = 0; addEventListener('pointermove', e => { if (true) return; const now = performance.now(); if (now - lastDot < 24) return; lastDot = now; const d = document.createElement('i'); d.className = 'dot'; d.style.left = e.clientX+'px'; d.style.top = e.clientY+'px'; document.body.appendChild(d); setTimeout(() => d.remove(), 900); }, { passive:true });
+     addEventListener('pointerdown', () => cur.classList.add('down')); addEventListener('pointerup', () => cur.classList.remove('down'));
++    const ring = document.getElementById('curring'); let rxp = cx, ryp = cy;
++    gsap.ticker.add(() => { rxp += (tx - rxp)*.18; ryp += (ty - ryp)*.18; ring.style.transform = `translate(${rxp}px,${ryp}px) translate(-50%,-50%)`; });
+     document.querySelectorAll('[data-cursor="view"], .row').forEach(el => {
+       el.addEventListener('pointerenter', () => cur.classList.add('view'));
+       el.addEventListener('pointerleave', () => cur.classList.remove('view'));
+@@ -1115,12 +1213,17 @@
+     target.split('').forEach(ch => { const sp = document.createElement('span'); sp.textContent = ch === ' ' ? ' ' : glyphs[Math.floor(Math.random()*glyphs.length)]; nameEl.appendChild(sp); });
+     const spans = [...nameEl.children]; const msgs = ['Loading the room','Rigging the lights','Printing the fabric','Allez, on y va'];
+     const o = { v: 0 }; let done = false;
++    const YK_MONOGRAM_LOTTIE = null; /* set to e.g. 'img/yk-monogram.json' when the Jitter export arrives; lottie-web then loads from cdnjs and replaces the SVG */
++    const yk = document.getElementById('ykmono');
++    if (YK_MONOGRAM_LOTTIE) { const sc = document.createElement('script'); sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js'; sc.onload = () => { const box = document.getElementById('ykLottie'); box.style.display = 'block'; yk.classList.add('hidden'); lottie.loadAnimation({ container: box, renderer: 'svg', loop: false, autoplay: true, path: YK_MONOGRAM_LOTTIE }); }; document.head.appendChild(sc); }
++    const ykPaths = [...yk.querySelectorAll('path')]; ykPaths.forEach(pth => { const L = pth.getTotalLength(); pth.style.strokeDasharray = L; pth.style.strokeDashoffset = L; });
+     const tl = gsap.timeline({ onComplete(){ done = true; openPre(); } });
++    tl.to(ykPaths, { strokeDashoffset: 0, duration: .5, ease: 'power2.inOut', stagger: .22 }, 0);
+     tl.to(o, { v: 100, duration: 1.9, ease: 'power2.inOut', onUpdate(){
+       const v = Math.round(o.v); pct.textContent = String(v).padStart(3,'0'); bar.style.width = v + '%';
+       msg.textContent = msgs[Math.min(msgs.length-1, Math.floor(v/26))];
+       spans.forEach((sp,i) => { const ch = target[i]; if (ch === ' ') return; const lock = (i / target.length) * 85; sp.textContent = v > lock ? ch : glyphs[Math.floor(Math.random()*glyphs.length)]; });
+-    } })
++    } }, 0)
+     .to('.pre .mid, .pre .pct, .pre .meta, .pre .bar', { opacity: 0, duration: .25 }, '+=.15')
+     .to('.pre .half.t', { yPercent: -100, duration: .9, ease: 'expo.inOut' }, '<')
+     .to('.pre .half.b', { yPercent: 100, duration: .9, ease: 'expo.inOut' }, '<');
+@@ -1162,6 +1265,14 @@
+     o.type = 'square'; o.frequency.value = freq; g.gain.setValueAtTime(vol, ctx.currentTime); g.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + dur);
+     o.connect(g).connect(snd.gain); o.start(); o.stop(ctx.currentTime + dur);
+   }
++  function whoosh(vol = .13){
++    if (!snd.on || !snd.ctx) return; const ctx = snd.ctx, len = Math.floor(ctx.sampleRate*.55), buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
++    for (let i=0;i<len;i++) d[i] = (Math.random()*2-1) * (1 - i/len);
++    const src = ctx.createBufferSource(); src.buffer = buf; const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 1.1;
++    f.frequency.setValueAtTime(240, ctx.currentTime); f.frequency.exponentialRampToValueAtTime(2800, ctx.currentTime + .34);
++    const g = ctx.createGain(); g.gain.setValueAtTime(.0001, ctx.currentTime); g.gain.exponentialRampToValueAtTime(vol, ctx.currentTime + .07); g.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + .55);
++    src.connect(f).connect(g).connect(snd.gain); src.start(); src.stop(ctx.currentTime + .56);
++  }
+   function tone(freq = 440, dur = .35, vol = .12){
+     if (!snd.on || !snd.ctx) return; const ctx = snd.ctx, o = ctx.createOscillator(), g = ctx.createGain();
+     o.type = 'sine'; o.frequency.value = freq; g.gain.setValueAtTime(0, ctx.currentTime); g.gain.linearRampToValueAtTime(vol, ctx.currentTime + .02); g.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + dur);
+@@ -1443,6 +1554,8 @@
+     }
+   })();
+ 
++  /* ---- WHO: the portrait opens as an iris ---- */
++  (function(){ const c = document.querySelector('.por canvas'); if (!c) return; ScrollTrigger.create({ trigger: '#who', start: 'top 92%', end: 'top 18%', scrub: .2, onUpdate(s){ const e = gsap.parseEase('power2.out')(s.progress); c.style.setProperty('--open', (3 + e*72) + '%'); } }); })();
+   /* ---- WHO: tilt the frame ---- */
+   (function(){ const cvw = document.getElementById('cv'); if (!cvw || !fine) return; cvw.style.transformStyle = 'preserve-3d'; cvw.parentElement.style.perspective = '1200px';
+     cvw.addEventListener('pointermove', e => { const r = cvw.getBoundingClientRect(); const px = (e.clientX - r.left)/r.width - .5, py = (e.clientY - r.top)/r.height - .5; gsap.to(cvw, { rotateY: px*10, rotateX: -py*10, duration: .5, ease: 'power2.out' }); });
+@@ -1466,8 +1579,9 @@
+     })();
+     (function(){ const sec = document.querySelector('.lights'); gsap.ticker.add(() => { const self = { progress: secProg(sec) };
+         const p = self.progress; prog = gsap.parseEase('power2.in')(Math.max(0, (p - .25)/.75));
+-        const bars = p < .25 ? 0 : (p < .5 ? (p-.25)/.25 : Math.max(0, 1 - (p-.5)/.3)); barT.style.height = barB.style.height = (bars*11) + 'vh';
+-        cap.classList.toggle('on', p > .8); hint.style.opacity = 1 - Math.min(1, p/.3);
++        const close = gsap.parseEase('power2.in')(Math.max(0, (p-.84)/.16));
++        const bars = p < .25 ? 0 : (p < .5 ? (p-.25)/.25 : Math.max(0, 1 - (p-.5)/.3)); barT.style.height = barB.style.height = (bars*11 + close*50) + 'vh';
++        cap.classList.toggle('on', p > .72 && p < .9); hint.style.opacity = 1 - Math.min(1, p/.3);
+         gsap.set('.lights .txt', { opacity: 1 - Math.max(0, (p-.45)/.3) });
+         if (p > .5 && !playedTone) { playedTone = true; tone(220, 1.2, .1); setTimeout(() => tone(330, 1.4, .08), 120); }
+         if (p < .4) playedTone = false;
+@@ -1676,6 +1790,7 @@
+     size(); addEventListener('resize', size);
+     let prog = 0, visible = false, mxs = 0, mys = 0;
+     new IntersectionObserver(en => { visible = en[0].isIntersecting; }, { threshold: 0 }).observe(stageEl);
++    const iris = document.getElementById('jiris'), ZERO = new THREE.Vector3();
+     const cityA = document.getElementById('cityA'), cityB = document.getElementById('cityB'), jkm = document.getElementById('jkm'), jyr = document.getElementById('jyr'), jh = document.getElementById('jh'), jp = document.getElementById('jp');
+     const beats = [['BEIRUT · 2006','Born a<br>designer.','His words. Number one in every art class at school, first in his graphic design class at university, then a bookshop job and a first poster in a window on Hamra.'],['BEIRUT · 2008 – 2019','Ten years<br>on air.','Jewelry design, graphic design, 2D and 3D animation, then creative director in media: graphics, editing, photography, promos, TV. No second take.'],['IN THE AIR · 2019','One flight.<br>Four channels.','The Saudi Broadcasting Authority needed a creative lead across four channels at once. He packed the markers.'],['RIYADH · 2026','Where an idea<br>has an address.','Twenty years in. Stands, stages, gates and trophies, drawn first by hand, built on the date.']];
+     let bi = -1; const tmp = new THREE.Vector3();
+@@ -1698,6 +1813,7 @@
+       cityA.style.left = sa.x+'px'; cityA.style.top = sa.y+'px'; cityB.style.left = sb.x+'px'; cityB.style.top = sb.y+'px';
+       cityA.classList.toggle('on', prog > .05 && sa.z < 1); cityB.classList.toggle('on', f > .5 && sb.z < 1);
+       jkm.textContent = Math.round(f*1630).toLocaleString();
++      { const c = toScreen(ZERO); const k = gsap.utils.clamp(0, 1, (prog - .8)/.2); const e = gsap.parseEase('power2.in')(k); const rMax = Math.hypot(stageEl.clientWidth, stageEl.clientHeight); iris.style.setProperty('--x', c.x+'px'); iris.style.setProperty('--y', c.y+'px'); iris.style.setProperty('--r', (rMax*(1-e) + 6) + 'px'); iris.style.setProperty('--ring', k > 0 ? .9 : 0); }
+       const nb = prog < .18 ? 0 : prog < .45 ? 1 : prog < .8 ? 2 : 3;
+       if (nb !== bi) { bi = nb; jyr.textContent = beats[nb][0]; jh.innerHTML = beats[nb][1]; jp.textContent = beats[nb][2]; gsap.fromTo([jyr,jh,jp], { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'expo.out', stagger: .06 }); tick(1300,.05,.05); }
+     });
+@@ -1705,12 +1821,32 @@
+   })();
+ 
+   /* ---- WIPES ---- */
++  /* chapter transitions: marker bands by default, a paper tear before the drift, a CRT switch-off before the TV chapter */
++  const cl01 = v => gsap.utils.clamp(0, 1, v);
+   document.querySelectorAll('[data-wipe]').forEach(w => {
+-    const sec = w.parentElement;
+-    gsap.set(w, { '--l': '100%', '--r': '35%', '--ln': 100, '--rn': 35 });
+-    ScrollTrigger.create({ trigger: sec, start: 'top 95%', end: 'top 15%', scrub: .3,
+-      onUpdate(s){ const e = gsap.parseEase('power2.inOut')(s.progress); const l = 100*(1-e), r = Math.max(0, 35*(1-e*1.4)); w.style.setProperty('--l', l+'%'); w.style.setProperty('--r', r+'%'); w.style.setProperty('--ln', l); w.style.setProperty('--rn', r); } });
++    const sec = w.parentElement, kind = w.dataset.wipe || 'bands'; let crossed = false;
++    if (kind === 'bands') w.innerHTML = '<i></i><i></i><i></i>';
++    if (kind === 'tear') { const pts = ['0% 0%','100% 0%']; for (let x = 100; x >= 0; x -= 2) pts.push(x.toFixed(1) + '% ' + (74 + Math.random()*26).toFixed(1) + '%'); w.style.setProperty('--jag', 'polygon(' + pts.join(',') + ')'); }
++    ScrollTrigger.create({ trigger: sec, start: 'top 96%', end: kind === 'tear' ? 'top 5%' : 'top 12%', scrub: .25,
++      onUpdate(s){ const e = gsap.parseEase('power2.inOut')(s.progress);
++        if (kind === 'bands') { w.style.setProperty('--e1', cl01(e/.74)); w.style.setProperty('--e2', cl01((e-.13)/.74)); w.style.setProperty('--e3', cl01((e-.26)/.74)); }
++        else if (kind === 'tear') w.style.setProperty('--e', e);
++        else if (kind === 'crt') { w.style.setProperty('--e', e); w.style.setProperty('--glow', Math.sin(e*Math.PI)); }
++        if (e > .45 && !crossed) { crossed = true; whoosh(kind === 'bands' ? .08 : .14); } if (e < .15) crossed = false; } });
++  });
++
++  /* act slates: numeral drifts, title rises letter by letter, rule draws, line settles */
++  document.querySelectorAll('.act').forEach(sec => {
++    const num = sec.querySelector('.num'), h = sec.querySelector('h2'), rule = sec.querySelector('.rule'), par = sec.querySelector('p');
++    h.innerHTML = [...h.textContent].map(c => c === ' ' ? ' ' : `<span class="al">${c}</span>`).join('');
++    const letters = [...h.querySelectorAll('.al')]; let seen = false;
++    gsap.ticker.add(() => { const r = sec.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; const pr = secProg(sec);
++      num.style.transform = `translate(-50%,-50%) translateY(${(pr-.5)*-34}vh)`;
++      const n = Math.floor(cl01((pr-.04)/.42) * (letters.length + 1)); letters.forEach((l,i) => l.classList.toggle('on', i < n));
++      rule.style.width = (cl01((pr-.28)/.36)*100) + '%'; par.style.opacity = cl01((pr-.38)/.3);
++      if (pr > .18 && !seen) { seen = true; whoosh(.16); } if (pr < .04) seen = false; });
+   });
++  document.querySelectorAll('.stage > .k').forEach(k => k.classList.add('tk'));
+ 
+   /* ---- SCENE SLATES ---- */
+   const scene = document.getElementById('scene'), sceneN = document.getElementById('sceneN'), sceneT = document.getElementById('sceneT');
+@@ -1810,7 +1946,7 @@
+ 
+   /* ---- TIMELINE horizontal ---- */
+   const rail = document.getElementById('rail'), yrs = [...rail.querySelectorAll('.yr')], where = document.getElementById('where');
+-  const tcEl = document.getElementById('tc');
++  const tcEl = document.getElementById('tc'), navprog = document.getElementById('navprog');
+   let railST;
+   let polY = ''; const polMap = { '2006':'img/qol.jpg','2008':'img/sce.jpg','2011':'img/gosi25.jpg','2014':'img/lcgpa.jpg','2016':'img/takaful.jpg','2017':'img/jda.jpg','2019':'img/momah.jpg','2021':'img/misk.jpg','2022':'img/urpay.jpg','2024':'img/looptech.jpg','2026':'img/snd.jpg' };
+   function buildRail(){
+@@ -1835,7 +1971,7 @@
+     onUpdate(self){
+       const y = 2006 + self.progress*20; const yr = Math.floor(y); const f = y - yr;
+       const mm = String(Math.floor(f*12)).padStart(2,'0'), ss = String(Math.floor((f*12%1)*30)).padStart(2,'0'), ff = String(Math.floor((self.progress*2000)%25)).padStart(2,'0');
+-      tcEl.textContent = `${yr}:${mm}:${ss}:${ff}`;
++      tcEl.textContent = `${yr}:${mm}:${ss}:${ff}`; navprog.style.width = (self.progress*100) + '%';
+     } });
+ 
+   /* ---- LIVE monitors + counters ---- */
+@@ -1871,16 +2007,26 @@
+       r.addEventListener('pointerleave', () => { on = false; peek.classList.remove('on'); });
+     });
+   }
+-  if (!reduce) gsap.utils.toArray('.row, .feat .f, .obj .card').forEach(el => {
+-    gsap.from(el, { y: 40, opacity: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+-  });
++  if (!reduce) {
++    gsap.utils.toArray('.row').forEach(el => gsap.from(el, { y: 40, opacity: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%', once: true } }));
++    gsap.utils.toArray('.feat .f, .obj .card, .mon').forEach(el => gsap.fromTo(el, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.4, ease: 'expo.out', clearProps: 'clipPath', scrollTrigger: { trigger: el, start: 'top 88%', once: true } }));
++    gsap.utils.toArray('.feat .f').forEach(f => { const im = f.querySelector('.rgb img'); if (im) gsap.fromTo(im, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: f, start: 'top bottom', end: 'bottom top', scrub: true } }); });
++  }
+ 
++  /* word reveals on chapter titles: each word rises out of its own mask */
++  (function(){
++    function split(node){ [...node.childNodes].forEach(ch => { if (ch.nodeType === 3) { if (!ch.textContent.trim()) return; const frag = document.createDocumentFragment(); ch.textContent.split(/(\s+)/).forEach(part => { if (!part) return; if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; } const o = document.createElement('span'); o.className = 'sw'; const i = document.createElement('span'); i.className = 'swi'; i.textContent = part; o.appendChild(i); frag.appendChild(o); }); ch.replaceWith(frag); } else if (ch.nodeType === 1 && ch.tagName !== 'BR') { if (ch.tagName === 'EM' || ch.tagName === 'B') { const o = document.createElement('span'); o.className = 'sw'; o.style.display = ch.tagName === 'EM' ? 'block' : 'inline-block'; const i = document.createElement('span'); i.className = 'swi'; ch.replaceWith(o); o.appendChild(i); i.appendChild(ch); } else split(ch); } }); }
++    const heads = document.querySelectorAll('.por h2, .voice h2, .live h2, .car h2, .obj h2, .snaps h2, .says h2, .lights .txt h2, .tl .head h2, .next .a');
++    heads.forEach(h => { split(h); if (reduce) return; ScrollTrigger.create({ trigger: h, start: 'top 90%', once: true, onEnter(){ gsap.to(h.querySelectorAll('.swi'), { y: 0, duration: 1.15, ease: 'expo.out', stagger: .045 }); } }); });
++  })();
++
+   /* ---- clients tape ---- */
+   const tape = document.getElementById('tape');
+   tape.appendChild(tape.firstElementChild.cloneNode(true));
+   if (!reduce) {
+     const w = () => tape.firstElementChild.getBoundingClientRect().width + 64;
+     gsap.to(tape, { x: () => -w(), ease: 'none', duration: 40, repeat: -1 });
++    const tape2 = document.getElementById('tape2'); if (tape2) { tape2.appendChild(tape2.firstElementChild.cloneNode(true)); const w2 = () => tape2.firstElementChild.getBoundingClientRect().width + 64; gsap.fromTo(tape2, { x: () => -w2() }, { x: 0, ease: 'none', duration: 46, repeat: -1 }); }
+     gsap.to(tape, { xPercent: -6, ease: 'none', scrollTrigger: { trigger: '.clients', start: 'top bottom', end: 'bottom top', scrub: true } });
+   }
+ 
