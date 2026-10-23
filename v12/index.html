@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-models-base="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -140,26 +140,28 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 .pre .pct b{color:var(--red);font-weight:500}
 .pre[hidden]{display:none}
 
-/* ---------- S00 cover ---------- */
-#s00 .body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--g);align-items:end}
-#s00 h1{font-size:clamp(54px,8vw,144px);white-space:nowrap;line-height:.86;text-transform:uppercase;font-weight:900;font-variation-settings:"wdth" 118,"wght" 900;letter-spacing:-.015em}
+/* ---------- S00 cover: the name, one line, the portrait in cyanotype, the first stroke ---------- */
+#s00 .body{display:grid;grid-template-columns:minmax(0,1fr);align-items:end;z-index:3;pointer-events:none}
+#s00 .body>*{pointer-events:auto}
+#s00 .lede{max-width:min(52ch,56vw)}
+#s00 h1{font-size:clamp(56px,9.2vw,168px);white-space:nowrap;line-height:.84;text-transform:uppercase;font-weight:900;font-variation-settings:"wdth" 118,"wght" 900;letter-spacing:-.02em}
 #s00 h1 .w{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
 #s00 h1 .l{display:inline-block;transform:translateY(110%);transition:transform .5s var(--ease)}
-#s00 .sub{margin-top:clamp(18px,3vh,30px);display:grid;grid-template-columns:auto 1fr;gap:12px 26px;align-items:baseline;max-width:48ch}
-#s00 .sub .lbl{color:var(--fg3)}
-#s00 .sub p{font-family:var(--ser);font-style:italic;font-size:var(--t-lede);line-height:1.25;color:var(--fg2)}
-#s00 .sub p b{font-weight:500;color:var(--fg)}
-#s00 .port{position:relative;aspect-ratio:1;max-height:calc(100vh - var(--nav-h) - 2*var(--g) - 110px);justify-self:end;width:100%;max-width:520px}
-#s00 .port canvas{width:100%;height:100%;display:block}
-#s00 .port .rv{position:absolute;inset:0;--x:50%;--y:50%;--r:0px;-webkit-mask:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 40%,transparent 100%),radial-gradient(ellipse 46% 50% at 50% 50%,#000 60%,transparent 100%);mask:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 40%,transparent 100%),radial-gradient(ellipse 46% 50% at 50% 50%,#000 60%,transparent 100%);-webkit-mask-composite:source-in;mask-composite:intersect;pointer-events:none}
-#s00 .port .rv img{width:100%;height:100%;object-fit:cover}
-#s00 .port .rg{position:absolute;left:var(--x);top:var(--y);width:calc(var(--r)*2);height:calc(var(--r)*2);transform:translate(-50%,-50%);border:1px solid var(--red);border-radius:50%;pointer-events:none;opacity:.9}
-#s00 .port .dim.h{left:0;right:0;bottom:-26px}
-#s00 .port .dim.v{top:0;bottom:0;right:-26px}
-#s00 .scroll{position:absolute;left:50%;bottom:calc(var(--g) + 78px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--fg2);z-index:4}
-#s00 .scroll i{width:1px;height:34px;background:currentColor;transform-origin:top;animation:drop 1.8s var(--ease) infinite}
-@keyframes drop{0%{transform:scaleY(0)}60%{transform:scaleY(1);transform-origin:top}61%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-@media (max-width:720px){#s00 .body{grid-template-columns:1fr;align-content:end;gap:26px}#s00 .port{max-width:min(62vw,380px);justify-self:start;order:-1}#s00 .port .dim{display:none}}
+#s00 .stroke{display:block;width:min(100%,640px);height:34px;margin:6px 0 10px;overflow:visible}
+#s00 .stroke path{fill:none;stroke:var(--red);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(255,90,31,.5))}
+#s00 .say{font-family:var(--ser);font-style:italic;font-size:clamp(22px,2.3vw,38px);line-height:1.15;color:var(--fg);max-width:26ch}
+#s00 .who{margin-top:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fg2);display:flex;flex-wrap:wrap;gap:6px 14px}
+#s00 .who i{width:18px;height:1px;background:var(--line);align-self:center}
+#s00 .port{position:absolute;top:calc(var(--g) + var(--nav-h) - 10px);right:var(--g);bottom:calc(var(--g) + 64px);width:52%;z-index:2;overflow:hidden;--x:50%;--y:50%;--r:0px;
+  -webkit-mask:linear-gradient(90deg,transparent 0,#000 28%,#000 100%),linear-gradient(180deg,#000 70%,transparent 100%);mask:linear-gradient(90deg,transparent 0,#000 28%,#000 100%),linear-gradient(180deg,#000 70%,transparent 100%);-webkit-mask-composite:source-in;mask-composite:intersect}
+#s00 .port img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+#s00 .port .mono{filter:grayscale(1) contrast(1.08) brightness(.82);mix-blend-mode:luminosity;opacity:.92}
+#s00 .port .rv{position:absolute;inset:0;-webkit-mask:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 45%,transparent 100%);mask:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 45%,transparent 100%)}
+#s00 .scroll{position:absolute;right:calc(var(--g) + 16px);bottom:calc(var(--g) + 80px);display:flex;align-items:center;gap:12px;color:var(--fg2);z-index:4}
+#s00 .scroll i{width:34px;height:1px;background:currentColor;transform-origin:left;animation:drop 1.8s var(--ease) infinite}
+@keyframes drop{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}51%{transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+@media (max-width:1100px){#s00 h1{font-size:clamp(50px,8.4vw,120px)}#s00 .port{width:50%}}
+@media (max-width:720px){#s00 .port{position:absolute;top:0;right:0;left:0;bottom:auto;height:62vh;width:100%;-webkit-mask:linear-gradient(180deg,#000 55%,transparent 100%);mask:linear-gradient(180deg,#000 55%,transparent 100%)}#s00 .port img{object-position:50% 0}#s00 .body{align-content:end;min-height:100vh}#s00 .lede{max-width:none}#s00 h1{font-size:clamp(44px,13vw,80px)}#s00 .say{max-width:none;font-size:22px}#s00 .scroll{display:none}}
 
 /* ---------- depth, develop, plotter head ---------- */
 .sheet .shade{position:absolute;inset:0;background:#06162E;opacity:0;pointer-events:none;z-index:9}
@@ -508,6 +510,51 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   #s03 .spec p,#s04 .notes p{opacity:1;transform:none}
   .pre{display:none}
 }
+/* ---------- S08A the hall: the stands as built, lit on the night ---------- */
+#s08a{--bg:#061020}
+#s08a #hall3d{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+#s08a .vig{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 60%,transparent 50%,rgba(3,8,18,.7) 100%)}
+#s08a .slot{position:absolute;right:calc(var(--g) + 16px);top:calc(var(--g) + var(--nav-h) + 4px);z-index:4;display:grid;gap:6px;justify-items:end;max-width:30ch;text-align:right}
+#s08a .slot .lbl{font-size:.56rem;line-height:1.5;color:var(--fg3)}
+#s08a .tag{display:inline-flex;align-items:center;gap:8px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg2)}
+#s08a .tag i{width:6px;height:6px;border-radius:50%;background:#F2C98A;box-shadow:0 0 8px #F2C98A}
+#s08a .ph{display:inline-block;padding:0 7px;border:1px dashed var(--red);border-radius:2px;color:var(--red);font-family:var(--mono);font-size:.78em;letter-spacing:.04em;text-transform:none}
+#s08a .spec{position:absolute;left:calc(var(--g) + 16px);bottom:calc(var(--g) + 100px);z-index:4;max-width:min(44ch,56vw);opacity:0;transform:translateY(14px);transition:opacity .4s,transform .7s var(--ease);pointer-events:none}
+#s08a .spec.on{opacity:1;transform:none;pointer-events:auto}
+#s08a .spec::before{content:"";position:absolute;inset:-40px -60px -40px -80px;background:radial-gradient(ellipse at 40% 60%,rgba(6,16,32,.92) 30%,rgba(6,16,32,0) 72%);z-index:-1;pointer-events:none}
+#s08a .spec{z-index:4}
+#s08a .spec>*{position:relative}
+#s08a .spec .lbl{color:var(--red);margin-bottom:10px}
+#s08a .spec h2{font-size:clamp(30px,4vw,66px)}
+#s08a .spec .grid{display:grid;grid-template-columns:auto 1fr;gap:5px 16px;margin-top:14px;border-top:1px solid var(--line);padding-top:12px;font-size:.84rem;align-items:center}
+#s08a .spec .grid .lbl{margin:0;color:var(--fg3);font-size:.54rem}
+#s08a .spec .line{margin-top:12px;font-family:var(--ser);font-style:italic;font-size:clamp(17px,1.4vw,24px)}
+#s08a .spec .note{margin-top:10px;font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg3);max-width:44ch;line-height:1.6}
+#s08a .spec .note a{color:var(--red);text-decoration:none}
+#s08a .idx{position:absolute;right:calc(var(--g) + 16px);bottom:calc(var(--g) + 100px);font-family:var(--disp);font-weight:900;font-size:clamp(40px,5vw,84px);line-height:.9;color:var(--fg);opacity:.18;font-variant-numeric:tabular-nums;z-index:3}
+#s08a .hint{position:absolute;left:50%;bottom:calc(var(--g) + 70px);transform:translateX(-50%);font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fg3);z-index:4;white-space:nowrap}
+#s08a .cut{position:absolute;inset:0;z-index:6;opacity:0;pointer-events:none;background:#020510;transition:opacity .25s}
+#s08a .cut.on{opacity:1}
+#s08a .cut img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#s08a .cut .c{position:absolute;left:calc(var(--g) + 16px);right:calc(var(--g) + 16px);bottom:calc(var(--g) + 80px);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#s08a .cut .c .tag{background:rgba(2,5,16,.5);backdrop-filter:blur(6px);color:#fff;border-color:rgba(255,255,255,.4)}
+#s08a .cut .c .big{font-family:var(--disp);font-weight:900;font-size:clamp(28px,4vw,64px);letter-spacing:-.02em;line-height:.95;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.6);width:100%;margin-bottom:6px}
+#s08a .lamp{position:absolute;left:0;top:0;z-index:5;width:26px;height:26px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(242,201,138,.9),rgba(242,201,138,0) 70%);box-shadow:0 0 30px 10px rgba(242,201,138,.25);opacity:0;transition:opacity .3s}
+#s08a .lamp.on{opacity:1}
+#s08a.drag{cursor:grabbing}
+#s08a .cta{position:absolute;left:50%;bottom:calc(var(--g) + 86px);transform:translate(-50%,16px);z-index:7;display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border:1px solid #F2C98A;border-radius:999px;background:rgba(6,16,32,.72);backdrop-filter:blur(8px);color:var(--fg);font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .4s,transform .6s var(--ease),background .25s;white-space:nowrap;cursor:pointer}
+#s08a .cta.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+#s08a .cta:hover{background:#F2C98A;color:#06101F}
+#s08a .cta i{width:8px;height:8px;border-radius:50%;background:#F2C98A;box-shadow:0 0 0 0 rgba(242,201,138,.6);animation:ctapulse 1.8s ease-out infinite}
+#s08a .cta:hover i{background:#06101F;animation:none}
+#s08a .cta span{font-size:.54rem;letter-spacing:.12em;color:var(--fg3);text-transform:none}
+#s08a .cta:hover span{color:#06101F}
+#s08a .cta.back{left:auto;right:calc(var(--g) + 16px);transform:translate(0,16px);bottom:auto;top:calc(var(--g) + var(--nav-h) + 4px);padding:10px 16px}
+#s08a .cta.back.on{transform:none}
+@keyframes ctapulse{to{box-shadow:0 0 0 12px rgba(242,201,138,0)}}
+@media (max-width:1100px){#s08a .slot,#s08a .hint{display:none}#s08a .spec{max-width:min(38ch,60vw)}#s08a .spec h2{font-size:clamp(26px,4vw,52px)}}
+@media (max-width:720px){#s08a{position:sticky;top:0}.sp[data-for="s08a"]{display:block;height:320vh}#s08a .spec{max-width:none;left:var(--g);right:var(--g);bottom:calc(var(--g) + 86px)}#s08a .idx{display:none}#s08a .spec .note{display:none}#s08a .lamp{display:none}#s08a .cta{bottom:calc(var(--g) + 110px);padding:12px 18px}#s08a .cta span{display:none}}
+
 </style>
 </head>
 <body>
@@ -542,19 +589,16 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 <section class="sheet cy scene" id="s00" data-n="00" data-title="Cover" aria-label="Cover sheet">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">A</b><b class="e">1</b><b class="s">A</b><b class="w">1</b></div>
   <div class="k lbl"><span>Sheet 00</span><i></i><b>Cover</b><i></i><span>Issue 2026</span></div>
+  <div class="port" id="port" aria-label="Portrait of Yasser Kobeissi; move the cursor to see it in colour">
+    <img class="mono" src="img/portrait-4x.jpg" alt="Yasser Kobeissi">
+    <div class="rv" id="prv"><img src="img/portrait-4x.jpg" alt=""></div>
+  </div>
   <div class="body">
-    <div>
+    <div class="lede">
       <h1 id="h1"><span class="w">Yasser</span><span class="w">Kobeissi</span></h1>
-      <div class="sub">
-        <span class="lbl">Role</span><p>Creative director. <b>Events, exhibitions, motion, 3D.</b></p>
-        <span class="lbl">Based</span><p>Riyadh, by way of Beirut.</p>
-        <span class="lbl">Method</span><p>I draw the first line by hand. Then it gets built.</p>
-      </div>
-    </div>
-    <div class="port" id="port">
-      <canvas id="pc" width="900" height="900" aria-label="Portrait of Yasser Kobeissi plotted as dots; move the cursor to see the photograph"></canvas>
-      <div class="rv" id="prv"><img src="img/portrait.jpg" alt=""></div>
-      <i class="rg" id="prg" hidden></i>
+      <svg class="stroke" viewBox="0 0 640 34" preserveAspectRatio="none" aria-hidden="true"><path id="stroke" d="M4 22 C 80 8, 150 30, 230 18 S 380 6, 470 20 S 600 26, 636 12"/></svg>
+      <p class="say">I draw the first line by hand. Then it gets built.</p>
+      <div class="who"><span>Creative director</span><i></i><span>Events · exhibitions · motion · 3D</span><i></i><span>Riyadh, from Beirut</span></div>
     </div>
   </div>
   <div class="scroll lbl"><span>Scroll · pull the next sheet</span><i></i></div>
@@ -721,6 +765,24 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 </section>
 <div class="sp" data-for="s08" style="--h:4.2"></div>
 
+<!-- S08A THE HALL -->
+<section class="sheet cy scene" id="s08a" data-n="08A" data-title="The hall" aria-label="The hall: the stands as built, lit on the night">
+  <canvas id="hall3d"></canvas>
+  <div class="vig"></div>
+  <div class="frame"><i></i><i></i><i></i><i></i><b class="n">C</b><b class="e">2A</b><b class="s">C</b><b class="w">2A</b></div>
+  <div class="k lbl"><span>Sheet 08A</span><i></i><b>The hall</b><i></i><span>As built · walk the aisle</span></div>
+  <div class="slot"><span class="tag"><i></i>GLB slot · stand-in model</span><span class="lbl">One stand in the flow, lit on the night. The button at the end opens the whole hall: every Blender concept, one aisle, loaded as you walk.</span></div>
+  <div class="lamp" id="hlamp" aria-hidden="true"></div>
+  <div id="hspecs"></div>
+  <div id="hcuts"></div>
+  <div class="idx num" id="hidx">01 / 01</div>
+  <button type="button" class="cta" id="hcta" data-hot="OPEN"><i></i>Experience my designs<span>all 27 concepts, one aisle</span></button>
+  <button type="button" class="cta back" id="hback" data-hot="BACK"><i></i>Back to the key stand</button>
+  <div class="hint">Scroll to walk · drag to look around · pinch to zoom</div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">The hall</span></div><div><span class="lbl">Stands</span><span class="v">Loading…</span></div><div><span class="lbl">Walk</span><span class="v">One lap per stand</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">Night</span></div><div><span class="lbl">Sheet</span><span class="v big">08A</span></div></div>
+</section>
+<div class="sp" data-for="s08a" style="--h:7"></div>
+
 <!-- S09 REGISTER -->
 <section class="sheet wp" id="s09" data-n="09" data-title="Register" aria-label="Drawing register: selected work">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">A</b><b class="e">5</b><b class="s">A</b><b class="w">5</b></div>
@@ -797,16 +859,18 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
       <div class="c"><div class="lbl">Email</div><div class="v"><span>yasserkobeissi98@gmail.com</span><button type="button" data-copy="yasserkobeissi98@gmail.com">Copy</button></div></div>
       <div class="c"><div class="lbl">Phone / WhatsApp</div><div class="v"><span>+966 55 790 5388</span><button type="button" data-copy="+966557905388">Copy</button></div></div>
       <div class="c"><div class="lbl">Work</div><div class="v"><a class="btn" href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance ↗</a><a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
-      <div class="c"><div class="lbl">Revisions</div><div class="revs"><div><span>Rev 01</span><span>2006</span><span>Beirut · first line</span></div><div><span>Rev 07</span><span>2019</span><span>Riyadh · four channels</span></div><div><span>Rev 10</span><span>2024</span><span>Sovyal · head of creative</span></div><div><span>Rev 11</span><span>2026</span><span>Issued for construction</span></div></div></div>
+      <div class="c"><div class="lbl">Now</div><div class="v"><span>Riyadh. In a hall most nights, drawing the next one.</span></div></div>
     </div>
   </div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Issue</span></div><div><span class="lbl">Status</span><span class="v">Available · full-time and freelance</span></div><div><span class="lbl">Location</span><span class="v">Riyadh · Beyrouth</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Issue</span><span class="v">© 2026</span></div><div><span class="lbl">Sheet</span><span class="v big">13</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Issue</span></div><div><span class="lbl">Status</span><span class="v">Drawing the next room</span></div><div><span class="lbl">Location</span><span class="v">Riyadh · Beyrouth</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Issue</span><span class="v">© 2026</span></div><div><span class="lbl">Sheet</span><span class="v big">13</span></div></div>
 </section>
 <div class="sp" data-for="s13" style="--h:.4"></div>
 
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -837,7 +901,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   const fin = p => cl(p/.86); /* scenes complete at 86% of the scroll; the last 14% is the hold before the next sheet */
   function prog(id){
     const sp = spacers[id]; const sh = document.getElementById(id);
-    if (sp && !narrow()) { const r = sp.getBoundingClientRect(); return cl((innerHeight - r.top) / (r.height)); }
+    if (sp && (!narrow() || sp.offsetHeight > 0)) { const r = sp.getBoundingClientRect(); return cl((innerHeight - r.top) / (r.height)); }
     const r = sh.getBoundingClientRect(); const total = r.height + innerHeight*.4; return cl((innerHeight*.7 - r.top) / total);
   }
   function visible(id){ const sh = document.getElementById(id); const r = sh.getBoundingClientRect(); if (r.bottom <= 0 || r.top >= innerHeight) return false; if (narrow()) return true; const i = sheets.indexOf(sh); const next = sheets[i+1]; if (next && next.getBoundingClientRect().top <= 0) return false; return true; }
@@ -847,7 +911,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   const tabEls = $$('a', tabs), hudn = $('#hudn'), hudt = $('#hudt'), hudb = $('#hudb'), plot = $('#plot');
   const ruler = $('#ruler'), rmk = $('#rmk'); const rt = sheets.map((sh,i) => { const a = document.createElement('a'); a.href = '#' + sh.id; a.style.top = (i/(sheets.length-1)*100) + '%'; a.innerHTML = '<span>' + sh.dataset.n + ' · ' + sh.dataset.title + '</span>'; a.addEventListener('click', e => { e.preventDefault(); goTo(sh); }); ruler.appendChild(a); return a; });
   /* drawing list: one row per sheet, with its status */
-  (function(){ const list = $('#dlist'); if (!list) return; const STATUS = { s00:'Issued', s01:'Issued', s02:'Checked', s03:'Issued', s04:'For info', s05:'As built', s06:'Checked', s07:'Issued', s08:'Issued', s09:'Checked', s10:'As built', s11:'As built', s12:'Issued', s13:'IFC' };
+  (function(){ const list = $('#dlist'); if (!list) return; const STATUS = { s00:'Issued', s01:'Issued', s02:'Checked', s03:'Issued', s04:'For info', s05:'As built', s06:'Checked', s07:'Issued', s08:'Issued', s08a:'As built', s09:'Checked', s10:'As built', s11:'As built', s12:'Issued', s13:'IFC' };
     sheets.filter(sh => sh.id !== 's00a').forEach(sh => { const a = document.createElement('a'); a.className = 'row'; a.href = '#' + sh.id; const sc = sh.querySelector('.tb div:nth-child(4) .v'); a.innerHTML = `<span class="i">${sh.dataset.n}</span><b>${sh.dataset.title}</b><span class="sc">${sc ? sc.textContent : ''}</span><span class="st">${STATUS[sh.id] || 'Issued'}</span>`; a.addEventListener('click', e => { e.preventDefault(); goTo(sh); }); list.appendChild(a); });
     const rows = $$('.row', list); gsap.ticker.add(() => { if (!visible('s00a')) return; const pr = prog('s00a'); const n = Math.floor(cl((pr-.02)/.5)*(rows.length+1)); rows.forEach((r,i) => { const on = i < n; if (on !== r.classList.contains('on')) { r.classList.toggle('on', on); if (on) tick(1100 + i*60, .03, .035); } }); }); })();
   $('.nav .mark').addEventListener('click', e => { e.preventDefault(); goTo(sheets[0]); });
@@ -907,28 +971,17 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
     setTimeout(start, 4500);
   }
 
-  /* ---- S00: plotted portrait + name ---- */
+  /* ---- S00: the name, the first stroke, the portrait in cyanotype that turns to colour under the cursor ---- */
   (function(){
-    const c = $('#pc'), ctx = c.getContext('2d'), W = c.width, H = c.height; const G = 120, N = G*G; const img = new Image(); img.src = 'img/portrait.jpg';
-    const rv = $('#prv'), rg = $('#prg'), port = $('#port'); let lum = null, plotted = 0, lastP = -1, lastPlot = -1, startedAt = 0;
-    const seed = new Float32Array(N); for (let i=0;i<N;i++) seed[i] = Math.random();
-    img.onload = () => { const oc = document.createElement('canvas'); oc.width = oc.height = G; const o = oc.getContext('2d'); o.drawImage(img, 0, 0, G, G); const d = o.getImageData(0,0,G,G).data; lum = new Float32Array(N); for (let i=0;i<N;i++){ const k = i*4; lum[i] = (d[k]*.3 + d[k+1]*.59 + d[k+2]*.11)/255; } };
-    let fgCol = '#EAF1FF';
-    function draw(p, plotK, t){ ctx.clearRect(0,0,W,H); const cell = W/G; ctx.fillStyle = fgCol; ctx.globalAlpha = .9 * (1 - p*.65); ctx.beginPath();
-      for (let y=0;y<G;y++) for (let x=0;x<G;x++){ const i = y*G+x; if (i/N > plotK) break; const l = lum[i]; const cx = x/G-.5, cy = y/G-.5; const edge = 1 - cl((Math.hypot(cx*1.15, cy*1.05) - .28)/.2); const r = (0.08 + l*1.0) * cell*.5 * edge * (.9 + .1*Math.sin(t*1.6 + seed[i]*9)); if (r < .45) continue; const bx = Math.sin(t*.7 + seed[i]*12)*cell*.22, by = Math.cos(t*.6 + seed[(i*5)%N]*12)*cell*.22; const jx = (seed[i]-.5)*p*W*.6*(.5+seed[(i*7)%N]) + bx, jy = (seed[(i*3)%N]-.5)*p*H*.6 + by; const X = x*cell + cell/2 + jx, Y = y*cell + cell/2 + jy; ctx.moveTo(X + r, Y); ctx.arc(X, Y, r, 0, Math.PI*2); } ctx.fill(); ctx.globalAlpha = 1; }
-    starters.push(() => { startedAt = performance.now(); });
-    let rr = 0, rx = 50, ry = 50, over = false;
+    const rv = $('#prv'), port = $('#port'); let rr = 0, rx = 50, ry = 50, over = false;
     port.addEventListener('pointermove', e => { const b = port.getBoundingClientRect(); rx = (e.clientX-b.left)/b.width*100; ry = (e.clientY-b.top)/b.height*100; over = true; }, { passive:true });
     port.addEventListener('pointerleave', () => over = false);
-    gsap.ticker.add((t) => { if (!lum || !visible('s00')) return; const p = gsap.parseEase('power2.in')(prog('s00')); const plotK = startedAt ? cl((performance.now()-startedAt)/1800) : 0;
-      if (!fgCol || fgCol === '#EAF1FF') fgCol = getComputedStyle(document.getElementById('s00')).getPropertyValue('--fg').trim() || '#EAF1FF';
-      draw(p, plotK, t);
-      rr += (((over && plotK > .9 && p < .05) ? Math.min(port.clientWidth, port.clientHeight)*.24 : 0) - rr)*.12; rv.style.setProperty('--r', rr+'px'); rv.style.setProperty('--x', rx+'%'); rv.style.setProperty('--y', ry+'%'); rg.style.setProperty('--r', rr+'px'); rg.style.setProperty('--x', rx+'%'); rg.style.setProperty('--y', ry+'%'); });
+    gsap.ticker.add((t) => { if (!visible('s00')) return; const p = prog('s00'); if (!over && !reduce) { rx = 50 + Math.sin(t*.35)*18; ry = 36 + Math.cos(t*.47)*14; } const want = (over ? Math.min(port.clientWidth, port.clientHeight)*.3 : (p < .05 ? Math.min(port.clientWidth, port.clientHeight)*.14 : 0)); rr += (want - rr)*.1; rv.style.setProperty('--r', rr+'px'); rv.style.setProperty('--x', rx+'%'); rv.style.setProperty('--y', ry+'%'); });
     const h1 = $('#h1'); $$('.w', h1).forEach(w => { const t = w.textContent; w.textContent = ''; [...t].forEach(ch => { const s = document.createElement('span'); s.className = 'l'; s.textContent = ch; w.appendChild(s); }); });
-    starters.push(() => { gsap.to('#h1 .l', { y: 0, duration: 1.2, ease: 'expo.out', stagger: .035, delay: .1, onComplete(){ $$('#h1 .l').forEach(l => l.style.transition = 'none'); } }); gsap.from('#s00 .sub', { y: 16, opacity: 0, duration: 1.1, ease: 'expo.out', delay: .5 }); });
-    if (!reduce) gsap.ticker.add(() => { if (!visible('s00')) return; const p = prog('s00'); gsap.set('#s00 .body', { y: p*-60, opacity: 1 - p*.9 }); });
+    const stroke = $('#stroke'); const L = stroke.getTotalLength(); stroke.style.strokeDasharray = L; stroke.style.strokeDashoffset = L;
+    starters.push(() => { gsap.to('#h1 .l', { y: 0, duration: 1.2, ease: 'expo.out', stagger: .035, delay: .1, onComplete(){ $$('#h1 .l').forEach(l => l.style.transition = 'none'); } }); gsap.to(stroke, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', delay: .9 }); gsap.from('#s00 .say, #s00 .who', { y: 16, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: .12, delay: 1.2 }); gsap.from('#port', { opacity: 0, duration: 1.6, ease: 'power2.out', delay: .3 }); if (!reduce) { gsap.to(stroke, { strokeDashoffset: -L*.012, duration: 1.3, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2.1 }); } });
+    if (!reduce) gsap.ticker.add(() => { if (!visible('s00')) return; const p = prog('s00'); gsap.set('#s00 .body', { y: p*-60, opacity: 1 - p*.9 }); gsap.set('#port', { y: p*-30 }); });
   })();
-
   /* ---- S01: notes draw in with the scroll ---- */
   (function(){ const lis = $$('#notes li'); gsap.ticker.add(() => { if (!visible('s01')) return; const p = prog('s01'); const n = Math.floor(cl((p-.02)/.55) * (lis.length+1)); lis.forEach((li,i) => { const on = i < n; if (on !== li.classList.contains('on')) { li.classList.toggle('on', on); if (on) tick(1200 + i*120, .04, .04); } }); }); })();
 
@@ -1085,6 +1138,84 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
       const a = -.9 + p*1.5 + mxs*.4 + t*.045, el = 2.0 + Math.sin(p*Math.PI)*1.6 + mys*1.2 + Math.sin(t*.3)*.25, R = (16 - p*3) * Math.max(1, 1.5/cam.aspect); cam.position.set(Math.sin(a)*R, el + 1.6, Math.cos(a)*R); cam.lookAt(0, 1.6, -.6);
       const c = p < .25 ? 0 : p < .55 ? 1 : p < .8 ? 2 : 3; if (c !== ci) { ci = c; bh.innerHTML = caps[c][0]; bp.textContent = caps[c][1]; seq.forEach((f,i) => f.classList.toggle('on', i <= c)); gsap.fromTo([bh,bp], { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out', stagger: .05 }); if (c === 3) { tone(196, 1.2, .1); setTimeout(() => tone(294, 1.4, .08), 150); } else tick(1100, .05, .05); }
       bpct.textContent = 'Assembly ' + String(Math.round(p*100)).padStart(3,'0') + '%'; renderer.render(scene, cam); }); })();
+
+
+  /* ---- S08A: the hall. Every Blender concept Tamim has built, exported to GLB (models/manifest.json), one stand each along one aisle.
+          Models load as the camera approaches and are released when it has walked on; each gets a full lap, a spec panel and a render cut-in. ---- */
+  (function(){ if (typeof THREE === 'undefined' || !THREE.GLTFLoader) return; const sheet = $('#s08a'), cv = $('#hall3d'); let renderer; try { renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, powerPreference: 'high-performance' }); } catch(e){ return; }
+    const specs = $('#hspecs'), cuts = $('#hcuts'), idx = $('#hidx'), lamp = $('#hlamp'), ph = v => v ? v : '<span class="ph">to fill</span>';
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.25)); renderer.outputEncoding = THREE.sRGBEncoding; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
+    const NAVY = 0x061020, INK = 0xEAF1FF, TUNG = 0xF2C98A; const scene = new THREE.Scene(); scene.background = new THREE.Color(NAVY); scene.fog = new THREE.Fog(NAVY, 30, 120); const cam = new THREE.PerspectiveCamera(36, 1, .5, 260); const tex = new THREE.TextureLoader(); const loader = new THREE.GLTFLoader(); if (THREE.DRACOLoader) { const dl = new THREE.DRACOLoader(); dl.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/gltf/'); loader.setDRACOLoader(dl); }
+    /* MODELS_BASE: where the GLBs live. Empty = next to this file (models/…). For GitHub Pages set it to the bucket, e.g. 'https://models.example.com/' — the manifest paths stay the same. */
+    const MODELS_BASE = (document.documentElement.dataset.modelsBase || '').replace(/\/?$/, m => m ? '/' : '');
+    const modelUrl = rel => MODELS_BASE ? MODELS_BASE + rel.replace(/^models\//, '') : rel;
+    const fc = document.createElement('canvas'); fc.width = fc.height = 512; const fx = fc.getContext('2d'); fx.fillStyle = '#0B1830'; fx.fillRect(0,0,512,512); fx.strokeStyle = 'rgba(234,241,255,.09)'; fx.lineWidth = 1; for (let i=0;i<=512;i+=64){ fx.beginPath(); fx.moveTo(i,0); fx.lineTo(i,512); fx.moveTo(0,i); fx.lineTo(512,i); fx.stroke(); } const idat = fx.getImageData(0,0,512,512); for (let k=0;k<idat.data.length;k+=4){ const n = (Math.random()-.5)*8; idat.data[k]+=n; idat.data[k+1]+=n; idat.data[k+2]+=n; } fx.putImageData(idat,0,0);
+    const floorTex = new THREE.CanvasTexture(fc); floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.anisotropy = 4;
+    const env = new THREE.Group(); scene.add(env); scene.add(new THREE.AmbientLight(0xC9D8F5, .22)); scene.add(new THREE.HemisphereLight(0x6F86B8, 0x1A2238, .55));
+    /* environment: a dark room with a warm ceiling and two cool side panels, so every material has something to reflect and no back is pitch black */
+    { const room = new THREE.Scene(); room.background = new THREE.Color(0x0A1428); const pl = (w,h,c,i,x,y,z,rx,ry) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w,h), new THREE.MeshBasicMaterial({ color: c })); m.material.color.multiplyScalar(i); m.position.set(x,y,z); m.rotation.set(rx||0, ry||0, 0); room.add(m); }; pl(10, 6, 0xF2C98A, 2.2, 0, 8, 0, Math.PI/2); pl(14, 4, 0x9DB8F0, 1.1, -9, 3, 0, 0, Math.PI/2); pl(14, 4, 0x9DB8F0, .9, 9, 3, 0, 0, -Math.PI/2); pl(14, 4, 0xC9D8F5, .5, 0, 3, -9); pl(14, 4, 0xC9D8F5, .5, 0, 3, 9, 0, Math.PI); pl(20, 20, 0x2A3A5C, .5, 0, -2, 0, -Math.PI/2); const pm = new THREE.PMREMGenerator(renderer); pm.compileEquirectangularShader(); scene.environment = pm.fromScene(room, .04).texture; pm.dispose(); }
+    const eo = t => 1 - Math.pow(1 - cl(t), 3), V = (x,y,z) => new THREE.Vector3(x,y,z);
+    const cursorLight = new THREE.PointLight(TUNG, 0, 20, 1.6); scene.add(cursorLight); const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), floorPlane = new THREE.Plane(new THREE.Vector3(0,1,0), 0), hit = new THREE.Vector3();
+    let lx = -1, ly = -1, over = false; sheet.addEventListener('pointermove', e => { const r = sheet.getBoundingClientRect(); lx = e.clientX - r.left; ly = e.clientY - r.top; over = true; }, { passive: true }); sheet.addEventListener('pointerleave', () => over = false);
+    /* free look: drag to orbit the stand you are at, pinch or ctrl+wheel to zoom, two fingers on a phone; scrolling on eases you back into the walk */
+    let yaw = 0, pitch = 0, zoom = 1, drag = null, lastP = -1, looked = false; const isUI = e => e.target.closest('button, a, .spec');
+    sheet.addEventListener('pointerdown', e => { if (e.pointerType === 'touch' || isUI(e)) return; drag = { x: e.clientX, y: e.clientY }; sheet.classList.add('drag'); }, { passive: true });
+    addEventListener('pointermove', e => { if (!drag) return; yaw -= (e.clientX - drag.x)*.006; pitch = cl(pitch + (e.clientY - drag.y)*.004, -.5, .8); drag = { x: e.clientX, y: e.clientY }; looked = true; }, { passive: true });
+    addEventListener('pointerup', () => { drag = null; sheet.classList.remove('drag'); });
+    sheet.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); zoom = cl(zoom*(1 + e.deltaY*.004), .45, 2.2); looked = true; }, { passive: false });
+    let tA = null; sheet.addEventListener('touchstart', e => { if (e.touches.length === 2) { tA = { x: (e.touches[0].clientX + e.touches[1].clientX)/2, y: (e.touches[0].clientY + e.touches[1].clientY)/2, d: Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY) }; } }, { passive: true });
+    sheet.addEventListener('touchmove', e => { if (e.touches.length !== 2 || !tA) return; e.preventDefault(); const x = (e.touches[0].clientX + e.touches[1].clientX)/2, y = (e.touches[0].clientY + e.touches[1].clientY)/2, d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); yaw -= (x - tA.x)*.008; pitch = cl(pitch + (y - tA.y)*.005, -.5, .8); zoom = cl(zoom*(tA.d/d), .45, 2.2); tA = { x, y, d }; looked = true; }, { passive: false });
+    sheet.addEventListener('touchend', () => { tA = null; }, { passive: true });
+    function size(){ const w = sheet.clientWidth, h = sheet.clientHeight; renderer.setSize(w, h, false); cam.aspect = w/h; cam.updateProjectionMatrix(); } size(); addEventListener('resize', size);
+    let stands = [], N = 0, X = [], XEND = 60, WGT = [], WSUM = 1; const camPos = V(-20, 4, 24), camLook = V(0, 2, 0); const tp = new THREE.Vector3(), tl = new THREE.Vector3(); let first = true, cur = -1, wasOn = false; window.__hallSnap = () => { first = true; };
+    /* a stand: footprint drawn in blue line while the model is on its way, then the real model, lit by its own spot */
+    function makeStand(q, i){ const g = new THREE.Group(); g.position.set(X[i], 0, 0); scene.add(g); const r = q.r;
+      const foot = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(q.sx, q.sy, q.sz)), new THREE.LineBasicMaterial({ color: 0x173F86, transparent: true, opacity: .9 })); foot.position.y = q.sy/2; g.add(foot);
+      return { g, foot, q, r, lit: 0, model: null, loading: false, failed: false }; }
+    /* two fixed light rigs (key spot, cool fill, warm back) that move to the current stand and the next one. A constant light count means the shaders never recompile mid-walk. */
+    function makeRig(){ const g = new THREE.Group(); const spot = new THREE.SpotLight(TUNG, 0, 60, .75, .6, 1); const fill = new THREE.PointLight(0xC9D8F5, 0, 40, 1.4); const back = new THREE.PointLight(TUNG, 0, 45, 1.3); g.add(spot, spot.target, fill, back); scene.add(g); return { g, spot, fill, back }; }
+    const rigs = [makeRig(), makeRig()];
+    function aimRig(rig, st){ if (!st) { rig.spot.intensity = rig.fill.intensity = rig.back.intensity = 0; return; } const r = st.r, lit = st.lit; rig.g.position.copy(st.g.position); rig.spot.position.set(0, r*1.2 + 4, r*.7); rig.spot.target.position.set(0, r*.15, 0); rig.spot.distance = r*6; rig.fill.position.set(-r*.6, r*.6, r*.6); rig.fill.distance = r*4; rig.back.position.set(r*.5, r*.7, -r*.8); rig.back.distance = r*4.5; rig.spot.intensity = lit*4.2; rig.fill.intensity = lit*1.4; rig.back.intensity = lit*1.6; }
+    function load(st){ if (st.model || st.loading || st.failed) return; st.loading = true; loader.load(modelUrl(st.q.glb), gl => { const m = gl.scene; const box = new THREE.Box3().setFromObject(m); const size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3()); const sc = Math.min(1, 40/Math.max(size.x, size.z)); m.scale.setScalar(sc); m.position.set(-c.x*sc, -box.min.y*sc, -c.z*sc); m.traverse(o => { if (o.isMesh && o.material) { const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(mat => { if (mat.emissiveMap) mat.emissiveIntensity = Math.max(mat.emissiveIntensity, 1); if ('envMapIntensity' in mat) mat.envMapIntensity = .9; }); } }); st.g.add(m); st.model = m; st.loading = false; st.foot.material.opacity = 0; }, undefined, err => { st.loading = false; st.failed = true; console.warn('GLB failed', st.q.glb, err); }); }
+    function unload(st){ if (!st.model) return; st.model.traverse(o => { if (o.isMesh) { o.geometry && o.geometry.dispose(); const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(m => { ['map','emissiveMap','normalMap','roughnessMap','metalnessMap','aoMap','alphaMap'].forEach(k => m[k] && m[k].dispose()); m.dispose(); }); } }); st.g.remove(st.model); st.model = null; st.foot.material.opacity = .9; }
+    function setLit(st, lit){ st.lit = lit; }
+    function buildHall(P){ N = P.length; let x = 0; X = []; P.forEach((q,i) => { X[i] = x; x += Math.max(22, q.r*2.2 + 14); }); XEND = x; WGT = P.map(() => 1); WSUM = N;
+      env.children.slice().forEach(c => env.remove(c)); floorTex.repeat.set(Math.ceil((XEND + 160)/8), 16);
+      const floor = new THREE.Mesh(new THREE.PlaneGeometry(XEND + 160, 128), new THREE.MeshStandardMaterial({ map: floorTex, roughness: .95 })); floor.rotation.x = -Math.PI/2; floor.position.set(XEND/2, 0, 0); env.add(floor);
+      const wall = new THREE.Mesh(new THREE.PlaneGeometry(XEND + 160, 18), new THREE.MeshStandardMaterial({ color: 0x08142A, roughness: 1 })); wall.position.set(XEND/2, 9, -30); env.add(wall);
+      const trussMat = new THREE.MeshStandardMaterial({ color: 0x24324D, roughness: .6, metalness: .4 }); for (let tx = -30; tx <= XEND + 30; tx += Math.max(8, XEND/60)) { const t = new THREE.Mesh(new THREE.BoxGeometry(.3, .3, 60), trussMat); t.position.set(tx, 14, -4); env.add(t); } const truss2 = new THREE.Mesh(new THREE.BoxGeometry(XEND + 80, .3, .3), trussMat); truss2.position.set(XEND/2, 14, -8); env.add(truss2);
+      stands = P.map(makeStand); specs.innerHTML = ''; cuts.innerHTML = '';
+      P.forEach((q,i) => { specs.insertAdjacentHTML('beforeend', `<div class="spec" data-i="${i}"><div class="lbl">${String(i+1).padStart(2,'0')} / ${String(N).padStart(2,'0')} · ${q.kind}</div><h2 class="h">${q.title}</h2><div class="grid"><span class="lbl">Client</span><span>${ph(q.client)}</span><span class="lbl">City · hall</span><span>${ph(q.city)} · ${ph(q.hall)}</span><span class="lbl">Date</span><span>${ph(q.date)}</span><span class="lbl">Footprint</span><span>${q.sx.toFixed(1)} × ${q.sz.toFixed(1)} m · ${q.sy.toFixed(1)} m high</span><span class="lbl">Built</span><span>${ph(q.built)}</span></div><p class="line">"${q.line || '<span class="ph">one line in my words</span>'}"</p><p class="note">Blender concept · ${q.src} · ${(q.bytes/1048576).toFixed(1)} MB GLB</p></div>`);
+      });
+      specEls = $$('.spec', specs); cutEls = $$('.cut', cuts); first = true; }
+    let specEls = [], cutEls = [];
+    const view = (i, t) => { const wide = narrow(); const st = stands[i]; const x = X[i]; const r = st.r; const u = cl((t - .12)/.88); const a = -.5 + u*Math.PI*2; const R = Math.max(9, r*(wide ? 2.5 : (innerWidth < 1100 ? 2.15 : 1.8))*(1 - .22*Math.sin(u*Math.PI)) + 3); const y = Math.max(2.6, r*(.55 - .33*Math.sin(u*Math.PI)) + 1.2); return [V(x + Math.sin(a)*R, y, Math.cos(a)*R), V(x, r*.22, 0)]; };
+    const entrance = () => { const r = stands[0] ? stands[0].r : 10; return [V(X[0] - r*2.2, r*.5 + 2, narrow() ? r*3 : r*2.4), V(X[0], r*.2, 0)]; };
+    gsap.ticker.add(() => { const on = visible('s08a'); if (on !== wasOn) { wasOn = on; if (!on) { lamp.classList.remove('on'); specEls.forEach(e => e.classList.remove('on')); cutEls.forEach(e => e.classList.remove('on')); } } if (!on || !N) return;
+      const p = fin(prog('s08a')); let i = 0, t = 0; { let acc = 0; for (let j=0;j<N;j++){ const w = WGT[j]/WSUM; if (p < acc + w || j === N-1) { i = j; t = cl((p - acc)/w, 0, .9999); break; } acc += w; } }
+      const tv = eo(cl(t/.12)); const [pA, lA] = i > 0 ? view(i-1, 1) : entrance(), [pB, lB] = view(i, cl((t-.12)/.88)); tp.lerpVectors(pA, pB, tv); tl.lerpVectors(lA, lB, tv);
+      if (over && !narrow()) { tp.x += (lx/sheet.clientWidth - .5)*.8; tp.y += (.5 - ly/sheet.clientHeight)*.5; }
+      if (lastP >= 0 && Math.abs(p - lastP) > .00015 && !drag) { yaw *= .9; pitch *= .9; zoom += (1 - zoom)*.1; if (Math.abs(yaw) < .002 && Math.abs(pitch) < .002 && Math.abs(zoom - 1) < .002) { yaw = pitch = 0; zoom = 1; looked = false; } } lastP = p;
+      const k = first ? 1 : .09; camPos.lerp(tp, k); camLook.lerp(tl, k); first = false;
+      if (looked) { const off = camPos.clone().sub(camLook); const len = off.length(); off.applyAxisAngle(new THREE.Vector3(0,1,0), yaw); off.y += len*pitch; off.setLength(Math.max(len*zoom, stands[i].r*1.15 + 2)); const cp = camLook.clone().add(off); cp.y = Math.max(cp.y, 1.2); cam.position.copy(cp); } else cam.position.copy(camPos); cam.lookAt(camLook);
+      let hasHit = false; if (over) { ndc.set(lx/sheet.clientWidth*2 - 1, -(ly/sheet.clientHeight)*2 + 1); ray.setFromCamera(ndc, cam); hasHit = !!ray.ray.intersectPlane(floorPlane, hit); }
+      if (hasHit) { cursorLight.position.set(hit.x, 2.6, hit.z); cursorLight.intensity = 1.6; lamp.style.left = lx + 'px'; lamp.style.top = ly + 'px'; lamp.classList.add('on'); } else { cursorLight.intensity = 0; lamp.classList.remove('on'); }
+      let loading = stands.filter(s => s.loading).length;
+      stands.forEach((st, j) => { const near = j === i || j === i + 1; const d = Math.abs(cam.position.x - st.g.position.x); if (near && loading < 2 && !st.model && !st.loading && !st.failed) { load(st); loading++; } if (!near && st.model && d > st.r*2 + 110) unload(st);
+        const dc = Math.abs(camLook.x - st.g.position.x), dl = hasHit ? Math.hypot(hit.x - st.g.position.x, hit.z - st.g.position.z) : 999; const lit = Math.max(cl(1 - dc/(st.r*1.6 + 10)), cl(1 - dl/(st.r + 8))); setLit(st, st.lit + (lit - st.lit)*.08); });
+      aimRig(rigs[0], stands[i]); aimRig(rigs[1], stands[i+1] || stands[i-1]);
+      renderer.render(scene, cam);
+      const specOn = (t > .14 && t < .46) || (t > .6 && t < .9); specEls.forEach((e,j) => e.classList.toggle('on', j === i && specOn));
+      if (i !== cur) { cur = i; idx.textContent = String(i+1).padStart(2,'0') + ' / ' + String(N).padStart(2,'0'); tick(1300 + i*40, .04, .04); } cta.classList.toggle('on', !full && i === N-1 && t > .5); });
+    /* the manifest: written by the export script; every entry with a GLB is a stand. The flow shows one key stand; the button opens the whole hall. */
+    let ALL = [], full = false; const cta = $('#hcta'), back = $('#hback'); const KEY = 'zain-alhalqa';
+    function clearHall(){ stands.forEach(st => { unload(st); scene.remove(st.g); }); stands = []; N = 0; }
+    function setHall(list){ clearHall(); buildHall(list); const sp = spacers['s08a']; if (sp) sp.style.setProperty('--h', String(list.length === 1 ? 4.2 : Math.max(5, N*1.15))); if (lenis) lenis.resize(); if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); $$('.tb .v', sheet)[1].textContent = full ? N + ' models · from Blender' : '1 of ' + ALL.length + ' · the key stand'; cur = -1; }
+    function toHallStart(){ const sp = spacers['s08a']; if (!sp) return; const y = sp.getBoundingClientRect().top + scrollY - innerHeight + 2; if (lenis) lenis.scrollTo(y, { immediate: true }); else scrollTo(0, y); first = true; }
+    cta.addEventListener('click', () => { full = true; setHall(ALL); toHallStart(); cta.classList.remove('on'); back.classList.add('on'); tick(900, .06, .06); });
+    back.addEventListener('click', () => { full = false; setHall(ALL.filter(q => q.key === KEY)); toHallStart(); back.classList.remove('on'); });
+    fetch(modelUrl('models/manifest.json')).then(r => r.json()).then(man => { ALL = man.filter(m => m.glb && !m.error && m.size).map(m => { const sx = m.size[0], sy = m.size[2], sz = m.size[1]; /* Blender z-up → y-up */ const f = Math.min(1, 40/Math.max(sx, sz)); return Object.assign({}, m, { sx: sx*f, sy: sy*f, sz: sz*f, r: Math.max(sx, sz)*f/2, client: (m.title.split(' · ')[0] || null) }); });
+      if (!ALL.length) return; const key = ALL.filter(q => q.key === KEY); setHall(key.length ? key : [ALL[0]]); }).catch(err => console.warn('manifest', err)); })();
 
   /* ---- S11: lighting plot, then the lights come on; the photo log reel ---- */
   (function(){ const sheet = $('#s11'), photo = $('#lphoto'), svg = $('#lsvg'), barT = $('#barT'), barB = $('#barB'), cap = $('#lcap'), hint = $('#lhint'), txt = $('#s11 .txt'), reel = $('#reel'), track = $('#track');

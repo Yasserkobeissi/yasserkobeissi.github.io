@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Yasser Kobeissi — Night build</title>
+<meta name="description" content="Yasser Kobeissi, creative director, Riyadh. The hall at night, before the doors open. Everything drawn by hand first, then built.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,300..500&display=swap">
+<style>
+/* ============================================================
+   v14 — NIGHT BUILD (prototype with stand-ins)
+   One continuous WebGL hall at night. A marker line is drawn,
+   a stand assembles around it, the camera walks the hall; each
+   project lights up under the cursor and its photograph cuts in.
+   Everything marked [to fill] or "stand-in" gets replaced by
+   Yasser's real models, photos and facts.
+   ============================================================ */
+:root{
+  --bg:#0A0A0B; --bg2:#121214; --ink:#F3EFE8; --ink2:#A9A39A; --ink3:rgba(243,239,232,.4);
+  --tung:#F2C98A; --red:#FF3B1F; --line:rgba(243,239,232,.14);
+  --disp:"Syne","Helvetica Neue",Arial,sans-serif; --body:"Manrope","Helvetica Neue",Arial,sans-serif; --ser:"Fraunces",Georgia,serif;
+  --g:clamp(18px,2.6vw,44px); --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:clamp(16px,.45vw + 11px,19px);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--tung);outline-offset:3px}
+h1,h2,h3,p{margin:0}
+.lbl{font-family:var(--body);font-weight:600;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2)}
+.h{font-family:var(--disp);font-weight:800;letter-spacing:-.035em;line-height:.92}
+.voice{font-family:var(--ser);font-style:italic;font-variation-settings:"opsz" 96;font-weight:300}
+.ph{display:inline-block;padding:1px 8px;border:1px dashed rgba(242,201,138,.6);border-radius:3px;color:var(--tung);font-family:var(--body);font-weight:500;font-size:.85em;letter-spacing:.02em}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:600}
+.tag i{width:6px;height:6px;border-radius:50%;background:var(--tung)}
+@media (hover:hover) and (pointer:fine){html,body,a,button,canvas{cursor:none!important}}
+
+/* ---------- chrome ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:18px var(--g);pointer-events:none;mix-blend-mode:difference;color:#fff}
+.nav>*{pointer-events:auto}
+.nav .mk{width:34px;height:34px}
+.nav .mk path{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.nav .right{display:flex;gap:18px;align-items:center;font-family:var(--body);font-weight:600;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase}
+.nav .right b{font-size:.84rem;letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.nav .right i{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(255,59,31,.5);animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{to{box-shadow:0 0 0 12px rgba(255,59,31,0)}}
+.prog{position:fixed;left:0;top:0;height:2px;width:0;background:var(--tung);z-index:61;box-shadow:0 0 10px var(--tung)}
+.beat{position:fixed;left:var(--g);bottom:var(--g);z-index:60;mix-blend-mode:difference;color:#fff;font-family:var(--body);font-weight:600;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;display:flex;gap:12px;align-items:center}
+.beat i{width:40px;height:1px;background:rgba(255,255,255,.35);position:relative}.beat i b{position:absolute;left:0;top:0;height:100%;width:0;background:#fff}
+.cur{position:fixed;left:0;top:0;z-index:70;pointer-events:none;transform:translate(-50%,-50%);width:18px;height:18px;border-radius:50%;background:radial-gradient(circle,rgba(242,201,138,1) 0,rgba(242,201,138,.5) 35%,rgba(242,201,138,0) 70%);box-shadow:0 0 30px 8px rgba(242,201,138,.35);transition:width .3s var(--ease),height .3s var(--ease)}
+.cur.hot{width:40px;height:40px}
+.cur .l{position:absolute;left:28px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--body);font-weight:600;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tung);opacity:0;transition:opacity .2s}
+.cur.hot .l{opacity:1}
+@media (hover:none),(pointer:coarse){.cur{display:none}}
+@media (max-width:720px){.beat{display:none}}
+
+/* ---------- loader ---------- */
+.pre{position:fixed;inset:0;z-index:90;background:var(--bg);display:grid;place-items:center}
+.pre .mk{width:min(34vw,180px);height:auto}
+.pre .mk path{fill:none;stroke:var(--tung);stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.pre .t{position:absolute;left:50%;bottom:calc(var(--g) + 10px);transform:translateX(-50%);display:flex;gap:18px;align-items:center;font-family:var(--body);font-weight:600;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);white-space:nowrap}
+.pre .t b{color:var(--tung);font-variant-numeric:tabular-nums}
+.pre[hidden]{display:none}
+
+/* ---------- the scene ---------- */
+#night{position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg)}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block}
+.vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 60%,transparent 45%,rgba(0,0,0,.6) 100%);z-index:2}
+.ov{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;transition:opacity .45s;display:grid;padding:calc(var(--g) + 60px) var(--g) calc(var(--g) + 40px)}
+.ov.on{opacity:1}
+.ov.on .in{pointer-events:auto}
+.ov .in{max-width:min(46ch,52vw);align-self:end;justify-self:start;transform:translateY(16px);transition:transform .7s var(--ease)}
+.ov.on .in{transform:none}
+.ov.r .in{justify-self:end;text-align:right}
+.ov.c .in{justify-self:center;align-self:center;text-align:center;max-width:min(60ch,86vw)}
+.ov h1{font-size:clamp(44px,6.4vw,112px);margin:12px 0 16px}
+.ov h2{font-size:clamp(34px,4.6vw,76px);margin:10px 0 14px}
+.ov p{color:var(--ink2);max-width:46ch}
+.ov p b{color:var(--ink);font-weight:600}
+.ov .voice-l{font-size:clamp(28px,4.4vw,72px);line-height:1.05;color:var(--ink)}
+.ov .voice-l b{font-style:normal;font-family:var(--disp);font-weight:800;letter-spacing:-.03em}
+.ov .facts{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.ov .facts div{font-size:.86rem;color:var(--ink2)}.ov .facts div b{display:block;color:var(--ink);font-weight:600}
+.ov .spec{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin-top:16px;border-top:1px solid var(--line);padding-top:12px;font-size:.86rem;align-items:center}
+.ov .spec .lbl{font-size:.56rem}
+.ov .line{margin-top:14px;font-family:var(--ser);font-style:italic;font-size:clamp(18px,1.5vw,26px);color:var(--ink)}
+.ov .note{margin-top:14px;font-size:.72rem;color:var(--ink3);max-width:40ch}
+.ov .pics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px}
+.ov .pics figure{margin:0;aspect-ratio:3/2;overflow:hidden;border-radius:4px;position:relative;background:var(--bg2)}
+.ov .pics img{width:100%;height:100%;object-fit:cover}
+.ov .pics figcaption{position:absolute;left:0;right:0;bottom:0;padding:5px 8px;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:linear-gradient(transparent,rgba(0,0,0,.7));font-weight:600}
+.ov .port{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:end}
+.ov .port img{width:150px;aspect-ratio:1;object-fit:cover;border-radius:4px}
+/* drawing board */
+.ov .board{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-self:center;justify-self:center;max-width:min(1100px,88vw);width:100%}
+.ov .board figure{margin:0;position:relative;background:#fff;padding:10px 10px 36px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);transform:rotate(var(--r,0deg))}
+.ov .board img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.ov .board figcaption{position:absolute;left:12px;right:12px;bottom:10px;display:flex;justify-content:space-between;color:#333;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.ov .board figcaption .ph{color:#b4521f;border-color:#b4521f}
+/* crew lines */
+.ov .crew{display:grid;gap:8px;align-self:center;justify-self:center;max-width:min(70ch,88vw);text-align:center}
+.ov .crew p{font-family:var(--ser);font-style:italic;font-size:clamp(20px,2.4vw,38px);line-height:1.15;color:var(--ink);max-width:none}
+.ov .crew p small{display:block;margin-top:4px;font-family:var(--body);font-style:normal;font-weight:600;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
+/* full-res cut-ins */
+.cut{position:absolute;inset:0;z-index:6;opacity:0;pointer-events:none;background:#000}
+.cut.on{opacity:1}
+.cut img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cut .c{position:absolute;left:var(--g);bottom:calc(var(--g) + 10px);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cut .c .tag{background:rgba(0,0,0,.45);backdrop-filter:blur(6px)}
+.cut .c .big{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4vw,64px);letter-spacing:-.03em;text-shadow:0 4px 30px rgba(0,0,0,.6);width:100%}
+/* doors */
+.hold{display:inline-grid;place-items:center;width:132px;height:132px;border-radius:50%;position:relative;font-family:var(--body);font-weight:600;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-top:22px;touch-action:none;user-select:none}
+.hold svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.hold circle{fill:none;stroke-width:2}
+.hold .bg{stroke:var(--line)}.hold .fg{stroke:var(--tung);stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .1s linear}
+.final{position:absolute;inset:0;z-index:7;opacity:0;pointer-events:none;transition:opacity 1.2s;background:#000}
+.final.on{opacity:1;pointer-events:auto}
+.final img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}
+.final .in{position:absolute;left:var(--g);right:var(--g);bottom:var(--g);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;text-shadow:0 2px 20px rgba(0,0,0,.7)}
+.final h2{font-size:clamp(40px,7vw,120px)}
+.final .ct{display:grid;gap:8px;justify-items:end;font-weight:600}
+.final .ct a{padding:12px 18px;border:1px solid rgba(255,255,255,.5);border-radius:999px;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;backdrop-filter:blur(6px);transition:background .25s,color .25s}
+.final .ct a:hover{background:var(--ink);color:#000}
+.scroll{position:absolute;left:50%;bottom:var(--g);transform:translateX(-50%);z-index:5;display:flex;gap:10px;align-items:center;font-family:var(--body);font-weight:600;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);transition:opacity .4s}
+.scroll i{width:40px;height:1px;background:var(--ink2)}
+/* GLB slot notice */
+.slot{position:absolute;right:var(--g);top:calc(var(--g) + 56px);z-index:5;display:grid;gap:6px;justify-items:end;opacity:0;transition:opacity .4s;pointer-events:none}
+.slot.on{opacity:1}
+@media (max-width:720px){
+  .ov .in{max-width:none;width:100%}.ov.r .in{text-align:left}
+  .ov h1{font-size:clamp(40px,11vw,64px)}.ov h2{font-size:clamp(28px,8vw,48px)}
+  .ov .port{grid-template-columns:90px 1fr}.ov .port img{width:90px}
+  .ov .pics{grid-template-columns:1fr 1fr}.ov .pics figure:nth-child(3){display:none}
+  .ov .board{grid-template-columns:1fr}.ov .board figure:nth-child(n+3){display:none}
+  .final .in{grid-template-columns:1fr}.final .ct{justify-items:start}
+  .slot{display:none}
+}
+@media (prefers-reduced-motion:reduce){.pre{display:none}.nav .right i{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="pre" id="pre" aria-hidden="true">
+  <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path id="premk" d="M18 22 L50 58 L82 22 M50 58 L50 104 M50 82 L88 50 M60 74 L92 104"/></svg>
+  <div class="t"><span>Night build</span><b id="prepct">00%</b><span>Rigging the lights</span></div>
+</div>
+
+<div class="cur" id="cur" aria-hidden="true"><span class="l" id="curl">Light</span></div>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<nav class="nav" aria-label="Site">
+  <a href="#top" aria-label="Yasser Kobeissi, home"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M18 22 L50 58 L82 22 M50 58 L50 104 M50 82 L88 50 M60 74 L92 104"/></svg></a>
+  <div class="right"><i></i><span>Doors</span><b id="clock">20:40</b></div>
+</nav>
+<div class="beat" id="beat"><span id="beatn">01</span><i><b id="beatb"></b></i><span id="beatt">The first line</span></div>
+
+<main id="top">
+<section id="night" aria-label="The hall at night">
+  <div class="stage" id="stage">
+    <canvas id="gl"></canvas>
+    <div class="vig"></div>
+
+    <div class="slot" id="slot"><span class="tag"><i></i>GLB slot · stand-in model</span><span class="lbl" style="font-size:.52rem;max-width:30ch;text-align:right;line-height:1.5">Your Cinema 4D export drops in here, textures and all. Until then this is a built-from-code stand.</span></div>
+
+    <div class="ov" data-beat="hero"><div class="in"><span class="tag"><i></i>Riyadh · the hall at night</span><h1 class="h">I draw the first line by hand.</h1><p>Then it gets built. Scroll, and watch one go up: platform, walls, tower, header, counter, screen. Then the lights.</p></div></div>
+
+    <div class="ov" data-beat="reception"><div class="in"><span class="tag"><i></i>Reception</span><div class="port"><img src="img/portrait-4x.jpg" alt="Yasser Kobeissi"><div><h2 class="h">Yasser Kobeissi</h2><p>Creative director. Events, exhibitions, motion, 3D. Lebanese, from Beirut, in Riyadh since 2019. Twenty years in. I still draw first.</p></div></div><div class="facts"><div><b>Born</b>Beirut</div><div><b>Based</b>Riyadh</div><div><b>Studied</b>Graphic design, LAU, 2010</div><div><b>Speaks</b>Arabic, English, French</div></div><div class="pics"><figure><img src="img/candid-build-1.jpg" alt="Stand-in candid: on a build site at night"><figcaption>Build night · stand-in</figcaption></figure><figure><img src="img/candid-desk-1.jpg" alt="Stand-in candid: at the desk with two markers"><figcaption>Two markers · stand-in</figcaption></figure><figure><img src="img/candid-build-2.jpg" alt="Stand-in candid"><figcaption>Hall 2 · stand-in</figcaption></figure></div><p class="note">Portrait upscaled 4× from the 420 px original; candids made with Magnific from the portrait. Real ones replace these, same crops.</p></div></div>
+
+    <div class="ov r" data-beat="voice1"><div class="in"><p class="voice voice-l">Ten years in live television. <b>No second take.</b></p></div></div>
+    <div class="ov r" data-beat="voice2"><div class="in"><p class="voice voice-l">Ten years in events. <b>The date does not move.</b></p></div></div>
+    <div class="ov r" data-beat="voice3"><div class="in"><p class="voice voice-l">An idea is only real when it stands in a room and <b>the lights come on.</b></p></div></div>
+
+    <div class="ov" data-beat="board"><div class="in board">
+      <figure style="--r:-2deg"><img src="img/sketch-stand-1.jpg" alt="Stand-in marker sketch of an exhibition stand"><figcaption><span>Marker on paper · stand-in</span><span class="ph">your scan, 300 dpi</span></figcaption></figure>
+      <figure style="--r:1.5deg"><img src="img/sketch-car-1.jpg" alt="Stand-in marker sketch of a coupe"><figcaption><span>The other sketchbook · stand-in</span><span class="ph">your car sketch</span></figcaption></figure>
+      <figure style="--r:1deg"><img src="img/sketch-stand-2.jpg" alt="Stand-in marker sketch"><figcaption><span>Plan with dimensions · stand-in</span><span class="ph">your scan</span></figcaption></figure>
+      <figure style="--r:-1.2deg"><img src="img/sketch-car-2.jpg" alt="Stand-in marker sketch"><figcaption><span>Saturday · stand-in</span><span class="ph">your scan</span></figcaption></figure>
+    </div></div>
+
+    <div class="ov" data-beat="crew"><div class="in crew"><span class="tag" style="justify-self:center"><i></i>What the crew says · stand-in lines</span>
+      <p>"He draws it before the meeting ends, then builds exactly that."<small><span class="ph">name · role · project</span></small></p>
+      <p>"Two markers, no mouse. Then a hall full of people."<small><span class="ph">name · role · project</span></small></p>
+      <p>"The render was a promise. The night kept it."<small><span class="ph">name · role · project</span></small></p>
+    </div></div>
+
+    <div class="ov c" data-beat="doors"><div class="in"><span class="tag"><i></i>20:38</span><h2 class="h">Hold to open the doors.</h2><p style="margin:0 auto">Everything you walked past was drawn by hand first and built on the date. The doors open at 20:40.</p><button type="button" class="hold" id="hold" aria-label="Hold to open the doors"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="47" pathLength="1"/><circle class="fg" id="holdfg" cx="50" cy="50" r="47" pathLength="1"/></svg><span id="holdl">Hold</span></button></div></div>
+
+    <div id="specs"></div>
+    <div id="cuts"></div>
+
+    <div class="final" id="final"><img src="img/snd-2x.jpg" alt="Saudi National Day 2025, the gate at 20:40"><div class="in"><div><span class="tag"><i></i>20:40 · doors</span><h2 class="h">What do I want next?<br>Crazy goals. Big rooms.</h2><p style="margin-top:12px;color:var(--ink);max-width:44ch">If you have a room that needs an idea, send me the brief and I will send you the first line.</p></div><div class="ct"><a href="mailto:yasserkobeissi98@gmail.com">yasserkobeissi98@gmail.com</a><a href="https://wa.me/966557905388" target="_blank" rel="noopener">+966 55 790 5388</a><a href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance ↗</a><a href="#" id="lnk">LinkedIn <span class="ph">URL to fill</span></a></div></div></div>
+
+    <div class="scroll" id="scrollhint"><span>Scroll to walk the hall</span><i></i></div>
+  </div>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const narrow = () => innerWidth <= 720;
+  const cl = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const io = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2, eo = t => 1 - Math.pow(1 - cl(t), 3);
+  if (typeof THREE === 'undefined' || typeof gsap === 'undefined') return;
+
+  /* ============ PROJECTS: the stands along the hall. Fields marked null are [to fill]. ============
+     glb: path to the real model when it arrives (GLB with textures, under 20 MB). Null = built-from-code stand-in. */
+  const P = [
+    { key:'looptech', title:'Looptech', kind:'Exhibition stand · built 2024', img:'img/looptech.jpg', full:'img/looptech-2x.jpg', fullDims:'2720 × 1536 · 2× upscale of the Behance cover', accent:0x3B8BEA, tower:5.2, glb:null, client:null, city:null, hall:null, area:null, built:null, line:null, url:'https://www.behance.net/gallery/248668789/Looptech-Booth-Design-2024' },
+    { key:'misk', title:'Misk Foundation', kind:'Exhibition stand · 2025', img:'img/misk.jpg', full:'img/misk-2x.jpg', fullDims:'2800 × 1576 · 2× upscale of the Behance cover', accent:0x2E9E6B, tower:4.4, glb:null, client:'Misk Foundation', city:null, hall:null, area:null, built:null, line:null, url:'https://www.behance.net/gallery/248381303/Misk-Booth-Design-2025' },
+    { key:'snd', title:'Saudi National Day 2025', kind:'Celebration · gate, stage, media wall', img:'img/snd.jpg', full:'img/snd-2x.jpg', fullDims:'2400 × 1352 · 2× upscale of the Behance cover', accent:0x1FA38C, tower:6, glb:null, client:null, city:null, hall:null, area:null, built:null, line:null, url:'https://www.behance.net/gallery/248713431/SAUDI-NATIONAL-DAY-2025' },
+    { key:'big5', title:'Seder Group at Big 5', kind:'Double-deck stand · 2025', img:'img/big5.jpg', full:'img/big5.jpg', fullDims:'1600 px Behance cover · needs the 4000 px original', accent:0x3F6BD6, tower:7, glb:null, client:'Seder Group', city:null, hall:null, area:null, built:null, line:null, url:'https://www.behance.net/gallery/247898759/SEDER-GROUP-booth-Big5-2025' },
+    { key:'gosi26', title:'GOSI Eid Al Fitr', kind:'Employee celebration · 2026', img:'img/gosi26.jpg', full:'img/gosi26.jpg', fullDims:'1600 px Behance cover · needs the original', accent:0xC56A2B, tower:4.8, glb:null, client:'GOSI', city:null, hall:null, area:null, built:null, line:null, url:'https://www.behance.net/gallery/247706305/Event-Gosi-2026' },
+    { key:'qol', title:'Quality of Life Program', kind:'Exhibition stand · concept 2026', img:'img/qol.jpg', full:'img/qol.jpg', fullDims:'1600 px Behance cover · needs the original', accent:0xD2412E, tower:5.6, glb:null, client:'Quality of Life Program', city:null, hall:null, area:null, built:null, line:null, url:'https://www.behance.net/gallery/249506301/QUALITY-OF-lIFE-Booth-Design-2026' }
+  ];
+  const SP = 18; /* metres between stands */
+  const ph = v => v ? v : '<span class="ph">to fill</span>';
+
+  /* ============ the beats: one continuous scroll ============ */
+  const BEATS = [
+    { id:'hero', len:2.2, t:'The first line' },
+    { id:'reception', len:1.4, t:'Reception' },
+    { id:'stand', i:1, len:1.7, t:'Misk Foundation' },
+    { id:'voice1', len:.8, t:'No second take' },
+    { id:'stand', i:2, len:1.7, t:'Saudi National Day' },
+    { id:'stand', i:3, len:1.7, t:'Seder at Big 5' },
+    { id:'voice2', len:.8, t:'The date does not move' },
+    { id:'board', len:1.3, t:'The sketchbook' },
+    { id:'stand', i:4, len:1.7, t:'GOSI' },
+    { id:'stand', i:5, len:1.7, t:'Quality of Life' },
+    { id:'voice3', len:.8, t:'The lights come on' },
+    { id:'crew', len:1.1, t:'What the crew says' },
+    { id:'doors', len:1.6, t:'Doors' }
+  ];
+  const total = BEATS.reduce((a,b) => a + b.len, 0); let acc = 0; BEATS.forEach(b => { b.a = acc/total; acc += b.len; b.b = acc/total; });
+  $('#night').style.height = (total * 100 + 100) + 'vh';
+
+  /* ============ overlays ============ */
+  const specs = $('#specs'), cuts = $('#cuts');
+  P.forEach((p,i) => { if (i === 0) return;
+    specs.insertAdjacentHTML('beforeend', `<div class="ov" data-beat="stand${i}"><div class="in"><span class="tag"><i></i>${String(i).padStart(2,'0')} / 05 · ${p.kind}</span><h2 class="h">${p.title}</h2>
+      <div class="spec"><span class="lbl">Client</span><span>${ph(p.client)}</span><span class="lbl">City · hall</span><span>${ph(p.city)} · ${ph(p.hall)}</span><span class="lbl">Date</span><span>${ph(p.date)}</span><span class="lbl">Area</span><span>${ph(p.area)} m²</span><span class="lbl">Built</span><span>${ph(p.built)}</span></div>
+      <p class="line">"${p.line || '<span class="ph">one line in my words</span>'}"</p>
+      <p class="note">Stand-in model. Your GLB of this stand replaces it, lit the same way. <a href="${p.url}" target="_blank" rel="noopener" style="color:var(--tung)">Behance ↗</a></p></div></div>`);
+    cuts.insertAdjacentHTML('beforeend', `<div class="cut" data-cut="${i}"><img src="${p.full}" alt="${p.title}, built" loading="lazy"><div class="c"><span class="big">${p.title}</span><span class="tag"><i></i>Full resolution · ${p.fullDims}</span><span class="tag"><i></i>What I want: 3 to 10 photos like this per project, 3000 px or more</span></div></div>`); });
+  const ovs = {}; $$('.ov').forEach(o => ovs[o.dataset.beat] = o); const cutEls = {}; $$('.cut').forEach(c => cutEls[c.dataset.cut] = c);
+  const slot = $('#slot'), beatn = $('#beatn'), beatt = $('#beatt'), beatb = $('#beatb'), prog = $('#prog'), scrollhint = $('#scrollhint'), clock = $('#clock');
+
+  /* ============ smooth scroll ============ */
+  let lenis = null; if (!reduce && typeof Lenis !== 'undefined' && fine) { lenis = new Lenis({ lerp: .085, smoothWheel: true }); gsap.ticker.add(t => lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0); }
+
+  /* ============ three: the hall ============ */
+  const cv = $('#gl'); let renderer; try { renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, powerPreference: 'high-performance' }); } catch(e){ return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.6)); renderer.outputEncoding = THREE.sRGBEncoding; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(0x0A0A0B); scene.fog = new THREE.Fog(0x0A0A0B, 30, 95);
+  const cam = new THREE.PerspectiveCamera(36, 1, .1, 200);
+  const tex = new THREE.TextureLoader();
+  // floor: dark concrete with a faint 1 m grid
+  const fc = document.createElement('canvas'); fc.width = fc.height = 512; const fx = fc.getContext('2d'); fx.fillStyle = '#141416'; fx.fillRect(0,0,512,512); fx.strokeStyle = 'rgba(243,239,232,.07)'; fx.lineWidth = 1; for (let i=0;i<=512;i+=64){ fx.beginPath(); fx.moveTo(i,0); fx.lineTo(i,512); fx.moveTo(0,i); fx.lineTo(512,i); fx.stroke(); } const id = fx.getImageData(0,0,512,512); for (let k=0;k<id.data.length;k+=4){ const n = (Math.random()-.5)*10; id.data[k]+=n; id.data[k+1]+=n; id.data[k+2]+=n; } fx.putImageData(id,0,0);
+  const floorTex = new THREE.CanvasTexture(fc); floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(40, 12); floorTex.anisotropy = 4;
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(320, 96), new THREE.MeshStandardMaterial({ map: floorTex, roughness: .95, metalness: 0 })); floor.rotation.x = -Math.PI/2; floor.position.set(SP*2.5, 0, 0); scene.add(floor);
+  // far wall and ceiling truss
+  const wall = new THREE.Mesh(new THREE.PlaneGeometry(320, 14), new THREE.MeshStandardMaterial({ color: 0x0E0E10, roughness: 1 })); wall.position.set(SP*2.5, 7, -14); scene.add(wall);
+  const trussMat = new THREE.MeshStandardMaterial({ color: 0x2A2A2E, roughness: .6, metalness: .4 });
+  for (let x = -20; x <= SP*6 + 20; x += 6) { const t = new THREE.Mesh(new THREE.BoxGeometry(.25, .25, 30), trussMat); t.position.set(x, 9, -2); scene.add(t); }
+  const truss2 = new THREE.Mesh(new THREE.BoxGeometry(SP*8, .25, .25), trussMat); truss2.position.set(SP*2.5, 9, -6); scene.add(truss2);
+  scene.add(new THREE.AmbientLight(0xffffff, .14)); const hemi = new THREE.HemisphereLight(0x3a3f55, 0x0a0a0b, .22); scene.add(hemi);
+  // the gate at the end of the hall
+  const gateX = SP*6 + 10; const gate = new THREE.Group(); const gm = new THREE.MeshStandardMaterial({ color: 0x1a1a1d, roughness: .7 });
+  [[-7,0],[7,0]].forEach(([x]) => { const p = new THREE.Mesh(new THREE.BoxGeometry(1.2, 8, 1.2), gm); p.position.set(0, 4, x); gate.add(p); }); const lintel = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.2, 15.2), gm); lintel.position.set(0, 8.6, 0); gate.add(lintel);
+  const doorMat = new THREE.MeshStandardMaterial({ color: 0x1f1d1a, roughness: .5, metalness: .3 }); const doorL = new THREE.Mesh(new THREE.BoxGeometry(.3, 8, 6.4), doorMat), doorR = doorL.clone(); doorL.position.set(0, 4, -3.2); doorR.position.set(0, 4, 3.2); gate.add(doorL, doorR);
+  const glow = new THREE.Mesh(new THREE.PlaneGeometry(14, 8), new THREE.MeshBasicMaterial({ color: 0xF2C98A, transparent: true, opacity: 0 })); glow.rotation.y = -Math.PI/2; glow.position.set(.8, 4, 0); gate.add(glow);
+  const gateLight = new THREE.PointLight(0xF2C98A, 0, 40); gateLight.position.set(-2, 4, 0); gate.add(gateLight);
+  gate.position.set(gateX, 0, -2); gate.rotation.y = 0; scene.add(gate);
+
+  /* ---- a stand built from code: the stand-in for a real GLB ---- */
+  function signTexture(text, accent){ const c = document.createElement('canvas'); c.width = 1024; c.height = 256; const x = c.getContext('2d'); x.fillStyle = '#' + accent.toString(16).padStart(6,'0'); x.fillRect(0,0,1024,256); x.fillStyle = '#fff'; x.font = '800 92px Syne, Arial'; x.textBaseline = 'middle'; x.fillText(text.toUpperCase().slice(0, 18), 48, 128); const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; return t; }
+  function makeStand(p, i){
+    const g = new THREE.Group(); g.position.set(i*SP, 0, 0); const parts = []; const acc = new THREE.Color(p.accent);
+    const add = (geo, mat, x, y, z, name, from) => { const m = new THREE.Mesh(geo, mat); m.position.set(x,y,z); g.add(m); parts.push({ m, final: new THREE.Vector3(x,y,z), start: new THREE.Vector3(x + (from ? from[0] : 0), y + (from ? from[1] : 6), z + (from ? from[2] : 0)), name }); return m; };
+    const white = new THREE.MeshStandardMaterial({ color: 0xE9E4DA, roughness: .85 }), grey = new THREE.MeshStandardMaterial({ color: 0x2b2b2f, roughness: .8 }), accM = new THREE.MeshStandardMaterial({ color: acc, roughness: .55 });
+    add(new THREE.BoxGeometry(10, .18, 6), new THREE.MeshStandardMaterial({ color: 0xD7D1C6, roughness: .9 }), 0, .09, 0, 'Platform', [0, 3, 0]);
+    add(new THREE.BoxGeometry(10, 3.6, .22), white, 0, 1.98, -2.9, 'Back wall', [0, 7, -3]);
+    add(new THREE.BoxGeometry(.22, 3.6, 6), white, -4.9, 1.98, 0, 'Side wall', [-4, 6, 0]);
+    add(new THREE.BoxGeometry(1.6, p.tower, 1.6), accM, 3.9, p.tower/2 + .18, -2.1, 'Tower', [2, 9, 0]);
+    add(new THREE.BoxGeometry(10.4, .5, .5), grey, 0, 3.95, -2.6, 'Header beam', [0, 6, 0]);
+    add(new THREE.BoxGeometry(2.8, 1.05, .8), accM, 1.0, .7, 1.9, 'Counter', [0, 5, 3]);
+    const ledT = tex.load(p.img); ledT.encoding = THREE.sRGBEncoding; const led = add(new THREE.PlaneGeometry(5.2, 2.9), new THREE.MeshStandardMaterial({ map: ledT, emissive: 0xffffff, emissiveMap: ledT, emissiveIntensity: 0, roughness: .4, color: 0x222222 }), -1.6, 1.85, -2.76, 'LED wall', [0, 5, -2]);
+    const sign = add(new THREE.PlaneGeometry(1.5, .38), new THREE.MeshStandardMaterial({ map: signTexture(p.title, p.accent), emissive: 0xffffff, emissiveMap: signTexture(p.title, p.accent), emissiveIntensity: 0, roughness: .6 }), 3.9, p.tower - .3, -1.28, 'Sign', [0, 4, 0]);
+    add(new THREE.BoxGeometry(2.2, .42, 2.2), grey, -2.6, .39, .4, 'Lounge', [-2, 4, 2]);
+    // lamps on the header + beams
+    const heads = new THREE.Group(); const beams = []; for (let k=-1;k<=1;k++){ const h = new THREE.Mesh(new THREE.CylinderGeometry(.14, .2, .4, 12), grey); h.position.set(k*3, 4.3, -2.6); h.rotation.x = .8; heads.add(h); const b = new THREE.Mesh(new THREE.ConeGeometry(1.1, 5.0, 24, 1, true), new THREE.MeshBasicMaterial({ color: 0xF2C98A, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending })); b.position.set(k*3, 1.75, -1.75); b.rotation.x = .32; heads.add(b); beams.push(b); }
+    g.add(heads); parts.push({ m: heads, final: new THREE.Vector3(0,0,0), start: new THREE.Vector3(0, 7, 0), name: 'Lights' });
+    const spot = new THREE.SpotLight(0xF2C98A, 0, 26, .62, .7, 1); spot.position.set(0, 7.5, 3); spot.target.position.set(0, 1.2, -1); g.add(spot, spot.target);
+    parts.forEach(pt => { pt.m.position.copy(pt.start); pt.m.rotation.set((Math.random()-.5)*.3, (Math.random()-.5)*.6, (Math.random()-.5)*.3); pt.rot = pt.m.rotation.clone(); });
+    scene.add(g);
+    const st = { g, parts, led, sign, beams, spot, p, i, k: -1, lit: 0, glb: null };
+    if (p.glb && THREE.GLTFLoader) { new THREE.GLTFLoader().load(p.glb, gl => { const m = gl.scene; const box = new THREE.Box3().setFromObject(m); const size = box.getSize(new THREE.Vector3()); const s = 10/Math.max(size.x, size.z); m.scale.setScalar(s); box.setFromObject(m); m.position.sub(box.min).add(new THREE.Vector3(-5, .18, -3)); g.add(m); parts.forEach(pt => pt.m.visible = false); st.glb = m; }); }
+    return st;
+  }
+  const stands = P.map(makeStand);
+  function setBuild(st, k){ if (Math.abs(k - st.k) < .0005) return; st.k = k; const N = st.parts.length; st.parts.forEach((pt,i) => { const w0 = (i/N)*.7, kk = eo((k - w0)/.3); pt.m.position.lerpVectors(pt.start, pt.final, kk); pt.m.rotation.set(pt.rot.x*(1-kk), pt.rot.y*(1-kk), pt.rot.z*(1-kk)); pt.m.visible = st.glb ? false : kk > 0.001; }); }
+  function setLit(st, lit){ st.lit = lit; st.led.material.emissiveIntensity = .15 + lit*1.1; st.sign.material.emissiveIntensity = lit*.9; st.spot.intensity = lit*2.6; st.beams.forEach(b => b.material.opacity = lit*.045); }
+
+  /* ---- the marker line: the first line, drawn by hand, around the first stand ---- */
+  const lp = []; const R = [[-5,3],[5,3],[5,-3],[-5,-3],[-5,3]]; for (let s=0;s<4;s++){ const [ax,az] = R[s], [bx,bz] = R[s+1]; for (let j=0;j<=40;j++){ const u = j/40; lp.push(new THREE.Vector3(ax + (bx-ax)*u + (Math.random()-.5)*.08, .22 + Math.sin(u*9)*.02, az + (bz-az)*u + (Math.random()-.5)*.08)); } }
+  const lineGeo = new THREE.BufferGeometry().setFromPoints(lp); lineGeo.setDrawRange(0, 0); const line = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0xFF3B1F, transparent: true, opacity: .95 })); scene.add(line);
+  const pen = new THREE.Mesh(new THREE.SphereGeometry(.09, 10, 10), new THREE.MeshBasicMaterial({ color: 0xFF3B1F })); pen.visible = false; scene.add(pen);
+
+  /* ---- the cursor is a light ---- */
+  const cursorLight = new THREE.PointLight(0xF2C98A, 0, 16, 1.6); scene.add(cursorLight); const cursorGlow = new THREE.Mesh(new THREE.SphereGeometry(.12, 10, 10), new THREE.MeshBasicMaterial({ color: 0xF2C98A })); cursorGlow.visible = false; scene.add(cursorGlow);
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), floorPlane = new THREE.Plane(new THREE.Vector3(0,1,0), 0), hit = new THREE.Vector3(); let px = innerWidth/2, py = innerHeight/2, pointerOn = false;
+  addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; pointerOn = true; }, { passive: true });
+  addEventListener('touchmove', e => { const t = e.touches[0]; if (t) { px = t.clientX; py = t.clientY; pointerOn = true; } }, { passive: true });
+
+  function size(){ const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false); cam.aspect = w/h; cam.updateProjectionMatrix(); } size(); addEventListener('resize', size);
+
+  /* ============ camera script ============ */
+  const V = (x,y,z) => new THREE.Vector3(x,y,z); const camPos = V(-9, 2.6, 13), camLook = V(0, 1.4, 0); const tp = new THREE.Vector3(), tl = new THREE.Vector3();
+  const look = (st, side = 1) => V(st.g.position.x, 1.5, -.4);
+  const viewFor = (b, t) => { /* returns [pos, lookAt] for a beat at local t */
+    const wide = narrow();
+    switch (b.id) {
+      case 'hero': { const a = -.95 + t*.75; const r = wide ? 19 : 15; return [V(Math.sin(a)*r, 3.2 + t*1.4, Math.cos(a)*r + 2), V(-.5, 1.4, -.5)]; }
+      case 'reception': return [V(6, 4.2 + t*.4, wide ? 30 : 22), V(SP*1.2, 1.6, -2)];
+      case 'stand': { const s = stands[b.i]; const x = s.g.position.x; const o = wide ? 15 : 11.5; return [V(x - 7 + t*2.2, 2.3, o), V(x - 1, 1.5, -.5)]; }
+      case 'voice1': return [V(SP*1.5, 3, 16), V(SP*1.8, 1.8, -2)];
+      case 'voice2': return [V(SP*3.5, 3.2, 17), V(SP*3.8, 1.8, -2)];
+      case 'voice3': return [V(SP*5.5, 3.2, 17), V(SP*5.8, 1.8, -2)];
+      case 'board': return [V(SP*3.5 + 4, 2.6, 18), V(SP*4, 1.6, -2)];
+      case 'crew': return [V(SP*5.6, 3.4, 19), V(SP*6.2, 2, -2)];
+      case 'doors': return [V(gateX - 22 + t*6, 3.2, 1), V(gateX, 4, -2)];
+    } return [camPos, camLook]; };
+  let cur = -1, doorsOpen = 0, opened = false, first = true;
+
+  /* ============ the frame ============ */
+  gsap.ticker.add((time, dt) => {
+    const r = $('#night').getBoundingClientRect(); const p = cl(-r.top / (r.height - innerHeight));
+    let bi = 0; for (let i=0;i<BEATS.length;i++) if (p >= BEATS[i].a) bi = i; const b = BEATS[bi]; const t = cl((p - b.a)/(b.b - b.a));
+    // camera: travel into the beat over its first 40%, then hold with slow drift
+    const tv = io(cl(t/.4)); const [pA, lA] = viewFor(bi > 0 ? BEATS[bi-1] : b, 1), [pB, lB] = viewFor(b, cl((t-.4)/.6));
+    tp.lerpVectors(pA, pB, tv); tl.lerpVectors(lA, lB, tv);
+    if (pointerOn && !narrow()) { tp.x += (px/innerWidth - .5)*.8; tp.y += (.5 - py/innerHeight)*.5; }
+    const k = first ? 1 : .09; camPos.lerp(tp, k); camLook.lerp(tl, k); first = false; cam.position.copy(camPos); cam.lookAt(camLook);
+    // the marker line, then the first stand builds
+    const draw = cl((p - .003)/.07); lineGeo.setDrawRange(0, Math.floor(draw*lp.length)); pen.visible = draw > 0 && draw < 1; if (pen.visible) pen.position.copy(lp[Math.max(0, Math.floor(draw*lp.length) - 1)]);
+    setBuild(stands[0], cl((p - .045)/.09));
+    // other stands build as the camera approaches; everything lights by proximity to the camera and to the cursor light
+    ndc.set(px/innerWidth*2 - 1, -(py/innerHeight)*2 + 1); ray.setFromCamera(ndc, cam); const hasHit = ray.ray.intersectPlane(floorPlane, hit);
+    if (hasHit && pointerOn) { cursorLight.position.set(hit.x, 2.2, hit.z); cursorGlow.position.set(hit.x, .25, hit.z); cursorLight.intensity = 1.4; cursorGlow.visible = true; } else { cursorLight.intensity = 0; cursorGlow.visible = false; }
+    stands.forEach((st, i) => { if (i > 0) { const d = cam.position.x - (st.g.position.x - 14); setBuild(st, cl(d/9)); }
+      const dc = Math.abs(camLook.x - st.g.position.x), dl = hasHit ? Math.hypot(hit.x - st.g.position.x, hit.z - st.g.position.z) : 99;
+      const lit = Math.max(cl(1 - dc/12), cl(1 - dl/9)) * st.k; setLit(st, st.lit + (lit - st.lit)*.08); });
+    // doors
+    gate.children.forEach(() => {}); doorL.rotation.y = -doorsOpen*1.3; doorR.rotation.y = doorsOpen*1.3; doorL.position.set(Math.sin(doorsOpen*1.3)*3.2*0, 4, -3.2); glow.material.opacity = .15 + doorsOpen*.8; gateLight.intensity = (b.id === 'doors' ? .8 : .2) + doorsOpen*6;
+    renderer.render(scene, cam);
+    // overlays
+    Object.keys(ovs).forEach(id => { const key = b.id === 'stand' ? 'stand' + b.i : b.id; const on = id === key && t > .32 && t < .98 && !(b.id === 'stand' && t > .72 && t < .9); ovs[id].classList.toggle('on', on); });
+    Object.keys(cutEls).forEach(i => cutEls[i].classList.toggle('on', b.id === 'stand' && String(b.i) === i && t > .72 && t < .9));
+    slot.classList.toggle('on', (b.id === 'stand' || b.id === 'hero') && t > .32 && !(b.id === 'stand' && t > .72 && t < .9));
+    if (bi !== cur) { cur = bi; beatn.textContent = String(bi+1).padStart(2,'0'); beatt.textContent = b.t; }
+    beatb.style.width = (t*100) + '%'; window.__dbg = { p, bi, t, id: b.id }; prog.style.width = (p*100) + '%'; scrollhint.style.opacity = p < .01 ? 1 : 0;
+    const mins = 18*60 + 30 + p*(130); clock.textContent = String(Math.floor(mins/60)).padStart(2,'0') + ':' + String(Math.floor(mins%60)).padStart(2,'0');
+    if (opened) clock.textContent = '20:40';
+  });
+
+  /* ============ hold to open the doors ============ */
+  (function(){ const hold = $('#hold'), fg = $('#holdfg'), hl = $('#holdl'), fin = $('#final'); let down = false, v = 0; hold.addEventListener('pointerdown', e => { down = true; hold.setPointerCapture(e.pointerId); }); const up = () => down = false; hold.addEventListener('pointerup', up); hold.addEventListener('pointercancel', up); hold.addEventListener('lostpointercapture', up);
+    gsap.ticker.add((t, dt) => { if (opened) return; v = cl(v + (down ? (dt||16)/1400 : -(dt||16)/700)); fg.style.strokeDashoffset = 1 - v; doorsOpen = eo(v); hl.textContent = v > 0 ? Math.round(v*100) + '%' : 'Hold'; if (v >= 1) { opened = true; doorsOpen = 1; fin.classList.add('on'); hl.textContent = 'Open'; } });
+    $('#lnk').addEventListener('click', e => e.preventDefault()); })();
+
+  /* ============ cursor ============ */
+  if (fine) { const c = $('#cur'); addEventListener('pointermove', e => { c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px'; }, { passive: true }); $$('a, button').forEach(el => { el.addEventListener('pointerenter', () => { c.classList.add('hot'); $('#curl').textContent = el.id === 'hold' ? 'Hold' : 'Open'; }); el.addEventListener('pointerleave', () => c.classList.remove('hot')); }); }
+
+  /* ============ loader: the monogram is drawn, the lights are rigged ============ */
+  const pre = $('#pre'); if (reduce) pre.hidden = true; else { const path = $('#premk'); const L = path.getTotalLength(); path.style.strokeDasharray = L; path.style.strokeDashoffset = L; const o = { v: 0 }; const pct = $('#prepct');
+    gsap.timeline({ onComplete(){ pre.hidden = true; } }).to(path, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.inOut' }, 0).to(o, { v: 100, duration: 1.7, ease: 'power1.inOut', onUpdate(){ pct.textContent = String(Math.round(o.v)).padStart(2,'0') + '%'; } }, 0).to(pre, { opacity: 0, duration: .5 }, '+=.2');
+    pre.addEventListener('click', () => { pre.hidden = true; }); setTimeout(() => pre.hidden = true, 4000); }
+})();
+</script>
+</body>
+</html>
