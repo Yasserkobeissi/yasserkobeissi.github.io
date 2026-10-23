@@ -770,7 +770,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   <canvas id="hall3d"></canvas>
   <div class="vig"></div>
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">C</b><b class="e">2A</b><b class="s">C</b><b class="w">2A</b></div>
-  <div class="k lbl"><span>Sheet 08A</span><i></i><b>The hall</b><i></i><span>As built · walk the aisle</span></div>
+  <div class="k lbl"><span>Sheet 08A</span><i></i><b>The hall</b><i></i><span>Built on scroll · then walk the aisle</span></div>
   <div class="slot"><span class="tag"><i></i>GLB slot · stand-in model</span><span class="lbl">One stand in the flow, lit on the night. The button at the end opens the whole hall: every Blender concept, one aisle, loaded as you walk.</span></div>
   <div class="lamp" id="hlamp" aria-hidden="true"></div>
   <div id="hspecs"></div>
@@ -778,8 +778,8 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   <div class="idx num" id="hidx">01 / 01</div>
   <button type="button" class="cta" id="hcta" data-hot="OPEN"><i></i>Experience my designs<span>all 27 concepts, one aisle</span></button>
   <button type="button" class="cta back" id="hback" data-hot="BACK"><i></i>Back to the key stand</button>
-  <div class="hint">Scroll to walk · drag to look around · pinch to zoom</div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">The hall</span></div><div><span class="lbl">Stands</span><span class="v">Loading…</span></div><div><span class="lbl">Walk</span><span class="v">One lap per stand</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">Night</span></div><div><span class="lbl">Sheet</span><span class="v big">08A</span></div></div>
+  <div class="hint">Scroll to build it · then drag to look around · pinch to zoom</div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">The hall</span></div><div><span class="lbl">Stands</span><span class="v">Loading…</span></div><div><span class="lbl">Sequence</span><span class="v">Floor · walls · lights on · lap</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">Night</span></div><div><span class="lbl">Sheet</span><span class="v big">08A</span></div></div>
 </section>
 <div class="sp" data-for="s08a" style="--h:7"></div>
 
@@ -793,23 +793,6 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 </section>
 <div class="sp" data-for="s09" style="--h:2.2"></div>
 
-<!-- S10 ASSEMBLY -->
-<section class="sheet wp scene" id="s10" data-n="10" data-title="Assembly" aria-label="Assembly sequence: a stand assembles as you scroll">
-  <canvas id="b3d"></canvas>
-  <div class="frame"><i></i><i></i><i></i><i></i><b class="n">C</b><b class="e">3</b><b class="s">C</b><b class="w">3</b></div>
-  <div class="k lbl"><span>Sheet 10</span><i></i><b>Assembly</b><i></i><span>Exploded axonometric</span></div>
-  <div class="parts" id="bparts"></div>
-  <div class="cap"><h2 class="h" id="bh">Floor<br>first.</h2><p id="bp">Every stand I build goes up the same way: platform, walls, header, counter, screen. Then the lights.</p></div>
-  <div class="seq" id="seq">
-    <figure class="on"><img src="img/qol.jpg" alt=""><figcaption>01 Sketch</figcaption><span class="st">Drawn</span></figure>
-    <figure><img src="img/seder.jpg" alt=""><figcaption>02 Plan</figcaption><span class="st">Checked</span></figure>
-    <figure><img src="img/jda.jpg" alt=""><figcaption>03 Render</figcaption><span class="st">Approved</span></figure>
-    <figure><img src="img/looptech.jpg" alt=""><figcaption>04 Built</figcaption><span class="st">As built</span></figure>
-  </div>
-  <div class="pct num" id="bpct">Assembly 000%</div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Assembly</span></div><div><span class="lbl">Parts</span><span class="v">10</span></div><div><span class="lbl">Sequence</span><span class="v">Sketch · Plan · Render · Built</span></div><div><span class="lbl">Scale</span><span class="v">1:50</span></div><div><span class="lbl">Rev</span><span class="v">—</span></div><div><span class="lbl">Sheet</span><span class="v big">10</span></div></div>
-</section>
-<div class="sp" data-for="s10" style="--h:3"></div>
 
 <!-- S11 LIGHTING PLOT -->
 <section class="sheet cy scene" id="s11" data-n="11" data-title="Lighting plot" aria-label="Lighting plot, then the lights come on">
@@ -911,7 +894,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   const tabEls = $$('a', tabs), hudn = $('#hudn'), hudt = $('#hudt'), hudb = $('#hudb'), plot = $('#plot');
   const ruler = $('#ruler'), rmk = $('#rmk'); const rt = sheets.map((sh,i) => { const a = document.createElement('a'); a.href = '#' + sh.id; a.style.top = (i/(sheets.length-1)*100) + '%'; a.innerHTML = '<span>' + sh.dataset.n + ' · ' + sh.dataset.title + '</span>'; a.addEventListener('click', e => { e.preventDefault(); goTo(sh); }); ruler.appendChild(a); return a; });
   /* drawing list: one row per sheet, with its status */
-  (function(){ const list = $('#dlist'); if (!list) return; const STATUS = { s00:'Issued', s01:'Issued', s02:'Checked', s03:'Issued', s04:'For info', s05:'As built', s06:'Checked', s07:'Issued', s08:'Issued', s08a:'As built', s09:'Checked', s10:'As built', s11:'As built', s12:'Issued', s13:'IFC' };
+  (function(){ const list = $('#dlist'); if (!list) return; const STATUS = { s00:'Issued', s01:'Issued', s02:'Checked', s03:'Issued', s04:'For info', s05:'As built', s06:'Checked', s07:'Issued', s08:'Issued', s08a:'As built', s09:'Checked', s11:'As built', s12:'Issued', s13:'IFC' };
     sheets.filter(sh => sh.id !== 's00a').forEach(sh => { const a = document.createElement('a'); a.className = 'row'; a.href = '#' + sh.id; const sc = sh.querySelector('.tb div:nth-child(4) .v'); a.innerHTML = `<span class="i">${sh.dataset.n}</span><b>${sh.dataset.title}</b><span class="sc">${sc ? sc.textContent : ''}</span><span class="st">${STATUS[sh.id] || 'Issued'}</span>`; a.addEventListener('click', e => { e.preventDefault(); goTo(sh); }); list.appendChild(a); });
     const rows = $$('.row', list); gsap.ticker.add(() => { if (!visible('s00a')) return; const pr = prog('s00a'); const n = Math.floor(cl((pr-.02)/.5)*(rows.length+1)); rows.forEach((r,i) => { const on = i < n; if (on !== r.classList.contains('on')) { r.classList.toggle('on', on); if (on) tick(1100 + i*60, .03, .035); } }); }); })();
   $('.nav .mark').addEventListener('click', e => { e.preventDefault(); goTo(sheets[0]); });
@@ -1117,29 +1100,6 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
     let idle = 0, lastP9 = 0; gsap.ticker.add((t, dt) => { if (!visible('s09')) return; const p = fin(prog('s09')); const travel = Math.max(0, roll.scrollHeight - body.clientHeight); if (!reduce && p > .02) idle += (dt||16)*.014; if (p < lastP9 - .0005) idle = Math.max(0, idle - (lastP9 - p)*travel*2.5); lastP9 = p; const y = narrow() ? 0 : -cl(p*travel + idle, 0, travel); roll.style.transform = `translate3d(0,${y}px,0)`; }); })();
 
   /* ---- S10: assembly, a wireframe stand in blue line ---- */
-  (function(){ if (typeof THREE === 'undefined') return; const cv = $('#b3d'), stageEl = $('#s10'); let renderer; try { renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true }); } catch(e){ return; }
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); renderer.setClearColor(0,0); const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(30, 1, .1, 100);
-    const BLUE = 0x173F86, RED = 0xFF5A1F; const parts = []; const names = ['Platform','Back wall','Side wall','Tower','Header beam','Counter','LED wall','Storage','Lounge','Lights'];
-    function box(w,h,d,x,y,z,name){ const g = new THREE.BoxGeometry(w,h,d); const grp = new THREE.Group(); const fill = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: 0xF3F0E8, transparent: true, opacity: .0 })); const e = new THREE.LineSegments(new THREE.EdgesGeometry(g), new THREE.LineBasicMaterial({ color: BLUE, transparent: true, opacity: 0 })); grp.add(fill); grp.add(e); grp.position.set(x,y,z); scene.add(grp); parts.push({ grp, e, fill, final: new THREE.Vector3(x,y,z), start: new THREE.Vector3(x + (Math.random()-.5)*2, y + 5 + Math.random()*4, z + (Math.random()-.5)*2), name }); return grp; }
-    box(9,.18,6, 0,.09,0,'Platform'); box(9,3.4,.2, 0,1.88,-2.9,'Back wall'); box(.2,3.4,6, -4.4,1.88,0,'Side wall'); box(1.4,4.6,1.4, 3.6,2.48,-2.2,'Tower'); box(9.4,.5,.5, 0,3.65,-2.6,'Header beam'); box(2.4,1.05,.7, 1.2,.7,1.9,'Counter'); box(4.2,2.4,.08, -1.4,1.65,-2.76,'LED wall'); box(2.2,3.4,2.2, -3.2,1.88,-1.8,'Storage'); box(1.8,.42,1.8, 2.2,.39,-.4,'Lounge');
-    const lg = new THREE.Group(); for (let i=-1;i<=1;i++){ const h = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.CylinderGeometry(.14,.18,.36,10)), new THREE.LineBasicMaterial({ color: BLUE, transparent: true, opacity: 0 })); h.position.set(i*2.6, 4.05, -2.6); h.rotation.x = .9; lg.add(h); } scene.add(lg); parts.push({ grp: lg, e: null, fill: null, final: new THREE.Vector3(0,0,0), start: new THREE.Vector3(0,7,0), name: 'Lights' });
-    const beams = []; for (let i=-1;i<=1;i++){ const c = new THREE.Mesh(new THREE.ConeGeometry(1.0, 4.4, 24, 1, true), new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false })); c.position.set(i*2.6, 2.0, -1.2); c.rotation.x = Math.PI - .5; scene.add(c); beams.push(c); }
-    // floor grid + dimension
-    const grid = new THREE.GridHelper(30, 30, BLUE, BLUE); grid.material.transparent = true; grid.material.opacity = .12; scene.add(grid);
-    const dim = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-4.5,.02,3.4), new THREE.Vector3(4.5,.02,3.4)]), new THREE.LineBasicMaterial({ color: RED, transparent:true, opacity:.9 })); scene.add(dim);
-    const partsEl = $('#bparts'); names.forEach(n => { const sp = document.createElement('span'); sp.textContent = n; partsEl.appendChild(sp); }); const spans = [...partsEl.children];
-    const bh = $('#bh'), bp = $('#bp'), bpct = $('#bpct'), seq = $$('#seq figure'); const caps = [['Floor<br>first.','Every stand I build goes up the same way: platform, walls, header, counter, screen. Then the lights.'],['Walls<br>and tower.','Height is the first thing a visitor reads from the aisle. The tower is the landmark.'],['Counter,<br>screen, store.','Reception at the front, the LED floor to ceiling, storage hidden in one volume.'],['Lights<br>on.','The only version that counts. I check it on the night, not on the screen.']]; let ci = -1;
-    function size(){ const w = stageEl.clientWidth, h = stageEl.clientHeight; renderer.setSize(w,h,false); cam.aspect = w/h; cam.updateProjectionMatrix(); } size(); addEventListener('resize', size);
-    let mxs = 0, mys = 0; const ease = t => 1 - Math.pow(1 - cl(t), 3);
-    gsap.ticker.add((t) => { if (!visible('s10')) return; const p = fin(prog('s10')); const N = parts.length; const lit = ease((p - .8)/.18);
-      parts.forEach((pt,i) => { const w0 = (i/N)*.72, k = ease((p - w0)/.14); pt.grp.position.lerpVectors(pt.start, pt.final, k); pt.grp.rotation.set(0, (1-k)*.4, (1-k)*.2); if (pt.e) { pt.e.material.opacity = cl(k*1.5); pt.e.material.color.set(BLUE).lerp(new THREE.Color(RED), lit*(pt.name==='LED wall'||pt.name==='Tower'?1:0)); } if (pt.fill) pt.fill.material.opacity = .9*lit*(pt.name==='Back wall'||pt.name==='Platform'||pt.name==='Side wall'?.35:.12); if (pt.grp === lg) lg.children.forEach(ch => { ch.material.opacity = cl(k*1.5); ch.material.color.set(BLUE).lerp(new THREE.Color(RED), lit); }); spans[i].classList.toggle('on', k > .95); spans[i].classList.toggle('now', k > 0 && k < .95); });
-      beams.forEach((b,i) => { b.material.opacity = lit*.12; b.rotation.z = Math.sin(t*.5 + i)*.25*lit; });
-      mxs += ((px/innerWidth-.5) - mxs)*.05; mys += ((.5 - py/innerHeight) - mys)*.05;
-      const a = -.9 + p*1.5 + mxs*.4 + t*.045, el = 2.0 + Math.sin(p*Math.PI)*1.6 + mys*1.2 + Math.sin(t*.3)*.25, R = (16 - p*3) * Math.max(1, 1.5/cam.aspect); cam.position.set(Math.sin(a)*R, el + 1.6, Math.cos(a)*R); cam.lookAt(0, 1.6, -.6);
-      const c = p < .25 ? 0 : p < .55 ? 1 : p < .8 ? 2 : 3; if (c !== ci) { ci = c; bh.innerHTML = caps[c][0]; bp.textContent = caps[c][1]; seq.forEach((f,i) => f.classList.toggle('on', i <= c)); gsap.fromTo([bh,bp], { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out', stagger: .05 }); if (c === 3) { tone(196, 1.2, .1); setTimeout(() => tone(294, 1.4, .08), 150); } else tick(1100, .05, .05); }
-      bpct.textContent = 'Assembly ' + String(Math.round(p*100)).padStart(3,'0') + '%'; renderer.render(scene, cam); }); })();
-
-
   /* ---- S08A: the hall. Every Blender concept Tamim has built, exported to GLB (models/manifest.json), one stand each along one aisle.
           Models load as the camera approaches and are released when it has walked on; each gets a full lap, a spec panel and a render cut-in. ---- */
   (function(){ if (typeof THREE === 'undefined' || !THREE.GLTFLoader) return; const sheet = $('#s08a'), cv = $('#hall3d'); let renderer; try { renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, powerPreference: 'high-performance' }); } catch(e){ return; }
@@ -1171,13 +1131,16 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
     /* a stand: footprint drawn in blue line while the model is on its way, then the real model, lit by its own spot */
     function makeStand(q, i){ const g = new THREE.Group(); g.position.set(X[i], 0, 0); scene.add(g); const r = q.r;
       const foot = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(q.sx, q.sy, q.sz)), new THREE.LineBasicMaterial({ color: 0x173F86, transparent: true, opacity: .9 })); foot.position.y = q.sy/2; g.add(foot);
-      return { g, foot, q, r, lit: 0, model: null, loading: false, failed: false }; }
+      return { g, foot, q, r, lit: 0, model: null, loading: false, failed: false, parts: null, ems: [], k: -1, kWant: 0, built: 0 }; }
     /* two fixed light rigs (key spot, cool fill, warm back) that move to the current stand and the next one. A constant light count means the shaders never recompile mid-walk. */
     function makeRig(){ const g = new THREE.Group(); const spot = new THREE.SpotLight(TUNG, 0, 60, .75, .6, 1); const fill = new THREE.PointLight(0xC9D8F5, 0, 40, 1.4); const back = new THREE.PointLight(TUNG, 0, 45, 1.3); g.add(spot, spot.target, fill, back); scene.add(g); return { g, spot, fill, back }; }
     const rigs = [makeRig(), makeRig()];
     function aimRig(rig, st){ if (!st) { rig.spot.intensity = rig.fill.intensity = rig.back.intensity = 0; return; } const r = st.r, lit = st.lit; rig.g.position.copy(st.g.position); rig.spot.position.set(0, r*1.2 + 4, r*.7); rig.spot.target.position.set(0, r*.15, 0); rig.spot.distance = r*6; rig.fill.position.set(-r*.6, r*.6, r*.6); rig.fill.distance = r*4; rig.back.position.set(r*.5, r*.7, -r*.8); rig.back.distance = r*4.5; rig.spot.intensity = lit*4.2; rig.fill.intensity = lit*1.4; rig.back.intensity = lit*1.6; }
-    function load(st){ if (st.model || st.loading || st.failed) return; st.loading = true; loader.load(modelUrl(st.q.glb), gl => { const m = gl.scene; const box = new THREE.Box3().setFromObject(m); const size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3()); const sc = Math.min(1, 40/Math.max(size.x, size.z)); m.scale.setScalar(sc); m.position.set(-c.x*sc, -box.min.y*sc, -c.z*sc); m.traverse(o => { if (o.isMesh && o.material) { const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(mat => { if (mat.emissiveMap) mat.emissiveIntensity = Math.max(mat.emissiveIntensity, 1); if ('envMapIntensity' in mat) mat.envMapIntensity = .9; }); } }); st.g.add(m); st.model = m; st.loading = false; st.foot.material.opacity = 0; }, undefined, err => { st.loading = false; st.failed = true; console.warn('GLB failed', st.q.glb, err); }); }
-    function unload(st){ if (!st.model) return; st.model.traverse(o => { if (o.isMesh) { o.geometry && o.geometry.dispose(); const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(m => { ['map','emissiveMap','normalMap','roughnessMap','metalnessMap','aoMap','alphaMap'].forEach(k => m[k] && m[k].dispose()); m.dispose(); }); } }); st.g.remove(st.model); st.model = null; st.foot.material.opacity = .9; }
+    function load(st){ if (st.model || st.loading || st.failed) return; st.loading = true; loader.load(modelUrl(st.q.glb), gl => { const m = gl.scene; const box = new THREE.Box3().setFromObject(m); const size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3()); const sc = Math.min(1, 40/Math.max(size.x, size.z)); m.scale.setScalar(sc); m.position.set(-c.x*sc, -box.min.y*sc, -c.z*sc); m.traverse(o => { if (o.isMesh && o.material) { const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(mat => { if (mat.emissiveMap) mat.emissiveIntensity = Math.max(mat.emissiveIntensity, 1); if ('envMapIntensity' in mat) mat.envMapIntensity = .9; }); } }); st.g.add(m); st.model = m; st.loading = false; st.foot.material.opacity = 0;
+      const parts = [], ems = []; const bb = new THREE.Box3(); m.updateMatrixWorld(true); m.traverse(o => { if (!o.isMesh) return; bb.setFromObject(o); const y0 = bb.min.y - st.g.position.y, h = bb.max.y - bb.min.y, w = Math.max(bb.max.x - bb.min.x, bb.max.z - bb.min.z); parts.push({ o, y0, w, h, f: o.position.clone(), s: o.position.clone().add(new THREE.Vector3((Math.random()-.5)*2.5, 6 + Math.random()*7 + y0*.4, (Math.random()-.5)*2.5).divideScalar(sc)), rot: new THREE.Euler((Math.random()-.5)*.35, (Math.random()-.5)*.7, (Math.random()-.5)*.35), r0: o.rotation.clone() }); const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(mat => { if (mat.emissiveMap || (mat.emissive && (mat.emissive.r + mat.emissive.g + mat.emissive.b) > .2)) { if (!ems.includes(mat)) { mat.userData.ei = mat.emissiveIntensity; ems.push(mat); } } }); });
+      parts.sort((A,B) => (A.y0 - B.y0) || (B.w - A.w)); st.parts = parts; st.ems = ems; st.k = -1; setBuild(st, st.kWant || 0); }, undefined, err => { st.loading = false; st.failed = true; console.warn('GLB failed', st.q.glb, err); }); }
+    function setBuild(st, k){ st.kWant = k; if (!st.parts || Math.abs(k - st.k) < .0005) return; st.k = k; const n = st.parts.length; st.parts.forEach((pt,i) => { const w0 = (i/n)*.72, kk = eo((k - w0)/.28); pt.o.visible = kk > .001; pt.o.position.lerpVectors(pt.s, pt.f, kk); pt.o.rotation.set(pt.r0.x + pt.rot.x*(1-kk), pt.r0.y + pt.rot.y*(1-kk), pt.r0.z + pt.rot.z*(1-kk)); }); const on = eo((k - .86)/.14); st.ems.forEach(mat => mat.emissiveIntensity = Math.max(1, mat.userData.ei || 1)*on); st.built = eo((k - .5)/.5); }
+    function unload(st){ if (!st.model) return; st.model.traverse(o => { if (o.isMesh) { o.geometry && o.geometry.dispose(); const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(m => { ['map','emissiveMap','normalMap','roughnessMap','metalnessMap','aoMap','alphaMap'].forEach(k => m[k] && m[k].dispose()); m.dispose(); }); } }); st.g.remove(st.model); st.model = null; st.parts = null; st.ems = []; st.k = -1; st.foot.material.opacity = .9; }
     function setLit(st, lit){ st.lit = lit; }
     function buildHall(P){ N = P.length; let x = 0; X = []; P.forEach((q,i) => { X[i] = x; x += Math.max(22, q.r*2.2 + 14); }); XEND = x; WGT = P.map(() => 1); WSUM = N;
       env.children.slice().forEach(c => env.remove(c)); floorTex.repeat.set(Math.ceil((XEND + 160)/8), 16);
@@ -1189,11 +1152,12 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
       });
       specEls = $$('.spec', specs); cutEls = $$('.cut', cuts); first = true; }
     let specEls = [], cutEls = [];
-    const view = (i, t) => { const wide = narrow(); const st = stands[i]; const x = X[i]; const r = st.r; const u = cl((t - .12)/.88); const a = -.5 + u*Math.PI*2; const R = Math.max(9, r*(wide ? 2.5 : (innerWidth < 1100 ? 2.15 : 1.8))*(1 - .22*Math.sin(u*Math.PI)) + 3); const y = Math.max(2.6, r*(.55 - .33*Math.sin(u*Math.PI)) + 1.2); return [V(x + Math.sin(a)*R, y, Math.cos(a)*R), V(x, r*.22, 0)]; };
+    const view = (i, t) => { const wide = narrow(); const st = stands[i]; const x = X[i]; const r = st.r; const u = cl((t - .3)/.7); const a = -.5 + u*Math.PI*2; const pull = 1 - eo(cl(t/.32)); /* wide and high while the pieces land, then in for the lap */ const R = Math.max(9, r*(wide ? 2.5 : (innerWidth < 1100 ? 2.15 : 1.8))*(1 - .22*Math.sin(u*Math.PI)) + 3)*(1 + .7*pull); const y = Math.max(2.6, r*(.55 - .33*Math.sin(u*Math.PI)) + 1.2)*(1 + 1.1*pull); return [V(x + Math.sin(a)*R, y, Math.cos(a)*R), V(x, r*.22, 0)]; };
     const entrance = () => { const r = stands[0] ? stands[0].r : 10; return [V(X[0] - r*2.2, r*.5 + 2, narrow() ? r*3 : r*2.4), V(X[0], r*.2, 0)]; };
     gsap.ticker.add(() => { const on = visible('s08a'); if (on !== wasOn) { wasOn = on; if (!on) { lamp.classList.remove('on'); specEls.forEach(e => e.classList.remove('on')); cutEls.forEach(e => e.classList.remove('on')); } } if (!on || !N) return;
       const p = fin(prog('s08a')); let i = 0, t = 0; { let acc = 0; for (let j=0;j<N;j++){ const w = WGT[j]/WSUM; if (p < acc + w || j === N-1) { i = j; t = cl((p - acc)/w, 0, .9999); break; } acc += w; } }
-      const tv = eo(cl(t/.12)); const [pA, lA] = i > 0 ? view(i-1, 1) : entrance(), [pB, lB] = view(i, cl((t-.12)/.88)); tp.lerpVectors(pA, pB, tv); tl.lerpVectors(lA, lB, tv);
+      const tv = eo(cl(t/.12)); const [pA, lA] = i > 0 ? view(i-1, 1) : entrance(), [pB, lB] = view(i, cl((t-.12)/.88));
+      stands.forEach((st, j) => setBuild(st, j < i ? 1 : j === i ? cl((t - .05)/.3) : 0)); tp.lerpVectors(pA, pB, tv); tl.lerpVectors(lA, lB, tv);
       if (over && !narrow()) { tp.x += (lx/sheet.clientWidth - .5)*.8; tp.y += (.5 - ly/sheet.clientHeight)*.5; }
       if (lastP >= 0 && Math.abs(p - lastP) > .00015 && !drag) { yaw *= .9; pitch *= .9; zoom += (1 - zoom)*.1; if (Math.abs(yaw) < .002 && Math.abs(pitch) < .002 && Math.abs(zoom - 1) < .002) { yaw = pitch = 0; zoom = 1; looked = false; } } lastP = p;
       const k = first ? 1 : .09; camPos.lerp(tp, k); camLook.lerp(tl, k); first = false;
@@ -1202,10 +1166,10 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
       if (hasHit) { cursorLight.position.set(hit.x, 2.6, hit.z); cursorLight.intensity = 1.6; lamp.style.left = lx + 'px'; lamp.style.top = ly + 'px'; lamp.classList.add('on'); } else { cursorLight.intensity = 0; lamp.classList.remove('on'); }
       let loading = stands.filter(s => s.loading).length;
       stands.forEach((st, j) => { const near = j === i || j === i + 1; const d = Math.abs(cam.position.x - st.g.position.x); if (near && loading < 2 && !st.model && !st.loading && !st.failed) { load(st); loading++; } if (!near && st.model && d > st.r*2 + 110) unload(st);
-        const dc = Math.abs(camLook.x - st.g.position.x), dl = hasHit ? Math.hypot(hit.x - st.g.position.x, hit.z - st.g.position.z) : 999; const lit = Math.max(cl(1 - dc/(st.r*1.6 + 10)), cl(1 - dl/(st.r + 8))); setLit(st, st.lit + (lit - st.lit)*.08); });
+        const dc = Math.abs(camLook.x - st.g.position.x), dl = hasHit ? Math.hypot(hit.x - st.g.position.x, hit.z - st.g.position.z) : 999; const lit = Math.max(cl(1 - dc/(st.r*1.6 + 10)), cl(1 - dl/(st.r + 8))) * (st.model ? (.08 + .92*st.built) : 1); setLit(st, st.lit + (lit - st.lit)*.08); });
       aimRig(rigs[0], stands[i]); aimRig(rigs[1], stands[i+1] || stands[i-1]);
       renderer.render(scene, cam);
-      const specOn = (t > .14 && t < .46) || (t > .6 && t < .9); specEls.forEach((e,j) => e.classList.toggle('on', j === i && specOn));
+      const specOn = (t > .36 && t < .58) || (t > .7 && t < .92); specEls.forEach((e,j) => e.classList.toggle('on', j === i && specOn));
       if (i !== cur) { cur = i; idx.textContent = String(i+1).padStart(2,'0') + ' / ' + String(N).padStart(2,'0'); tick(1300 + i*40, .04, .04); } cta.classList.toggle('on', !full && i === N-1 && t > .5); });
     /* the manifest: written by the export script; every entry with a GLB is a stand. The flow shows one key stand; the button opens the whole hall. */
     let ALL = [], full = false; const cta = $('#hcta'), back = $('#hback'); const KEY = 'zain-alhalqa';
