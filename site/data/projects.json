@@ -11,7 +11,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "snd",
@@ -25,7 +26,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "ramadan",
@@ -39,7 +41,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "misk",
@@ -53,7 +56,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "founding",
@@ -67,7 +71,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "big5",
@@ -81,7 +86,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "looptech",
@@ -95,7 +101,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "gosi26",
@@ -109,7 +116,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "lcgpa",
@@ -123,7 +131,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "momah",
@@ -137,7 +146,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "sce",
@@ -151,7 +161,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "urpay",
@@ -165,7 +176,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "jda",
@@ -179,7 +191,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "takaful",
@@ -193,7 +206,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "aljazira",
@@ -207,7 +221,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "sra",
@@ -221,7 +236,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "gosi25",
@@ -235,7 +251,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "ramadan2",
@@ -249,7 +266,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "events"
  },
  {
   "key": "simah",
@@ -263,7 +281,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "seder",
@@ -277,7 +296,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "exhibitions"
  },
  {
   "key": "wds",
@@ -291,7 +311,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "objects"
  },
  {
   "key": "biban",
@@ -305,7 +326,8 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "objects"
  },
  {
   "key": "thiqah",
@@ -319,6 +341,7 @@
   "date": null,
   "area": null,
   "built": null,
-  "line": null
+  "line": null,
+  "cat": "objects"
  }
 ]

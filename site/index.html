@@ -49,7 +49,9 @@ h1,h2,h3,p{margin:0}
 .h.wide{font-variation-settings:"wdth" 125,"wght" 900}
 .h.narrow{font-variation-settings:"wdth" 72,"wght" 700;letter-spacing:.02em}
 .ar{font-family:var(--ar);font-style:normal}
-@media (hover:hover) and (pointer:fine){html,body,a,button,canvas,.drag{cursor:none!important}}
+@media (hover:hover) and (pointer:fine){html,body,a,button,canvas,.drag{cursor:none!important}
+  .proj,.proj *{cursor:auto!important}.proj a,.proj button,.proj .card{cursor:pointer!important}
+  body.proj-open .xh{display:none}}
 
 /* ---------- sheets ---------- */
 .sheet{position:sticky;top:0;height:100vh;background:var(--bg);color:var(--fg);overflow:hidden;transform:translateZ(0);will-change:transform,opacity;backface-visibility:hidden;
@@ -112,7 +114,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 @media (max-width:1100px){.nav .tabs{display:none}}
 @media (max-width:720px){.hud{display:none}.nav .mark span{display:none}}
 /* crosshair cursor */
-.xh{position:fixed;inset:0;pointer-events:none;z-index:70;mix-blend-mode:difference;color:#fff}
+.xh{position:fixed;inset:0;pointer-events:none;z-index:95;mix-blend-mode:difference;color:#fff}
 .xh .vl,.xh .hl{position:absolute;background:rgba(255,255,255,.35)}
 .xh .vl{top:0;bottom:0;width:1px}.xh .hl{left:0;right:0;height:1px}
 .xh .pt{position:absolute;width:14px;height:14px;border:1px solid #fff;border-radius:50%;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease),background .25s}
@@ -623,6 +625,22 @@ body.proj-open{overflow:hidden}
 #s13 .btn.ph{border:1px dashed var(--red);color:var(--red);cursor:default}
 #s13 .contact .v a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
 
+/* ---------- category pages: every project in a line of the scope of work ---------- */
+.proj.cat .head{align-items:end}
+.proj.cat .say{font-family:var(--ser);font-style:italic;font-size:clamp(17px,1.4vw,24px);color:var(--bl2);max-width:40ch;text-align:right;margin:0}
+.proj .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(14px,2vw,28px)}
+.proj .card{position:relative;display:block;background:var(--wp2);border:1px solid var(--line);overflow:hidden;color:var(--bl);text-decoration:none;cursor:pointer}
+.proj .card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;filter:grayscale(.2);transition:transform .8s var(--ease),filter .4s}
+.proj .card:hover img{transform:scale(1.04);filter:none}
+.proj .card .t{padding:12px 14px 14px;display:grid;gap:4px}
+.proj .card h3{margin:0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(15px,1.3vw,20px);letter-spacing:-.01em;font-variation-settings:"wdth" 110}
+.proj .card .m{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
+.proj .card .n{position:absolute;right:10px;top:8px;font-family:var(--mono);font-size:.54rem;letter-spacing:.14em;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.proj .card.soon{aspect-ratio:3/2.4;display:grid;place-items:center;text-align:center;padding:20px;border:1px dashed var(--red);background:transparent;cursor:default}
+.proj .card.soon .ph{display:inline-block;padding:2px 8px;border:1px dashed var(--red);border-radius:2px;color:var(--red);font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+.proj .card.soon p{margin:10px 0 0;font-family:var(--ser);font-style:italic;color:var(--bl2);max-width:24ch}
+@media (max-width:720px){.proj.cat .say{text-align:left}}
+
 </style>
 </head>
 <body>
@@ -677,7 +695,7 @@ body.proj-open{overflow:hidden}
 <!-- S00A DRAWING LIST -->
 <section class="sheet wp" id="s00a" data-n="00A" data-title="Drawing list" aria-label="Drawing list">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">A</b><b class="e">1</b><b class="s">A</b><b class="w">1</b></div>
-  <div class="k lbl"><span>Sheet 00A</span><i></i><b>Drawing list</b><i></i><span>Fourteen sheets</span></div>
+  <div class="k lbl"><span>Sheet 00A</span><i></i><b>Drawing list</b><i></i><span>Sixteen sheets</span></div>
   <div class="body">
     <div class="head"><h2 class="h">Drawing<br>list</h2><p>Every sheet in the set, in order. Pull any of them. The last one is the one that matters.</p></div>
     <div class="list" id="dlist"></div>
@@ -795,12 +813,12 @@ body.proj-open{overflow:hidden}
   <div class="k lbl"><span>Sheet 06</span><i></i><b>Scope of work</b><i></i><span>Hover a line</span></div>
   <div class="body">
     <div class="lines" id="scope">
-      <a class="line" href="#s08" data-img="img/snd.jpg"><span class="lbl">A.01</span><h3>Events</h3><p>Gates, stages, media walls. PepsiCo at MDL Beast, three editions in a row. A night that has to look right from the first photo.</p></a>
-      <a class="line" href="#s08" data-img="img/looptech.jpg"><span class="lbl">A.02</span><h3>Exhibitions</h3><p>Stands from 9 m² to double‑deck. Designed from the floor plan out.</p></a>
-      <a class="line" href="#s06" data-img="img/sce.jpg"><span class="lbl">A.03</span><h3>Motion</h3><p>Broadcast graphics, openers, LED and projection content. Ten years of it.</p></a>
-      <a class="line" href="#s08a" data-img="img/jda.jpg"><span class="lbl">A.04</span><h3>3D</h3><p>Cinema 4D and Lumion renders that get built exactly as drawn.</p></a>
-      <a class="line" href="#s12" data-img="img/wds.jpg"><span class="lbl">A.05</span><h3>Objects</h3><p>Trophies, invitation boxes, the things that go home with people.</p></a>
-      <a class="line" href="#s03" data-img="img/founding.jpg"><span class="lbl">A.06</span><h3>Direction</h3><p>Leading the team, the client and the deadline to the same night.</p></a>
+      <a class="line" href="#cat/events" data-cat="events" data-img="img/snd.jpg"><span class="lbl">A.01</span><h3>Events</h3><p>Gates, stages, media walls. PepsiCo at MDL Beast, three editions in a row. A night that has to look right from the first photo.</p></a>
+      <a class="line" href="#cat/exhibitions" data-cat="exhibitions" data-img="img/looptech.jpg"><span class="lbl">A.02</span><h3>Exhibitions</h3><p>Stands from 9 m² to double‑deck. Designed from the floor plan out.</p></a>
+      <a class="line" href="#cat/motion" data-cat="motion" data-img="img/sce.jpg"><span class="lbl">A.03</span><h3>Motion</h3><p>Broadcast graphics, openers, LED and projection content. Ten years of it.</p></a>
+      <a class="line" href="#cat/3d" data-cat="3d" data-img="img/jda.jpg"><span class="lbl">A.04</span><h3>3D</h3><p>Cinema 4D and Lumion renders that get built exactly as drawn.</p></a>
+      <a class="line" href="#cat/objects" data-cat="objects" data-img="img/wds.jpg"><span class="lbl">A.05</span><h3>Objects</h3><p>Trophies, invitation boxes, the things that go home with people.</p></a>
+      <a class="line" href="#cat/direction" data-cat="direction" data-img="img/founding.jpg"><span class="lbl">A.06</span><h3>Direction</h3><p>Leading the team, the client and the deadline to the same night.</p></a>
     </div>
   </div>
   <div class="plate" id="plate" aria-hidden="true"></div>
@@ -827,16 +845,15 @@ body.proj-open{overflow:hidden}
   <canvas id="hall3d"></canvas>
   <div class="vig"></div>
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">C</b><b class="e">2A</b><b class="s">C</b><b class="w">2A</b></div>
-  <div class="k lbl"><span>Sheet 07A</span><i></i><b>The hall</b><i></i><span>Built on scroll · then walk the aisle</span></div>
-  <div class="slot"><span class="tag"><i></i>GLB slot · stand-in model</span><span class="lbl">One stand in the flow, lit on the night. The button at the end opens the whole hall: every Blender concept, one aisle, loaded as you walk.</span></div>
+  <div class="k lbl"><span>Sheet 07A</span><i></i><b>The hall</b><i></i><span>Built on scroll · then look around</span></div>
+  <div class="slot"><span class="tag"><i></i>Real model · Cinema 4D export</span><span class="lbl">His own stand, straight from Cinema 4D. It builds itself as you scroll; then it is yours to turn, zoom and walk around.</span></div>
   <div class="lamp" id="hlamp" aria-hidden="true"></div>
   <div id="hspecs"></div>
   <div id="hcuts"></div>
   <div class="idx num" id="hidx">01 / 01</div>
-  <button type="button" class="cta" id="hcta" data-hot="OPEN"><i></i>Experience my designs<span>all 27 concepts, one aisle</span></button>
-  <button type="button" class="cta back" id="hback" data-hot="BACK"><i></i>Back to the key stand</button>
+
   <div class="hint">Scroll: it builds, then turns · drag to look around · pinch to zoom · it carries on from where you left it</div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">The hall</span></div><div><span class="lbl">Stands</span><span class="v">Loading…</span></div><div><span class="lbl">Sequence</span><span class="v">Floor · walls · lights on · lap</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">Night</span></div><div><span class="lbl">Sheet</span><span class="v big">07A</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">The hall</span></div><div><span class="lbl">Stand</span><span class="v">Loading…</span></div><div><span class="lbl">Sequence</span><span class="v">Floor · walls · lights on · lap</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">Night</span></div><div><span class="lbl">Sheet</span><span class="v big">07A</span></div></div>
 </section>
 <div class="sp" data-for="s08a" style="--h:7"></div>
 
@@ -931,6 +948,14 @@ body.proj-open{overflow:hidden}
 </main>
 
 
+
+<div class="proj cat" id="catpage" data-lenis-prevent aria-hidden="true" role="dialog" aria-label="Category">
+  <div class="top"><button type="button" id="catback" data-hot="BACK">← Back to the set</button><span id="catcount" class="lbl"></span></div>
+  <div class="wrap">
+    <div class="head"><div><div class="lbl" id="catkind">Scope of work</div><h1 id="cattitle">Events</h1></div><p class="say" id="catsay"></p></div>
+    <div class="grid" id="catgrid"></div>
+  </div>
+</div>
 <div class="proj" id="proj" data-lenis-prevent aria-hidden="true" role="dialog" aria-label="Project">
   <div class="top"><button type="button" id="projback" data-hot="BACK">← Back to the set</button><a id="projbe" href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance ↗</a></div>
   <div class="wrap">
@@ -1072,6 +1097,22 @@ body.proj-open{overflow:hidden}
     gsap.ticker.add((t) => { if (!visible('s14')) return; const p = prog('s14'); if (!over || performance.now() - last > 2500) { over = false; tx = 50 + Math.sin(t*.5)*30; ty = 52 + Math.cos(t*.7)*18; } x += (tx-x)*.1; y += (ty-y)*.1; rr += ((p > .03 ? Math.min(lens.clientWidth, lens.clientHeight)*(over ? .34 : .22) : 0) - rr)*.1; lens.style.setProperty('--x', x+'%'); lens.style.setProperty('--y', y+'%'); lens.style.setProperty('--r', rr+'px'); ring.style.setProperty('--x', x+'%'); ring.style.setProperty('--y', y+'%'); ring.style.setProperty('--r', rr+'px');
       if (hov) { const mx = (px/innerWidth - .5), my = (py/innerHeight - .5); hov.style.transform = `rotate(${3 + Math.sin(t*.6)*1.2}deg) translate3d(${mx*-14}px, ${Math.sin(t*.9)*6 + my*-10}px, 0) rotateX(${my*-6}deg) rotateY(${mx*8}deg)`; } }); })();
 
+
+  /* ---- category pages: a line of the scope of work opens every project of that kind; empty kinds show where the work will go ---- */
+  const CAT = (function(){ const el = $('#catpage'), grid = $('#catgrid'), title = $('#cattitle'), say = $('#catsay'), count = $('#catcount'); let cur = null, list = [];
+    const CATS = { events: ['Events', 'Gates, stages, media walls, employee days, family days. A night that has to look right from the first photo.'], exhibitions: ['Exhibitions', 'Stands from 9 m² to double-deck, designed from the floor plan out.'], motion: ['Motion', 'Broadcast graphics, openers, LED and projection content. Ten years of it.'], '3d': ['3D', 'Cinema 4D and Lumion renders that get built exactly as drawn.'], objects: ['Objects', 'Trophies, invitation boxes, the things that go home with people.'], direction: ['Direction', 'Leading the team, the client and the deadline to the same night.'] };
+    fetch('data/projects.json').then(r => r.json()).then(j => { list = j; if (location.hash.startsWith('#cat/')) open(location.hash.slice(5), false); }).catch(() => {});
+    function render(cat){ const [t, line] = CATS[cat] || [cat, '']; title.textContent = t; say.textContent = line; const items = list.filter(p => p.cat === cat); count.textContent = items.length ? items.length + (items.length === 1 ? ' project' : ' projects') : 'To come'; grid.innerHTML = '';
+      items.forEach(p => { const a = document.createElement('a'); a.className = 'card'; a.href = '#p/' + p.key; a.innerHTML = `<img src="img/${p.key}.jpg" alt="" loading="lazy"><span class="n">${String(p.count).padStart(2,'0')} images</span><div class="t"><h3>${p.title}</h3><span class="m">${p.kind}</span></div>`; a.addEventListener('click', e => { e.preventDefault(); close(false); PROJ.open(p.key); }); grid.appendChild(a); });
+      if (!items.length || cat === 'motion' || cat === '3d' || cat === 'direction') { const d = document.createElement('div'); d.className = 'card soon'; d.innerHTML = `<div><span class="ph">to fill</span><p>${t} projects go here. Send the files and they take their place in the set.</p></div>`; grid.appendChild(d); } }
+    function open(cat, push = true){ if (!CATS[cat]) return; cur = cat; render(cat); el.classList.add('on'); el.setAttribute('aria-hidden', 'false'); document.body.classList.add('proj-open'); el.scrollTop = 0; if (lenis) lenis.stop(); if (push) history.pushState({ cat }, '', '#cat/' + cat); paper(.1); }
+    function close(push = true){ if (!cur) return; cur = null; el.classList.remove('on'); el.setAttribute('aria-hidden', 'true'); if (!$('#proj').classList.contains('on')) { document.body.classList.remove('proj-open'); if (lenis) lenis.start(); } if (push) history.pushState({}, '', location.pathname + location.search); }
+    $('#catback').addEventListener('click', () => close());
+    $$('#scope .line[data-cat]').forEach(l => l.addEventListener('click', e => { e.preventDefault(); open(l.dataset.cat); }));
+    addEventListener('popstate', () => { const h = location.hash; if (h.startsWith('#cat/')) open(h.slice(5), false); else if (cur) close(false); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && cur && !$('#proj').classList.contains('on')) close(); });
+    return { open, close }; })();
+
   /* ---- S00: the name, the first stroke, the portrait in cyanotype that turns to colour under the cursor ---- */
   (function(){
     const rv = $('#prv'), port = $('#port'); let rr = 0, rx = 50, ry = 50, over = false;
@@ -1193,7 +1234,7 @@ body.proj-open{overflow:hidden}
     gsap.ticker.add((t) => { if (!visible('s06')) return; const p = prog('s06'); sweep.style.left = (((t*.06) % 1) * 100) + '%'; const n = Math.floor(cl((p-.02)/.55)*(rows.length+1)); rows.forEach((r,i) => { const on = i < n; if (on !== r.classList.contains('on')) { r.classList.toggle('on', on); if (on) tick(1000 + i*90, .04, .04); } }); tv.classList.toggle('on', p > .62); }); })();
 
   /* ---- S07: scope lines with the callout plate ---- */
-  (function(){ const box = $('#scope'), lines = $$('.line', box), plate = $('#plate'); const imgs = {}; lines.forEach(l => { const im = document.createElement('img'); im.src = l.dataset.img; im.alt = ''; plate.appendChild(im); imgs[l.dataset.img] = im; l.addEventListener('click', e => { e.preventDefault(); goTo($(l.getAttribute('href'))); }); });
+  (function(){ const box = $('#scope'), lines = $$('.line', box), plate = $('#plate'); const imgs = {}; lines.forEach(l => { const im = document.createElement('img'); im.src = l.dataset.img; im.alt = ''; plate.appendChild(im); imgs[l.dataset.img] = im; l.addEventListener('click', e => { if (l.dataset.cat) return; e.preventDefault(); goTo($(l.getAttribute('href'))); }); });
     const ctape = $('#ctape'); if (ctape && !reduce) { ctape.appendChild(ctape.firstElementChild.cloneNode(true)); const w = () => ctape.firstElementChild.getBoundingClientRect().width + 40; gsap.to(ctape, { x: () => -w(), ease: 'none', duration: 48, repeat: -1 }); }
     if (!fine) return; let ppx = 0, ppy = 0; gsap.ticker.add(() => { ppx += (px-ppx)*.14; ppy += (py-ppy)*.14; plate.style.left = Math.min(ppx, innerWidth - plate.offsetWidth*1.06 - 24) + 'px'; plate.style.top = ppy + 'px'; });
     lines.forEach(l => { l.addEventListener('pointerenter', () => { box.classList.add('hover'); plate.classList.add('on'); Object.values(imgs).forEach(i => i.classList.remove('on')); imgs[l.dataset.img].classList.add('on'); }); l.addEventListener('pointerleave', () => { box.classList.remove('hover'); plate.classList.remove('on'); }); }); })();
@@ -1255,7 +1296,7 @@ body.proj-open{overflow:hidden}
     function makeRig(){ const g = new THREE.Group(); const spot = new THREE.SpotLight(TUNG, 0, 60, .75, .6, 1); const fill = new THREE.PointLight(0xC9D8F5, 0, 40, 1.4); const back = new THREE.PointLight(TUNG, 0, 45, 1.3); g.add(spot, spot.target, fill, back); scene.add(g); return { g, spot, fill, back }; }
     const rigs = [makeRig(), makeRig()];
     function aimRig(rig, st){ if (!st) { rig.spot.intensity = rig.fill.intensity = rig.back.intensity = 0; return; } const r = st.r, lit = st.lit; rig.g.position.copy(st.g.position); rig.spot.position.set(0, r*1.2 + 4, r*.7); rig.spot.target.position.set(0, r*.15, 0); rig.spot.distance = r*6; rig.fill.position.set(-r*.6, r*.6, r*.6); rig.fill.distance = r*4; rig.back.position.set(r*.5, r*.7, -r*.8); rig.back.distance = r*4.5; rig.spot.intensity = lit*4.2; rig.fill.intensity = lit*1.4; rig.back.intensity = lit*1.6; }
-    function load(st){ if (st.model || st.loading || st.failed) return; st.loading = true; loader.load(modelUrl(st.q.glb), gl => { const m = gl.scene; const box = new THREE.Box3().setFromObject(m); const size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3()); const sc = Math.min(1, 40/Math.max(size.x, size.z)); m.scale.setScalar(sc); m.position.set(-c.x*sc, -box.min.y*sc, -c.z*sc); m.traverse(o => { if (o.isMesh && o.material) { const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(mat => { if (mat.emissiveMap) mat.emissiveIntensity = Math.max(mat.emissiveIntensity, 1); if ('envMapIntensity' in mat) mat.envMapIntensity = .9; }); } }); st.g.add(m); st.model = m; st.loading = false; st.foot.material.opacity = 0;
+    function load(st){ if (st.model || st.loading || st.failed) return; st.loading = true; loader.load(modelUrl(st.q.glb) + '?v=' + (st.q.bytes || 0), gl => { const m = gl.scene; const box = new THREE.Box3().setFromObject(m); const size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3()); const sc = Math.min(1, 40/Math.max(size.x, size.z)); m.scale.setScalar(sc); m.position.set(-c.x*sc, -box.min.y*sc, -c.z*sc); m.traverse(o => { if (o.isMesh && o.material) { const ms = Array.isArray(o.material) ? o.material : [o.material]; ms.forEach(mat => { if (mat.emissiveMap) mat.emissiveIntensity = Math.max(mat.emissiveIntensity, 1); if ('envMapIntensity' in mat) mat.envMapIntensity = .9; }); } }); st.g.add(m); st.model = m; st.loading = false; st.foot.material.opacity = 0;
       const parts = [], ems = []; const bb = new THREE.Box3(); m.updateMatrixWorld(true); m.traverse(o => { if (!o.isMesh) return; bb.setFromObject(o); const y0 = bb.min.y - st.g.position.y, h = bb.max.y - bb.min.y, w = Math.max(bb.max.x - bb.min.x, bb.max.z - bb.min.z); const ms = Array.isArray(o.material) ? o.material : [o.material]; let em = false; ms.forEach(mat => { if (mat.emissiveMap || (mat.emissive && (mat.emissive.r + mat.emissive.g + mat.emissive.b) > .2)) { em = true; if (!ems.includes(mat)) { mat.userData.ei = mat.emissiveIntensity; ems.push(mat); } } });
         /* rank: 0 floor and platforms · 1 walls, biggest first · 2 roof, header, hanging pieces · 3 screens · 4 counters and pods · 5 furniture and small things */
         const rank = (y0 < .3 && h < .4 && w > 2.5) ? 0 : (h > 2.1 && y0 < .6) ? 1 : (y0 >= .6 && !em) ? 2 : em ? 3 : (h >= .7 && w > 1.2) ? 4 : 5;
@@ -1280,7 +1321,7 @@ body.proj-open{overflow:hidden}
       const wall = new THREE.Mesh(new THREE.PlaneGeometry(XEND + 160, 18), new THREE.MeshStandardMaterial({ color: 0x08142A, roughness: 1 })); wall.position.set(XEND/2, 9, -30); env.add(wall);
       const trussMat = new THREE.MeshStandardMaterial({ color: 0x24324D, roughness: .6, metalness: .4 }); for (let tx = -30; tx <= XEND + 30; tx += Math.max(8, XEND/60)) { const t = new THREE.Mesh(new THREE.BoxGeometry(.3, .3, 60), trussMat); t.position.set(tx, 14, -4); env.add(t); } const truss2 = new THREE.Mesh(new THREE.BoxGeometry(XEND + 80, .3, .3), trussMat); truss2.position.set(XEND/2, 14, -8); env.add(truss2);
       stands = P.map(makeStand); specs.innerHTML = ''; cuts.innerHTML = '';
-      P.forEach((q,i) => { specs.insertAdjacentHTML('beforeend', `<div class="spec" data-i="${i}"><div class="lbl">${String(i+1).padStart(2,'0')} / ${String(N).padStart(2,'0')} · ${q.kind}</div><h2 class="h">${q.title}</h2><div class="grid"><span class="lbl">Client</span><span>${ph(q.client)}</span><span class="lbl">City · hall</span><span>${ph(q.city)} · ${ph(q.hall)}</span><span class="lbl">Date</span><span>${ph(q.date)}</span><span class="lbl">Footprint</span><span>${q.sx.toFixed(1)} × ${q.sz.toFixed(1)} m · ${q.sy.toFixed(1)} m high</span><span class="lbl">Built</span><span>${ph(q.built)}</span></div><p class="line">"${q.line || '<span class="ph">one line in my words</span>'}"</p><p class="note">Blender concept · ${q.src} · ${(q.bytes/1048576).toFixed(1)} MB GLB</p></div>`);
+      P.forEach((q,i) => { specs.insertAdjacentHTML('beforeend', `<div class="spec" data-i="${i}"><div class="lbl">${String(i+1).padStart(2,'0')} / ${String(N).padStart(2,'0')} · ${q.kind}</div><h2 class="h">${q.title}</h2><div class="grid"><span class="lbl">Client</span><span>${ph(q.client)}</span><span class="lbl">City · hall</span><span>${ph(q.city)} · ${ph(q.hall)}</span><span class="lbl">Date</span><span>${ph(q.date)}</span><span class="lbl">Footprint</span><span>${q.sx.toFixed(1)} × ${q.sz.toFixed(1)} m · ${q.sy.toFixed(1)} m high</span><span class="lbl">Built</span><span>${ph(q.built)}</span></div><p class="line">"${q.line || '<span class="ph">one line in my words</span>'}"</p><p class="note">Cinema 4D export · ${q.src} · ${(q.bytes/1048576).toFixed(1)} MB on the web</p></div>`);
       });
       specEls = $$('.spec', specs); cutEls = $$('.cut', cuts); first = true; }
     let specEls = [], cutEls = [];
@@ -1299,19 +1340,18 @@ body.proj-open{overflow:hidden}
       let loading = stands.filter(s => s.loading).length;
       stands.forEach((st, j) => { const near = j === i || j === i + 1; const d = Math.abs(cam.position.x - st.g.position.x); if (near && loading < 2 && !st.model && !st.loading && !st.failed) { load(st); loading++; } if (!near && st.model && d > st.r*2 + 110) unload(st);
         const dc = Math.abs(camLook.x - st.g.position.x), dl = hasHit ? Math.hypot(hit.x - st.g.position.x, hit.z - st.g.position.z) : 999; const lit = Math.max(cl(1 - dc/(st.r*1.6 + 10)), cl(1 - dl/(st.r + 8))) * (st.model ? (.22 + .78*st.built) : 1); setLit(st, st.lit + (lit - st.lit)*.08); });
-      aimRig(rigs[0], stands[i]); aimRig(rigs[1], stands[i+1] || stands[i-1]); window.__hall = { i, t: +t.toFixed(3), k: +stands[i].k.toFixed(3), loaded: !!stands[i].model, parts: stands[i].parts ? stands[i].parts.length : 0, visible: stands[i].parts ? stands[i].parts.filter(p => p.o.visible).length : 0, cam: cam.position.toArray().map(v => +v.toFixed(1)) };
+      aimRig(rigs[0], stands[i]); aimRig(rigs[1], stands[i+1] || stands[i-1]); window.__parts = () => stands[i].parts ? stands[i].parts.map(q => ({ n: q.o.name, rank: q.rank, h: +q.h.toFixed(1), w: +q.w.toFixed(1), y0: +q.y0.toFixed(1) })) : []; window.__hall = { i, t: +t.toFixed(3), k: +stands[i].k.toFixed(3), loaded: !!stands[i].model, parts: stands[i].parts ? stands[i].parts.length : 0, visible: stands[i].parts ? stands[i].parts.filter(p => p.o.visible).length : 0, cam: cam.position.toArray().map(v => +v.toFixed(1)) };
       renderer.render(scene, cam);
       const specOn = (t > .73 && t < .84) || (t > .9 && t < .985); specEls.forEach((e,j) => e.classList.toggle('on', j === i && specOn));
-      if (i !== cur) { cur = i; idx.textContent = String(i+1).padStart(2,'0') + ' / ' + String(N).padStart(2,'0'); tick(1300 + i*40, .04, .04); } cta.classList.toggle('on', !full && i === N-1 && t > .78); });
+      if (i !== cur) { cur = i; idx.textContent = String(i+1).padStart(2,'0') + ' / ' + String(N).padStart(2,'0'); tick(1300 + i*40, .04, .04); } });
     /* the manifest: written by the export script; every entry with a GLB is a stand. The flow shows one key stand; the button opens the whole hall. */
-    let ALL = [], full = false; const cta = $('#hcta'), back = $('#hback'); const KEY = 'zain-alhalqa';
+    let ALL = [], full = false;
     function clearHall(){ stands.forEach(st => { unload(st); scene.remove(st.g); }); stands = []; N = 0; }
-    function setHall(list){ clearHall(); buildHall(list); const sp = spacers['s08a']; if (sp) sp.style.setProperty('--h', String(list.length === 1 ? 18 : Math.max(5, N*2.6))); if (lenis) lenis.resize(); if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); $$('.tb .v', sheet)[1].textContent = full ? N + ' models · from Blender' : '1 of ' + ALL.length + ' · the key stand'; cur = -1; }
+    function setHall(list){ clearHall(); buildHall(list); const sp = spacers['s08a']; if (sp) sp.style.setProperty('--h', String(list.length === 1 ? 18 : Math.max(5, N*2.6))); if (lenis) lenis.resize(); if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); $$('.tb .v', sheet)[1].textContent = ALL[0] ? ALL[0].title : 'One stand'; cur = -1; }
     function toHallStart(){ const sp = spacers['s08a']; if (!sp) return; const y = sp.getBoundingClientRect().top + scrollY - innerHeight + 2; if (lenis) lenis.scrollTo(y, { immediate: true }); else scrollTo(0, y); first = true; }
-    cta.addEventListener('click', () => { full = true; setHall(ALL); toHallStart(); cta.classList.remove('on'); back.classList.add('on'); tick(900, .06, .06); });
-    back.addEventListener('click', () => { full = false; setHall(ALL.filter(q => q.key === KEY)); toHallStart(); back.classList.remove('on'); });
-    fetch(modelUrl('models/manifest.json')).then(r => r.json()).then(man => { ALL = man.filter(m => m.glb && !m.error && m.size).map(m => { const sx = m.size[0], sy = m.size[2], sz = m.size[1]; /* Blender z-up → y-up */ const f = Math.min(1, 40/Math.max(sx, sz)); return Object.assign({}, m, { sx: sx*f, sy: sy*f, sz: sz*f, r: Math.max(sx, sz)*f/2, client: (m.title.split(' · ')[0] || null) }); });
-      if (!ALL.length) return; const key = ALL.filter(q => q.key === KEY); setHall(key.length ? key : [ALL[0]]); }).catch(err => console.warn('manifest', err)); })();
+
+    fetch(modelUrl('models/manifest.json') + '?v=' + Date.now()).then(r => r.json()).then(man => { ALL = man.filter(m => m.glb && !m.error && m.size).map(m => { const sx = m.size[0], sy = m.size[2], sz = m.size[1]; /* Blender z-up → y-up */ const f = Math.min(1, 40/Math.max(sx, sz)); return Object.assign({}, m, { sx: sx*f, sy: sy*f, sz: sz*f, r: Math.max(sx, sz)*f/2, client: m.client || null }); });
+      if (!ALL.length) return; setHall([ALL[0]]); }).catch(err => console.warn('manifest', err)); })();
 
   /* ---- S11: lighting plot, then the lights come on; the photo log reel ---- */
   (function(){ const sheet = $('#s11'), photo = $('#lphoto'), svg = $('#lsvg'), barT = $('#barT'), barB = $('#barB'), cap = $('#lcap'), hint = $('#lhint'), txt = $('#s11 .txt'), reel = $('#reel'), track = $('#track');

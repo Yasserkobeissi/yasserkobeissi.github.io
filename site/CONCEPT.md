@@ -82,6 +82,11 @@ Every sheet has a life of its own while you read, and scrolling adds to it rathe
 - The car work sits at the end of the set now: sheet 11 Chassis (new: the body-in-white with the marker sketch found under the cursor, the sketch card hovering above, the lens sweeping on its own when nobody points), then sheet 12 Vehicle (the drift), then 13 Issue. Sheets are renumbered in document order; the lighting plot stays as sheet 09.
 - Contact works without a mail app: "Send the brief" copies the address and says so before handing over to mailto; a WhatsApp button sits beside it; the phone number opens WhatsApp; LinkedIn shows as a dashed "to fill" until the URL arrives. A dead link in the scope of work (to the removed assembly sheet) now opens the hall.
 
+## Round 10 (25 Oct): one stand, his own
+- The hall holds one stand only: Yasser's Al Rsayis booth from Cinema 4D (`booth al rsayis.gltf`, 1.5 GB with 4,803 nodes and 89 textures). It went through Blender (hall objects stripped, textures to 1024) and gltf-transform (Draco, WebP, 60 % simplification, meshes kept separate) to a 16 MB GLB. The key-stand button, the full hall of 27 concepts and the manifest entries for them are removed. The build-on-scroll, the lap and the free look are unchanged.
+- The scope of work opens category pages (`#cat/<name>`): events and exhibitions list their projects as cards that open the project pages; objects has the trophy and the two boxes; motion, 3D and direction show a dashed "to fill" card until the files arrive.
+- The real pointer shows on project and category pages; the crosshair cursor is only on the set.
+
 ## System
 - Sheets are sticky; a spacer after each one drives its scene, so every scene has its own scroll length and the next sheet slides over the last. On phones the stack is off and sheets flow.
 - Crosshair cursor with live coordinates, labels on anything you can open or drag. Plotter progress line under the nav, sheet tabs, Riyadh clock.

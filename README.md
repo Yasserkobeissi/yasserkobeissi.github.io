@@ -13,4 +13,4 @@ The live site is `site/` (The Drawing Set, v12). Everything else is history or t
 
 Run locally: `python3 -m http.server 8082 --directory site` and open http://localhost:8082.
 
-Models: `site/models/*.glb` are Draco + WebP compressed exports of Tamim's Blender concepts (69 MB for 27). The uncompressed originals live in `site/models-src/`, which is not committed.
+Model: `site/models/rsayis.glb` is Yasser's Al Rsayis stand, exported from Cinema 4D (1.5 GB glTF), passed through Blender and gltf-transform (Draco, WebP at 1024 px, 60 % mesh simplification) down to 16 MB. The 27 Blender concepts that used to fill the hall are gone from the site; their exports stay in `site/models-src/` locally, not committed.
