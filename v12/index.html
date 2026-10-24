@@ -52,7 +52,7 @@ h1,h2,h3,p{margin:0}
 @media (hover:hover) and (pointer:fine){html,body,a,button,canvas,.drag{cursor:none!important}}
 
 /* ---------- sheets ---------- */
-.sheet{position:sticky;top:0;height:100vh;background:var(--bg);color:var(--fg);overflow:hidden;box-shadow:0 -24px 70px rgba(0,0,0,.5);transform:translateZ(0);will-change:transform;backface-visibility:hidden;
+.sheet{position:sticky;top:0;height:100vh;background:var(--bg);color:var(--fg);overflow:hidden;transform:translateZ(0);will-change:transform,opacity;backface-visibility:hidden;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(var(--grid2) 1px,transparent 1px),linear-gradient(90deg,var(--grid2) 1px,transparent 1px);
   background-size:120px 120px,120px 120px,24px 24px,24px 24px;background-position:var(--g) var(--g)}
 .sheet.cy{--bg:var(--cy);--fg:var(--ink);--fg2:var(--ink2);--fg3:var(--ink3);--line:rgba(234,241,255,.26);--grid:rgba(234,241,255,.09);--grid2:rgba(234,241,255,.035);--paper2:var(--cy2)}
@@ -555,6 +555,18 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 @media (max-width:1100px){#s08a .slot,#s08a .hint{display:none}#s08a .spec{max-width:min(38ch,60vw)}#s08a .spec h2{font-size:clamp(26px,4vw,52px)}}
 @media (max-width:720px){#s08a{position:sticky;top:0}.sp[data-for="s08a"]{display:block;height:320vh}#s08a .spec{max-width:none;left:var(--g);right:var(--g);bottom:calc(var(--g) + 86px)}#s08a .idx{display:none}#s08a .spec .note{display:none}#s08a .lamp{display:none}#s08a .cta{bottom:calc(var(--g) + 110px);padding:12px 18px}#s08a .cta span{display:none}}
 
+/* ---------- overlap pass at compact widths (Tamim's window is ~730–900 px) ---------- */
+#s02 .beat::before{content:"";position:absolute;inset:-40px -60px -40px -80px;background:radial-gradient(ellipse at 40% 60%,rgba(11,42,85,.92) 30%,rgba(11,42,85,0) 72%);z-index:-1;pointer-events:none}
+#s02 .beat{z-index:5}#s02 .beat>*{position:relative}
+#s09 .body{-webkit-mask:linear-gradient(180deg,transparent 0,#000 70px,#000 calc(100% - 40px),transparent 100%);mask:linear-gradient(180deg,transparent 0,#000 70px,#000 calc(100% - 40px),transparent 100%)}
+@media (max-width:1100px){
+  #xco{display:none}
+  #s02 .beat{max-width:min(36ch,50vw)}#s02 .beat h2{font-size:clamp(34px,5.6vw,72px)}
+  #s03 .body{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);align-items:start;padding-top:calc(var(--g) + var(--nav-h) + 28px)}
+  #s03 .fig{max-width:300px;margin-top:34px}#s03 h2{font-size:clamp(32px,4.6vw,60px)}#s03 .copy{font-size:.92em;max-width:48ch}#s03 .spec p{padding:6px 0;font-size:15px}
+  #s13 .stamp{top:calc(var(--g) + var(--nav-h) + 8px);right:var(--g)}
+}
+
 </style>
 </head>
 <body>
@@ -643,7 +655,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 <section class="sheet cy scene" id="s02" data-n="02" data-title="Site plan" aria-label="Site plan, Beirut to Riyadh">
   <canvas id="map"></canvas>
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">B</b><b class="e">1</b><b class="s">B</b><b class="w">1</b></div>
-  <div class="k lbl"><span>Sheet 02</span><i></i><b>Site plan</b><i></i><span>Beyrouth → Riyad</span></div>
+  <div class="k lbl"><span>Sheet 02</span><i></i><b>Site plan</b><i></i><span>Beirut → Riyadh</span></div>
   <div class="scale"><i></i><i></i><i></i><i></i><span>0 · 500 · 1,000 KM</span></div>
   <svg class="north draw" viewBox="0 0 44 64" aria-hidden="true"><path d="M22 60 L22 10 M12 22 L22 8 L32 22"/><text x="22" y="4" text-anchor="middle" font-size="7" fill="currentColor" font-family="JetBrains Mono">N</text></svg>
   <div class="city a" id="cityA"><i></i><span>Beirut · 33.89° N · 35.50° E</span></div>
@@ -688,7 +700,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   <div class="k lbl"><span>Sheet 04</span><i></i><b>Photo log</b><i></i><span class="aside" style="text-transform:none;letter-spacing:0">le film jetable</span></div>
   <div class="flash" id="flash"></div>
   <div class="pile" id="pile">
-    <div class="ph" data-r="-6" data-x="6" data-y="12"><i class="pin"></i><img src="img/snap-beirut.jpg" alt="Me on the Beirut corniche with a coffee"><div class="c"><span>Beyrouth, la corniche. Un café.</span><small>P.01 · LB</small></div></div>
+    <div class="ph" data-r="-6" data-x="6" data-y="12"><i class="pin"></i><img src="img/snap-beirut.jpg" alt="Me on the Beirut corniche with a coffee"><div class="c"><span>Beirut, la corniche. Un café.</span><small>P.01 · LB</small></div></div>
     <div class="ph" data-r="4" data-x="24" data-y="8"><i class="pin"></i><img src="img/snap-tv.jpg" alt="In a TV control room, laughing with a colleague"><div class="c"><span>Control room, 2 a.m. On air.</span><small>P.02 · SBA</small></div></div>
     <div class="ph" data-r="-3" data-x="42" data-y="16"><i class="pin"></i><img src="img/snap-desk.jpg" alt="At my desk with markers and stand sketches"><div class="c"><span>Deux marqueurs, pas de souris.</span><small>P.03 · RUH</small></div></div>
     <div class="ph" data-r="7" data-x="12" data-y="46"><i class="pin"></i><img src="img/snap-build.jpg" alt="On site during a stand build, pointing at an LED wall"><div class="c"><span>Build night. "Plus haut."</span><small>P.04 · HALL 2</small></div></div>
@@ -845,7 +857,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
       <div class="c"><div class="lbl">Now</div><div class="v"><span>Riyadh. In a hall most nights, drawing the next one.</span></div></div>
     </div>
   </div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Issue</span></div><div><span class="lbl">Status</span><span class="v">Drawing the next room</span></div><div><span class="lbl">Location</span><span class="v">Riyadh · Beyrouth</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Issue</span><span class="v">© 2026</span></div><div><span class="lbl">Sheet</span><span class="v big">13</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Issue</span></div><div><span class="lbl">Status</span><span class="v">Drawing the next room</span></div><div><span class="lbl">Location</span><span class="v">Riyadh · Beirut</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Issue</span><span class="v">© 2026</span></div><div><span class="lbl">Sheet</span><span class="v big">13</span></div></div>
 </section>
 <div class="sp" data-for="s13" style="--h:.4"></div>
 
@@ -881,13 +893,14 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   /* ---- sheet progress: driven by each sheet's spacer, or by the sheet itself on phones ---- */
   const sheets = $$('.sheet'); const spacers = {}; $$('.sp').forEach(s => spacers[s.dataset.for] = s);
   sheets.forEach(sh => { sh.insertAdjacentHTML('beforeend', '<div class="shade" aria-hidden="true"></div>' + (sh.classList.contains('cy') ? '<div class="dev" aria-hidden="true"></div>' : '')); sh.querySelector('.frame').insertAdjacentHTML('beforeend', '<i class="pen"></i>'); sh._shade = sh.querySelector('.shade'); sh._dev = sh.querySelector('.dev'); sh._pen = sh.querySelector('.pen'); });
+  const natTop = sh => sh.offsetTop - scrollY; /* where the sheet sits in flow, ignoring sticky and the crossfade transform */
   const fin = p => cl(p/.86); /* scenes complete at 86% of the scroll; the last 14% is the hold before the next sheet */
   function prog(id){
     const sp = spacers[id]; const sh = document.getElementById(id);
     if (sp && (!narrow() || sp.offsetHeight > 0)) { const r = sp.getBoundingClientRect(); return cl((innerHeight - r.top) / (r.height)); }
     const r = sh.getBoundingClientRect(); const total = r.height + innerHeight*.4; return cl((innerHeight*.7 - r.top) / total);
   }
-  function visible(id){ const sh = document.getElementById(id); const r = sh.getBoundingClientRect(); if (r.bottom <= 0 || r.top >= innerHeight) return false; if (narrow()) return true; const i = sheets.indexOf(sh); const next = sheets[i+1]; if (next && next.getBoundingClientRect().top <= 0) return false; return true; }
+  function visible(id){ const sh = document.getElementById(id); if (narrow()) { const r = sh.getBoundingClientRect(); return !(r.bottom <= 0 || r.top >= innerHeight); } const nt = natTop(sh); if (nt >= innerHeight) return false; const i = sheets.indexOf(sh); const next = sheets[i+1]; if (next && natTop(next) <= 0) return false; return true; }
 
   /* ---- chrome: tabs, hud, plot line, clock ---- */
   const tabs = $('#tabs'); sheets.forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.textContent = s.dataset.n; a.title = s.dataset.title; a.addEventListener('click', e => { e.preventDefault(); goTo(s); }); tabs.appendChild(a); });
@@ -903,16 +916,18 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   function d0(){ return 0; } clock(); setInterval(clock, 20000);
   ScrollTrigger.create({ trigger: 'main', start: 'top top', end: 'bottom bottom', scrub: true, onUpdate(s){ plot.style.width = (s.progress*100) + '%'; rmk.style.top = (s.progress*100) + '%'; } });
   gsap.ticker.add((t) => {
-    let cur = 0; sheets.forEach((s,i) => { if (s.getBoundingClientRect().top <= innerHeight*.5) cur = i; });
+    let cur = 0; sheets.forEach((s,i) => { if ((narrow() ? s.getBoundingClientRect().top : natTop(s)) <= innerHeight*.5) cur = i; });
     if (cur !== curSheet) { curSheet = cur; const s = sheets[cur]; tabEls.forEach((a,i) => a.classList.toggle('on', i === cur)); hudn.textContent = 'S' + s.dataset.n + ' / 13'; hudt.textContent = s.dataset.title; tick(1500, .03, .05); }
     hudb.style.width = (prog(sheets[cur].id)*100) + '%'; rt.forEach((a,i) => a.classList.toggle('on', i === cur));
-    /* depth: the sheet underneath sinks and darkens as the next one slides over it; cyanotype sheets develop from pale to deep blue as they arrive; the plotter head tracks your place on the sheet */
+    /* transitions: no sheet slides over another. An arriving sheet is pinned to the top of the viewport and fades in while the one underneath dims; nothing moves or rescales, so there is nothing to flicker. The plotter head tracks your place on the sheet. */
     const H = innerHeight, wide = !narrow();
-    sheets.forEach((sh,i) => { const r = sh.getBoundingClientRect(); if (r.bottom < -10 || r.top > H + 10) return;
-      let c = 0; const next = sheets[i+1]; if (wide && next) { const nt = next.getBoundingClientRect().top; c = cl((H - nt)/H); }
-      const tr = `translateZ(0) scale(${(1 - c*.06).toFixed(4)})`; if (sh._tr !== tr) { sh.style.transform = tr; sh._tr = tr; }
-      sh._shade.style.opacity = c*.55;
-      if (sh._dev) { const a = wide ? cl((H - r.top)/H) : 1; sh._dev.style.opacity = (1 - gsap.parseEase('power2.out')(a))*.92; }
+    sheets.forEach((sh,i) => { const top = wide ? natTop(sh) : sh.getBoundingClientRect().top; const next = sheets[i+1]; const nextTop = next ? (wide ? natTop(next) : next.getBoundingClientRect().top) : Infinity; if (top > H + 10 || nextTop < -10) { if (sh._op !== '') { sh.style.opacity = ''; sh.style.transform = 'translateZ(0)'; sh._op = ''; } return; }
+      let c = 0; if (wide && next) c = cl((H - nextTop)/H);
+      const r = { top };
+      if (wide && r.top > 0 && r.top < H) { const a = gsap.parseEase('power2.inOut')(cl((H - r.top)/H)); sh.style.transform = `translate3d(0,${(-r.top).toFixed(1)}px,0)`; sh.style.opacity = a.toFixed(3); sh._op = 'fade'; }
+      else if (sh._op !== 'rest') { sh.style.transform = 'translateZ(0)'; sh.style.opacity = '1'; sh._op = 'rest'; }
+      sh._shade.style.opacity = (gsap.parseEase('power1.in')(c)*.5).toFixed(3);
+      if (sh._dev) sh._dev.style.opacity = 0;
       sh._pen.style.left = (cl(prog(sh.id) + Math.sin(t*1.3 + i)*.012, 0, 1)*100) + '%'; });
   });
 
@@ -970,14 +985,15 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 
   /* ---- S02: site plan, drawn from real coastlines ---- */
   (function(){
-    const cv = $('#map'), ctx = cv.getContext('2d'), sheet = $('#s02'); let W = 0, H = 0, dpr = 1; let paths = null, dots = null;
-    const WIN = { lo0: 22, lo1: 62, la0: 9, la1: 44 }; // the window of the world we draw: eastern Med to the Gulf
+    const cv = $('#map'), ctx = cv.getContext('2d'), sheet = $('#s02'); let W = 0, H = 0, dpr = 1; let landP = null, lakeP = null, coastP = null, borderP = null;
+    const WIN = { lo0: 24, lo1: 60, la0: 11, la1: 42 }; // the window of the world we draw: eastern Med to the Gulf, Natural Earth 50m, Mercator
+    const mercY = la => Math.log(Math.tan(Math.PI/4 + la*Math.PI/360));
     let mx = 0, my = 0, mxs = 0, mys = 0;
     function size(){ dpr = Math.min(devicePixelRatio, 2); W = sheet.clientWidth; H = sheet.clientHeight; cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); build(); }
-    function proj(lo, la){ const aspect = W/H; const dlo = WIN.lo1-WIN.lo0, dla = WIN.la1-WIN.la0; let sx = W/dlo, sy = H/dla; const s = Math.max(sx, sy*1.0); const cx = (lo - (WIN.lo0+WIN.lo1)/2) * s * 1.0, cy = -(la - (WIN.la0+WIN.la1)/2) * s * 1.18; return [W/2 + cx, H/2 + cy]; }
-    function build(){ if (!window.__coast) return; const j = window.__coast; paths = new Path2D(); j.rings.forEach(r => { let started = false; r.forEach(([lo,la]) => { if (lo < WIN.lo0-6 || lo > WIN.lo1+6 || la < WIN.la0-6 || la > WIN.la1+6) { started = false; return; } const [x,y] = proj(lo,la); if (!started) { paths.moveTo(x,y); started = true; } else paths.lineTo(x,y); }); });
-      dots = []; for (let i=0;i<j.dots.length;i+=2){ const lo = j.dots[i], la = j.dots[i+1]; if (lo < WIN.lo0-2 || lo > WIN.lo1+2 || la < WIN.la0-2 || la > WIN.la1+2) continue; dots.push(proj(lo,la)); } }
-    fetch('data/coast.json').then(r => r.json()).then(j => { window.__coast = j; build(); }).catch(() => {});
+    function proj(lo, la){ const y0 = mercY(WIN.la0), y1 = mercY(WIN.la1); const dlo = (WIN.lo1-WIN.lo0)*Math.PI/180, dla = y1 - y0; const s = Math.max(W/dlo, H/dla)*.96; return [W/2 + ((lo - (WIN.lo0+WIN.lo1)/2)*Math.PI/180)*s, H/2 - (mercY(la) - (y0+y1)/2)*s]; }
+    const toPath = (rings, close) => { const P = new Path2D(); rings.forEach(r => { r.forEach(([lo,la],i) => { const [x,y] = proj(lo,la); i ? P.lineTo(x,y) : P.moveTo(x,y); }); if (close) P.closePath(); }); return P; };
+    function build(){ if (!window.__map) return; const j = window.__map; landP = toPath(j.land, true); lakeP = toPath(j.lakes, true); coastP = toPath(j.coast, false); borderP = toPath(j.borders, false); }
+    fetch('data/map.json').then(r => r.json()).then(j => { window.__map = j; build(); }).catch(() => {});
     size(); addEventListener('resize', size);
     const A = [35.50, 33.89], B = [46.68, 24.71]; const cityA = $('#cityA'), cityB = $('#cityB'), jkm = $('#jkm'), jyr = $('#jyr'), jh = $('#jh'), jp = $('#jp'); let bi = -1;
     addEventListener('pointermove', e => { mx = e.clientX/innerWidth - .5; my = e.clientY/innerHeight - .5; }, { passive:true });
@@ -989,9 +1005,8 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
       // graticule
       ctx.strokeStyle = fg; ctx.globalAlpha = .08; ctx.lineWidth = 1; ctx.beginPath(); for (let lo = 20; lo <= 65; lo += 5){ const [x0,y0] = proj(lo, 0), [x1,y1] = proj(lo, 60); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); } for (let la = 5; la <= 50; la += 5){ const [x0,y0] = proj(10, la), [x1,y1] = proj(75, la); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); } ctx.stroke();
       ctx.font = '9px JetBrains Mono, monospace'; ctx.fillStyle = fg; ctx.globalAlpha = .35; for (let lo = 25; lo <= 60; lo += 5){ const [x,y] = proj(lo, WIN.la1-1.2); ctx.fillText(lo + '°E', x+3, y); } for (let la = 10; la <= 40; la += 5){ const [x,y] = proj(WIN.lo0+.6, la); ctx.fillText(la + '°N', x, y-3); }
-      // land dots + coast
-      if (dots) { ctx.globalAlpha = .45; dots.forEach(([x,y]) => ctx.fillRect(x-.6, y-.6, 1.2, 1.2)); }
-      if (paths) { ctx.globalAlpha = .75; ctx.lineWidth = 1; ctx.stroke(paths); }
+      // land, lakes, borders, coast: the real outlines
+      if (landP) { const bg = getComputedStyle(sheet).getPropertyValue('--bg').trim() || '#0B2A55'; ctx.fillStyle = fg; ctx.globalAlpha = .09; ctx.fill(landP); ctx.fillStyle = bg; ctx.globalAlpha = 1; ctx.fill(lakeP); ctx.strokeStyle = fg; ctx.globalAlpha = .32; ctx.lineWidth = 1; ctx.setLineDash([2,4]); ctx.stroke(borderP); ctx.setLineDash([]); ctx.globalAlpha = .9; ctx.lineWidth = 1.2; ctx.stroke(coastP); ctx.globalAlpha = .5; ctx.lineWidth = .8; ctx.stroke(lakeP); }
       // route: a lifted arc drawn by progress
       const [ax,ay] = proj(A[0],A[1]), [bx,by] = proj(B[0],B[1]); const cx = (ax+bx)/2 + (by-ay)*.25, cy = (ay+by)/2 - (bx-ax)*.25;
       ctx.globalAlpha = .25; ctx.setLineDash([3,6]); ctx.lineDashOffset = -t*14; ctx.beginPath(); ctx.moveTo(ax,ay); ctx.quadraticCurveTo(cx,cy,bx,by); ctx.stroke(); ctx.setLineDash([]); ctx.lineDashOffset = 0;

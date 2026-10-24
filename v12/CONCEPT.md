@@ -69,6 +69,11 @@ Every sheet has a life of its own while you read, and scrolling adds to it rathe
 - **Cover reworked (not a CV).** Name, the first marker stroke drawn in red, one line in his voice, one line of who and where; the 4× portrait sits full height in cyanotype and turns to colour under the cursor. The role/based/method form is gone, the issue sheet no longer says "available" and the revision log is replaced by one line.
 - On phones the hall keeps its own spacer so the walk is not compressed into one screen. The export scripts live in the session scratchpad (`export_one.py`, `export_all.py`, `thumb_one.py`); a 1600 px render per model is in `models/*.jpg` for later use.
 
+## Round 7 (25 Oct): real map, seamless transitions, overlap pass
+- **Site plan.** The map is drawn from Natural Earth 50 m data (public domain): land fill, lakes, coastlines and country borders (dashed), clipped to the eastern Mediterranean and the Gulf (`data/map.json`, built by `mkmap.py` in the scratchpad) and projected in Mercator, so Riyadh sits inland and the coasts are the real ones. Spellings are Beirut and Riyadh everywhere.
+- **Transitions.** No sheet slides over another any more. An arriving sheet is pinned to the top of the viewport (translate by its own natural offset) and fades in while the sheet underneath dims; nothing rescales and there is no drop shadow, so there is nothing to flicker. Sheet geometry uses the natural (unstuck, untransformed) position via `offsetTop - scrollY`; reading `getBoundingClientRect` on a transformed sticky sheet fed the transform back into itself.
+- **Overlaps at compact widths (≤1100 px).** The site-plan beat has a soft backdrop and a narrower measure; the elevation sheet uses a smaller portrait, headline and spec so the copy no longer runs into the list; the register fades its rows at the top and bottom of the body; the cursor coordinate readout is hidden; the issue stamp sits in the corner.
+
 ## System
 - Sheets are sticky; a spacer after each one drives its scene, so every scene has its own scroll length and the next sheet slides over the last. On phones the stack is off and sheets flow.
 - Crosshair cursor with live coordinates, labels on anything you can open or drag. Plotter progress line under the nav, sheet tabs, Riyadh clock.
