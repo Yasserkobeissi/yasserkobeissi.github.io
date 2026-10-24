@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-models-base="">
+<html lang="en" data-models-base="" data-brief-key="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -641,6 +641,24 @@ body.proj-open{overflow:hidden}
 .proj .card.soon p{margin:10px 0 0;font-family:var(--ser);font-style:italic;color:var(--bl2);max-width:24ch}
 @media (max-width:720px){.proj.cat .say{text-align:left}}
 
+/* ---------- the brief: a form that lands in the inbox ---------- */
+.proj.brief h1{font-size:clamp(36px,5vw,80px)}
+.proj.brief .say{font-family:var(--ser);font-style:italic;font-size:clamp(17px,1.4vw,24px);color:var(--bl2);max-width:36ch;text-align:right;margin:0}
+#briefform{display:grid;gap:18px;max-width:900px}
+#briefform label{display:grid;gap:7px;font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fg3)}
+#briefform input,#briefform select,#briefform textarea{font:inherit;font-family:var(--body,inherit);font-size:1rem;letter-spacing:0;text-transform:none;color:var(--bl);background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 0;outline:none;border-radius:0;-webkit-appearance:none;appearance:none}
+#briefform textarea{border:1px solid var(--line);padding:12px;resize:vertical;min-height:160px}
+#briefform input:focus,#briefform select:focus,#briefform textarea:focus{border-color:var(--red)}
+#briefform .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
+#briefform .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px 28px}
+#briefform .bc{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#briefform .send{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px}
+#briefform .cta{display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border-radius:999px;background:var(--bl);color:var(--wp);border:1px solid var(--bl);font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+#briefform .cta:hover{background:var(--red);border-color:var(--red)}
+#briefform .cta[disabled]{opacity:.5;cursor:default}
+#briefform .err{border-color:var(--red)!important}
+@media (max-width:720px){#briefform .row2,#briefform .row3{grid-template-columns:1fr}.proj.brief .say{text-align:left}}
+
 </style>
 </head>
 <body>
@@ -949,6 +967,23 @@ body.proj-open{overflow:hidden}
 
 
 
+
+<div class="proj brief" id="briefpage" data-lenis-prevent aria-hidden="true" role="dialog" aria-label="Send the brief">
+  <div class="top"><button type="button" id="briefback" data-hot="BACK">← Back to the set</button><span class="lbl">Sheet 13 · the brief</span></div>
+  <div class="wrap">
+    <div class="head"><div><div class="lbl">Send the brief</div><h1>A room that<br>needs an idea.</h1></div><p class="say">Tell me the room, the date and what has to happen in it. I answer with the first line.</p></div>
+    <form id="briefform" novalidate>
+      <div class="row2"><label>Your name<input name="name" required autocomplete="name"></label><label>Company<input name="company" autocomplete="organization"></label></div>
+      <div class="row2"><label>Email<input name="email" type="email" required autocomplete="email"></label><label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel"></label></div>
+      <div class="row3"><label>What is it<select name="type"><option>Exhibition stand</option><option>Event</option><option>Launch</option><option>Employee day</option><option>Stage</option><option>Motion / content</option><option>Object</option><option>Something else</option></select></label><label>City · venue<input name="venue" placeholder="Riyadh · Front"></label><label>Date<input name="date" type="date"></label></div>
+      <div class="row3"><label>Size<input name="size" placeholder="e.g. 120 m², double deck"></label><label>Budget range<select name="budget"><option>Not set yet</option><option>Under 100k SAR</option><option>100k – 300k SAR</option><option>300k – 1M SAR</option><option>Over 1M SAR</option></select></label><label>Deadline for the proposal<input name="proposal" type="date"></label></div>
+      <label>The brief<textarea name="brief" rows="7" required placeholder="What has to happen in the room. Who walks in. What they should remember."></textarea></label>
+      <label>Links to files or references<input name="links" placeholder="Drive, WeTransfer, Behance…"></label>
+      <input type="text" name="botcheck" class="bc" tabindex="-1" autocomplete="off">
+      <div class="send"><button type="submit" class="cta" id="briefsend"><span>Send it</span><i>→</i></button><span class="lbl" id="briefstate">Goes straight to my inbox</span></div>
+    </form>
+  </div>
+</div>
 <div class="proj cat" id="catpage" data-lenis-prevent aria-hidden="true" role="dialog" aria-label="Category">
   <div class="top"><button type="button" id="catback" data-hot="BACK">← Back to the set</button><span id="catcount" class="lbl"></span></div>
   <div class="wrap">
@@ -1384,8 +1419,24 @@ body.proj-open{overflow:hidden}
   /* ---- S13: the question fills, the stamp slams ---- */
   (function(){ const fill = $('#fill'), stamp = $('#stamp'); let slammed = false; gsap.ticker.add(() => { if (!visible('s13')) return; const p = prog('s13'); fill.style.setProperty('--p', cl(p/.5)*100 + '%'); if (!slammed && p > .25) { slammed = true; stamp.classList.add('on'); tick(600, .12, .12); } }); })();
 
-  /* the brief button works even with no mail app: it copies the address and says so, then hands over to mailto */
-  (function(){ const b = $('#brief'); if (!b) return; const sp = b.querySelector('span'); b.addEventListener('click', async () => { try { await navigator.clipboard.writeText('yasserkobeissi98@gmail.com'); } catch(e){} const old = sp.textContent; sp.textContent = 'Address copied · yasserkobeissi98@gmail.com'; setTimeout(() => sp.textContent = old, 3200); }); })();
+
+  /* ---- the brief: opens over the set, sends through Web3Forms to the inbox (key in data-brief-key on <html>); without a key it falls back to a mail draft ---- */
+  const BRIEF = (function(){ const el = $('#briefpage'), form = $('#briefform'), state = $('#briefstate'), btn = $('#briefsend'); let on = false; const KEY = document.documentElement.dataset.briefKey || '';
+    function open(push = true){ on = true; el.classList.add('on'); el.setAttribute('aria-hidden', 'false'); document.body.classList.add('proj-open'); el.scrollTop = 0; if (lenis) lenis.stop(); if (push) history.pushState({ brief: 1 }, '', '#brief'); paper(.1); setTimeout(() => form.name.focus(), 500); }
+    function close(push = true){ if (!on) return; on = false; el.classList.remove('on'); el.setAttribute('aria-hidden', 'true'); if (!$('#proj').classList.contains('on') && !$('#catpage').classList.contains('on')) { document.body.classList.remove('proj-open'); if (lenis) lenis.start(); } if (push) history.pushState({}, '', location.pathname + location.search); }
+    $('#briefback').addEventListener('click', () => close());
+    const brief = $('#brief'); if (brief) { brief.addEventListener('click', e => { e.preventDefault(); open(); }, true); }
+    addEventListener('popstate', () => { if (location.hash === '#brief') open(false); else if (on) close(false); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && on) close(); });
+    const text = d => `Brief from ${d.name}${d.company ? ' · ' + d.company : ''}\n\nEmail: ${d.email}\nPhone: ${d.phone || '-'}\n\nWhat: ${d.type}\nCity · venue: ${d.venue || '-'}\nDate: ${d.date || '-'}\nSize: ${d.size || '-'}\nBudget: ${d.budget}\nProposal needed by: ${d.proposal || '-'}\n\n${d.brief}\n\nLinks: ${d.links || '-'}`;
+    form.addEventListener('submit', async e => { e.preventDefault(); const d = Object.fromEntries(new FormData(form).entries()); let ok = true; ['name','email','brief'].forEach(k => { const f = form[k]; const bad = !d[k] || (k === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d[k])); f.classList.toggle('err', bad); if (bad) ok = false; }); if (!ok) { state.textContent = 'Name, email and the brief are needed'; return; } if (d.botcheck) return;
+      btn.disabled = true; state.textContent = 'Sending…';
+      if (KEY) { try { const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ access_key: KEY, subject: 'Brief · ' + d.name + (d.company ? ' · ' + d.company : '') + ' · ' + d.type, from_name: 'yasserkobeissi.github.io', replyto: d.email, ...d, botcheck: undefined, message: text(d) }) }); const j = await r.json(); if (j.success) { state.textContent = 'Sent. I will come back with the first line.'; form.reset(); tone(660, .4, .1); return; } } catch(err){} state.textContent = 'Could not send from here; opening your mail app with the brief instead'; }
+      else state.textContent = 'Opening your mail app with the brief';
+      try { await navigator.clipboard.writeText(text(d)); } catch(err){} location.href = 'mailto:yasserkobeissi98@gmail.com?subject=' + encodeURIComponent('Brief · ' + d.name) + '&body=' + encodeURIComponent(text(d)); btn.disabled = false; });
+    if (location.hash === '#brief') open(false);
+    return { open, close }; })();
+
   $$('[data-copy]').forEach(b => b.addEventListener('click', async () => { const v = b.dataset.copy, old = b.textContent; try { await navigator.clipboard.writeText(v); b.textContent = 'Copied'; } catch(e){ b.textContent = v; } setTimeout(() => b.textContent = old, 1400); }));
 
   addEventListener('load', () => { setTimeout(() => ScrollTrigger.refresh(), 600); });
