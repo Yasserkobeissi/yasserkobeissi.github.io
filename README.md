@@ -4,7 +4,7 @@ The live site is `site/` (The Drawing Set, v12). Everything else is history or t
 
 | Folder | What it is |
 |---|---|
-| `site/` | The website. One HTML file, images in `img/`, map data in `data/`, 3D stands in `models/` with `manifest.json`. Deployed to GitHub Pages on every push to `main`. |
+| `site/` | The website. One HTML file, images in `img/`, map data in `data/`, 3D stands in `models/` with `manifest.json`, project galleries in `img/projects/` listed in `data/projects.json`. Deployed to GitHub Pages on every push to `main`. |
 | `site/ASSETS-SPEC.md` | What to export for the site: GLB settings for the stands, photo sizes, scans, facts per project. Give this to Yasser. |
 | `site/CONCEPT.md` | Design notes, round by round. |
 | `handover/` | The original brief (`CLAUDE.md`) and the v10 site it was built on. Facts come from here. |

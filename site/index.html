@@ -572,6 +572,32 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 #s08a .vig{background:linear-gradient(180deg,rgba(6,16,32,.85) 0,rgba(6,16,32,0) 22%,rgba(6,16,32,0) 62%,rgba(6,16,32,.88) 100%),radial-gradient(ellipse at 50% 60%,transparent 50%,rgba(3,8,18,.5) 100%)}
 #s08 .stage{-webkit-mask:linear-gradient(180deg,transparent 0,#000 16%,#000 78%,transparent 100%);mask:linear-gradient(180deg,transparent 0,#000 16%,#000 78%,transparent 100%)}
 
+/* ---------- project page: opens over the set, scrolls on its own ---------- */
+.proj{position:fixed;inset:0;z-index:80;background:var(--wp);color:var(--bl);overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;opacity:0;pointer-events:none;transition:opacity .45s;--fg:var(--bl);--fg2:var(--bl2);--fg3:rgba(23,63,134,.55);--line:rgba(23,63,134,.3)}
+.proj.on{opacity:1;pointer-events:auto}
+.proj .wrap{max-width:1180px;margin:0 auto;padding:calc(var(--g) + 70px) var(--g) calc(var(--g) + 60px)}
+.proj .top{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:16px var(--g);background:linear-gradient(var(--wp) 70%,rgba(243,240,232,0));font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}
+.proj .top button,.proj .top a{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;color:var(--bl);background:var(--wp);cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;text-decoration:none;transition:background .25s,color .25s,border-color .25s}
+.proj .top button:hover,.proj .top a:hover{background:var(--red);border-color:var(--red);color:#fff}
+.proj .head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:var(--g);align-items:end;margin-bottom:clamp(24px,4vh,48px);border-bottom:1px solid var(--line);padding-bottom:clamp(18px,3vh,32px)}
+.proj .head .lbl{color:var(--red);margin-bottom:10px}
+.proj h1{font-size:clamp(40px,6vw,96px);line-height:.9;text-transform:uppercase;font-weight:900;font-variation-settings:"wdth" 112,"wght" 900;letter-spacing:-.02em}
+.proj .facts{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.9rem;align-items:center}
+.proj .facts .lbl{font-size:.54rem;color:var(--fg3)}
+.proj .facts .ph{display:inline-block;padding:0 7px;border:1px dashed var(--red);border-radius:2px;color:var(--red);font-family:var(--mono);font-size:.78em}
+.proj .line{grid-column:1/-1;margin-top:8px;font-family:var(--ser);font-style:italic;font-size:clamp(18px,1.5vw,26px);color:var(--bl)}
+.proj .gal{display:grid;gap:clamp(14px,2vw,28px)}
+.proj .gal figure{margin:0;position:relative;background:var(--wp2);overflow:hidden}
+.proj .gal img{width:100%;height:auto;display:block;opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.proj .gal img.in{opacity:1;transform:none}
+.proj .gal figcaption{position:absolute;left:12px;bottom:10px;font-family:var(--mono);font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);opacity:.8}
+.proj .nextp{margin-top:clamp(30px,6vh,70px);border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.proj .nextp a{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(22px,3vw,44px);letter-spacing:-.02em;color:var(--bl);text-decoration:none}
+.proj .nextp a:hover{color:var(--red)}
+.proj .nextp .lbl{display:block;margin-bottom:6px;color:var(--fg3)}
+body.proj-open{overflow:hidden}
+@media (max-width:720px){.proj .head{grid-template-columns:1fr}.proj h1{font-size:clamp(34px,11vw,56px)}}
+
 </style>
 </head>
 <body>
@@ -776,8 +802,8 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   <div class="stage" id="hxstage"><div class="stack" id="stack"></div></div>
   <div class="idx num" id="hxidx">01 / 23</div>
   <div class="cap"><div class="lbl" id="hxn">Exhibition stand · 2026</div><h2 class="h" id="hxh">Quality of Life Program</h2><p id="hxp">Scroll to pull the next sheet</p></div>
-  <a class="open" id="hxopen" href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener" data-hot="OPEN">Open on Behance ↗</a>
-  <div class="hint">Scroll to pull · drag to tilt · click to open</div>
+  <a class="open" id="hxopen" href="#" data-hot="OPEN">Open the project →</a>
+  <div class="hint">Scroll to pull · drag to tilt · click to open the project</div>
   <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Drawing index</span></div><div><span class="lbl">Sheets</span><span class="v">23</span></div><div><span class="lbl">Source</span><span class="v">behance.net/yaserkobeissi</span></div><div><span class="lbl">Scale</span><span class="v">Varies</span></div><div><span class="lbl">Rev</span><span class="v">2023 → 2026</span></div><div><span class="lbl">Sheet</span><span class="v big">08</span></div></div>
 </section>
 <div class="sp" data-for="s08" style="--h:4.2"></div>
@@ -867,6 +893,16 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 <div class="sp" data-for="s13" style="--h:.4"></div>
 
 </main>
+
+
+<div class="proj" id="proj" aria-hidden="true" role="dialog" aria-label="Project">
+  <div class="top"><button type="button" id="projback" data-hot="BACK">← Back to the set</button><a id="projbe" href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance ↗</a></div>
+  <div class="wrap">
+    <div class="head"><div><div class="lbl" id="projkind">Project</div><h1 id="projtitle">Project</h1></div><div class="facts" id="projfacts"></div></div>
+    <div class="gal" id="projgal"></div>
+    <div class="nextp"><div><span class="lbl">Next sheet</span><a href="#" id="projnext">Next</a></div><div><span class="lbl">Previous</span><a href="#" id="projprev">Previous</a></div></div>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -974,6 +1010,23 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
     pre.addEventListener('click', () => tl.progress(1));
     setTimeout(start, 4500);
   }
+
+
+  /* ---- project pages: one per project, over the set. Images gathered from his Behance galleries into img/projects/<key>/. ---- */
+  const PROJ = (function(){ const el = $('#proj'), gal = $('#projgal'), title = $('#projtitle'), kind = $('#projkind'), facts = $('#projfacts'), be = $('#projbe'), nextA = $('#projnext'), prevA = $('#projprev'); let list = [], curKey = null, io = null;
+    fetch('data/projects.json').then(r => r.json()).then(j => { list = j; if (location.hash.startsWith('#p/')) open(location.hash.slice(3), false); }).catch(() => {});
+    const ph = v => v ? v : '<span class="ph">to fill</span>';
+    function render(p){ title.textContent = p.title; kind.textContent = p.kind; be.href = p.url; facts.innerHTML = `<span class="lbl">Client</span><span>${ph(p.client)}</span><span class="lbl">City · hall</span><span>${ph(p.city)} · ${ph(p.hall)}</span><span class="lbl">Date</span><span>${ph(p.date)}</span><span class="lbl">Area</span><span>${ph(p.area)} m²</span><span class="lbl">Built</span><span>${ph(p.built)}</span><span class="lbl">Images</span><span>${p.count}</span><p class="line">"${p.line || '<span class="ph">one line in my words</span>'}"</p>`;
+      gal.innerHTML = ''; for (let i=1;i<=p.count;i++){ const f = document.createElement('figure'); f.innerHTML = `<img src="img/projects/${p.key}/${String(i).padStart(2,'0')}.jpg" alt="${p.title}, image ${i}" loading="${i < 3 ? 'eager' : 'lazy'}"><figcaption>${p.title} · ${String(i).padStart(2,'0')} / ${String(p.count).padStart(2,'0')}</figcaption>`; gal.appendChild(f); }
+      if (io) io.disconnect(); io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { root: el, rootMargin: '80px' }); $$('img', gal).forEach(im => io.observe(im));
+      const i = list.indexOf(p), n = list[(i+1) % list.length], pv = list[(i-1+list.length) % list.length]; nextA.textContent = n.title; nextA.dataset.key = n.key; prevA.textContent = pv.title; prevA.dataset.key = pv.key; }
+    function open(key, push = true){ const p = list.find(x => x.key === key); if (!p) return; curKey = key; render(p); el.classList.add('on'); el.setAttribute('aria-hidden', 'false'); document.body.classList.add('proj-open'); el.scrollTop = 0; if (lenis) lenis.stop(); if (push) history.pushState({ p: key }, '', '#p/' + key); paper(.1); }
+    function close(push = true){ if (!curKey) return; curKey = null; el.classList.remove('on'); el.setAttribute('aria-hidden', 'true'); document.body.classList.remove('proj-open'); if (lenis) lenis.start(); if (push) history.pushState({}, '', location.pathname + location.search); }
+    $('#projback').addEventListener('click', () => close());
+    [nextA, prevA].forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(a.dataset.key); }));
+    addEventListener('popstate', () => { const h = location.hash; if (h.startsWith('#p/')) open(h.slice(3), false); else close(false); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && curKey) close(); });
+    return { open, close }; })();
 
   /* ---- S00: the name, the first stroke, the portrait in cyanotype that turns to colour under the cursor ---- */
   (function(){
@@ -1107,15 +1160,16 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
     stage.addEventListener('pointerdown', e => { dragging = true; lx = e.clientX; ly = e.clientY; stage.setPointerCapture(e.pointerId); });
     stage.addEventListener('pointermove', e => { if (!dragging) return; tx += (e.clientX - lx)*.08; ty -= (e.clientY - ly)*.08; lx = e.clientX; ly = e.clientY; tx = cl(tx, -18, 18); ty = cl(ty, -12, 12); });
     const end = () => { dragging = false; }; stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
-    stage.addEventListener('click', e => { if (Math.abs(tx) > 2 || Math.abs(ty) > 2) return; if (cur >= 0) window.open(PROJECTS[cur][3], '_blank', 'noopener'); });
+    stage.addEventListener('click', e => { if (Math.abs(tx) > 2 || Math.abs(ty) > 2) return; if (cur >= 0) PROJ.open(PROJECTS[cur][0]); });
+    hxopen.addEventListener('click', e => { e.preventDefault(); if (cur >= 0) PROJ.open(PROJECTS[cur][0]); });
     gsap.ticker.add((t) => { if (!visible('s08')) return; const p = fin(prog('s08')); const f = p*(N-1); if (!dragging) { tx += (Math.sin(t*.45)*3.5 - tx)*.03; ty += (Math.cos(t*.37)*2.5 - ty)*.03; } tiltX += (ty - tiltX)*.1; tiltY += (tx - tiltY)*.1;
       stack.style.transform = `translate(-50%,-56%) rotateX(${52 + tiltX}deg) rotateZ(${-30 + tiltY}deg)`;
       let best = -1, bd = 1e9; cards.forEach((c,i) => { const d = i - f; const ad = Math.abs(d); if (ad < bd) { bd = ad; best = i; } if (d < -.5) { const k = cl(-d - .5); c.style.transform = `translate3d(${-40*k}%, ${-90*k}%, ${160*k}px) rotateZ(${-8*k}deg)`; c.style.opacity = 1 - k; c.style.zIndex = 100 + i; } else { c.style.transform = `translate3d(${d*7}px, ${d*-9}px, ${d*-26}px)`; c.style.opacity = cl(1 - d*.05, .1, 1); c.style.zIndex = 100 - i; } c.classList.toggle('front', i === best); });
-      if (best !== cur) { cur = best; const [k,title,meta,url] = PROJECTS[best]; hxn.textContent = meta.toUpperCase(); hxh.textContent = title; hxidx.textContent = String(best+1).padStart(2,'0') + ' / ' + N; hxopen.href = url; gsap.fromTo([hxn,hxh], { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'expo.out', stagger: .05 }); paper(.06); } }); })();
+      if (best !== cur) { cur = best; const [k,title,meta,url] = PROJECTS[best]; hxn.textContent = meta.toUpperCase(); hxh.textContent = title; hxidx.textContent = String(best+1).padStart(2,'0') + ' / ' + N; hxopen.href = '#p/' + k; gsap.fromTo([hxn,hxh], { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'expo.out', stagger: .05 }); paper(.06); } }); })();
 
   /* ---- S09: the register rolls like end credits ---- */
   (function(){ const rows = $('#rows'), roll = $('#roll'), body = $('#s09 .body'), peek = $('#peek'); const imgs = {};
-    REGISTER.forEach(([k,t,m,y],i) => { const a = document.createElement('a'); a.className = 'row'; a.href = PROJECTS.find(p => p[0]===k)?.[3] || 'https://www.behance.net/yaserkobeissi'; a.target = '_blank'; a.rel = 'noopener'; a.dataset.img = 'img/' + k + '.jpg'; a.innerHTML = `<span class="i">${String(i+1).padStart(2,'0')}</span><h3>${t}</h3><span class="m">${m}</span><span class="y num">${y}</span>`; rows.appendChild(a); const im = document.createElement('img'); im.src = a.dataset.img; im.alt = ''; peek.appendChild(im); imgs[a.dataset.img] = im; });
+    REGISTER.forEach(([k,t,m,y],i) => { const a = document.createElement('a'); a.className = 'row'; a.href = '#p/' + k; a.addEventListener('click', e => { e.preventDefault(); PROJ.open(k); }); a.dataset.img = 'img/' + k + '.jpg'; a.innerHTML = `<span class="i">${String(i+1).padStart(2,'0')}</span><h3>${t}</h3><span class="m">${m}</span><span class="y num">${y}</span>`; rows.appendChild(a); const im = document.createElement('img'); im.src = a.dataset.img; im.alt = ''; peek.appendChild(im); imgs[a.dataset.img] = im; });
     const rowEls = $$('.row', rows);
     if (fine) { let ppx = 0, ppy = 0; gsap.ticker.add(() => { ppx += (px-ppx)*.12; ppy += (py-ppy)*.12; peek.style.left = Math.min(ppx, innerWidth - peek.offsetWidth*1.08 - 24) + 'px'; peek.style.top = ppy + 'px'; }); rowEls.forEach(r => { r.addEventListener('pointerenter', () => { peek.classList.add('on'); Object.values(imgs).forEach(i => i.classList.remove('on')); imgs[r.dataset.img].classList.add('on'); }); r.addEventListener('pointerleave', () => peek.classList.remove('on')); }); }
     let idle = 0, lastP9 = 0; gsap.ticker.add((t, dt) => { if (!visible('s09')) return; const p = fin(prog('s09')); const travel = Math.max(0, roll.scrollHeight - body.clientHeight); if (!reduce && p > .02) idle += (dt||16)*.014; if (p < lastP9 - .0005) idle = Math.max(0, idle - (lastP9 - p)*travel*2.5); lastP9 = p; const y = narrow() ? 0 : -cl(p*travel + idle, 0, travel); roll.style.transform = `translate3d(0,${y}px,0)`; }); })();
@@ -1237,7 +1291,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
     reel.addEventListener('pointerdown', e => { drag = true; idle = false; lastX = e.clientX; reel.setPointerCapture(e.pointerId); }); reel.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - lastX; lastX = e.clientX; rx += dx; v = dx; }); const end = () => { drag = false; setTimeout(() => idle = true, 2500); }; reel.addEventListener('pointerup', end); reel.addEventListener('pointercancel', end);
     reel.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); rx -= e.deltaX; idle = false; clearTimeout(reel._t); reel._t = setTimeout(() => idle = true, 2000); } }, { passive:false });
     gsap.ticker.add(() => { if (!visible('s11')) return; if (!drag) { rx += v; v *= .94; if (idle && Math.abs(v) < .3) rx -= .35; } if (half) { if (rx < -half) rx += half; if (rx > 0) rx -= half; } track.style.transform = `translate3d(${rx}px,0,0)`; });
-    track.addEventListener('click', e => { const f = e.target.closest('.fr'); if (!f || Math.abs(v) > 2) return; window.open(PROJECTS[+f.dataset.i][3], '_blank', 'noopener'); }); })();
+    track.addEventListener('click', e => { const f = e.target.closest('.fr'); if (!f || Math.abs(v) > 2) return; PROJ.open(PROJECTS[+f.dataset.i][0]); }); })();
 
   /* ---- S13: the question fills, the stamp slams ---- */
   (function(){ const fill = $('#fill'), stamp = $('#stamp'); let slammed = false; gsap.ticker.add(() => { if (!visible('s13')) return; const p = prog('s13'); fill.style.setProperty('--p', cl(p/.5)*100 + '%'); if (!slammed && p > .25) { slammed = true; stamp.classList.add('on'); tick(600, .12, .12); } }); })();

@@ -74,6 +74,10 @@ Every sheet has a life of its own while you read, and scrolling adds to it rathe
 - **Transitions.** No sheet slides over another any more. An arriving sheet is pinned to the top of the viewport (translate by its own natural offset) and fades in while the sheet underneath dims; nothing rescales and there is no drop shadow, so there is nothing to flicker. Sheet geometry uses the natural (unstuck, untransformed) position via `offsetTop - scrollY`; reading `getBoundingClientRect` on a transformed sticky sheet fed the transform back into itself.
 - **Overlaps at compact widths (≤1100 px).** The site-plan beat has a soft backdrop and a narrower measure; the elevation sheet uses a smaller portrait, headline and spec so the copy no longer runs into the list; the register fades its rows at the top and bottom of the body; the cursor coordinate readout is hidden; the issue stamp sits in the corner.
 
+## Round 8 (25 Oct): project pages
+- Clicking a project (the drawing index stack or its button, a register row, a frame in the lighting-plot reel) opens that project's page over the set instead of leaving for Behance: title, kind, the facts template with dashed "to fill" slots, the whole gallery at up to 1920 px, next and previous, a small Behance link. The address becomes `#p/<key>`, so a project can be shared or opened directly; back, Escape or the browser button returns to the set where you were (Lenis is paused while the page is open).
+- The galleries were gathered from his 23 Behance galleries: 303 images in `img/projects/<key>/NN.jpg` (81 MB), listed with counts in `data/projects.json`. Behance refuses plain downloads, so the pages were read in the browser pane and the files pulled from the Behance image CDN, then normalised to JPEG.
+
 ## System
 - Sheets are sticky; a spacer after each one drives its scene, so every scene has its own scroll length and the next sheet slides over the last. On phones the stack is off and sheets flow.
 - Crosshair cursor with live coordinates, labels on anything you can open or drag. Plotter progress line under the nav, sheet tabs, Riyadh clock.
