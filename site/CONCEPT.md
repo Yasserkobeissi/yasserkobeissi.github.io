@@ -87,6 +87,11 @@ Every sheet has a life of its own while you read, and scrolling adds to it rathe
 - The scope of work opens category pages (`#cat/<name>`): events and exhibitions list their projects as cards that open the project pages; objects has the trophy and the two boxes; motion, 3D and direction show a dashed "to fill" card until the files arrive.
 - The real pointer shows on project and category pages; the crosshair cursor is only on the set.
 
+## Round 11 (25 Oct): phones, the brief, the address
+- The site lives at https://yasserkobeissi.github.io (repository Yasserkobeissi/yasserkobeissi.github.io).
+- Phone pass at 375 × 812: the cover keeps its text above the title block and is no longer dimmed by the desktop parallax; the map's city labels stay inside the sheet; the issue stamp is a small corner stamp instead of a box across the page; the chassis lens can be dragged with a finger; the hall has a "Look around with one finger" button that switches a one-finger drag from scrolling to turning the booth, and back.
+- "Send the brief" opens a form page (`#brief`) that mails the brief through Web3Forms; the access key goes in `data-brief-key` on `<html>`; without it the form opens a mail draft with the brief typed out.
+
 ## System
 - Sheets are sticky; a spacer after each one drives its scene, so every scene has its own scroll length and the next sheet slides over the last. On phones the stack is off and sheets flow.
 - Crosshair cursor with live coordinates, labels on anything you can open or drag. Plotter progress line under the nav, sheet tabs, Riyadh clock.

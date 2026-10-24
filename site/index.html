@@ -163,7 +163,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 #s00 .scroll i{width:34px;height:1px;background:currentColor;transform-origin:left;animation:drop 1.8s var(--ease) infinite}
 @keyframes drop{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}51%{transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
 @media (max-width:1100px){#s00 h1{font-size:clamp(50px,8.4vw,120px)}#s00 .port{width:50%}}
-@media (max-width:720px){#s00 .port{position:absolute;top:0;right:0;left:0;bottom:auto;height:62vh;width:100%;-webkit-mask:linear-gradient(180deg,#000 55%,transparent 100%);mask:linear-gradient(180deg,#000 55%,transparent 100%)}#s00 .port img{object-position:50% 0}#s00 .body{align-content:end;min-height:100vh}#s00 .lede{max-width:none}#s00 h1{font-size:clamp(44px,13vw,80px)}#s00 .say{max-width:none;font-size:22px}#s00 .scroll{display:none}}
+@media (max-width:720px){#s00 .body{inset:calc(var(--g) + var(--nav-h)) var(--g) calc(var(--g) + 150px);min-height:0;height:auto}#s00 .stroke{height:22px;margin:4px 0 8px}#s00 .who{font-size:.54rem}#s00 .port{position:absolute;top:0;right:0;left:0;bottom:auto;height:56vh;width:100%;-webkit-mask:linear-gradient(180deg,#000 55%,transparent 100%);mask:linear-gradient(180deg,#000 55%,transparent 100%)}#s00 .port img{object-position:50% 0}#s00 .body{align-content:end}#s00 .lede{max-width:none}#s00 h1{font-size:clamp(44px,13vw,80px)}#s00 .say{max-width:none;font-size:22px}#s00 .scroll{display:none}}
 
 /* ---------- depth, develop, plotter head ---------- */
 .sheet .shade{position:absolute;inset:0;background:#06162E;opacity:0;pointer-events:none;z-index:9}
@@ -566,7 +566,7 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
   #s02 .beat{max-width:min(36ch,50vw)}#s02 .beat h2{font-size:clamp(34px,5.6vw,72px)}
   #s03 .body{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);align-items:start;padding-top:calc(var(--g) + var(--nav-h) + 28px)}
   #s03 .fig{max-width:300px;margin-top:34px}#s03 h2{font-size:clamp(32px,4.6vw,60px)}#s03 .copy{font-size:.92em;max-width:48ch}#s03 .spec p{padding:6px 0;font-size:15px}
-  #s13 .stamp{top:calc(var(--g) + var(--nav-h) + 8px);right:var(--g)}
+  #s13 .stamp{top:auto;bottom:calc(var(--g) + 76px);right:var(--g);font-size:.66rem;padding:9px 14px;border-width:2px;transform:rotate(-6deg) scale(1)!important}
 }
 
 /* ---------- full-bleed backdrops dissolve at the top and bottom, so the sheet label above and the text below never sit on busy pixels ---------- */
@@ -658,6 +658,22 @@ body.proj-open{overflow:hidden}
 #briefform .cta[disabled]{opacity:.5;cursor:default}
 #briefform .err{border-color:var(--red)!important}
 @media (max-width:720px){#briefform .row2,#briefform .row3{grid-template-columns:1fr}.proj.brief .say{text-align:left}}
+
+#s08a .hlook{display:none;position:absolute;left:50%;bottom:calc(var(--g) + 96px);transform:translateX(-50%);z-index:7;align-items:center;gap:10px;padding:12px 18px;border:1px solid #F2C98A;border-radius:999px;background:rgba(6,16,32,.72);color:var(--fg);font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+#s08a .hlook.on{background:#F2C98A;color:#06101F}
+#s08a.explore{touch-action:none}
+@media (hover:none) and (pointer:coarse){#s08a .hlook{display:inline-flex}}
+/* ---------- phone pass ---------- */
+@media (max-width:720px){
+  #s13 .stamp,#s13 .stamp.on{position:absolute;top:calc(var(--g) + var(--nav-h) + 6px);right:var(--g);bottom:auto;left:auto;font-size:.56rem;padding:6px 10px;border-width:2px;transform:rotate(-6deg) scale(1)!important;animation:none!important;max-width:60vw;white-space:normal;text-align:center;z-index:5}
+  #s02 .city{font-size:.52rem;gap:6px}
+  #s02 .city.a{transform:translate(-4px,-50%)}#s02 .city.a i{order:-1}
+  #s02 .city.b{transform:translate(calc(-100% + 4px),-50%);flex-direction:row}#s02 .city.b i{order:2}
+  #s02 .beat{bottom:calc(var(--g) + 84px);max-width:none;right:var(--g)}
+  #s14 .lens{touch-action:none}
+  #s08a .hlook{display:inline-flex;left:auto;right:var(--g);bottom:auto;top:calc(var(--g) + var(--nav-h) + 36px);transform:none;padding:9px 12px;font-size:.52rem;height:auto;width:auto}
+  .proj .wrap{padding-top:calc(var(--g) + 60px)}
+}
 
 </style>
 </head>
@@ -866,6 +882,7 @@ body.proj-open{overflow:hidden}
   <div class="k lbl"><span>Sheet 07A</span><i></i><b>The hall</b><i></i><span>Built on scroll · then look around</span></div>
   <div class="slot"><span class="tag"><i></i>Real model · Cinema 4D export</span><span class="lbl">His own stand, straight from Cinema 4D. It builds itself as you scroll; then it is yours to turn, zoom and walk around.</span></div>
   <div class="lamp" id="hlamp" aria-hidden="true"></div>
+  <button type="button" class="hlook" id="hlook">Look around with one finger</button>
   <div id="hspecs"></div>
   <div id="hcuts"></div>
   <div class="idx num" id="hidx">01 / 01</div>
@@ -1128,7 +1145,7 @@ body.proj-open{overflow:hidden}
 
   /* ---- S14: chassis. The sketch shows through the body under the cursor; when nobody points, the lens sweeps the car. The sketch card hovers and tilts. ---- */
   (function(){ const lens = $('#clens'), ring = $('#cring'), hov = $('#chover'); if (!lens) return; let x = 50, y = 50, tx = 50, ty = 50, rr = 0, over = false, last = 0;
-    lens.addEventListener('pointermove', e => { const b = lens.getBoundingClientRect(); tx = (e.clientX-b.left)/b.width*100; ty = (e.clientY-b.top)/b.height*100; over = true; last = performance.now(); }, { passive: true }); lens.addEventListener('pointerleave', () => over = false);
+    lens.addEventListener('pointermove', e => { const b = lens.getBoundingClientRect(); tx = (e.clientX-b.left)/b.width*100; ty = (e.clientY-b.top)/b.height*100; over = true; last = performance.now(); }, { passive: true }); lens.addEventListener('pointerdown', e => { const b = lens.getBoundingClientRect(); tx = (e.clientX-b.left)/b.width*100; ty = (e.clientY-b.top)/b.height*100; over = true; last = performance.now(); }, { passive: true }); lens.addEventListener('pointerleave', () => over = false);
     gsap.ticker.add((t) => { if (!visible('s14')) return; const p = prog('s14'); if (!over || performance.now() - last > 2500) { over = false; tx = 50 + Math.sin(t*.5)*30; ty = 52 + Math.cos(t*.7)*18; } x += (tx-x)*.1; y += (ty-y)*.1; rr += ((p > .03 ? Math.min(lens.clientWidth, lens.clientHeight)*(over ? .34 : .22) : 0) - rr)*.1; lens.style.setProperty('--x', x+'%'); lens.style.setProperty('--y', y+'%'); lens.style.setProperty('--r', rr+'px'); ring.style.setProperty('--x', x+'%'); ring.style.setProperty('--y', y+'%'); ring.style.setProperty('--r', rr+'px');
       if (hov) { const mx = (px/innerWidth - .5), my = (py/innerHeight - .5); hov.style.transform = `rotate(${3 + Math.sin(t*.6)*1.2}deg) translate3d(${mx*-14}px, ${Math.sin(t*.9)*6 + my*-10}px, 0) rotateX(${my*-6}deg) rotateY(${mx*8}deg)`; } }); })();
 
@@ -1157,7 +1174,7 @@ body.proj-open{overflow:hidden}
     const h1 = $('#h1'); $$('.w', h1).forEach(w => { const t = w.textContent; w.textContent = ''; [...t].forEach(ch => { const s = document.createElement('span'); s.className = 'l'; s.textContent = ch; w.appendChild(s); }); });
     const stroke = $('#stroke'); const L = stroke.getTotalLength(); stroke.style.strokeDasharray = L; stroke.style.strokeDashoffset = L;
     starters.push(() => { gsap.to('#h1 .l', { y: 0, duration: 1.2, ease: 'expo.out', stagger: .035, delay: .1, onComplete(){ $$('#h1 .l').forEach(l => l.style.transition = 'none'); } }); gsap.to(stroke, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', delay: .9 }); gsap.from('#s00 .say, #s00 .who', { y: 16, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: .12, delay: 1.2 }); gsap.from('#port', { opacity: 0, duration: 1.6, ease: 'power2.out', delay: .3 }); if (!reduce) { gsap.to(stroke, { strokeDashoffset: -L*.012, duration: 1.3, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2.1 }); } });
-    if (!reduce) gsap.ticker.add(() => { if (!visible('s00')) return; const p = prog('s00'); gsap.set('#s00 .body', { y: p*-60, opacity: 1 - p*.9 }); gsap.set('#port', { y: p*-30 }); });
+    if (!reduce) gsap.ticker.add(() => { if (!visible('s00')) return; if (narrow()) { gsap.set('#s00 .body', { y: 0, opacity: 1 }); gsap.set('#port', { y: 0 }); return; } const p = prog('s00'); gsap.set('#s00 .body', { y: p*-60, opacity: 1 - p*.9 }); gsap.set('#port', { y: p*-30 }); });
   })();
   /* ---- S01: notes draw in with the scroll ---- */
   (function(){ const lis = $$('#notes li'); gsap.ticker.add(() => { if (!visible('s01')) return; const p = prog('s01'); const n = Math.floor(cl((p-.02)/.55) * (lis.length+1)); lis.forEach((li,i) => { const on = i < n; if (on !== li.classList.contains('on')) { li.classList.toggle('on', on); if (on) tick(1200 + i*120, .04, .04); } }); }); })();
@@ -1318,6 +1335,11 @@ body.proj-open{overflow:hidden}
     addEventListener('pointermove', e => { if (!drag) return; yaw -= (e.clientX - drag.x)*.006; pitch = cl(pitch + (e.clientY - drag.y)*.004, -.5, .8); drag = { x: e.clientX, y: e.clientY }; looked = true; }, { passive: true });
     addEventListener('pointerup', () => { drag = null; sheet.classList.remove('drag'); });
     sheet.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); zoom = cl(zoom*(1 + e.deltaY*.004), .45, 2.2); looked = true; }, { passive: false });
+    /* phones: a button switches one-finger drags from scrolling to turning the booth */
+    const hlook = $('#hlook'); let explore = false, t1 = null; if (hlook) hlook.addEventListener('click', () => { explore = !explore; hlook.classList.toggle('on', explore); sheet.classList.toggle('explore', explore); hlook.textContent = explore ? 'Done looking · back to scrolling' : 'Look around with one finger'; looked = explore || looked; });
+    sheet.addEventListener('touchstart', e => { if (explore && e.touches.length === 1) t1 = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }, { passive: true });
+    sheet.addEventListener('touchmove', e => { if (!explore || e.touches.length !== 1 || !t1 || e.target.closest('button')) return; e.preventDefault(); const x = e.touches[0].clientX, y = e.touches[0].clientY; yaw -= (x - t1.x)*.008; pitch = cl(pitch + (y - t1.y)*.005, -.5, .8); t1 = { x, y }; looked = true; }, { passive: false });
+    sheet.addEventListener('touchend', () => { t1 = null; }, { passive: true });
     let tA = null; sheet.addEventListener('touchstart', e => { if (e.touches.length === 2) { tA = { x: (e.touches[0].clientX + e.touches[1].clientX)/2, y: (e.touches[0].clientY + e.touches[1].clientY)/2, d: Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY) }; } }, { passive: true });
     sheet.addEventListener('touchmove', e => { if (e.touches.length !== 2 || !tA) return; e.preventDefault(); const x = (e.touches[0].clientX + e.touches[1].clientX)/2, y = (e.touches[0].clientY + e.touches[1].clientY)/2, d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); yaw -= (x - tA.x)*.008; pitch = cl(pitch + (y - tA.y)*.005, -.5, .8); zoom = cl(zoom*(tA.d/d), .45, 2.2); tA = { x, y, d }; looked = true; }, { passive: false });
     sheet.addEventListener('touchend', () => { tA = null; }, { passive: true });
