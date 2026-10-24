@@ -78,6 +78,10 @@ Every sheet has a life of its own while you read, and scrolling adds to it rathe
 - Clicking a project (the drawing index stack or its button, a register row, a frame in the lighting-plot reel) opens that project's page over the set instead of leaving for Behance: title, kind, the facts template with dashed "to fill" slots, the whole gallery at up to 1920 px, next and previous, a small Behance link. The address becomes `#p/<key>`, so a project can be shared or opened directly; back, Escape or the browser button returns to the set where you were (Lenis is paused while the page is open).
 - The galleries were gathered from his 23 Behance galleries: 303 images in `img/projects/<key>/NN.jpg` (81 MB), listed with counts in `data/projects.json`. Behance refuses plain downloads, so the pages were read in the browser pane and the files pulled from the Behance image CDN, then normalised to JPEG.
 
+## Round 9 (25 Oct): order, chassis, contact
+- The car work sits at the end of the set now: sheet 11 Chassis (new: the body-in-white with the marker sketch found under the cursor, the sketch card hovering above, the lens sweeping on its own when nobody points), then sheet 12 Vehicle (the drift), then 13 Issue. Sheets are renumbered in document order; the lighting plot stays as sheet 09.
+- Contact works without a mail app: "Send the brief" copies the address and says so before handing over to mailto; a WhatsApp button sits beside it; the phone number opens WhatsApp; LinkedIn shows as a dashed "to fill" until the URL arrives. A dead link in the scope of work (to the removed assembly sheet) now opens the hall.
+
 ## System
 - Sheets are sticky; a spacer after each one drives its scene, so every scene has its own scroll length and the next sheet slides over the last. On phones the stack is off and sheets flow.
 - Crosshair cursor with live coordinates, labels on anything you can open or drag. Plotter progress line under the nav, sheet tabs, Riyadh clock.

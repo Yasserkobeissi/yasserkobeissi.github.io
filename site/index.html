@@ -598,6 +598,31 @@ svg.draw path,svg.draw line,svg.draw circle,svg.draw polyline,svg.draw rect{fill
 body.proj-open{overflow:hidden}
 @media (max-width:720px){.proj .head{grid-template-columns:1fr}.proj h1{font-size:clamp(34px,11vw,56px)}}
 
+/* ---------- S14 chassis: the body-in-white with the marker sketch underneath, found with the cursor; the sketch also hovers above ---------- */
+#s14 .lens{position:absolute;left:calc(var(--g) + 16px);top:calc(var(--g) + var(--nav-h) + 40px);height:min(calc(62vw * 9 / 16),calc(100vh - 360px));width:auto;aspect-ratio:16/9;z-index:3;--x:50%;--y:50%;--r:0px;border:1px solid var(--line);overflow:hidden;background:var(--paper2);-webkit-mask:linear-gradient(180deg,#000 80%,transparent 100%);mask:linear-gradient(180deg,#000 80%,transparent 100%)}
+#s14 .lens img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#s14 .lens .body{filter:grayscale(1) contrast(1.05);mix-blend-mode:multiply;opacity:.9}
+#s14 .lens .sk{-webkit-mask:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 60%,transparent 100%);mask:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 60%,transparent 100%)}
+#s14 .lens .ring{position:absolute;left:var(--x);top:var(--y);width:calc(var(--r)*2);height:calc(var(--r)*2);transform:translate(-50%,-50%);border:1px solid var(--red);border-radius:50%;pointer-events:none}
+#s14 .lens .tag{position:absolute;left:8px;top:8px;font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;background:var(--bg);color:var(--fg);padding:4px 8px;border:1px solid var(--line)}
+#s14 .hover{position:absolute;right:calc(var(--g) + 24px);top:calc(var(--g) + var(--nav-h) + 20px);width:min(30vw,420px);margin:0;padding:10px 10px 30px;background:#fff;box-shadow:0 40px 70px -30px rgba(0,0,0,.45);transform:rotate(3deg);z-index:4;pointer-events:none;will-change:transform}
+#s14 .hover img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+#s14 .hover figcaption{position:absolute;left:12px;bottom:8px;font-family:var(--mono);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:#333}
+#s14 .cap{position:absolute;left:calc(var(--g) + 16px);bottom:calc(var(--g) + 90px);z-index:4;max-width:min(44ch,60vw)}
+#s14 .cap::before{content:"";position:absolute;inset:-30px -60px -30px -60px;background:radial-gradient(ellipse at 40% 60%,rgba(243,240,232,.95) 35%,rgba(243,240,232,0) 72%);z-index:-1}
+#s14 .cap>*{position:relative}
+#s14 .cap .lbl{color:var(--red);margin-bottom:10px}
+#s14 .cap h2{font-size:clamp(34px,4.6vw,78px)}
+#s14 .cap p{margin-top:12px;font-family:var(--ser);font-style:italic;font-size:var(--t-lede);line-height:1.3;color:var(--fg2);max-width:40ch}
+@media (max-width:1100px){#s14 .lens{height:min(calc(70vw * 9 / 16),calc(100vh - 340px))}#s14 .hover{width:min(32vw,300px)}#s14 .cap{max-width:min(36ch,56vw)}#s14 .cap h2{font-size:clamp(28px,4.2vw,56px)}}
+@media (max-width:720px){#s14 .lens{position:relative;left:auto;top:auto;width:100%;margin:calc(var(--g) + var(--nav-h) + 30px) 0 0}#s14 .hover{display:none}#s14 .cap{position:relative;left:auto;bottom:auto;max-width:none;padding:24px var(--g) 110px}}
+
+#s13 .ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+#s13 .cta.alt{background:transparent;color:var(--bl);border:1px solid var(--line)}
+#s13 .cta.alt:hover{background:var(--bl);color:var(--wp);border-color:var(--bl)}
+#s13 .btn.ph{border:1px dashed var(--red);color:var(--red);cursor:default}
+#s13 .contact .v a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
 </style>
 </head>
 <body>
@@ -747,22 +772,11 @@ body.proj-open{overflow:hidden}
 </section>
 <div class="sp" data-for="s04" style="--h:1"></div>
 
-<!-- S05 VEHICLE -->
-<section class="sheet cy scene" id="s05" data-n="05" data-title="Vehicle" aria-label="Vehicle sheet: cars and the drift">
-  <div class="track"><canvas id="dcv"></canvas></div>
-  <div class="frame"><i></i><i></i><i></i><i></i><b class="n">C</b><b class="e">1</b><b class="s">C</b><b class="w">1</b></div>
-  <div class="k lbl"><span>Sheet 05</span><i></i><b>Vehicle</b><i></i><span>Skid pad · plan</span></div>
-  <div class="hud2"><div><b class="num" id="hspd">0</b>km/h</div><div><b class="num" id="hslip">0°</b>slip angle</div><div class="warn" id="hwarn">Counter-steer</div></div>
-  <div class="cap"><h2 class="h">I drift.<em>Saturdays, window down.</em></h2><p id="dp">"I'm a fun guy. I love drift and I do drift. I'm crazy about cars." My words. Before the events there was a detour through car design and carbon fibre. Scroll to throw the car into the corner.</p></div>
-  <div class="hint"><span class="fi">Scroll = throttle · mouse = steering</span><span class="co">Scroll = throttle · drag a finger = steering</span></div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Vehicle</span></div><div><span class="lbl">Programme</span><span class="v">Car design · 2022</span></div><div><span class="lbl">Material</span><span class="v">Carbon fibre · tyre smoke</span></div><div><span class="lbl">Scale</span><span class="v">1:200</span></div><div><span class="lbl">Rev</span><span class="v">SAT</span></div><div><span class="lbl">Sheet</span><span class="v big">05</span></div></div>
-</section>
-<div class="sp" data-for="s05" style="--h:2.6"></div>
 
 <!-- S06 SCHEDULE -->
-<section class="sheet wp" id="s06" data-n="06" data-title="Schedule" aria-label="Schedule, 2006 to 2026">
+<section class="sheet wp" id="s06" data-n="05" data-title="Schedule" aria-label="Schedule, 2006 to 2026">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">A</b><b class="e">4</b><b class="s">A</b><b class="w">4</b></div>
-  <div class="k lbl"><span>Sheet 06</span><i></i><b>Schedule</b><i></i><span>2006 → 2026</span></div>
+  <div class="k lbl"><span>Sheet 05</span><i></i><b>Schedule</b><i></i><span>2006 → 2026</span></div>
   <div class="body">
     <div class="head"><h2 class="h">Twenty years,<br>one line</h2><p>Every job on one bar chart. The red line is today. The TV years are where the discipline comes from.</p></div>
     <div class="gantt" id="gantt"></div>
@@ -771,49 +785,49 @@ body.proj-open{overflow:hidden}
       <p class="note">2019 to 2021. I ran the creative side of four channels at once for the Saudi Broadcasting Authority: news, sport, entertainment and the national channel. Every opener, every lower third, going to air on a schedule nobody could move.</p>
     </div>
   </div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Schedule</span></div><div><span class="lbl">Jobs</span><span class="v">11</span></div><div><span class="lbl">Cities</span><span class="v">Beirut · Riyadh</span></div><div><span class="lbl">Scale</span><span class="v">1 cm : 1 year</span></div><div><span class="lbl">Rev</span><span class="v">2026</span></div><div><span class="lbl">Sheet</span><span class="v big">06</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Schedule</span></div><div><span class="lbl">Jobs</span><span class="v">11</span></div><div><span class="lbl">Cities</span><span class="v">Beirut · Riyadh</span></div><div><span class="lbl">Scale</span><span class="v">1 cm : 1 year</span></div><div><span class="lbl">Rev</span><span class="v">2026</span></div><div><span class="lbl">Sheet</span><span class="v big">05</span></div></div>
 </section>
 <div class="sp" data-for="s06" style="--h:1.6"></div>
 
 <!-- S07 SCOPE -->
-<section class="sheet cy" id="s07" data-n="07" data-title="Scope of work" aria-label="Scope of work">
+<section class="sheet cy" id="s07" data-n="06" data-title="Scope of work" aria-label="Scope of work">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">B</b><b class="e">3</b><b class="s">B</b><b class="w">3</b></div>
-  <div class="k lbl"><span>Sheet 07</span><i></i><b>Scope of work</b><i></i><span>Hover a line</span></div>
+  <div class="k lbl"><span>Sheet 06</span><i></i><b>Scope of work</b><i></i><span>Hover a line</span></div>
   <div class="body">
     <div class="lines" id="scope">
       <a class="line" href="#s08" data-img="img/snd.jpg"><span class="lbl">A.01</span><h3>Events</h3><p>Gates, stages, media walls. PepsiCo at MDL Beast, three editions in a row. A night that has to look right from the first photo.</p></a>
       <a class="line" href="#s08" data-img="img/looptech.jpg"><span class="lbl">A.02</span><h3>Exhibitions</h3><p>Stands from 9 m² to double‑deck. Designed from the floor plan out.</p></a>
       <a class="line" href="#s06" data-img="img/sce.jpg"><span class="lbl">A.03</span><h3>Motion</h3><p>Broadcast graphics, openers, LED and projection content. Ten years of it.</p></a>
-      <a class="line" href="#s10" data-img="img/jda.jpg"><span class="lbl">A.04</span><h3>3D</h3><p>Cinema 4D and Lumion renders that get built exactly as drawn.</p></a>
+      <a class="line" href="#s08a" data-img="img/jda.jpg"><span class="lbl">A.04</span><h3>3D</h3><p>Cinema 4D and Lumion renders that get built exactly as drawn.</p></a>
       <a class="line" href="#s12" data-img="img/wds.jpg"><span class="lbl">A.05</span><h3>Objects</h3><p>Trophies, invitation boxes, the things that go home with people.</p></a>
       <a class="line" href="#s03" data-img="img/founding.jpg"><span class="lbl">A.06</span><h3>Direction</h3><p>Leading the team, the client and the deadline to the same night.</p></a>
     </div>
   </div>
   <div class="plate" id="plate" aria-hidden="true"></div>
   <div class="tape" aria-hidden="true"><div class="t" id="ctape"><span>Clients <b>●</b> PepsiCo <b>●</b> MDL Beast <b>●</b> Saudi Broadcasting Authority <b>●</b> McDonald's <b>●</b> Gold's Gym <b>●</b> Othaim Mall <b>●</b> DJI Enterprise <b>●</b> Monshaat <b>●</b> Misk <b>●</b> GOSI <b>●</b> SIMAH <b>●</b> Seder Group <b>●</b> Al Rajhi Takaful <b>●</b> Bank Al Jazira <b>●</b> Thiqah <b>●</b> Urpay <b>●</b> neoleap <b>●</b> Looptech <b>●</b> The Financial Academy <b>●</b> Quality of Life Program <b>●</b> SCE <b>●</b> JDA <b>●</b> MOMAH <b>●</b> LCGPA <b>●</b></span></div></div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Scope of work</span></div><div><span class="lbl">Items</span><span class="v">A.01 → A.06</span></div><div><span class="lbl">Clients</span><span class="v">PepsiCo · SBA · Misk · GOSI · SIMAH · …</span></div><div><span class="lbl">Scale</span><span class="v">NTS</span></div><div><span class="lbl">Rev</span><span class="v">—</span></div><div><span class="lbl">Sheet</span><span class="v big">07</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Scope of work</span></div><div><span class="lbl">Items</span><span class="v">A.01 → A.06</span></div><div><span class="lbl">Clients</span><span class="v">PepsiCo · SBA · Misk · GOSI · SIMAH · …</span></div><div><span class="lbl">Scale</span><span class="v">NTS</span></div><div><span class="lbl">Rev</span><span class="v">—</span></div><div><span class="lbl">Sheet</span><span class="v big">06</span></div></div>
 </section>
 <div class="sp" data-for="s07" style="--h:1"></div>
 
 <!-- S08 DRAWING INDEX -->
-<section class="sheet cy scene" id="s08" data-n="08" data-title="Drawing index" aria-label="Drawing index: the projects as a stack of sheets">
+<section class="sheet cy scene" id="s08" data-n="07" data-title="Drawing index" aria-label="Drawing index: the projects as a stack of sheets">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">C</b><b class="e">2</b><b class="s">C</b><b class="w">2</b></div>
-  <div class="k lbl"><span>Sheet 08</span><i></i><b>Drawing index</b><i></i><span>23 sheets · pull through</span></div>
+  <div class="k lbl"><span>Sheet 07</span><i></i><b>Drawing index</b><i></i><span>23 sheets · pull through</span></div>
   <div class="stage" id="hxstage"><div class="stack" id="stack"></div></div>
   <div class="idx num" id="hxidx">01 / 23</div>
   <div class="cap"><div class="lbl" id="hxn">Exhibition stand · 2026</div><h2 class="h" id="hxh">Quality of Life Program</h2><p id="hxp">Scroll to pull the next sheet</p></div>
   <a class="open" id="hxopen" href="#" data-hot="OPEN">Open the project →</a>
   <div class="hint">Scroll to pull · drag to tilt · click to open the project</div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Drawing index</span></div><div><span class="lbl">Sheets</span><span class="v">23</span></div><div><span class="lbl">Source</span><span class="v">behance.net/yaserkobeissi</span></div><div><span class="lbl">Scale</span><span class="v">Varies</span></div><div><span class="lbl">Rev</span><span class="v">2023 → 2026</span></div><div><span class="lbl">Sheet</span><span class="v big">08</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Drawing index</span></div><div><span class="lbl">Sheets</span><span class="v">23</span></div><div><span class="lbl">Source</span><span class="v">behance.net/yaserkobeissi</span></div><div><span class="lbl">Scale</span><span class="v">Varies</span></div><div><span class="lbl">Rev</span><span class="v">2023 → 2026</span></div><div><span class="lbl">Sheet</span><span class="v big">07</span></div></div>
 </section>
 <div class="sp" data-for="s08" style="--h:4.2"></div>
 
 <!-- S08A THE HALL -->
-<section class="sheet cy scene" id="s08a" data-n="08A" data-title="The hall" aria-label="The hall: the stands as built, lit on the night">
+<section class="sheet cy scene" id="s08a" data-n="07A" data-title="The hall" aria-label="The hall: the stands as built, lit on the night">
   <canvas id="hall3d"></canvas>
   <div class="vig"></div>
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">C</b><b class="e">2A</b><b class="s">C</b><b class="w">2A</b></div>
-  <div class="k lbl"><span>Sheet 08A</span><i></i><b>The hall</b><i></i><span>Built on scroll · then walk the aisle</span></div>
+  <div class="k lbl"><span>Sheet 07A</span><i></i><b>The hall</b><i></i><span>Built on scroll · then walk the aisle</span></div>
   <div class="slot"><span class="tag"><i></i>GLB slot · stand-in model</span><span class="lbl">One stand in the flow, lit on the night. The button at the end opens the whole hall: every Blender concept, one aisle, loaded as you walk.</span></div>
   <div class="lamp" id="hlamp" aria-hidden="true"></div>
   <div id="hspecs"></div>
@@ -822,39 +836,39 @@ body.proj-open{overflow:hidden}
   <button type="button" class="cta" id="hcta" data-hot="OPEN"><i></i>Experience my designs<span>all 27 concepts, one aisle</span></button>
   <button type="button" class="cta back" id="hback" data-hot="BACK"><i></i>Back to the key stand</button>
   <div class="hint">Scroll: it builds, then turns · drag to look around · pinch to zoom · it carries on from where you left it</div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">The hall</span></div><div><span class="lbl">Stands</span><span class="v">Loading…</span></div><div><span class="lbl">Sequence</span><span class="v">Floor · walls · lights on · lap</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">Night</span></div><div><span class="lbl">Sheet</span><span class="v big">08A</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">The hall</span></div><div><span class="lbl">Stands</span><span class="v">Loading…</span></div><div><span class="lbl">Sequence</span><span class="v">Floor · walls · lights on · lap</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">Night</span></div><div><span class="lbl">Sheet</span><span class="v big">07A</span></div></div>
 </section>
 <div class="sp" data-for="s08a" style="--h:7"></div>
 
 <!-- S09 REGISTER -->
-<section class="sheet wp" id="s09" data-n="09" data-title="Register" aria-label="Drawing register: selected work">
+<section class="sheet wp" id="s09" data-n="08" data-title="Register" aria-label="Drawing register: selected work">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">A</b><b class="e">5</b><b class="s">A</b><b class="w">5</b></div>
-  <div class="k lbl"><span>Sheet 09</span><i></i><b>Register</b><i></i><span>Selected work · 2023 → 2026</span></div>
+  <div class="k lbl"><span>Sheet 08</span><i></i><b>Register</b><i></i><span>Selected work · 2023 → 2026</span></div>
   <div class="body"><div class="roll" id="roll"><h2 class="h">Register</h2><div class="head lbl"><span>No.</span><span>Title</span><span>Type</span><span style="text-align:right">Year</span></div><div id="rows"></div></div></div>
   <div class="peek" id="peek" aria-hidden="true"></div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Register</span></div><div><span class="lbl">Entries</span><span class="v">16</span></div><div><span class="lbl">Cities</span><span class="v">Riyadh · Jeddah · Diriyah</span></div><div><span class="lbl">Scale</span><span class="v">NTS</span></div><div><span class="lbl">Rev</span><span class="v">2026</span></div><div><span class="lbl">Sheet</span><span class="v big">09</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Register</span></div><div><span class="lbl">Entries</span><span class="v">16</span></div><div><span class="lbl">Cities</span><span class="v">Riyadh · Jeddah · Diriyah</span></div><div><span class="lbl">Scale</span><span class="v">NTS</span></div><div><span class="lbl">Rev</span><span class="v">2026</span></div><div><span class="lbl">Sheet</span><span class="v big">08</span></div></div>
 </section>
 <div class="sp" data-for="s09" style="--h:2.2"></div>
 
 
 <!-- S11 LIGHTING PLOT -->
-<section class="sheet cy scene" id="s11" data-n="11" data-title="Lighting plot" aria-label="Lighting plot, then the lights come on">
+<section class="sheet cy scene" id="s11" data-n="09" data-title="Lighting plot" aria-label="Lighting plot, then the lights come on">
   <div class="photo" id="lphoto"></div>
   <div class="lplot" id="lplot"><svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" class="draw" id="lsvg"></svg></div>
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">B</b><b class="e">4</b><b class="s">B</b><b class="w">4</b></div>
-  <div class="k lbl"><span>Sheet 11</span><i></i><b>Lighting plot</b><i></i><span>12 moving heads</span></div>
+  <div class="k lbl"><span>Sheet 09</span><i></i><b>Lighting plot</b><i></i><span>12 moving heads</span></div>
   <div class="txt"><div><h2 class="h">Then the lights<br>come on.</h2><p id="lhint">Move the light · scroll to open the room</p></div></div>
   <div class="bar t" id="barT"></div><div class="bar b" id="barB"></div>
   <div class="cap" id="lcap">Saudi National Day 2025 · gate at 20:40</div>
   <div class="reel drag" id="reel"><span class="lbl">Photo log · all 23 · drag</span><div class="track" id="track"></div></div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Lighting plot</span></div><div><span class="lbl">Fixtures</span><span class="v">12 heads · 4 washes</span></div><div><span class="lbl">Cue</span><span class="v">GO at 20:40</span></div><div><span class="lbl">Scale</span><span class="v">1:100</span></div><div><span class="lbl">Rev</span><span class="v">2025</span></div><div><span class="lbl">Sheet</span><span class="v big">11</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Lighting plot</span></div><div><span class="lbl">Fixtures</span><span class="v">12 heads · 4 washes</span></div><div><span class="lbl">Cue</span><span class="v">GO at 20:40</span></div><div><span class="lbl">Scale</span><span class="v">1:100</span></div><div><span class="lbl">Rev</span><span class="v">2025</span></div><div><span class="lbl">Sheet</span><span class="v big">09</span></div></div>
 </section>
 <div class="sp" data-for="s11" style="--h:2.4"></div>
 
 <!-- S12 DETAILS -->
-<section class="sheet wp" id="s12" data-n="12" data-title="Details" aria-label="Details: things you can hold">
+<section class="sheet wp" id="s12" data-n="10" data-title="Details" aria-label="Details: things you can hold">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">A</b><b class="e">6</b><b class="s">A</b><b class="w">6</b></div>
-  <div class="k lbl"><span>Sheet 12</span><i></i><b>Details</b><i></i><span>Scale 1:1</span></div>
+  <div class="k lbl"><span>Sheet 10</span><i></i><b>Details</b><i></i><span>Scale 1:1</span></div>
   <div class="body">
     <div class="head"><h2 class="h">Things you<br>can hold</h2><p>Not everything is a room. Trophies, invitation boxes and gift sets get the same marker-first treatment, at a scale you can put on a desk.</p></div>
     <div class="cards">
@@ -863,10 +877,32 @@ body.proj-open{overflow:hidden}
       <a class="card" href="https://www.behance.net/gallery/247709005/THIQAH-Gift-box-Design" target="_blank" rel="noopener" data-hot="OPEN"><div class="im"><span class="dim h">D.03 · TWO DRAWERS</span><img src="img/thiqah.jpg" alt="Thiqah two-drawer gift box"></div><div class="c"><b>Thiqah</b><span>Gift box</span></div></a>
     </div>
   </div>
-  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Details</span></div><div><span class="lbl">Items</span><span class="v">D.01 → D.03</span></div><div><span class="lbl">Material</span><span class="v">Brass · board · velvet</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">2025</span></div><div><span class="lbl">Sheet</span><span class="v big">12</span></div></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Details</span></div><div><span class="lbl">Items</span><span class="v">D.01 → D.03</span></div><div><span class="lbl">Material</span><span class="v">Brass · board · velvet</span></div><div><span class="lbl">Scale</span><span class="v">1:1</span></div><div><span class="lbl">Rev</span><span class="v">2025</span></div><div><span class="lbl">Sheet</span><span class="v big">10</span></div></div>
 </section>
 <div class="sp" data-for="s12" style="--h:1"></div>
 
+<!-- S14 CHASSIS: the drawing under the body -->
+<section class="sheet wp scene" id="s14" data-n="11" data-title="Chassis" aria-label="Chassis: the marker sketch under the body-in-white">
+  <div class="frame"><i></i><i></i><i></i><i></i><b class="n">B</b><b class="e">8</b><b class="s">B</b><b class="w">8</b></div>
+  <div class="k lbl"><span>Sheet 11</span><i></i><b>Chassis</b><i></i><span>Vehicle study · move over the body</span></div>
+  <div class="lens" id="clens"><img class="body" src="img/carbody.jpg" alt="Body-in-white chassis of a sports coupe" width="1600" height="900"><img class="sk" id="csk" src="img/carsketch.jpg" alt="Marker rendering of the same coupe" width="1600" height="900"><i class="ring" id="cring"></i><span class="tag">Detail 2 · body / sketch</span></div>
+  <figure class="hover" id="chover"><img src="img/carsketch.jpg" alt="The marker sketch, hovering over the chassis"><figcaption>Marker on paper · the first line</figcaption></figure>
+  <div class="cap"><div class="lbl">Before the events</div><h2 class="h">The drawing<br>under the body.</h2><p>There was a detour through car design and carbon fibre. Every car starts the way every stand starts: a marker line, then the metal. Move over the body to find the sketch underneath.</p></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Chassis</span></div><div><span class="lbl">Subject</span><span class="v">Body-in-white · marker rendering</span></div><div><span class="lbl">Material</span><span class="v">Carbon fibre · steel</span></div><div><span class="lbl">Scale</span><span class="v">1:10</span></div><div><span class="lbl">Rev</span><span class="v">Study</span></div><div><span class="lbl">Sheet</span><span class="v big">11</span></div></div>
+</section>
+<div class="sp" data-for="s14" style="--h:1.6"></div>
+
+<!-- S05 VEHICLE -->
+<section class="sheet cy scene" id="s05" data-n="12" data-title="Vehicle" aria-label="Vehicle sheet: cars and the drift">
+  <div class="track"><canvas id="dcv"></canvas></div>
+  <div class="frame"><i></i><i></i><i></i><i></i><b class="n">C</b><b class="e">1</b><b class="s">C</b><b class="w">1</b></div>
+  <div class="k lbl"><span>Sheet 12</span><i></i><b>Vehicle</b><i></i><span>Skid pad · plan</span></div>
+  <div class="hud2"><div><b class="num" id="hspd">0</b>km/h</div><div><b class="num" id="hslip">0°</b>slip angle</div><div class="warn" id="hwarn">Counter-steer</div></div>
+  <div class="cap"><h2 class="h">I drift.<em>Saturdays, window down.</em></h2><p id="dp">"I'm a fun guy. I love drift and I do drift. I'm crazy about cars." My words. Before the events there was a detour through car design and carbon fibre. Scroll to throw the car into the corner.</p></div>
+  <div class="hint"><span class="fi">Scroll = throttle · mouse = steering</span><span class="co">Scroll = throttle · drag a finger = steering</span></div>
+  <div class="tb"><div><span class="lbl">Sheet title</span><span class="v big">Vehicle</span></div><div><span class="lbl">Programme</span><span class="v">Car design · 2022</span></div><div><span class="lbl">Material</span><span class="v">Carbon fibre · tyre smoke</span></div><div><span class="lbl">Scale</span><span class="v">1:200</span></div><div><span class="lbl">Rev</span><span class="v">SAT</span></div><div><span class="lbl">Sheet</span><span class="v big">12</span></div></div>
+</section>
+<div class="sp" data-for="s05" style="--h:2.6"></div>
 <!-- S13 ISSUE -->
 <section class="sheet wp" id="s13" data-n="13" data-title="Issue" aria-label="Issued for construction: contact">
   <div class="frame"><i></i><i></i><i></i><i></i><b class="n">A</b><b class="e">7</b><b class="s">A</b><b class="w">7</b></div>
@@ -879,12 +915,12 @@ body.proj-open{overflow:hidden}
     </div>
     <div>
       <p class="a">Asked on a voice note, I answered myself: <b>crazy goals, crazy challenges, big teams, big operations.</b> Twenty years in, still curious, still drawing. If you have a room that needs an idea, send me the brief.</p>
-      <a class="cta" href="mailto:yasserkobeissi98@gmail.com" data-hot="WRITE"><span>Send the brief</span><i>→</i></a>
+      <div class="ctas"><a class="cta" id="brief" href="mailto:yasserkobeissi98@gmail.com?subject=A%20room%20that%20needs%20an%20idea" data-hot="WRITE"><span>Send the brief</span><i>→</i></a><a class="cta alt" href="https://wa.me/966557905388?text=Hi%20Yasser%2C%20I%20have%20a%20room%20that%20needs%20an%20idea." target="_blank" rel="noopener" data-hot="CHAT"><span>WhatsApp</span><i>↗</i></a></div>
     </div>
     <div class="contact">
       <div class="c"><div class="lbl">Email</div><div class="v"><span>yasserkobeissi98@gmail.com</span><button type="button" data-copy="yasserkobeissi98@gmail.com">Copy</button></div></div>
-      <div class="c"><div class="lbl">Phone / WhatsApp</div><div class="v"><span>+966 55 790 5388</span><button type="button" data-copy="+966557905388">Copy</button></div></div>
-      <div class="c"><div class="lbl">Work</div><div class="v"><a class="btn" href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance ↗</a><a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
+      <div class="c"><div class="lbl">Phone / WhatsApp</div><div class="v"><a href="https://wa.me/966557905388" target="_blank" rel="noopener">+966 55 790 5388</a><button type="button" data-copy="+966557905388">Copy</button></div></div>
+      <div class="c"><div class="lbl">Work</div><div class="v"><a class="btn" href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance ↗</a><span class="btn ph" title="URL to fill">LinkedIn · to fill</span></div></div>
       <div class="c"><div class="lbl">Now</div><div class="v"><span>Riyadh. In a hall most nights, drawing the next one.</span></div></div>
     </div>
   </div>
@@ -948,7 +984,7 @@ body.proj-open{overflow:hidden}
   const tabEls = $$('a', tabs), hudn = $('#hudn'), hudt = $('#hudt'), hudb = $('#hudb'), plot = $('#plot');
   const ruler = $('#ruler'), rmk = $('#rmk'); const rt = sheets.map((sh,i) => { const a = document.createElement('a'); a.href = '#' + sh.id; a.style.top = (i/(sheets.length-1)*100) + '%'; a.innerHTML = '<span>' + sh.dataset.n + ' · ' + sh.dataset.title + '</span>'; a.addEventListener('click', e => { e.preventDefault(); goTo(sh); }); ruler.appendChild(a); return a; });
   /* drawing list: one row per sheet, with its status */
-  (function(){ const list = $('#dlist'); if (!list) return; const STATUS = { s00:'Issued', s01:'Issued', s02:'Checked', s03:'Issued', s04:'For info', s05:'As built', s06:'Checked', s07:'Issued', s08:'Issued', s08a:'As built', s09:'Checked', s11:'As built', s12:'Issued', s13:'IFC' };
+  (function(){ const list = $('#dlist'); if (!list) return; const STATUS = { s00:'Issued', s01:'Issued', s02:'Checked', s03:'Issued', s04:'For info', s05:'As built', s06:'Checked', s07:'Issued', s08:'Issued', s08a:'As built', s09:'Checked', s14:'For info', s11:'As built', s12:'Issued', s13:'IFC' };
     sheets.filter(sh => sh.id !== 's00a').forEach(sh => { const a = document.createElement('a'); a.className = 'row'; a.href = '#' + sh.id; const sc = sh.querySelector('.tb div:nth-child(4) .v'); a.innerHTML = `<span class="i">${sh.dataset.n}</span><b>${sh.dataset.title}</b><span class="sc">${sc ? sc.textContent : ''}</span><span class="st">${STATUS[sh.id] || 'Issued'}</span>`; a.addEventListener('click', e => { e.preventDefault(); goTo(sh); }); list.appendChild(a); });
     const rows = $$('.row', list); gsap.ticker.add(() => { if (!visible('s00a')) return; const pr = prog('s00a'); const n = Math.floor(cl((pr-.02)/.5)*(rows.length+1)); rows.forEach((r,i) => { const on = i < n; if (on !== r.classList.contains('on')) { r.classList.toggle('on', on); if (on) tick(1100 + i*60, .03, .035); } }); }); })();
   $('.nav .mark').addEventListener('click', e => { e.preventDefault(); goTo(sheets[0]); });
@@ -958,7 +994,7 @@ body.proj-open{overflow:hidden}
   ScrollTrigger.create({ trigger: 'main', start: 'top top', end: 'bottom bottom', scrub: true, onUpdate(s){ plot.style.width = (s.progress*100) + '%'; rmk.style.top = (s.progress*100) + '%'; } });
   gsap.ticker.add((t) => {
     let cur = 0; sheets.forEach((s,i) => { if ((narrow() ? s.getBoundingClientRect().top : natTop(s)) <= innerHeight*.5) cur = i; });
-    if (cur !== curSheet) { curSheet = cur; const s = sheets[cur]; tabEls.forEach((a,i) => a.classList.toggle('on', i === cur)); hudn.textContent = 'S' + s.dataset.n + ' / 13'; hudt.textContent = s.dataset.title; tick(1500, .03, .05); }
+    if (cur !== curSheet) { curSheet = cur; const s = sheets[cur]; tabEls.forEach((a,i) => a.classList.toggle('on', i === cur)); hudn.textContent = 'S' + s.dataset.n + ' / ' + sheets[sheets.length-1].dataset.n; hudt.textContent = s.dataset.title; tick(1500, .03, .05); }
     hudb.style.width = (prog(sheets[cur].id)*100) + '%'; rt.forEach((a,i) => a.classList.toggle('on', i === cur));
     /* transitions: no sheet slides over another. An arriving sheet is pinned to the top of the viewport and fades in while the one underneath dims; nothing moves or rescales, so there is nothing to flicker. The plotter head tracks your place on the sheet. */
     const H = innerHeight, wide = !narrow();
@@ -1028,6 +1064,13 @@ body.proj-open{overflow:hidden}
     addEventListener('popstate', () => { const h = location.hash; if (h.startsWith('#p/')) open(h.slice(3), false); else close(false); });
     addEventListener('keydown', e => { if (e.key === 'Escape' && curKey) close(); });
     return { open, close }; })();
+
+
+  /* ---- S14: chassis. The sketch shows through the body under the cursor; when nobody points, the lens sweeps the car. The sketch card hovers and tilts. ---- */
+  (function(){ const lens = $('#clens'), ring = $('#cring'), hov = $('#chover'); if (!lens) return; let x = 50, y = 50, tx = 50, ty = 50, rr = 0, over = false, last = 0;
+    lens.addEventListener('pointermove', e => { const b = lens.getBoundingClientRect(); tx = (e.clientX-b.left)/b.width*100; ty = (e.clientY-b.top)/b.height*100; over = true; last = performance.now(); }, { passive: true }); lens.addEventListener('pointerleave', () => over = false);
+    gsap.ticker.add((t) => { if (!visible('s14')) return; const p = prog('s14'); if (!over || performance.now() - last > 2500) { over = false; tx = 50 + Math.sin(t*.5)*30; ty = 52 + Math.cos(t*.7)*18; } x += (tx-x)*.1; y += (ty-y)*.1; rr += ((p > .03 ? Math.min(lens.clientWidth, lens.clientHeight)*(over ? .34 : .22) : 0) - rr)*.1; lens.style.setProperty('--x', x+'%'); lens.style.setProperty('--y', y+'%'); lens.style.setProperty('--r', rr+'px'); ring.style.setProperty('--x', x+'%'); ring.style.setProperty('--y', y+'%'); ring.style.setProperty('--r', rr+'px');
+      if (hov) { const mx = (px/innerWidth - .5), my = (py/innerHeight - .5); hov.style.transform = `rotate(${3 + Math.sin(t*.6)*1.2}deg) translate3d(${mx*-14}px, ${Math.sin(t*.9)*6 + my*-10}px, 0) rotateX(${my*-6}deg) rotateY(${mx*8}deg)`; } }); })();
 
   /* ---- S00: the name, the first stroke, the portrait in cyanotype that turns to colour under the cursor ---- */
   (function(){
@@ -1296,6 +1339,9 @@ body.proj-open{overflow:hidden}
 
   /* ---- S13: the question fills, the stamp slams ---- */
   (function(){ const fill = $('#fill'), stamp = $('#stamp'); let slammed = false; gsap.ticker.add(() => { if (!visible('s13')) return; const p = prog('s13'); fill.style.setProperty('--p', cl(p/.5)*100 + '%'); if (!slammed && p > .25) { slammed = true; stamp.classList.add('on'); tick(600, .12, .12); } }); })();
+
+  /* the brief button works even with no mail app: it copies the address and says so, then hands over to mailto */
+  (function(){ const b = $('#brief'); if (!b) return; const sp = b.querySelector('span'); b.addEventListener('click', async () => { try { await navigator.clipboard.writeText('yasserkobeissi98@gmail.com'); } catch(e){} const old = sp.textContent; sp.textContent = 'Address copied · yasserkobeissi98@gmail.com'; setTimeout(() => sp.textContent = old, 3200); }); })();
   $$('[data-copy]').forEach(b => b.addEventListener('click', async () => { const v = b.dataset.copy, old = b.textContent; try { await navigator.clipboard.writeText(v); b.textContent = 'Copied'; } catch(e){ b.textContent = v; } setTimeout(() => b.textContent = old, 1400); }));
 
   addEventListener('load', () => { setTimeout(() => ScrollTrigger.refresh(), 600); });
