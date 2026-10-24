@@ -1,0 +1,799 @@
+[
+ {
+  "bytes": 9728572,
+  "objects": 404,
+  "bbox": [
+   [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   [
+    10.25,
+    11.0,
+    4.0
+   ]
+  ],
+  "size": [
+   10.25,
+   12.0,
+   4.0
+  ],
+  "thumb": true,
+  "key": "zain-alhalqa",
+  "title": "Zain \u00b7 Al Halqa",
+  "kind": "Exhibition stand \u00b7 Hajj Expo 2026 \u00b7 round 8",
+  "src": "zain_booth_v13_E04_circle.blend",
+  "glb": "models/zain-alhalqa.glb",
+  "img": "models/zain-alhalqa.jpg",
+  "secs": 7,
+  "front": 180
+ },
+ {
+  "bytes": 19776908,
+  "objects": 182,
+  "bbox": [
+   [
+    -15.0,
+    -12.0,
+    0.0
+   ],
+   [
+    20.0,
+    20.0,
+    4.0
+   ]
+  ],
+  "size": [
+   35.0,
+   32.0,
+   4.0
+  ],
+  "thumb": true,
+  "key": "zain-r1-shoulder",
+  "title": "Zain \u00b7 The Shoulder",
+  "kind": "Exhibition stand \u00b7 Hajj Expo 2026 \u00b7 round 1",
+  "src": "Zain_R1_Shoulder_concept_v1.blend",
+  "glb": "models/zain-r1-shoulder.glb",
+  "img": "models/zain-r1-shoulder.jpg",
+  "secs": 9,
+  "front": 180
+ },
+ {
+  "bytes": 19776932,
+  "objects": 182,
+  "bbox": [
+   [
+    -15.0,
+    -12.0,
+    0.0
+   ],
+   [
+    20.0,
+    20.0,
+    4.0
+   ]
+  ],
+  "size": [
+   35.0,
+   32.0,
+   4.0
+  ],
+  "thumb": true,
+  "key": "zain-r3-sweep",
+  "title": "Zain \u00b7 The Sweep",
+  "kind": "Exhibition stand \u00b7 Hajj Expo 2026 \u00b7 round 3",
+  "src": "Zain_R3_Sweep_v1.blend",
+  "glb": "models/zain-r3-sweep.glb",
+  "img": "models/zain-r3-sweep.jpg",
+  "secs": 8,
+  "front": 180
+ },
+ {
+  "bytes": 7713972,
+  "objects": 141,
+  "bbox": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    20.0,
+    10.0,
+    4.0
+   ]
+  ],
+  "size": [
+   20.0,
+   10.0,
+   4.0
+  ],
+  "thumb": true,
+  "key": "zain-r4",
+  "title": "Zain \u00b7 Round 4",
+  "kind": "Exhibition stand \u00b7 Hajj Expo 2026 \u00b7 round 4",
+  "src": "Zain_R4_v1.blend",
+  "glb": "models/zain-r4.glb",
+  "img": "models/zain-r4.jpg",
+  "secs": 6,
+  "front": 180
+ },
+ {
+  "bytes": 7259876,
+  "objects": 183,
+  "bbox": [
+   [
+    -16.0,
+    -12.0,
+    0.0
+   ],
+   [
+    20.0,
+    12.0,
+    4.0
+   ]
+  ],
+  "size": [
+   36.0,
+   24.0,
+   4.0
+  ],
+  "thumb": true,
+  "key": "zain-r5-arch",
+  "title": "Zain \u00b7 The Arch",
+  "kind": "Exhibition stand \u00b7 Hajj Expo 2026 \u00b7 round 5",
+  "src": "Zain_Booth_R5_Arch_v1.blend",
+  "glb": "models/zain-r5-arch.glb",
+  "img": "models/zain-r5-arch.jpg",
+  "secs": 9,
+  "front": 180
+ },
+ {
+  "bytes": 6637084,
+  "objects": 167,
+  "bbox": [
+   [
+    -16.0,
+    -12.0,
+    0.0
+   ],
+   [
+    20.0,
+    12.0,
+    4.0
+   ]
+  ],
+  "size": [
+   36.0,
+   24.0,
+   4.0
+  ],
+  "thumb": true,
+  "key": "zain-r6-maison",
+  "title": "Zain \u00b7 Maison",
+  "kind": "Exhibition stand \u00b7 Hajj Expo 2026 \u00b7 round 6",
+  "src": "Zain_Booth_R6_Maison_v1.blend",
+  "glb": "models/zain-r6-maison.glb",
+  "img": "models/zain-r6-maison.jpg",
+  "secs": 6,
+  "front": 180
+ },
+ {
+  "bytes": 15240060,
+  "objects": 147,
+  "bbox": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    20.0,
+    10.0,
+    4.0
+   ]
+  ],
+  "size": [
+   20.0,
+   10.0,
+   4.0
+  ],
+  "thumb": true,
+  "key": "zain-r7-almasar",
+  "title": "Zain \u00b7 Al Masar",
+  "kind": "Exhibition stand \u00b7 Hajj Expo 2026 \u00b7 round 7",
+  "src": "Zain_Booth_R7_AlMasar_v1.blend",
+  "glb": "models/zain-r7-almasar.glb",
+  "img": "models/zain-r7-almasar.jpg",
+  "secs": 8,
+  "front": 180
+ },
+ {
+  "bytes": 19776880,
+  "objects": 182,
+  "bbox": [
+   [
+    -15.0,
+    -12.0,
+    0.0
+   ],
+   [
+    20.0,
+    20.0,
+    4.0
+   ]
+  ],
+  "size": [
+   35.0,
+   32.0,
+   4.0
+  ],
+  "thumb": true,
+  "key": "zain-dd1",
+  "title": "Zain \u00b7 Double deck 1",
+  "kind": "Double-deck stand \u00b7 Hajj Expo 2026",
+  "src": "Zain_DoubleDeck_DD1e_FINAL_saved.blend",
+  "glb": "models/zain-dd1.glb",
+  "img": "models/zain-dd1.jpg",
+  "secs": 7,
+  "front": 180
+ },
+ {
+  "bytes": 10632308,
+  "objects": 275,
+  "bbox": [
+   [
+    -0.012000000104308128,
+    -0.012000000104308128,
+    0.0
+   ],
+   [
+    20.0,
+    10.01200008392334,
+    6.0
+   ]
+  ],
+  "size": [
+   20.011999130249023,
+   10.02400016784668,
+   6.0
+  ],
+  "thumb": true,
+  "key": "zain-dd2",
+  "title": "Zain \u00b7 Double deck 2",
+  "kind": "Double-deck stand \u00b7 Hajj Expo 2026",
+  "src": "Zain_DD2_v1.blend",
+  "glb": "models/zain-dd2.glb",
+  "img": "models/zain-dd2.jpg",
+  "secs": 7,
+  "front": 180
+ },
+ {
+  "bytes": 13401740,
+  "objects": 32,
+  "bbox": [
+   [
+    -30.0,
+    -30.0,
+    0.0
+   ],
+   [
+    30.0,
+    30.0,
+    2.5399999618530273
+   ]
+  ],
+  "size": [
+   3.0,
+   3.463413663614702,
+   2.5399999618530273
+  ],
+  "thumb": true,
+  "key": "snb-kiosks",
+  "title": "SNB \u00b7 Kiosks 2026",
+  "kind": "Kiosk family \u00b7 2026",
+  "src": "SNB_Kiosk_Designs_v21.blend",
+  "glb": "models/snb-kiosks.glb",
+  "img": "models/snb-kiosks.jpg",
+  "secs": 3,
+  "front": 180
+ },
+ {
+  "bytes": 14889768,
+  "objects": 70,
+  "bbox": [
+   [
+    -20.0,
+    -20.0,
+    0.0
+   ],
+   [
+    20.0,
+    20.0,
+    3.5198395252227783
+   ]
+  ],
+  "size": [
+   3.6382099986076355,
+   5.01799629932998,
+   4.3607697759704696
+  ],
+  "thumb": true,
+  "key": "snb-h1-house",
+  "title": "SNB \u00b7 H1 house",
+  "kind": "Kiosk \u00b7 walnut and white",
+  "src": "SNB_H1_House_v4_walnut+white.blend",
+  "glb": "models/snb-h1-house.glb",
+  "img": "models/snb-h1-house.jpg",
+  "secs": 2,
+  "front": 180
+ },
+ {
+  "bytes": 27469424,
+  "objects": 411,
+  "bbox": [
+   [
+    -24.0,
+    -20.0,
+    -0.019999999552965164
+   ],
+   [
+    24.0,
+    24.0,
+    14.199999809265137
+   ]
+  ],
+  "size": [
+   48.0,
+   44.0,
+   14.220000267028809
+  ],
+  "thumb": true,
+  "key": "cqr-blackhat",
+  "title": "CQR at Black Hat 2026",
+  "kind": "Exhibition stand \u00b7 Riyadh",
+  "src": "CQR_Booth_v8.blend",
+  "glb": "models/cqr-blackhat.glb",
+  "img": "models/cqr-blackhat.jpg",
+  "secs": 9,
+  "front": 180
+ },
+ {
+  "bytes": 21598952,
+  "objects": 330,
+  "bbox": [
+   [
+    -0.1600000411272049,
+    0.0,
+    -0.009999999776482582
+   ],
+   [
+    10.028302192687988,
+    10.123594284057617,
+    6.0
+   ]
+  ],
+  "size": [
+   10.188302040100098,
+   10.123594284057617,
+   6.010000228881836
+  ],
+  "thumb": true,
+  "key": "baan",
+  "title": "BAAN \u00b7 10 \u00d7 10",
+  "kind": "Exhibition stand",
+  "src": "BAAN_v6.blend",
+  "glb": "models/baan.glb",
+  "img": "models/baan.jpg",
+  "secs": 11,
+  "front": 180
+ },
+ {
+  "bytes": 2329040,
+  "objects": 968,
+  "bbox": [
+   [
+    -13.25,
+    -4.0,
+    -0.5400000214576721
+   ],
+   [
+    13.25,
+    31.850000381469727,
+    5.650000095367432
+   ]
+  ],
+  "size": [
+   26.5,
+   35.849998474121094,
+   6.190000057220459
+  ],
+  "thumb": true,
+  "key": "awqaf-eid",
+  "title": "Awqaf \u00b7 Eid",
+  "kind": "Celebration \u00b7 set and stage",
+  "src": "Awqaf_Eid_v3.blend",
+  "glb": "models/awqaf-eid.glb",
+  "img": "models/awqaf-eid.jpg",
+  "secs": 5,
+  "front": 180
+ },
+ {
+  "bytes": 67397800,
+  "objects": 1288,
+  "bbox": [
+   [
+    -18.799999237060547,
+    -12.694989204406738,
+    -0.009999999776482582
+   ],
+   [
+    16.299999237060547,
+    30.0,
+    9.0
+   ]
+  ],
+  "size": [
+   35.099998474121094,
+   42.69498825073242,
+   9.010000228881836
+  ],
+  "thumb": true,
+  "key": "snd-event",
+  "title": "Saudi National Day \u00b7 event",
+  "kind": "Celebration \u00b7 gate, stage, site",
+  "src": "SND_Event_v15.blend",
+  "glb": "models/snd-event.glb",
+  "img": "models/snd-event.jpg",
+  "secs": 17,
+  "front": 180
+ },
+ {
+  "bytes": 8963408,
+  "objects": 304,
+  "bbox": [
+   [
+    -17.0,
+    -24.0,
+    -0.09999990463256836
+   ],
+   [
+    17.0,
+    48.0,
+    9.915765762329102
+   ]
+  ],
+  "size": [
+   34.0,
+   72.0,
+   10.015766143798828
+  ],
+  "thumb": true,
+  "key": "nationalday-site",
+  "title": "National Day \u00b7 site",
+  "kind": "Site plan \u00b7 gate and crowd",
+  "src": "NationalDay_Site_v1.blend",
+  "glb": "models/nationalday-site.glb",
+  "img": "models/nationalday-site.jpg",
+  "secs": 7,
+  "front": 180
+ },
+ {
+  "bytes": 936664,
+  "objects": 54,
+  "bbox": [
+   [
+    -8.800000190734863,
+    -24.0,
+    -0.019999999552965164
+   ],
+   [
+    8.800000190734863,
+    11.5,
+    8.812825202941895
+   ]
+  ],
+  "size": [
+   17.600000381469727,
+   35.5,
+   8.832825660705566
+  ],
+  "thumb": true,
+  "key": "nationalday-gate",
+  "title": "National Day \u00b7 gate",
+  "kind": "Gate \u00b7 concept",
+  "src": "NationalDay_Gate_v2.blend",
+  "glb": "models/nationalday-gate.glb",
+  "img": "models/nationalday-gate.jpg",
+  "secs": 2,
+  "front": 180
+ },
+ {
+  "bytes": 82202436,
+  "objects": 1083,
+  "bbox": [
+   [
+    -129.32749938964844,
+    -224.64999389648438,
+    -0.19980773329734802
+   ],
+   [
+    438.0402526855469,
+    210.40199279785156,
+    18.5
+   ]
+  ],
+  "size": [
+   567.3677368164062,
+   435.052001953125,
+   18.69980812072754
+  ],
+  "thumb": true,
+  "key": "fa-gathering",
+  "title": "FA \u00b7 Gathering",
+  "kind": "Event \u00b7 outdoor gathering",
+  "src": "FA_Gathering_v6.blend",
+  "glb": "models/fa-gathering.glb",
+  "img": "models/fa-gathering.jpg",
+  "secs": 14,
+  "front": 180
+ },
+ {
+  "bytes": 18321556,
+  "objects": 150,
+  "bbox": [
+   [
+    -19.0,
+    -8.300000190734863,
+    -0.019999999552965164
+   ],
+   [
+    15.300000190734863,
+    8.300000190734863,
+    5.650000095367432
+   ]
+  ],
+  "size": [
+   34.29999923706055,
+   16.600000381469727,
+   5.670000076293945
+  ],
+  "thumb": true,
+  "key": "fa-reception",
+  "title": "FA \u00b7 Reception",
+  "kind": "Event \u00b7 reception",
+  "src": "FA_Reception_v1.blend",
+  "glb": "models/fa-reception.glb",
+  "img": "models/fa-reception.jpg",
+  "secs": 3,
+  "front": 180
+ },
+ {
+  "bytes": 17700996,
+  "objects": 822,
+  "bbox": [
+   [
+    -20.299999237060547,
+    -27.299999237060547,
+    -0.019999999552965164
+   ],
+   [
+    20.299999237060547,
+    9.90000057220459,
+    10.699999809265137
+   ]
+  ],
+  "size": [
+   40.599998474121094,
+   37.20000076293945,
+   10.720000267028809
+  ],
+  "thumb": true,
+  "key": "fa-stage-m2",
+  "title": "FA \u00b7 Stage M2",
+  "kind": "Stage \u00b7 concept 2",
+  "src": "FA_Stage_M2_v2.blend",
+  "glb": "models/fa-stage-m2.glb",
+  "img": "models/fa-stage-m2.jpg",
+  "secs": 14,
+  "front": 180
+ },
+ {
+  "bytes": 23599412,
+  "objects": 869,
+  "bbox": [
+   [
+    -20.299999237060547,
+    -27.299999237060547,
+    -0.019999999552965164
+   ],
+   [
+    20.299999237060547,
+    9.90000057220459,
+    9.199999809265137
+   ]
+  ],
+  "size": [
+   40.599998474121094,
+   37.20000076293945,
+   9.220000267028809
+  ],
+  "thumb": true,
+  "key": "fa-stage",
+  "title": "FA \u00b7 Stage",
+  "kind": "Stage \u00b7 concept 1",
+  "src": "FA_Stage_v4.blend",
+  "glb": "models/fa-stage.glb",
+  "img": "models/fa-stage.jpg",
+  "secs": 11,
+  "front": 180
+ },
+ {
+  "bytes": 26624912,
+  "objects": 148,
+  "bbox": [
+   [
+    -20.299999237060547,
+    -27.299999237060547,
+    -0.019999999552965164
+   ],
+   [
+    20.299999237060547,
+    9.90000057220459,
+    9.199999809265137
+   ]
+  ],
+  "size": [
+   40.599998474121094,
+   37.20000076293945,
+   9.220000267028809
+  ],
+  "thumb": true,
+  "key": "stage-gala",
+  "title": "Stage \u00b7 Gala",
+  "kind": "Stage \u00b7 gala dinner",
+  "src": "Stage_Gala_v1.blend",
+  "glb": "models/stage-gala.glb",
+  "img": "models/stage-gala.jpg",
+  "secs": 10,
+  "front": 180
+ },
+ {
+  "bytes": 22975304,
+  "objects": 902,
+  "bbox": [
+   [
+    -20.299999237060547,
+    -27.299999237060547,
+    -0.019999999552965164
+   ],
+   [
+    20.299999237060547,
+    9.90000057220459,
+    9.199999809265137
+   ]
+  ],
+  "size": [
+   40.599998474121094,
+   37.20000076293945,
+   9.220000267028809
+  ],
+  "thumb": true,
+  "key": "stage-corp",
+  "title": "Stage \u00b7 Corporate",
+  "kind": "Stage \u00b7 corporate",
+  "src": "Stage_Corp_v2.blend",
+  "glb": "models/stage-corp.glb",
+  "img": "models/stage-corp.jpg",
+  "secs": 10,
+  "front": 180
+ },
+ {
+  "bytes": 23372580,
+  "objects": 869,
+  "bbox": [
+   [
+    -20.299999237060547,
+    -27.299999237060547,
+    -0.019999999552965164
+   ],
+   [
+    20.299999237060547,
+    9.90000057220459,
+    9.199999809265137
+   ]
+  ],
+  "size": [
+   40.599998474121094,
+   37.20000076293945,
+   9.220000267028809
+  ],
+  "thumb": true,
+  "key": "stage-c886",
+  "title": "Stage \u00b7 C886",
+  "kind": "Stage \u00b7 concept",
+  "src": "Stage_C886_v3.blend",
+  "glb": "models/stage-c886.glb",
+  "img": "models/stage-c886.jpg",
+  "secs": 10,
+  "front": 180
+ },
+ {
+  "bytes": 77052,
+  "objects": 30,
+  "bbox": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    6.0,
+    6.025000095367432,
+    4.699999809265137
+   ]
+  ],
+  "size": [
+   6.0,
+   6.025000095367432,
+   4.699999809265137
+  ],
+  "thumb": true,
+  "key": "live-booth",
+  "title": "Live \u00b7 Booth 6 \u00d7 6",
+  "kind": "Early test \u00b7 stand",
+  "src": "Live_Booth_6x6.blend",
+  "glb": "models/live-booth.glb",
+  "img": "models/live-booth.jpg",
+  "secs": 1,
+  "front": 180
+ },
+ {
+  "bytes": 230072,
+  "objects": 6,
+  "bbox": [
+   [
+    -7.800000190734863,
+    -0.800000011920929,
+    -0.009999999776482582
+   ],
+   [
+    7.800000190734863,
+    0.800000011920929,
+    5.491045951843262
+   ]
+  ],
+  "size": [
+   15.600000381469727,
+   1.600000023841858,
+   5.501046180725098
+  ],
+  "thumb": true,
+  "key": "live-gate",
+  "title": "Live \u00b7 Heritage gate",
+  "kind": "Early test \u00b7 gate",
+  "src": "Live_HeritageGate.blend",
+  "glb": "models/live-gate.glb",
+  "img": "models/live-gate.jpg",
+  "secs": 2,
+  "front": 180
+ },
+ {
+  "key": "snb-cityscape",
+  "title": "SNB \u00b7 Cityscape booth",
+  "kind": "Exhibition stand \u00b7 2026 \u00b7 scale model",
+  "src": "SNB_Cityscape_Booth_v21.glb",
+  "glb": "models/snb-cityscape.glb",
+  "bytes": 421032,
+  "size": [
+   3.0,
+   3.0,
+   2.54
+  ],
+  "objects": 29,
+  "secs": 0,
+  "img": "models/snb-cityscape.jpg",
+  "front": 180
+ }
+]

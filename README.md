@@ -1,17 +1,16 @@
 # Yasser Kobeissi — portfolio
 
-Four versions live side by side. Each is its own Vite project and its own git tag.
+The live site is `site/` (The Drawing Set, v12). Everything else is history or tooling.
 
-| Folder | Idea | Dev server |
-|---|---|---|
-| `v8/` | **The monograph.** Editorial and cinematic, built to the current Awwwards standard: Bodoni Moda against Inter Tight, bone and ink, a counted loader, a hero that breathes under the cursor, a statement that lights up as you read, the director spread with a sticky portrait, the range with cursor image reveals, eight work spreads in four editorial layouts with parallax, the years, a quiet clients line, and Let's talk. | `cd v8 && npm run dev` → http://127.0.0.1:5187 |
-| `v7/` | **He is typing.** Yasser hosts his own site. He types to you and asks your name, then: the flight from Beirut to Riyadh as you scroll, twenty years on a playhead where every year has an opinion, the TV years as a four-channel accordion with live broadcast graphics and a pixel cut, LOUD with a knob that drops the letters into real physics past nine, the car geek's studio with a 3D car that turns as you scroll and gets critiqued, a slot machine for what's next, the drawer of thirty-four with filters, the archive strip, the office modal, a mood cursor that talks, hand-wipe scene changes, and a goodbye card with your name. | `cd v7 && npm run dev` → http://127.0.0.1:5186 |
-| `v6/` | Rooms of light you walk through (paused). | `cd v6 && npm run dev` → http://127.0.0.1:5185 |
-| `v5/` | **One night with Yasser.** You live one event night with him from the brief at 18:00 to the doors at dawn and do the work yourself: reply to the client, draw the first line (the real sketch appears under your strokes), drag the sun over the render, power up the LED wall panel by panel, push the doors. A clock and the sky follow your scroll. | `cd v5 && npm run dev` → http://127.0.0.1:5184 |
-| `v4/` | **The Sketchbook.** Every page is drawn as you scroll: marker strokes paint his sketch, the render develops over it, the built photo is taped on. Marker cursor with ink and sound, handwritten notes, stickers, a polaroid drawer of all 34 rooms. | `cd v4 && npm run dev` → http://127.0.0.1:5183 |
-| `v3/` | Cinematic intro on his portrait, bold-type playground with windows, one full-screen scene per room in its own palette. | `cd v3 && npm run dev` → http://127.0.0.1:5182 |
-| `v2/` | Inside the mind: depth-mapped head, x-ray on hover, a walk through a neural space where rooms are neurons. | `cd v2 && npm run dev` → http://127.0.0.1:5181 |
-| `v1/` | Everything starts as a line: chapters, 3D booth that assembles on scroll, archive wall. | `cd v1 && npm run dev` → http://127.0.0.1:5180 |
+| Folder | What it is |
+|---|---|
+| `site/` | The website. One HTML file, images in `img/`, map data in `data/`, 3D stands in `models/` with `manifest.json`. Deployed to GitHub Pages on every push to `main`. |
+| `site/ASSETS-SPEC.md` | What to export for the site: GLB settings for the stands, photo sizes, scans, facts per project. Give this to Yasser. |
+| `site/CONCEPT.md` | Design notes, round by round. |
+| `handover/` | The original brief (`CLAUDE.md`) and the v10 site it was built on. Facts come from here. |
+| `archive/` | Earlier concepts v1–v8, the v11 pass and the v14 "Night build" prototype. Kept for reference, not deployed. |
+| `scripts/` | Tooling: publishing the models to a bucket if the site ever outgrows GitHub Pages. |
 
-Shared: `v1/public/img/<behance id>/` holds the 419 frames of the 34 Behance projects; the other versions symlink to it.
-Copy per version lives in each `content/` folder. Nothing in the copy is a fact unless it is in the CV or on Behance; the rest is the studio's voice, written to be replaced.
+Run locally: `python3 -m http.server 8082 --directory site` and open http://localhost:8082.
+
+Models: `site/models/*.glb` are Draco + WebP compressed exports of Tamim's Blender concepts (69 MB for 27). The uncompressed originals live in `site/models-src/`, which is not committed.

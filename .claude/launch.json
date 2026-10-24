@@ -2,6 +2,20 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8082",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "site"
+      ],
+      "port": 8082
+    },
+    {
       "name": "handover-site",
       "runtimeExecutable": "python3",
       "runtimeArgs": [
@@ -14,48 +28,6 @@
         "handover/site"
       ],
       "port": 8080
-    },
-    {
-      "name": "v11-site",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8081",
-        "--bind",
-        "127.0.0.1",
-        "--directory",
-        "v11"
-      ],
-      "port": 8081
-    },
-    {
-      "name": "v12-site",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8082",
-        "--bind",
-        "127.0.0.1",
-        "--directory",
-        "v12"
-      ],
-      "port": 8082
-    },
-    {
-      "name": "v14-site",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8084",
-        "--bind",
-        "127.0.0.1",
-        "--directory",
-        "v14"
-      ],
-      "port": 8084
     }
   ]
 }
