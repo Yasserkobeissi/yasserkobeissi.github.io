@@ -895,7 +895,7 @@ body.proj-open{overflow:hidden}
 </main>
 
 
-<div class="proj" id="proj" aria-hidden="true" role="dialog" aria-label="Project">
+<div class="proj" id="proj" data-lenis-prevent aria-hidden="true" role="dialog" aria-label="Project">
   <div class="top"><button type="button" id="projback" data-hot="BACK">← Back to the set</button><a id="projbe" href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance ↗</a></div>
   <div class="wrap">
     <div class="head"><div><div class="lbl" id="projkind">Project</div><h1 id="projtitle">Project</h1></div><div class="facts" id="projfacts"></div></div>
@@ -1020,6 +1020,7 @@ body.proj-open{overflow:hidden}
       gal.innerHTML = ''; for (let i=1;i<=p.count;i++){ const f = document.createElement('figure'); f.innerHTML = `<img src="img/projects/${p.key}/${String(i).padStart(2,'0')}.jpg" alt="${p.title}, image ${i}" loading="${i < 3 ? 'eager' : 'lazy'}"><figcaption>${p.title} · ${String(i).padStart(2,'0')} / ${String(p.count).padStart(2,'0')}</figcaption>`; gal.appendChild(f); }
       if (io) io.disconnect(); io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { root: el, rootMargin: '80px' }); $$('img', gal).forEach(im => io.observe(im));
       const i = list.indexOf(p), n = list[(i+1) % list.length], pv = list[(i-1+list.length) % list.length]; nextA.textContent = n.title; nextA.dataset.key = n.key; prevA.textContent = pv.title; prevA.dataset.key = pv.key; }
+    el.addEventListener('wheel', e => { if (!curKey) return; e.stopPropagation(); }, { capture: true, passive: true });
     function open(key, push = true){ const p = list.find(x => x.key === key); if (!p) return; curKey = key; render(p); el.classList.add('on'); el.setAttribute('aria-hidden', 'false'); document.body.classList.add('proj-open'); el.scrollTop = 0; if (lenis) lenis.stop(); if (push) history.pushState({ p: key }, '', '#p/' + key); paper(.1); }
     function close(push = true){ if (!curKey) return; curKey = null; el.classList.remove('on'); el.setAttribute('aria-hidden', 'true'); document.body.classList.remove('proj-open'); if (lenis) lenis.start(); if (push) history.pushState({}, '', location.pathname + location.search); }
     $('#projback').addEventListener('click', () => close());
