@@ -28,6 +28,19 @@
         "handover/site"
       ],
       "port": 8080
+    },
+    {
+      "name": "v15",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8083",
+        "--bind",
+        "127.0.0.1"
+      ],
+      "port": 8083,
+      "url": "http://localhost:8083"
     }
   ]
 }
