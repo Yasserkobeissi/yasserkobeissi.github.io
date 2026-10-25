@@ -39,8 +39,6 @@ h2.t{font-size:clamp(34px,5vw,76px);font-weight:700;font-stretch:112%;letter-spa
 #yk{padding:6px 10px;margin-left:-10px;border-radius:999px;background:rgba(10,10,10,.6);backdrop-filter:blur(8px)}
 #top>*{pointer-events:auto}
 #yk{font-weight:700;font-size:15px;letter-spacing:-.01em}
-#clock{position:fixed;right:28px;bottom:24px;z-index:30;padding:8px 12px;border-radius:12px;background:rgba(10,10,10,.6);backdrop-filter:blur(8px);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;text-align:right;line-height:1.5;pointer-events:none}
-#clock b{display:block;color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums;font-size:13px}
 
 /* hero */
 #hero{position:relative;height:100vh;min-height:620px}
@@ -86,7 +84,6 @@ body.list #gl{display:none}
 #stage.spiral #big{z-index:3}
 #stage.spiral #big>div{transform:translateY(-9vh)}
 #stage.spiral #big span{text-shadow:0 2px 24px rgba(10,10,10,.9)}
-#stage.spiral #big>div{padding:22px 28px;border-radius:18px;background:radial-gradient(ellipse at center,rgba(10,10,10,.92) 40%,rgba(10,10,10,.6) 70%,rgba(10,10,10,0) 100%)}
 #stage.spiral #big span{font-size:clamp(24px,3.6vw,52px)}
 #big span{transition:font-size .9s var(--ease),opacity .35s var(--ease),transform .35s var(--ease)}
 #big small{display:block;margin-top:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-stretch:100%;font-weight:500}
@@ -119,9 +116,9 @@ body.list #list{display:block}
 #motion .hd p{color:var(--mute);max-width:26em;font-size:14px}
 #pl{position:fixed;top:0;left:0;right:0;height:2px;background:var(--fg);transform-origin:0 50%;transform:scaleX(0);z-index:31;opacity:.6;pointer-events:none}
 #reel{cursor:grab;user-select:none}
-#reel{display:flex;gap:16px;overflow-x:auto;padding:0 6vw 20px;scroll-snap-type:x proximity;scrollbar-width:none}
+#reel{display:flex;gap:16px;overflow-x:auto;padding:0 6vw 20px;scrollbar-width:none;overscroll-behavior-x:contain}
 #reel::-webkit-scrollbar{display:none}
-#reel button{flex:0 0 auto;width:min(420px,72vw);scroll-snap-align:start;text-align:left}
+#reel button{flex:0 0 auto;width:min(420px,72vw);text-align:left}
 #reel .im{aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#111;position:relative}
 #reel img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:opacity .4s,transform .8s var(--ease)}
 #reel button:hover img{opacity:1;transform:scale(1.03)}
@@ -266,8 +263,7 @@ body.list #list{display:block}
 @media (max-width:720px){
   html{font-size:13px}
   #top{padding:14px 16px}
-  #clock{right:16px;bottom:18px}
-  #hero{min-height:560px}
+    #hero{min-height:560px}
   #hero .l{left:18px;top:auto;bottom:96px;transform:none}
   #hero .r{right:18px;top:auto;bottom:96px;transform:none}
   #cats{padding-right:40px}
@@ -280,7 +276,7 @@ body.list #list{display:block}
   #hint{left:18px;bottom:22px}
   #big span{font-size:clamp(36px,13vw,70px)}
   #big{padding-bottom:60px}
-  #stage.spiral #big>div{transform:translateY(-24vh);padding:14px 10px}
+  #stage.spiral #big>div{transform:translateY(-13vh)}
   #stage.spiral #big span{font-size:clamp(20px,6.4vw,34px)}
   #list{padding:90px 5vw 60px}
   #peek{width:70vw}
@@ -297,7 +293,6 @@ body.list #list{display:block}
 <body>
 
 <header id="top"><a id="yk" href="#hero">YK</a><button class="pill" id="mbtn">menu <i></i></button></header>
-<div id="clock" aria-hidden="true">Riyadh<b>--:--</b></div>
 
 <section id="hero" aria-label="Yasser Kobeissi">
   <canvas id="dots" aria-hidden="true"></canvas>
@@ -420,10 +415,6 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const narrow=()=>innerWidth<720;
 
-/* clock */
-const clk=$('#clock b');
-const tick=()=>{clk.textContent=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Riyadh'}).format(new Date());};
-tick(); setInterval(tick,15000);
 
 /* smooth scroll */
 const lenis=reduce?null:new Lenis({lerp:.085,smoothWheel:true,syncTouch:false});
@@ -468,10 +459,11 @@ $$('.chips span,.certs button').forEach((e,i)=>{e.classList.add('rev');e.style.s
   function size(){W=cv.clientWidth;H=cv.clientHeight;const r=Math.min(devicePixelRatio,2);cv.width=W*r;cv.height=H*r;ctx.setTransform(r,0,0,r,0,0);}
   addEventListener('resize',size);
   addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
-  addEventListener('scroll',()=>{scat=Math.min(1,scrollY/(innerHeight*1.6));},{passive:true});
+  const span=()=>{const ab=document.getElementById('about'); return Math.max(innerHeight*1.5,(ab?ab.getBoundingClientRect().top+scrollY:innerHeight*2)-innerHeight*.15);};
+  addEventListener('scroll',()=>{scat=Math.min(1,scrollY/span());},{passive:true});
   let t=0;
   function loop(){
-    requestAnimationFrame(loop); if(scrollY>innerHeight*1.7){ if(cv.style.display!=='none'){ctx.clearRect(0,0,W,H);cv.style.display='none';} return;} cv.style.display=''; t+=.016;
+    requestAnimationFrame(loop); if(scat>=1){ if(cv.style.display!=='none'){ctx.clearRect(0,0,W,H);cv.style.display='none';} return;} cv.style.display=''; t+=.016;
     ctx.clearRect(0,0,W,H);
     const side=Math.min(W,H)*(narrow()?.92:.86), x0=(W-side)/2, y0=(H-side)/2+side*.06;
     if(iaT===0) iaT=performance.now(); const ip=Math.min(1,(performance.now()-iaT)/2200); ia=reduce?0:Math.pow(1-ip,3);
@@ -480,10 +472,10 @@ $$('.chips span,.certs button').forEach((e,i)=>{e.classList.add('rev');e.style.s
     for(const p of pts){
       let x=x0+p.u*side+Math.sin(t*.6+p.r)*1.2, y=y0+p.v*side+Math.cos(t*.5+p.r)*1.2;
       const sx=scat, se=sx*sx*(3-2*sx);
-      x+=p.ox*side*2.2*se; y+=p.oy*side*1.4*se-se*H*.9*(.4+p.s*.4);
+      x+=p.ox*side*2.4*se; y+=p.oy*side*1.6*se-se*H*.75*(.4+p.s*.4);
       const dx=x-mx, dy=y-my, dd=dx*dx+dy*dy, R=90;
       if(dd<R*R&&scat<.3){const d=Math.sqrt(dd)||1, k=(1-d/R); const push=k*k*34*(1-scat/.3); x+=dx/d*push; y+=dy/d*push;}
-      ctx.globalAlpha=p.a*(1-ia*.5)*(1-ia*.4)*Math.max(0,1-Math.pow(scat,1.6)); ctx.fillRect(x,y,p.s,p.s);
+      ctx.globalAlpha=p.a*(1-ia*.5)*(1-ia*.4)*Math.max(0,1-Math.pow(scat,2.6)); ctx.fillRect(x,y,p.s,p.s);
     }
     ctx.globalAlpha=1;
   }
@@ -544,6 +536,7 @@ function fit(){
   const w=canvas.clientWidth||innerWidth,h=canvas.clientHeight||innerHeight; camera.aspect=w/h; camera.updateProjectionMatrix(); renderer.setSize(w,h,false);
   const nr=narrow(); const want=(R+CW)*(nr?3.1:2.35); camY=nr?2.4:2.6; camZ=want; lookY=nr?-1.7:-1.3;
   camera.position.set(0, camY, want); camera.lookAt(0,lookY,0);
+  renderer.clear(); renderer.render(scene,camera);
 }
 addEventListener('resize',fit);
 layout();
@@ -590,11 +583,11 @@ function frame(){
     const oi=on.indexOf(it); let d=oi-(sIdx-rot*n/(Math.PI*2)); d=((d%n)+n)%n; if(d>n/2)d-=n;
     const y=Math.sin(t*.7+it.a*3)*.06 + d*pitch*sE;
     m.position.set(Math.sin(a)*Rh, y, Math.cos(a)*Rh); m.rotation.set(0,a,0);
-    const near=Math.max(0,1-Math.abs(d)/(n*.5));
-    const sc=it.s*(m===hot?1.12:1)*(1+sE*.18*near);
+    const near=Math.max(0,1-Math.abs(d)/(n*.5)), fw=Math.max(0,1-Math.abs(d)/.75);
+    const sc=it.s*(m===hot?1.12:1)*(1+sE*(.08*near+.42*fw));
     m.scale.set(sc,sc,sc); m.visible=it.s>.02;
     const wz=Math.cos(a);
-    const ringOp=.42+.58*(wz+1)/2, helixOp=Math.min(1,(n/2-Math.abs(d))/1.5)*(.3+.7*near);
+    const ringOp=.42+.58*(wz+1)/2, helixOp=Math.min(1,(n/2-Math.abs(d))/1.5)*(.22+.38*near+.4*fw);
     m.material.opacity=it.s*(ringOp*(1-sE)+helixOp*sE);
     const score=sW>.5?-Math.abs(d):wz;
     if(it.on&&score>bz){bz=score;best=it;}
@@ -707,8 +700,14 @@ const pl=document.createElement('div'); pl.id='pl'; document.body.appendChild(pl
 const upPl=()=>{ const m=document.documentElement.scrollHeight-innerHeight; pl.style.transform='scaleX('+(m>0?scrollY/m:0)+')'; };
 addEventListener('scroll',upPl,{passive:true}); upPl();
 
-/* reel: drag to scroll */
-(function(){ let d=false,x0=0,s0=0,mv=0; reel.addEventListener('pointerdown',e=>{d=true;x0=e.clientX;s0=reel.scrollLeft;mv=0;}); addEventListener('pointermove',e=>{ if(!d)return; const dx=e.clientX-x0; mv+=Math.abs(dx); reel.scrollLeft=s0-dx; }); addEventListener('pointerup',()=>{ if(d&&mv>8) reel.dataset.drag='1'; d=false; }); reel.addEventListener('click',e=>{ if(reel.dataset.drag){e.stopPropagation();e.preventDefault();delete reel.dataset.drag;} },true); })();
+/* reel: rolls to the left on its own; drag it either way, and it picks up again when you let go */
+(function(){ const first=[...reel.children]; first.forEach(c=>{const k=c.cloneNode(true); k.onclick=c.onclick; reel.appendChild(k);}); [...reel.children].slice(first.length).forEach((k,i)=>k.onclick=first[i].onclick);
+  let d=false,x0=0,s0=0,mv=0,hold=0,last=performance.now(); const half=()=>reel.scrollWidth/2;
+  function wrap(){ const h=half(); if(h<=0)return; if(reel.scrollLeft>=h) reel.scrollLeft-=h; else if(reel.scrollLeft<0) reel.scrollLeft+=h; }
+  function loop(now){ const dt=Math.min(.05,(now-last)/1000); last=now; if(!d&&!reduce){ if(hold>0) hold-=dt; else { const r=reel.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight) reel.scrollLeft+=42*dt; } } wrap(); requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+  reel.addEventListener('pointerdown',e=>{d=true;x0=e.clientX;s0=reel.scrollLeft;mv=0;}); addEventListener('pointermove',e=>{ if(!d)return; const dx=e.clientX-x0; mv+=Math.abs(dx); reel.scrollLeft=s0-dx; }); addEventListener('pointerup',()=>{ if(d){ hold=1.4; if(mv>8) reel.dataset.drag='1'; } d=false; }); reel.addEventListener('scroll',()=>{ if(d) return; },{passive:true});
+  reel.addEventListener('click',e=>{ if(reel.dataset.drag){e.stopPropagation();e.preventDefault();delete reel.dataset.drag;} },true); })();
 
 /* certificates */
 const CERTS=[['lau-bsc-2011','BSc Graphic Design','Lebanese American University · 2011'],['mastery-marketing-2022','Marketing training diploma','Mastery Academy · 2022'],['cpd-leadership-2026','Managerial leadership · CPD','CPD Standards Office · 2026'],['managerial-leadership-diploma-2026','Managerial leadership diploma','Mastery Academy · 2026'],['leadership-practitioner-2026','Certified leadership practitioner','Mastery Academy · 2026'],['managerial-leadership-skills-2026','Principles and skills of managerial leadership','Mastery Academy · 2026'],['planning-specialist-2026','Planning specialist','Mastery Academy · 2026']];
