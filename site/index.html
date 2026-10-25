@@ -154,10 +154,10 @@ body.list #list{display:block}
 .also b{display:block;color:var(--fg);font-weight:600;margin-bottom:4px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips span{padding:8px 13px;border:1px solid var(--line);border-radius:999px;font-size:12px}
-.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;align-items:start}
 .certs button{text-align:left}
-.certs .im{aspect-ratio:3/4;border-radius:6px;overflow:hidden;background:#111;margin-bottom:8px}
-.certs img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:opacity .3s}
+.certs .im{border-radius:6px;overflow:hidden;background:#111;margin-bottom:8px}
+.certs img{width:100%;height:auto;display:block;opacity:.85;transition:opacity .3s}
 .certs button:hover img{opacity:1}
 .certs b{display:block;font-size:12px;font-weight:600;line-height:1.25}
 .certs small{display:block;font-size:11px;color:var(--mute);margin-top:2px}
@@ -431,7 +431,7 @@ $$('.chips span,.certs button').forEach((e,i)=>{e.classList.add('rev');e.style.s
     const bg=new Uint8Array(S*S), q=[];
     for(let x=0;x<S;x++){ [x, (S-1)*S+x].forEach(i=>{bg[i]=1;q.push(i);}); }
     for(let y=0;y<S;y++){ [y*S, y*S+S-1].forEach(i=>{bg[i]=1;q.push(i);}); }
-    while(q.length){const i=q.pop(), x=i%S, y=(i-x)/S; [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy])=>{const nx=x+dx,ny=y+dy; if(nx<0||ny<0||nx>=S||ny>=S)return; const j=ny*S+nx; if(!bg[j]&&Math.abs(lum[j]-lum[i])<.005&&!(lum[j]>.8&&ny>S*.5)){bg[j]=1;q.push(j);}});}
+    while(q.length){const i=q.pop(), x=i%S, y=(i-x)/S; [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy])=>{const nx=x+dx,ny=y+dy; if(nx<0||ny<0||nx>=S||ny>=S)return; const j=ny*S+nx; if(!bg[j]&&Math.abs(lum[j]-lum[i])<.005&&!(lum[j]>.8&&ny>S*.5)&&!(ny>S*.52&&nx>S*.16&&nx<S*.84)){bg[j]=1;q.push(j);}});}
     let nbg=0; for(let i=0;i<S*S;i++) nbg+=bg[i]; const masked=nbg>S*S*.15&&nbg<S*S*.9;
     let lo=1,hi=0; for(let i=0;i<S*S;i++){ if(masked&&bg[i])continue; lo=Math.min(lo,lum[i]);hi=Math.max(hi,lum[i]);}
     pts=[];
