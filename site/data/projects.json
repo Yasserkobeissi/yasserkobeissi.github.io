@@ -65,6 +65,36 @@
   "cat": "exhibitions"
  },
  {
+  "key": "hail2",
+  "title": "Hail Region Development Authority · 12 × 10",
+  "kind": "Exhibition stand · 12 × 10 m",
+  "url": null,
+  "count": 11,
+  "client": "Hail Region Development Authority",
+  "city": null,
+  "hall": null,
+  "date": null,
+  "area": null,
+  "built": null,
+  "line": null,
+  "cat": "exhibitions"
+ },
+ {
+  "key": "bsf",
+  "title": "BSF",
+  "kind": "Exhibition stand",
+  "url": null,
+  "count": 24,
+  "client": "BSF",
+  "city": null,
+  "hall": null,
+  "date": null,
+  "area": null,
+  "built": null,
+  "line": null,
+  "cat": "exhibitions"
+ },
+ {
   "key": "qol",
   "title": "Quality of Life Program",
   "kind": "Exhibition stand · 2026",
