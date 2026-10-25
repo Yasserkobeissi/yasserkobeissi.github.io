@@ -95,6 +95,21 @@
   "cat": "exhibitions"
  },
  {
+  "key": "alhabib",
+  "title": "Sulaiman Al Habib at the Falcon Expo",
+  "kind": "Exhibition stand · Saudi Falcon and Hunting Exhibition",
+  "url": null,
+  "count": 24,
+  "client": "Dr. Sulaiman Al Habib",
+  "city": null,
+  "hall": null,
+  "date": null,
+  "area": null,
+  "built": null,
+  "line": null,
+  "cat": "exhibitions"
+ },
+ {
   "key": "qol",
   "title": "Quality of Life Program",
   "kind": "Exhibition stand · 2026",
