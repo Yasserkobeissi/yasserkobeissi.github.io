@@ -135,7 +135,7 @@
  {
   "key": "sca",
   "title": "SCA",
-  "kind": "Exhibition stand",
+  "kind": "Exhibition stand · two options",
   "url": null,
   "count": 6,
   "client": "SCA",
@@ -145,7 +145,15 @@
   "area": null,
   "built": null,
   "line": null,
-  "cat": "exhibitions"
+  "cat": "exhibitions",
+  "versions": [
+   6,
+   6
+  ],
+  "vlabels": [
+   "Option 1",
+   "Option 2"
+  ]
  },
  {
   "key": "qol",
