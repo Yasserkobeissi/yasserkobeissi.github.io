@@ -110,6 +110,44 @@
   "cat": "exhibitions"
  },
  {
+  "key": "finacademy",
+  "title": "The Financial Academy",
+  "kind": "Exhibition stand · 10 × 12 m · two options",
+  "url": null,
+  "count": 14,
+  "versions": [
+   14,
+   15
+  ],
+  "vlabels": [
+   "Option A",
+   "Option B"
+  ],
+  "client": "The Financial Academy",
+  "city": null,
+  "hall": null,
+  "date": null,
+  "area": null,
+  "built": null,
+  "line": null,
+  "cat": "exhibitions"
+ },
+ {
+  "key": "sca",
+  "title": "SCA",
+  "kind": "Exhibition stand",
+  "url": null,
+  "count": 6,
+  "client": "SCA",
+  "city": null,
+  "hall": null,
+  "date": null,
+  "area": null,
+  "built": null,
+  "line": null,
+  "cat": "exhibitions"
+ },
+ {
   "key": "qol",
   "title": "Quality of Life Program",
   "kind": "Exhibition stand · 2026",
