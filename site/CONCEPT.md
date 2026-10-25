@@ -1,112 +1,37 @@
-# v12 — The Drawing Set
+# v15 — The Ring
 
-A new concept, not a re-skin. The whole site is a set of technical drawings that Yasser issues himself: fourteen sheets, each with a frame, a sheet number, a kicker and a title block, stacked like drawings pulled from a flat file. Cyanotype blue with light lines for covers and scenes, whiteprint paper with blue lines for content, one safety-orange redline. It ties to the one habit every version has tried to show: he draws the first line by hand.
+Started from scratch on 25 Oct 2026. Nothing carried over from the drawing set, the hall, the drift or the earlier sheets.
 
-Built from scratch in `v12/index.html` (same stack: one file, three.js, GSAP + ScrollTrigger, Lenis, Google Fonts). v10 and v11 are untouched.
+## What Tamim pointed at
 
-## Voice
-First person throughout. It is his set. "I drift." "I draw the first line by hand." The quoted lines from his voice notes stay verbatim. "Loud in the room" is gone; the elevation sheet is now **Drawn first, built as drawn**, with the subline "first in the room, last to ask", and the portrait paragraph reads "Warm, quick and sure: I say what I think and I draw it before the meeting ends." The crew notes drop "the loud one" and "Beirut volume" for "draws before the meeting ends" and "says yes, then draws it". No facts added beyond the CV, Behance and the voice notes.
+- oumahi.art: a dark room, one 3D ring of pieces you drag to rotate, category pills on the left, click a piece and a file opens with the image, a few lines and a filmstrip.
+- ingrassiadaniel.it: almost no text, small type, a lot of dark space, one living object on screen.
+- pacomepertant.com: black, a spiral of work cards you scroll along, a "spiral / list" toggle, a menu button, a project page with the piece and one paragraph.
 
-## Type and colour
-- Archivo (variable, wide and black for titles, narrow for labels), JetBrains Mono for annotations, Fraunces italic for the first-person asides, IBM Plex Sans Arabic for the Arabic lines.
-- Cyanotype `#0B2A55`, ink `#EAF1FF`, whiteprint `#F3F0E8`, blueprint blue `#173F86`, redline `#FF5A1F`. Roughly half the sheets are paper, as Tamim prefers.
+What they share: one screen, one object, a handful of words. The work is the interface.
 
-## The sheets
-| No. | Sheet | What it does |
-|---|---|---|
-| 00 | Cover | Name, role, method. Portrait plotted as 14,400 dots; the photo shows under the cursor; the dots scatter as you pull the next sheet. |
-| 01 | General notes | Five numbered notes draw in with the scroll. The marker sketch as Detail 1. |
-| 02 | Site plan | A real chart drawn from `coast.json`: graticule, coastlines, land dots. The route Beirut → Riyadh draws as a redline arc with a plane; the kilometres count; four beats in his words. |
-| 03 | Elevation | The portrait as a measured drawing: dimension lines, leader tags, a lens that restores colour. His specification lines appear one by one. |
-| 04 | Photo log | Six pinned disposable-camera frames you drag; flash reshuffles; margin notes from the crew. |
-| 05 | Vehicle | A skid-pad plan: track edges, station marks, kerbs; the car follows the line, slips, leaves dashed tyre marks; HUD with speed and slip; the chassis/sketch lens as Detail 2. |
-| 06 | Schedule | Every job as a Gantt bar, Riyadh in red, the NOW line at 2026, the four-channel TV years as a callout. |
-| 07 | Scope of work | Six scope items with a callout plate under the cursor. |
-| 08 | Drawing index | 23 project sheets as a 3D stack you pull through; drag tilts it; click opens Behance. |
-| 09 | Register | Sixteen rows that roll like end credits with a preview under the cursor. |
-| 10 | Assembly | A wireframe stand assembles in blue line, part by part; at the end the walls fill and the lights turn red; the Sketch / Plan / Render / Built sequence is stamped as you pass. |
-| 11 | Lighting plot | Twelve moving heads and four washes draw as a plot; the spotlight opens the real photo; letterbox; the photo log reel slides in. |
-| 12 | Details | Trophy, invitation box, gift box at 1:1 with dimension lines. |
-| 13 | Issue | "What do I want next?" fills in red, the "Issued for construction" stamp slams, contact and revision log. |
+## The idea
 
-## Round 2 (24 Oct)
-- **Sheet depth.** The sheet underneath sinks and darkens as the next one slides over it, like a card stack in a flat file.
-- **Cyanotype develop.** Blue sheets arrive pale and develop to deep blue as they land, the way a cyanotype darkens in light.
-- **Drawing list (sheet 00A).** Every sheet listed with its scale and a status stamp (Issued, Checked, As built, IFC); each row pulls that sheet.
-- **Drafting ruler.** A tick per sheet on the right edge with a red marker for where you are; hover names the sheet, click pulls it.
-- **Plotter head.** A red pen on the top frame line of every sheet tracks how far through that sheet you are.
-- **Lighting plot.** Twelve fixtures draw in and their beams follow the cursor once drawn (the plot had been hidden by a class-name clash with the progress line; fixed).
-- **Client tape.** Two-speed client list running under the scope of work.
-- **Cover.** Portrait dissolves into the sheet with no edges, labels or ring; the photo shows through a soft oval under the cursor. Car on the skid pad a third bigger.
+One black room. His projects hang on a ring in the middle of it, tilted like a record on a turntable. You drag it round, or scroll. The card at the front is the one you are looking at, its title sits large behind the ring. Click it and the project opens on top: the cover big, the rest of the gallery in a strip, three lines of facts (dashed "to fill" where we do not know yet), previous and next.
 
-## Round 3: nothing sits still (24 Oct)
-Every sheet has a life of its own while you read, and scrolling adds to it rather than restarting it.
-- **Vehicle.** The skid pad is now a closed course. The car laps on its own (one lap every sixteen seconds); scrolling is throttle on top; the HUD, tyre marks and smoke run continuously.
-- **Cover.** The plotted dots breathe and drift. **Site plan.** The route's dash runs and a glow travels the arc. **Elevation.** The light sweeps the portrait when nobody is pointing.
-- **Photo log.** The pinned frames sway. **Schedule.** A light sweeps the chart. **Drawing index.** The stack rocks. **Register.** The credits keep rolling, and scrolling back winds them back.
-- **Assembly.** The camera keeps orbiting. **Lighting plot.** The beams sweep the stage when the cursor rests. **Details.** Slow pans on the three objects. **Issue.** The arrow nudges.
-- The plotter head on every frame twitches like a real pen. All of it respects reduced-motion.
+Five pills on the left filter the ring: all, events, exhibitions, objects, motion. Motion puts his ten Vimeo pieces on the ring; opening one plays it.
 
-## Round 4 (24 Oct): the car and the continuity
-- **Drift physics.** Slip now rotates the nose into the corner (it was pointing out of it). Scrolling in either direction is throttle, so the car never runs backwards; idle lap time nine seconds; the HUD reads up to 190.
-- **Scenes complete before the next sheet.** Every scrolling scene (site plan, vehicle, drawing index, register, assembly, lighting) reaches its end at 86% of its scroll; the last 14% is a hold, so the drawing index shows sheet 23 of 23 before the register covers it. The index got a longer scroll (4.2 screens).
-- **Phone breakpoint lowered to 720 px**, so a narrow desktop window keeps the full layout, including the chassis-sketch blueprint on the vehicle sheet.
+"ring / list" at the top switches to a plain list of titles, large, centred, the cover floating behind the one under the pointer.
 
-## Round 5 (24 Oct): breathing room
-- **Chassis image removed** from the vehicle sheet; the caption is shorter and sits on a soft backdrop so the lapping car never runs through the words.
-- **Compact widths (under 1100 px)** keep one voice per corner: hints, the km counter, elevation leader tags, photo-log margin notes, the TV callout, assembly thumbnails and parts list, and the bottom-left HUD all step aside; the schedule tightens to fit eleven rows.
-- **Assembly flashes fixed**: every sheet now keeps a constant compositing layer, so the WebGL canvas is no longer re-layered when the next sheet starts to cover it.
+Menu: about, contact. About is one portrait and six sentences in his voice, his tools, his seven certificates as a row of small scans. Contact is an email, a WhatsApp line, Behance, LinkedIn (to fill).
 
-## Round 6 (24 Oct): sheet 08A, The hall
-- A new sheet after the drawing index: one WebGL hall at night inside the cyanotype. The camera walks to a stand, laps it once (dipping low on the far side), opens a spec panel with the facts template (client, city and hall, date, footprint from the model, built, one line in my words; unknowns are dashed "to fill"), then walks straight on. No still images between stands (Tamim's call).
-- **The stand builds itself on scroll.** Sheet 10 (Assembly, generic boxes) is removed; its idea now runs on the real model. Sequence per stand: arrive at the front of an empty floor (the `front` angle per model in the manifest, 180° for the Zain set) · the pieces land one by one in structural order (floor and platforms, walls biggest first, roof and header pieces, screens, counters and pods, then furniture and small things), each in its own slot, the next starting when the previous is two thirds down, arriving from six directions in turn · a short zoom in · then the rotation. The screens stay dark until the end and the lights come on with the last pieces. The GLBs are compressed without mesh merging (`--join false`) so every element keeps its own identity. The free-look angle you set by dragging is kept as the walk continues.
-- **One key stand in the flow, the whole hall behind a button.** The flow shows the Zain Al Halqa model only. When its lap is nearly done a pulsing "Experience my designs" button appears; it rebuilds the hall with every concept (27 today), extends the sheet's scroll and jumps to the start of the aisle. "Back to the key stand" returns.
-- **Every stand is one of Tamim's Blender concepts.** `models/manifest.json` lists the GLBs exported headless from the latest version of each project (Zain rounds 1 to 8 and both double decks, SNB kiosks, H1 house and cityscape, CQR Black Hat, BAAN, Awqaf Eid, Saudi National Day event, site and gate, FA gathering, reception and two stages, three stages, two early Live tests). Hall floors, hall lamps, anything wider than 60 m and flat ground planes wider than 24 m are stripped; textures are scaled to 1024 px and saved as JPEG inside the GLB. Yasser's Cinema 4D exports drop in as more manifest entries.
-- **Weight and speed.** The GLBs are compressed with gltf-transform (Draco meshes, WebP textures at 1024 px): 489 MB down to 80 MB for all 27; the key stand is 2.5 MB. Only the current stand and the next are resident; everything else is released. Two fixed light rigs (key spot, cool fill, warm back light) move to the current and next stand, so the light count never changes and the shaders never recompile mid-walk (toggling lights per stand caused the flicker and the 8 fps). A baked environment (warm ceiling, cool sides) lights backs and undersides so no face goes black. Pixel ratio capped at 1.25. Measured in the app pane: about 120 fps on the key stand and on most of the full hall.
-- **Flow.** The hall's progress follows the wheel through a 0.9-second ease, so a flick never jumps the build; the key stand has eighteen screens of scroll and the build takes 68% of it. Pieces fly in on arcs from far out on every side, sway and tumble in the air, and settle with a small bounce.
-- **Free look.** Drag to orbit the stand you are at, ctrl+wheel or trackpad pinch to zoom, two fingers on a phone; scrolling again eases the view back into the walk. It adds no render cost.
-- **Hosting.** `v12/models/` and the uncompressed `v12/models-src/` are git-ignored. The page reads `data-models-base` on `<html>`: empty means the models sit next to the page; for GitHub Pages set it to the bucket URL (Cloudflare R2 or similar) and upload the models folder there. The manifest paths stay the same.
-- **Cover reworked (not a CV).** Name, the first marker stroke drawn in red, one line in his voice, one line of who and where; the 4× portrait sits full height in cyanotype and turns to colour under the cursor. The role/based/method form is gone, the issue sheet no longer says "available" and the revision log is replaced by one line.
-- On phones the hall keeps its own spacer so the walk is not compressed into one screen. The export scripts live in the session scratchpad (`export_one.py`, `export_all.py`, `thumb_one.py`); a 1600 px render per model is in `models/*.jpg` for later use.
+## Rules kept
 
-## Round 7 (25 Oct): real map, seamless transitions, overlap pass
-- **Site plan.** The map is drawn from Natural Earth 50 m data (public domain): land fill, lakes, coastlines and country borders (dashed), clipped to the eastern Mediterranean and the Gulf (`data/map.json`, built by `mkmap.py` in the scratchpad) and projected in Mercator, so Riyadh sits inland and the coasts are the real ones. Spellings are Beirut and Riyadh everywhere.
-- **Transitions.** No sheet slides over another any more. An arriving sheet is pinned to the top of the viewport (translate by its own natural offset) and fades in while the sheet underneath dims; nothing rescales and there is no drop shadow, so there is nothing to flicker. Sheet geometry uses the natural (unstuck, untransformed) position via `offsetTop - scrollY`; reading `getBoundingClientRect` on a transformed sticky sheet fed the transform back into itself.
-- **Overlaps at compact widths (≤1100 px).** The site-plan beat has a soft backdrop and a narrower measure; the elevation sheet uses a smaller portrait, headline and spec so the copy no longer runs into the list; the register fades its rows at the top and bottom of the body; the cursor coordinate readout is hidden; the issue stamp sits in the corner.
+First person, warm, no superlatives, facts only from the handover. Placeholders look like placeholders. Native pointer stays visible. One WebGL context. Works at 1440, the pane width, and a phone (touch drag on the ring, list view one tap away).
 
-## Round 8 (25 Oct): project pages
-- Clicking a project (the drawing index stack or its button, a register row, a frame in the lighting-plot reel) opens that project's page over the set instead of leaving for Behance: title, kind, the facts template with dashed "to fill" slots, the whole gallery at up to 1920 px, next and previous, a small Behance link. The address becomes `#p/<key>`, so a project can be shared or opened directly; back, Escape or the browser button returns to the set where you were (Lenis is paused while the page is open).
-- The galleries were gathered from his 23 Behance galleries: 303 images in `img/projects/<key>/NN.jpg` (81 MB), listed with counts in `data/projects.json`. Behance refuses plain downloads, so the pages were read in the browser pane and the files pulled from the Behance image CDN, then normalised to JPEG.
+## Files
 
-## Round 9 (25 Oct): order, chassis, contact
-- The car work sits at the end of the set now: sheet 11 Chassis (new: the body-in-white with the marker sketch found under the cursor, the sketch card hovering above, the lens sweeping on its own when nobody points), then sheet 12 Vehicle (the drift), then 13 Issue. Sheets are renumbered in document order; the lighting plot stays as sheet 09.
-- Contact works without a mail app: "Send the brief" copies the address and says so before handing over to mailto; a WhatsApp button sits beside it; the phone number opens WhatsApp; LinkedIn shows as a dashed "to fill" until the URL arrives. A dead link in the scope of work (to the removed assembly sheet) now opens the hall.
+- `site/index.html` — the whole thing
+- `site/img/ring/` — 900 px covers for the ring textures
+- `site/img/motion/` — Vimeo thumbnails, 900 px
+- reads `data/projects.json`, `data/motion.json`, galleries from `img/projects/`, portrait and certificates from `img/` (launch config `site`, port 8082). Became the live site on 25 Oct 2026; the drawing set is parked in `archive/v12-drawing-set`.
 
-## Round 10 (25 Oct): one stand, his own
-- The hall holds one stand only: Yasser's Al Rsayis booth from Cinema 4D (`booth al rsayis.gltf`, 1.5 GB with 4,803 nodes and 89 textures). It went through Blender (hall objects stripped, textures to 1024) and gltf-transform (Draco, WebP, 60 % simplification, meshes kept separate) to a 16 MB GLB, compressed without GPU instancing because the three.js r128 loader ignores that extension (it drew one shared people mesh at raw size, 25 m tall, and dropped the other eight). The key-stand button, the full hall of 27 concepts and the manifest entries for them are removed. The build-on-scroll, the lap and the free look are unchanged. On load the model is grounded on its own floor (the widest flat piece), pieces below that floor (a stair down, plinths) and anything standing above the roof slab (light rigs, rails) are not shown, all faces render double-sided so the back wall is solid from outside, and the hall's ceiling trusses are gone.
-- The scope of work opens category pages (`#cat/<name>`): events and exhibitions list their projects as cards that open the project pages; objects has the trophy and the two boxes; motion, 3D and direction show a dashed "to fill" card until the files arrive.
-- The real pointer shows on project and category pages; the crosshair cursor is only on the set.
 
-## Round 11 (25 Oct): phones, the brief, the address
-- The site lives at https://yasserkobeissi.github.io (repository Yasserkobeissi/yasserkobeissi.github.io).
-- Phone pass at 375 × 812: the cover keeps its text above the title block and is no longer dimmed by the desktop parallax; the map's city labels stay inside the sheet; the issue stamp is a small corner stamp instead of a box across the page; the chassis lens can be dragged with a finger; the hall has a "Look around with one finger" button that switches a one-finger drag from scrolling to turning the booth, and back.
-- "Send the brief" opens a form page (`#brief`) that mails the brief through Web3Forms; the access key goes in `data-brief-key` on `<html>`; without it the form opens a mail draft with the brief typed out.
+## Round 2 (25 Oct, later)
 
-## Round 12 (25 Oct): paper and motion
-- Sheet 04 Certificates: the LAU degree (2011), the marketing diploma (2022) and the five 2026 leadership and planning papers as seven scans on the sheet, each opening large; under them the tools (Photoshop, Illustrator, After Effects, Premiere Pro, Cinema 4D, Lumion, D5 Render) and what the work runs on (Monday, Google Sheets, AI image enhancement, OpenArt). Sheets renumbered again.
-- Motion: his ten Vimeo pieces (`data/motion.json`, titles and thumbnails from Vimeo's oEmbed) play inline on the Motion category page.
-
-## System
-- Sheets are sticky; a spacer after each one drives its scene, so every scene has its own scroll length and the next sheet slides over the last. On phones the stack is off and sheets flow.
-- Crosshair cursor with live coordinates, labels on anything you can open or drag. Plotter progress line under the nav, sheet tabs, Riyadh clock.
-- Sound synthesised: plotter ticks, a paper slide on every sheet change, the engine on the skid pad, tones when the lights come on.
-- Loader: the plotter draws the sheet frame and title block, the name plots in, "Plotting the set 000%".
-
-## Not done / to confirm
-- Verified at 1440×900 and 390×844 in the in‑app browser; no console errors; no horizontal scroll. A pass in real Chrome before publishing.
-- Build sheet still uses the generic stand; Lights sheet uses the Saudi National Day photo; LinkedIn link still a placeholder.
-- The Arabic lines sit inside English sentences as in v10; if Tamim wants a full Arabic sheet, that is a separate piece of work.
-
-## Two alternates I considered and did not build
-- **Backstage, cue by cue**: the site as a lighting desk; every section is a cue you GO; stage lights state the mood. Strong, but closest to the broadcast rundown already built.
-- **The hall**: one exhibition-hall floor plan as the whole navigation; the camera flies from stand to stand. Spectacular but heavy to build and hard on phones.
+About second, career list from the handover, clients as a wall of names that open their work, inertial scroll with a soft arrive/leave on the ring, portrait inverted on him (light parts dense) with the photo background masked, points drift across the intro instead of cutting at the section edge, no placeholders anywhere. New project CQR at Black Hat 2026 from two renders (A0002, A0006). Objects became Gift items; screen content and UCMT short film direction added.
