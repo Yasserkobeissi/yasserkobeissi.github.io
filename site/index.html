@@ -276,7 +276,7 @@ body.list #list{display:block}
 
 <section id="intro">
   <div class="rev">
-    <p>I am a design <strong>expert</strong>. <em>Events, exhibition booths, the gift items that go with them and the screen content that plays on them. Twenty years in, from Beirut production houses to the big halls in Riyadh.</em></p>
+    <p>I am a design <strong>expert</strong>. <em>Events, exhibition booths, the gift items that go with them and the screen content that plays on them. <strong>Twenty years</strong> in, from Beirut production houses to the big halls in Riyadh.</em></p>
     <div class="facts">
       <div><b>Sovyal Events</b>creative director</div>
       <div><b>Riyadh</b>since 2019</div>
@@ -329,7 +329,7 @@ body.list #list{display:block}
 <div id="peek" aria-hidden="true"><img alt=""></div>
 
 <section id="motion">
-  <div class="hd"><div><div class="lab">Motion</div><h2 class="t rev" style="margin-top:10px">Ten pieces<br>that move</h2></div><p class="rev">Logos, openers and idents I animated for television and brands, 2020 to 2022. Press one to play.</p></div>
+  <div class="hd"><div><div class="lab">Motion</div><h2 class="t rev" style="margin-top:10px">Pieces<br>that move</h2></div><p class="rev">My showreel, a film made with AI, and the logos, openers and idents I animated for television and brands. Press one to play.</p></div>
   <div id="reel"></div>
 </section>
 
@@ -465,7 +465,7 @@ const [projects,motion]=await Promise.all([
 const items=projects.map(p=>({key:p.key,title:p.title,kind:p.kind,cat:p.cat,count:p.count,client:p.client,city:p.city,date:p.date,
    tex:'img/ring/'+p.key+'.jpg', versions:p.versions||null, vlabels:p.vlabels||null, v:p.versions?1:0,
    gal:function(i){return 'img/projects/'+p.key+'/'+(this.versions?'v'+this.v+'/':'')+String(i).padStart(2,'0')+'.jpg';}}));
-const clips=motion.map(m=>({key:'m'+m.id,title:m.title.replace(/\b\w/g,c=>c.toUpperCase()),kind:'Motion · '+Math.round(m.duration)+' s · '+m.date.slice(0,4),cat:'motion',count:1,vimeo:m.id,tex:'img/motion/'+m.id+'.jpg'}));
+const clips=motion.map(m=>({key:'m'+m.id,title:m.file?m.title:m.title.replace(/\b\w/g,c=>c.toUpperCase()),kind:'Motion · '+Math.round(m.duration)+' s · '+m.date.slice(0,4),cat:'motion',count:1,vimeo:m.file?null:m.id,file:m.file||null,tex:'img/motion/'+m.id+'.jpg'}));
 const CATS=[['all','All'],['events','Events'],['exhibitions','Exhibitions'],['objects','Gift items']];
 let cat='all';
 const inCat=it=>cat==='all'||it.cat===cat;
@@ -597,17 +597,20 @@ $('#mbtn').onclick=()=>show('mn');
 
 /* project */
 let cur=null, img=1, pool=items;
+function isVid(it){return it&&(it.vimeo||it.file);}
 const stage=$('#proj .stage'), strip=$('#proj .strip');
 function open(it){
-  cur=it; img=1; pool=it.vimeo?clips:items.filter(inCat);
+  cur=it; img=1; pool=isVid(it)?clips:items.filter(inCat);
   $('#pt').textContent=it.title; $('#proj .kind').textContent=it.kind;
   const f=$('#proj .facts'); f.innerHTML='';
-  const rows=it.vimeo?[['Piece','Motion graphics'],['Source','Vimeo']]:[['Client',it.client],['City',it.city],['Date',it.date],['Pictures',it.count]];
+  const rows=it.file?[['Piece',it.key==='mshowreel'?'Showreel':'Film']]:it.vimeo?[['Piece','Motion graphics'],['Source','Vimeo']]:[['Client',it.client],['City',it.city],['Date',it.date],['Pictures',it.count]];
   rows.filter(([k,v])=>v!=null).forEach(([k,v])=>{const d=document.createElement('div'); d.innerHTML='<span>'+k+'</span><span>'+v+'</span>'; f.appendChild(d);});
   const vs=$('#proj .vers'); vs.innerHTML=''; vs.classList.toggle('on',!!it.versions);
   if(it.versions){ it.versions.forEach((n,i)=>{const b=document.createElement('button'); b.textContent=it.vlabels?it.vlabels[i]:'v'+(i+1); b.setAttribute('aria-pressed',it.v===i+1); b.onclick=()=>{it.v=i+1; it.count=n; open(it);}; vs.appendChild(b);}); it.count=it.versions[it.v-1]; }
   strip.innerHTML='';
-  if(it.vimeo){
+  if(it.file){
+    stage.innerHTML='<video src="'+it.file+'" poster="'+it.tex+'" controls autoplay playsinline style="width:100%;height:100%;object-fit:contain;background:#111"></video>';
+  } else if(it.vimeo){
     stage.innerHTML='<iframe src="https://player.vimeo.com/video/'+it.vimeo+'?dnt=1&title=0&byline=0&portrait=0&autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
   } else {
     stage.innerHTML='<img alt=""><div class="count"></div>'+(it.count>1?'<button class="ar l" aria-label="Previous picture"></button><button class="ar r" aria-label="Next picture"></button>':'');
@@ -620,7 +623,7 @@ function open(it){
 function pick(i){ img=i; const im=stage.querySelector('img'); im.src=cur.gal(i); stage.querySelector('.count').textContent=String(i).padStart(2,'0')+' / '+String(cur.count).padStart(2,'0'); $$('#proj .strip button').forEach((b,j)=>{b.setAttribute('aria-current',j+1===i); if(j+1===i) b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});}); }
 function step(d){ let i=pool.indexOf(cur); if(i<0)i=0; open(pool[(i+d+pool.length)%pool.length]); }
 $('[data-prev]').onclick=()=>step(-1); $$('[data-next]').forEach(b=>b.onclick=()=>step(1));
-stage.addEventListener('click',e=>{ if(!cur||cur.vimeo||cur.count<2)return; const d=e.target.classList.contains('l')?-1:1; pick(((img-1+d)%cur.count+cur.count)%cur.count+1); });
+stage.addEventListener('click',e=>{ if(!cur||isVid(cur)||cur.count<2)return; const d=e.target.classList.contains('l')?-1:1; pick(((img-1+d)%cur.count+cur.count)%cur.count+1); });
 
 /* email copy */
 $('#contact .mail').addEventListener('click',e=>{ if(!navigator.clipboard)return; navigator.clipboard.writeText('yasserkobeissi98@gmail.com').then(()=>{const c=$('#cp'); c.textContent='copied'; c.style.color='var(--fg)'; setTimeout(()=>{c.textContent='click to write, or copy'; c.style.color='';},1800);}); });

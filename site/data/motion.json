@@ -1,5 +1,25 @@
 [
  {
+  "id": "sicli",
+  "file": "video/sicli.mp4",
+  "title": "Saudi SICLI · AI film",
+  "duration": 90,
+  "thumb": "img/motion/sicli.jpg",
+  "w": 1280,
+  "h": 712,
+  "date": "2026"
+ },
+ {
+  "id": "showreel",
+  "file": "video/showreel.mp4",
+  "title": "Showreel 2026",
+  "duration": 64,
+  "thumb": "img/motion/showreel.jpg",
+  "w": 1280,
+  "h": 720,
+  "date": "2026"
+ },
+ {
   "id": "663608971",
   "title": "Manoushet al reef",
   "duration": 40,
