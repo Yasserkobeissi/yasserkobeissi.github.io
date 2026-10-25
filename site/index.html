@@ -192,6 +192,10 @@ body.list #list{display:block}
 #proj .facts div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
 #proj .facts span:first-child{color:var(--mute)}
 #proj .nav{margin-top:40px;display:flex;gap:10px;flex-wrap:wrap}
+#proj .vers{display:none;gap:8px;margin:0 0 22px}
+#proj .vers.on{display:flex}
+#proj .vers button{padding:7px 13px;border-radius:999px;border:1px solid var(--line);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);transition:all .3s var(--ease)}
+#proj .vers button[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 #proj .strip{grid-column:1/-1;display:flex;gap:10px;overflow:auto;padding:6px 0 18px;scrollbar-width:none}
 #proj .strip::-webkit-scrollbar{display:none}
 #proj .strip button{flex:0 0 auto;width:120px;aspect-ratio:3/2;border-radius:6px;overflow:hidden;opacity:.45;transition:opacity .3s;border:1px solid transparent}
@@ -350,6 +354,7 @@ body.list #list{display:block}
     <div class="side">
       <h1 id="pt"></h1>
       <div class="kind lab"></div>
+      <div class="vers" role="group" aria-label="Version"></div>
       <div class="facts"></div>
       <div class="nav"><button class="pill" data-prev>previous</button><button class="pill" data-next>next <i></i></button></div>
     </div>
@@ -456,7 +461,8 @@ const [projects,motion]=await Promise.all([
   fetch('data/motion.json?v='+Date.now()).then(r=>r.json())
 ]);
 const items=projects.map(p=>({key:p.key,title:p.title,kind:p.kind,cat:p.cat,count:p.count,client:p.client,city:p.city,date:p.date,
-   tex:'img/ring/'+p.key+'.jpg', gal:i=>'img/projects/'+p.key+'/'+String(i).padStart(2,'0')+'.jpg'}));
+   tex:'img/ring/'+p.key+'.jpg', versions:p.versions||null, v:p.versions?p.versions.length:0,
+   gal:function(i){return 'img/projects/'+p.key+'/'+(this.versions?'v'+this.v+'/':'')+String(i).padStart(2,'0')+'.jpg';}}));
 const clips=motion.map(m=>({key:'m'+m.id,title:m.title.replace(/\b\w/g,c=>c.toUpperCase()),kind:'Motion · '+Math.round(m.duration)+' s · '+m.date.slice(0,4),cat:'motion',count:1,vimeo:m.id,tex:'img/motion/'+m.id+'.jpg'}));
 const CATS=[['all','All'],['events','Events'],['exhibitions','Exhibitions'],['objects','Gift items']];
 let cat='all';
@@ -596,6 +602,8 @@ function open(it){
   const f=$('#proj .facts'); f.innerHTML='';
   const rows=it.vimeo?[['Piece','Motion graphics'],['Source','Vimeo']]:[['Client',it.client],['City',it.city],['Date',it.date],['Pictures',it.count]];
   rows.filter(([k,v])=>v!=null).forEach(([k,v])=>{const d=document.createElement('div'); d.innerHTML='<span>'+k+'</span><span>'+v+'</span>'; f.appendChild(d);});
+  const vs=$('#proj .vers'); vs.innerHTML=''; vs.classList.toggle('on',!!it.versions);
+  if(it.versions){ it.versions.forEach((n,i)=>{const b=document.createElement('button'); b.textContent='v'+(i+1); b.setAttribute('aria-pressed',it.v===i+1); b.onclick=()=>{it.v=i+1; it.count=n; open(it);}; vs.appendChild(b);}); it.count=it.versions[it.v-1]; }
   strip.innerHTML='';
   if(it.vimeo){
     stage.innerHTML='<iframe src="https://player.vimeo.com/video/'+it.vimeo+'?dnt=1&title=0&byline=0&portrait=0&autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
@@ -628,7 +636,7 @@ const CERTS=[['lau-bsc-2011','BSc Graphic Design','Lebanese American University 
 CERTS.forEach(([k,t,s])=>{const b=document.createElement('button'); b.innerHTML='<div class="im"><img loading="lazy" alt="" src="img/certs/'+k+'.jpg"></div><b>'+t+'</b><small>'+s+'</small>'; b.onclick=()=>{$('#cert img').src='img/certs/'+k+'.jpg'; show('cert');}; $('#certs').appendChild(b);});
 
 /* clients: a name opens its projects when I have them here */
-const CLIENTS=[['National Cybersecurity Authority',null,['nca']],['CQR',null,['cqr']],['Council of Health Insurance',null,['chi']],['New Murabba',null,['murabba']],['PepsiCo','three editions of MDL Beast'],['Saudi Broadcasting Authority'],["McDonald's"],["Gold's Gym"],['Othaim Mall'],['DJI Enterprise'],['Monshaat',null,['biban']],['Misk',null,['misk']],['GOSI',null,['gosi26','gosi25']],['SIMAH',null,['simah']],['Seder Group',null,['big5','seder']],['Al Rajhi Takaful',null,['takaful']],['Bank Al Jazira',null,['aljazira']],['Thiqah',null,['thiqah']],['Boutique Group',null,['boutique']],['Urpay',null,['urpay']],['neoleap',null,['urpay']],['Looptech',null,['looptech']],['The Financial Academy'],['Quality of Life Program',null,['qol']],['SCE',null,['sce']],['JDA',null,['jda']],['MOMAH',null,['momah']],['LCGPA',null,['lcgpa']]];
+const CLIENTS=[['Hail Region Development Authority',null,['hail']],['National Cybersecurity Authority',null,['nca']],['CQR',null,['cqr']],['Council of Health Insurance',null,['chi']],['New Murabba',null,['murabba']],['PepsiCo','three editions of MDL Beast'],['Saudi Broadcasting Authority'],["McDonald's"],["Gold's Gym"],['Othaim Mall'],['DJI Enterprise'],['Monshaat',null,['biban']],['Misk',null,['misk']],['GOSI',null,['gosi26','gosi25']],['SIMAH',null,['simah']],['Seder Group',null,['big5','seder']],['Al Rajhi Takaful',null,['takaful']],['Bank Al Jazira',null,['aljazira']],['Thiqah',null,['thiqah']],['Boutique Group',null,['boutique']],['Urpay',null,['urpay']],['neoleap',null,['urpay']],['Looptech',null,['looptech']],['The Financial Academy'],['Quality of Life Program',null,['qol']],['SCE',null,['sce']],['JDA',null,['jda']],['MOMAH',null,['momah']],['LCGPA',null,['lcgpa']]];
 const clEl=$('#clients');
 clEl.innerHTML='<div class="key">Names with a count open the work I did for them here</div>';
 CLIENTS.forEach(([name,note,keys])=>{

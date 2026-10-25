@@ -45,6 +45,26 @@
   "cat": "exhibitions"
  },
  {
+  "key": "hail",
+  "title": "Hail Region Development Authority",
+  "kind": "Exhibition stand · 3 × 3 m · three versions",
+  "url": null,
+  "count": 6,
+  "versions": [
+   4,
+   7,
+   6
+  ],
+  "client": "Hail Region Development Authority",
+  "city": null,
+  "hall": null,
+  "date": null,
+  "area": null,
+  "built": null,
+  "line": null,
+  "cat": "exhibitions"
+ },
+ {
   "key": "qol",
   "title": "Quality of Life Program",
   "kind": "Exhibition stand · 2026",
