@@ -125,8 +125,17 @@ body.list #list{display:block}
 
 /* about */
 #about{padding:14vh 6vw;display:grid;grid-template-columns:minmax(240px,.7fr) minmax(0,1.3fr);gap:64px;align-items:start;max-width:1500px;margin:0 auto}
-#about .port{border-radius:12px;overflow:hidden;aspect-ratio:1;background:#111;position:sticky;top:96px}
-#about .port img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05)}
+#about .port{border-radius:12px;overflow:hidden;aspect-ratio:1;background:#111;position:sticky;top:96px;cursor:crosshair;user-select:none;-webkit-user-select:none;touch-action:none}
+#about .port img.base{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+#about .port img.base.real{filter:grayscale(1) contrast(1.05)}
+#about .port canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#about .port .wl{position:absolute;left:14px;bottom:12px;z-index:2;display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);background:rgba(10,10,10,.55);padding:7px 11px;border-radius:999px;backdrop-filter:blur(8px)}
+#about .port .wl i{width:5px;height:5px;border-radius:50%;background:var(--fg);display:block}
+#about .port .hint{position:absolute;right:14px;bottom:12px;z-index:2;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,240,234,.7);background:rgba(10,10,10,.55);padding:7px 11px;border-radius:999px;backdrop-filter:blur(8px);transition:opacity .4s}
+#about .port.seen .hint{opacity:0}
+#about .port .dots{position:absolute;left:0;right:0;top:12px;z-index:2;display:flex;justify-content:center;gap:5px}
+#about .port .dots b{width:4px;height:4px;border-radius:50%;background:rgba(242,240,234,.35);transition:background .3s,transform .3s}
+#about .port .dots b.on{background:var(--fg);transform:scale(1.4)}
 #about h2{margin-bottom:28px}
 #about p{font-size:clamp(17px,1.6vw,22px);line-height:1.45;max-width:38em;margin-bottom:1em}
 #about p.m{color:var(--mute)}
@@ -231,7 +240,7 @@ body.list #list{display:block}
 @media (max-width:1100px){
   #proj .wrap{grid-template-columns:1fr;gap:28px}
   #about{grid-template-columns:1fr;gap:36px}
-  #about .port{position:static;max-width:380px}
+  #about .port{position:relative;top:auto;max-width:380px}
 }
 @media (max-width:720px){
   html{font-size:13px}
@@ -286,7 +295,7 @@ body.list #list{display:block}
 </section>
 
 <section id="about">
-  <div class="port rev"><img src="img/portrait-4x.jpg" alt="Yasser Kobeissi"></div>
+  <div class="port rev" id="port"><img class="base real" src="img/faces/real.jpg" alt="Yasser Kobeissi"><canvas></canvas><div class="dots"></div><div class="wl"><i></i><span></span></div><div class="hint">move to look</div></div>
   <div class="rev">
     <h2 class="t">About</h2>
     <p>I'm Yasser. I grew up in Beirut and I work in Riyadh, where I lead the creative team at Sovyal Events.</p>
@@ -583,6 +592,33 @@ function buildList(){
 addEventListener('pointermove',e=>{peek.style.left=e.clientX+'px';peek.style.top=e.clientY+'px';});
 buildList();
 $$('#view button').forEach(b=>b.onclick=()=>{const v=b.dataset.view; document.body.classList.toggle('list',v==='list'); $$('#view button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.view===v)); peek.classList.remove('on'); goTo('#work'); if(v==='ring') fit();});
+
+/* portrait worlds: the pointer is a lens; inside its radius you see him in another world, his face never moves. Click or tap to change the world. */
+(function(){
+  const WORLDS=[['samurai','as a samurai'],['cyborg','as a cyborg'],['anime','in an anime'],['pixar','as a 3D character'],['cyberpunk','in a cyberpunk city'],['comic','in a comic book'],['driver','as a drift driver'],['astronaut','in orbit'],['oil','as an oil painting'],['pixel','in a video game']];
+  const port=$('#port'); if(!port)return;
+  const cv=port.querySelector('canvas'), g=cv.getContext('2d'), dots=port.querySelector('.dots'), lab=port.querySelector('.wl span');
+  const imgs=WORLDS.map(([k])=>{const im=new Image(); im.src='img/faces/'+k+'.jpg'; return im;});
+  WORLDS.forEach((w,i)=>{const d=document.createElement('b'); if(!i)d.className='on'; dots.appendChild(d);});
+  let cur=0, W=0,H=0, px=-1,py=-1, tx=-1,ty=-1, r=0, tr=0, raf=0, moved=0;
+  function size(){ const b=port.getBoundingClientRect(); const dpr=Math.min(devicePixelRatio,2); W=Math.max(1,Math.round(b.width*dpr)); H=Math.max(1,Math.round(b.height*dpr)); cv.width=W; cv.height=H; }
+  function pick(i){ cur=(i+WORLDS.length)%WORLDS.length; lab.textContent=WORLDS[cur][1]; dots.querySelectorAll('b').forEach((b,j)=>b.classList.toggle('on',j===cur)); }
+  pick(0);
+  function frame(){ raf=0; px+=(tx-px)*.22; py+=(ty-py)*.22; r+=(tr-r)*.14;
+    g.clearRect(0,0,W,H); const im=imgs[cur];
+    if(r>.5&&im.complete&&im.naturalWidth){ g.globalCompositeOperation='source-over'; g.drawImage(im,0,0,W,H); g.globalCompositeOperation='destination-in'; const grad=g.createRadialGradient(px,py,0,px,py,r); grad.addColorStop(0,'rgba(0,0,0,1)'); grad.addColorStop(.72,'rgba(0,0,0,1)'); grad.addColorStop(1,'rgba(0,0,0,0)'); g.fillStyle=grad; g.fillRect(0,0,W,H); g.globalCompositeOperation='source-over'; }
+    if(Math.abs(tr-r)>.3||Math.abs(tx-px)>.3||Math.abs(ty-py)>.3) raf=requestAnimationFrame(frame); }
+  function at(e){ const b=port.getBoundingClientRect(); tx=(e.clientX-b.left)/b.width*W; ty=(e.clientY-b.top)/b.height*H; if(px<0){px=tx;py=ty;} tr=Math.max(W,H)*.22; port.classList.add('seen'); if(!raf) raf=requestAnimationFrame(frame); }
+  port.addEventListener('pointermove',e=>{ if(e.pointerType!=='mouse'&&!e.buttons)return; at(e); moved++; });
+  port.addEventListener('pointerdown',e=>{ moved=0; at(e); });
+  port.addEventListener('pointerup',e=>{ if(moved<4){ pick(cur+1); if(!raf) raf=requestAnimationFrame(frame); } });
+  const leave=()=>{ tr=0; if(!raf) raf=requestAnimationFrame(frame); };
+  port.addEventListener('pointerleave',leave); port.addEventListener('pointercancel',leave);
+  addEventListener('pointermove',e=>{ if(tr>0&&!port.contains(e.target)) leave(); },{passive:true});
+  addEventListener('scroll',()=>{ if(tr>0) leave(); },{passive:true});
+  port.querySelector('.hint').textContent=matchMedia('(hover:hover)').matches?'move to look · click to change world':'drag to look · tap to change world';
+  size(); new ResizeObserver(size).observe(port); addEventListener('resize',size);
+})();
 
 /* motion strip */
 const reel=$('#reel');
