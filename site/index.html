@@ -400,7 +400,7 @@ function goTo(sel){ const el=$(sel); if(!el)return; if(lenis) lenis.scrollTo(el,
 $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const h=a.getAttribute('href'); if(h.length>1&&$(h)){ e.preventDefault(); setTimeout(()=>goTo(h),a.closest('.ov')?80:0); } }));
 
 /* reveals */
-const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.15});
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:0,rootMargin:'0px 0px -10% 0px'});
 $$('.rev').forEach(e=>io.observe(e));
 (function(){const p=$('#intro p'); let i=0; p.innerHTML=p.innerHTML.replace(/(<\/?(?:em|strong)>)|([^\s<>]+)/g,(m,tag,w)=>tag?tag:'<i style="--d:'+(i++*.045).toFixed(3)+'s">'+w+'</i>');})();
 $$('.chips span,.certs button').forEach((e,i)=>{e.classList.add('rev');e.style.setProperty('--d',(i%12)*.05+'s');io.observe(e);});
