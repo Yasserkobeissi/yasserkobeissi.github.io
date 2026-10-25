@@ -66,7 +66,7 @@ h2.t{font-size:clamp(34px,5vw,76px);font-weight:700;font-stretch:112%;letter-spa
 #intro .facts b{display:block;color:var(--fg);font-weight:600;letter-spacing:0;font-size:13px}
 
 /* work ring */
-#work{position:relative;height:380vh}
+#work{position:relative;height:620vh}
 body.list #work{height:auto}
 #stage{position:sticky;top:0;height:100vh;overflow:hidden}
 #stage .fd{transition:none}
@@ -82,6 +82,10 @@ body.list #gl{display:none}
 #big.sw small{opacity:0}
 #big small{transition:opacity .35s var(--ease)}
 #big span{display:block;font-weight:700;font-stretch:118%;letter-spacing:-.01em;text-transform:uppercase;line-height:.9;font-size:clamp(44px,8.5vw,150px);color:var(--fg);opacity:.92}
+#stage #big>div{transition:transform .9s var(--ease)}
+#stage.spiral #big>div{transform:translateY(-32vh)}
+#stage.spiral #big span{font-size:clamp(26px,4.2vw,60px)}
+#big span{transition:font-size .9s var(--ease),opacity .35s var(--ease),transform .35s var(--ease)}
 #big small{display:block;margin-top:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-stretch:100%;font-weight:500}
 body.list #big{display:none}
 #view{position:absolute;top:26px;left:50%;transform:translateX(-50%);z-index:31;display:flex;gap:18px;align-items:center;font-size:13px}
@@ -250,7 +254,7 @@ body.list #list{display:block}
   #hero .l{left:18px;top:auto;bottom:96px;transform:none}
   #hero .r{right:18px;top:auto;bottom:96px;transform:none}
   #cats{padding-right:40px}
-  #work{height:300vh}
+  #work{height:480vh}
   #whead{left:18px;top:18px}
   #view{top:18px;left:auto;right:104px;transform:none;font-size:12px;gap:12px}
   #cats{left:0;right:0;top:auto;bottom:64px;transform:none;flex-direction:row;overflow:auto;padding:0 18px;gap:6px;scrollbar-width:none}
@@ -259,6 +263,7 @@ body.list #list{display:block}
   #hint{left:18px;bottom:22px}
   #big span{font-size:clamp(36px,13vw,70px)}
   #big{padding-bottom:60px}
+  #stage.spiral #big>div{transform:translateY(-26vh)}
   #list{padding:90px 5vw 60px}
   #peek{width:70vw}
   #motion .hd{flex-direction:column;align-items:start}
@@ -331,7 +336,7 @@ body.list #list{display:block}
     <canvas id="gl" aria-label="Projects on a ring. Drag to turn, click to open."></canvas>
     <div id="view" role="group" aria-label="View"><button data-view="ring" aria-pressed="true">ring</button><i></i><button data-view="list" aria-pressed="false">list</button></div>
     <div id="cats" role="group" aria-label="Filter"></div>
-    <div id="hint">drag to turn · scroll to spin · click to open</div>
+    <div id="hint">scroll to walk through · drag to turn · click to open</div>
     <div id="list"><ol></ol></div>
   </div>
 </section>
@@ -499,7 +504,7 @@ const camera=new THREE.PerspectiveCamera(32,1,.1,100);
 const ring=new THREE.Group(); scene.add(ring);
 ring.rotation.x=.42; ring.rotation.z=-.07;
 const loader=new THREE.TextureLoader();
-const CW=1.6, GAP=.42; let R=7;
+const CW=1.6, GAP=.42; let R=7, camY=2.6, camZ=20, lookY=-1.3;
 items.forEach((it,i)=>{
   const mat=new THREE.MeshBasicMaterial({color:0x202020,transparent:true,side:THREE.DoubleSide,opacity:1});
   const mesh=new THREE.Mesh(new THREE.PlaneGeometry(CW,CW*2/3),mat);
@@ -519,14 +524,14 @@ function layout(){
 }
 function fit(){
   const w=canvas.clientWidth||innerWidth,h=canvas.clientHeight||innerHeight; camera.aspect=w/h; camera.updateProjectionMatrix(); renderer.setSize(w,h,false);
-  const nr=narrow(); const want=(R+CW)*(nr?3.1:2.35);
-  camera.position.set(0, nr?2.4:2.6, want); camera.lookAt(0,nr?-1.7:-1.3,0);
+  const nr=narrow(); const want=(R+CW)*(nr?3.1:2.35); camY=nr?2.4:2.6; camZ=want; lookY=nr?-1.7:-1.3;
+  camera.position.set(0, camY, want); camera.lookAt(0,lookY,0);
 }
 addEventListener('resize',fit);
 layout();
 
 /* turning: scroll through the section + drag */
-let rot=0, vel=0, drag=false, px=0, moved=0, hot=null, front=null, sp=0, spT=0;
+let rot=0, vel=0, drag=false, px=0, moved=0, hot=null, front=null, sp=0, spT=0, sW=0, sWT=0, sIdx=0, sIdxT=0;
 const ray=new THREE.Raycaster(), ptr=new THREE.Vector2(-9,-9);
 canvas.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;moved=0;canvas.classList.add('drag');canvas.setPointerCapture(e.pointerId);});
 canvas.addEventListener('pointermove',e=>{
@@ -550,25 +555,29 @@ function frame(){
   canvas.style.opacity=fe; $('#big').style.opacity=fe; $('#cats').style.opacity=fe; $('#hint').style.opacity=fe; $('#view').style.opacity=fe;
   ring.position.y=(1-fe)*(r.top>0?-2.2:2.2); if(started) ring.scale.setScalar(.82+.18*fe);
   if(!started) started=true;
-  spT=sectionProg()*Math.PI*2.2; sp+=(spT-sp)*(1-Math.pow(.002,dt));
-  if(!drag){ vel*=Math.pow(.08,dt); if(!reduce) rot+=.04*dt; }
-  rot+=vel;
-  ray.setFromCamera(ptr,camera);
-  const hits=ray.intersectObjects(items.filter(i=>i.on&&i.s>.5).map(i=>i.mesh));
-  const nh=hits.length?hits[0].object:null;
-  if(nh!==hot){hot=nh;canvas.classList.toggle('hot',!!hot);}
+  // phase A (first 28% of the walk): half a turn as a ring. phase B: in the same motion the ring stretches into a helix that climbs toward the window; each card arrives at the front at eye level
+  const pg=sectionProg(), n=items.filter(inCat).length||1, A=.28;
+  if(pg<A){ spT=pg/A*Math.PI; sIdxT=n/2; sWT=0; } else { const q=(pg-A)/(1-A); sIdxT=n/2+q*n; spT=Math.PI-q*Math.PI*2; sWT=Math.min(1,q/.14); }
+  sp+=(spT-sp)*(1-Math.pow(.002,dt)); sW+=(sWT-sW)*(1-Math.pow(.01,dt)); sIdx+=(sIdxT-sIdx)*(1-Math.pow(.002,dt));
+  const sE=sW*sW*(3-2*sW); stageEl.classList.toggle('spiral',sW>.5);
+  ring.rotation.x=.42*(1-sE)+.16*sE; camera.position.set(0, camY*(1-sE)+1.1*sE, camZ*(1-.3*sE)); camera.lookAt(0, lookY*(1-sE)+.15*sE, 0);
+  const pitch=CW*.3, Rh=R*(1-.5*sE), K=1+2.2*sE, on=items.filter(inCat);
   let best=null,bz=-1e9;
   items.forEach(it=>{
     const k=1-Math.pow(.0015,dt);
     it.a+=(it.ta-it.a)*k; it.s+=(it.ts-it.s)*k;
-    const a=it.a+rot+sp, m=it.mesh;
-    m.position.set(Math.sin(a)*R, Math.sin(t*.7+it.a*3)*.06, Math.cos(a)*R);
-    m.rotation.y=a;
-    const sc=it.s*(m===hot?1.12:1);
+    const a0=it.a+rot+sp, aw=Math.atan2(Math.sin(a0),Math.cos(a0)), a=aw*K, m=it.mesh;
+    const oi=on.indexOf(it); let d=oi-sIdx; d=((d%n)+n)%n; if(d>n/2)d-=n;
+    const y=Math.sin(t*.7+it.a*3)*.06 + d*pitch*sE;
+    m.position.set(Math.sin(a)*Rh, y, Math.cos(a)*Rh); m.rotation.set(0,a,0);
+    const near=Math.max(0,1-Math.abs(d)/(n*.5));
+    const sc=it.s*(m===hot?1.12:1)*(1+sE*.18*near);
     m.scale.set(sc,sc,sc); m.visible=it.s>.02;
     const wz=Math.cos(a);
-    m.material.opacity=it.s*(.42+.58*(wz+1)/2);
-    if(it.on&&wz>bz){bz=wz;best=it;}
+    const ringOp=.42+.58*(wz+1)/2, helixOp=Math.min(1,(n/2-Math.abs(d))/1.5)*(.3+.7*near);
+    m.material.opacity=it.s*(ringOp*(1-sE)+helixOp*sE);
+    const score=sW>.5?-Math.abs(d):wz;
+    if(it.on&&score>bz){bz=score;best=it;}
   });
   if(best&&!hot) front=best;
   const show=hot?hot.userData:front;
@@ -593,31 +602,40 @@ addEventListener('pointermove',e=>{peek.style.left=e.clientX+'px';peek.style.top
 buildList();
 $$('#view button').forEach(b=>b.onclick=()=>{const v=b.dataset.view; document.body.classList.toggle('list',v==='list'); $$('#view button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.view===v)); peek.classList.remove('on'); goTo('#work'); if(v==='ring') fit();});
 
-/* portrait worlds: the pointer is a lens; inside its radius you see him in another world, his face never moves. Click or tap to change the world. */
+/* portrait worlds: the pointer is a soft lens into another world; as the mouse travels, the world inside the lens slowly turns into the next one. His face never moves. */
 (function(){
-  const WORLDS=[['samurai','as a samurai'],['cyborg','as a cyborg'],['anime','in an anime'],['pixar','as a 3D character'],['cyberpunk','in a cyberpunk city'],['comic','in a comic book'],['driver','as a drift driver'],['astronaut','in orbit'],['oil','as an oil painting'],['pixel','in a video game']];
+  const WORLDS=[['samurai','as a samurai'],['cyborg','as a cyborg'],['anime','in an anime'],['pixar','as a 3D character'],['cyberpunk','in a cyberpunk city'],['comic','in a comic book'],['oil','as an oil painting'],['pixel','in a video game']];
   const port=$('#port'); if(!port)return;
   const cv=port.querySelector('canvas'), g=cv.getContext('2d'), dots=port.querySelector('.dots'), lab=port.querySelector('.wl span');
   const imgs=WORLDS.map(([k])=>{const im=new Image(); im.src='img/faces/'+k+'.jpg'; return im;});
   WORLDS.forEach((w,i)=>{const d=document.createElement('b'); if(!i)d.className='on'; dots.appendChild(d);});
-  let cur=0, W=0,H=0, px=-1,py=-1, tx=-1,ty=-1, r=0, tr=0, raf=0, moved=0;
-  function size(){ const b=port.getBoundingClientRect(); const dpr=Math.min(devicePixelRatio,2); W=Math.max(1,Math.round(b.width*dpr)); H=Math.max(1,Math.round(b.height*dpr)); cv.width=W; cv.height=H; }
-  function pick(i){ cur=(i+WORLDS.length)%WORLDS.length; lab.textContent=WORLDS[cur][1]; dots.querySelectorAll('b').forEach((b,j)=>b.classList.toggle('on',j===cur)); }
-  pick(0);
-  function frame(){ raf=0; px+=(tx-px)*.22; py+=(ty-py)*.22; r+=(tr-r)*.14;
-    g.clearRect(0,0,W,H); const im=imgs[cur];
-    if(r>.5&&im.complete&&im.naturalWidth){ g.globalCompositeOperation='source-over'; g.drawImage(im,0,0,W,H); g.globalCompositeOperation='destination-in'; const grad=g.createRadialGradient(px,py,0,px,py,r); grad.addColorStop(0,'rgba(0,0,0,1)'); grad.addColorStop(.72,'rgba(0,0,0,1)'); grad.addColorStop(1,'rgba(0,0,0,0)'); g.fillStyle=grad; g.fillRect(0,0,W,H); g.globalCompositeOperation='source-over'; }
-    if(Math.abs(tr-r)>.3||Math.abs(tx-px)>.3||Math.abs(ty-py)>.3) raf=requestAnimationFrame(frame); }
-  function at(e){ const b=port.getBoundingClientRect(); tx=(e.clientX-b.left)/b.width*W; ty=(e.clientY-b.top)/b.height*H; if(px<0){px=tx;py=ty;} tr=Math.max(W,H)*.22; port.classList.add('seen'); if(!raf) raf=requestAnimationFrame(frame); }
-  port.addEventListener('pointermove',e=>{ if(e.pointerType!=='mouse'&&!e.buttons)return; at(e); moved++; });
-  port.addEventListener('pointerdown',e=>{ moved=0; at(e); });
-  port.addEventListener('pointerup',e=>{ if(moved<4){ pick(cur+1); if(!raf) raf=requestAnimationFrame(frame); } });
-  const leave=()=>{ tr=0; if(!raf) raf=requestAnimationFrame(frame); };
-  port.addEventListener('pointerleave',leave); port.addEventListener('pointercancel',leave);
+  let W=0,H=0, px=-1,py=-1, tx=-1,ty=-1, r=0, tr=0, raf=0, travel=0, lastPt=null, shown=-1;
+  const oc=document.createElement('canvas'), og=oc.getContext('2d');
+  function size(){ const b=port.getBoundingClientRect(); const dpr=Math.min(devicePixelRatio,2); W=Math.max(1,Math.round(b.width*dpr)); H=Math.max(1,Math.round(b.height*dpr)); cv.width=W; cv.height=H; oc.width=W; oc.height=H; }
+  function label(i){ if(i===shown)return; shown=i; lab.textContent=WORLDS[i][1]; dots.querySelectorAll('b').forEach((b,j)=>b.classList.toggle('on',j===i)); }
+  function layer(im,alpha,cx,cy,rad){ if(!im.complete||!im.naturalWidth||alpha<=0)return; og.clearRect(0,0,W,H); og.globalCompositeOperation='source-over'; og.drawImage(im,0,0,W,H); og.globalCompositeOperation='destination-in'; const grad=og.createRadialGradient(cx,cy,0,cx,cy,rad); grad.addColorStop(0,'rgba(0,0,0,1)'); grad.addColorStop(.42,'rgba(0,0,0,1)'); grad.addColorStop(.78,'rgba(0,0,0,.35)'); grad.addColorStop(1,'rgba(0,0,0,0)'); og.fillStyle=grad; og.fillRect(0,0,W,H); g.globalAlpha=alpha; g.drawImage(oc,0,0); g.globalAlpha=1; }
+  // idle: liquid patches of other worlds drift across the photo until the pointer arrives
+  const BL=[0,1,3,5,2].map((wi,j)=>({wi,ph:j*1.3,sp:.25+j*.07}));
+  let idleT=0, lastT=0, idleA=0;
+  function frame(now){ raf=0; now=now||performance.now(); const dt=Math.min(.05,(now-lastT)/1000||.016); lastT=now; idleT+=dt;
+    px+=(tx-px)*(1-Math.pow(.0005,dt)); py+=(ty-py)*(1-Math.pow(.0005,dt)); r+=(tr-r)*(1-Math.pow(.004,dt));
+    const wantIdle=tr<=0&&!reduce; idleA+=((wantIdle?1:0)-idleA)*(1-Math.pow(.02,dt));
+    g.clearRect(0,0,W,H);
+    if(idleA>.01){ const M=Math.max(W,H); BL.forEach(b=>{ const cx=W*(.5+.33*Math.sin(idleT*b.sp+b.ph)), cy=H*(.5+.3*Math.cos(idleT*b.sp*.8+b.ph*1.7)); const rr=M*(.16+.05*Math.sin(idleT*.9+b.ph)); const al=idleA*(.55+.45*Math.sin(idleT*.7+b.ph*2.1))*.7; layer(imgs[b.wi%imgs.length],Math.max(0,al),cx,cy,rr); }); }
+    if(r>.5){ const wf=travel/(Math.max(W,H)*2.2); const i=Math.floor(wf)%WORLDS.length, j=(i+1)%WORLDS.length, bl=wf-Math.floor(wf); const e=bl*bl*(3-2*bl); layer(imgs[i],1,px,py,r); layer(imgs[j],e,px,py,r); label(e<.5?i:j); }
+    const b=port.getBoundingClientRect(), vis=b.bottom>0&&b.top<innerHeight;
+    if(vis&&(idleA>.01||Math.abs(tr-r)>.3||Math.abs(tx-px)>.3||Math.abs(ty-py)>.3)) raf=requestAnimationFrame(frame); }
+  function at(e){ const b=port.getBoundingClientRect(); tx=(e.clientX-b.left)/b.width*W; ty=(e.clientY-b.top)/b.height*H; if(px<0){px=tx;py=ty;} if(lastPt) travel+=Math.hypot(tx-lastPt[0],ty-lastPt[1]); lastPt=[tx,ty]; tr=Math.max(W,H)*.26; port.classList.add('seen'); if(!raf) raf=requestAnimationFrame(frame); }
+  port.addEventListener('pointermove',e=>{ if(e.pointerType!=='mouse'&&!e.buttons)return; at(e); });
+  port.addEventListener('pointerdown',e=>{ at(e); });
+  const leave=()=>{ tr=0; lastPt=null; if(!raf) raf=requestAnimationFrame(frame); };
+  port.addEventListener('pointerleave',leave); port.addEventListener('pointercancel',leave); port.addEventListener('pointerup',e=>{ if(e.pointerType!=='mouse') leave(); });
   addEventListener('pointermove',e=>{ if(tr>0&&!port.contains(e.target)) leave(); },{passive:true});
-  addEventListener('scroll',()=>{ if(tr>0) leave(); },{passive:true});
-  port.querySelector('.hint').textContent=matchMedia('(hover:hover)').matches?'move to look · click to change world':'drag to look · tap to change world';
-  size(); new ResizeObserver(size).observe(port); addEventListener('resize',size);
+  addEventListener('scroll',()=>{ if(tr>0) leave(); if(!raf) raf=requestAnimationFrame(frame); },{passive:true});
+  port.querySelector('.hint').textContent=matchMedia('(hover:hover)').matches?'move over me':'drag over me';
+  label(0); size(); new ResizeObserver(size).observe(port); addEventListener('resize',size);
+  imgs.forEach(im=>im.addEventListener('load',()=>{ if(!raf) raf=requestAnimationFrame(frame); }));
+  if(!raf) raf=requestAnimationFrame(frame);
 })();
 
 /* motion strip */
