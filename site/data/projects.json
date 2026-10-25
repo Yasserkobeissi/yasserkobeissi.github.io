@@ -2,7 +2,7 @@
  {
   "key": "cqr",
   "title": "CQR at Black Hat",
-  "kind": "Exhibition stand · Black Hat 2026",
+  "kind": "Exhibition booth · Black Hat 2026",
   "url": null,
   "count": 2,
   "client": "CQR",
@@ -32,7 +32,7 @@
  {
   "key": "chi",
   "title": "Council of Health Insurance",
-  "kind": "Exhibition stand · double deck",
+  "kind": "Exhibition booth · double deck",
   "url": null,
   "count": 11,
   "client": "Council of Health Insurance",
@@ -47,7 +47,7 @@
  {
   "key": "hail",
   "title": "Hail Region Development Authority",
-  "kind": "Exhibition stand · 3 × 3 m · three versions",
+  "kind": "Exhibition booth · 3 × 3 m · three versions",
   "url": null,
   "count": 6,
   "versions": [
@@ -67,7 +67,7 @@
  {
   "key": "hail2",
   "title": "Hail Region Development Authority · 12 × 10",
-  "kind": "Exhibition stand · 12 × 10 m",
+  "kind": "Exhibition booth · 12 × 10 m",
   "url": null,
   "count": 11,
   "client": "Hail Region Development Authority",
@@ -82,7 +82,7 @@
  {
   "key": "bsf",
   "title": "BSF",
-  "kind": "Exhibition stand",
+  "kind": "Exhibition booth",
   "url": null,
   "count": 24,
   "client": "BSF",
@@ -97,7 +97,7 @@
  {
   "key": "alhabib",
   "title": "Sulaiman Al Habib at the Falcon Expo",
-  "kind": "Exhibition stand · Saudi Falcon and Hunting Exhibition",
+  "kind": "Exhibition booth · Saudi Falcon and Hunting Exhibition",
   "url": null,
   "count": 24,
   "client": "Dr. Sulaiman Al Habib",
@@ -112,7 +112,7 @@
  {
   "key": "finacademy",
   "title": "The Financial Academy",
-  "kind": "Exhibition stand · 10 × 12 m · two options",
+  "kind": "Exhibition booth · 10 × 12 m · two options",
   "url": null,
   "count": 14,
   "versions": [
@@ -135,7 +135,7 @@
  {
   "key": "sca",
   "title": "SCA",
-  "kind": "Exhibition stand · two options",
+  "kind": "Exhibition booth · two options",
   "url": null,
   "count": 6,
   "client": "SCA",
@@ -158,7 +158,7 @@
  {
   "key": "qol",
   "title": "Quality of Life Program",
-  "kind": "Exhibition stand · 2026",
+  "kind": "Exhibition booth · 2026",
   "url": "https://www.behance.net/gallery/249506301/QUALITY-OF-lIFE-Booth-Design-2026",
   "count": 22,
   "client": null,
@@ -203,7 +203,7 @@
  {
   "key": "misk",
   "title": "Misk Foundation",
-  "kind": "Exhibition stand · 2025",
+  "kind": "Exhibition booth · 2025",
   "url": "https://www.behance.net/gallery/248381303/Misk-Booth-Design-2025",
   "count": 14,
   "client": null,
@@ -233,7 +233,7 @@
  {
   "key": "big5",
   "title": "Seder Group · Big 5",
-  "kind": "Double-deck stand · 2025",
+  "kind": "Double-deck booth · 2025",
   "url": "https://www.behance.net/gallery/247898759/SEDER-GROUP-booth-Big5-2025",
   "count": 11,
   "client": null,
@@ -248,7 +248,7 @@
  {
   "key": "looptech",
   "title": "Looptech",
-  "kind": "Exhibition stand · built 2024",
+  "kind": "Exhibition booth · built 2024",
   "url": "https://www.behance.net/gallery/248668789/Looptech-Booth-Design-2024",
   "count": 19,
   "client": null,
@@ -293,7 +293,7 @@
  {
   "key": "momah",
   "title": "Municipalities & Housing",
-  "kind": "Exhibition stand · 2025",
+  "kind": "Exhibition booth · 2025",
   "url": "https://www.behance.net/gallery/249216369/MINISTRY-OF-MUNICIPALITIES-AND-HOUSING-2025",
   "count": 11,
   "client": null,
@@ -323,7 +323,7 @@
  {
   "key": "urpay",
   "title": "Urpay & neoleap",
-  "kind": "Exhibition stand",
+  "kind": "Exhibition booth",
   "url": "https://www.behance.net/gallery/247709637/Urpay-neoleap-BOOTH-DESIGN",
   "count": 11,
   "client": null,
@@ -338,7 +338,7 @@
  {
   "key": "jda",
   "title": "Jeddah Development Authority",
-  "kind": "Exhibition stand",
+  "kind": "Exhibition booth",
   "url": "https://www.behance.net/gallery/247707973/Booth-Design-Jeddah-Development-Authority",
   "count": 15,
   "client": null,
