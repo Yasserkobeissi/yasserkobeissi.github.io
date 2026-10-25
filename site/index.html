@@ -752,7 +752,9 @@ $$('#view button').forEach(b=>b.onclick=()=>{const v=b.dataset.view; document.bo
     px+=(tx-px)*(1-Math.pow(.0005,dt)); py+=(ty-py)*(1-Math.pow(.0005,dt)); r+=(tr-r)*(1-Math.pow(.004,dt));
     const wantIdle=tr<=0&&!reduce; idleA+=((wantIdle?1:0)-idleA)*(1-Math.pow(.02,dt));
     g.clearRect(0,0,W,H);
-    if(idleA>.01){ const M=Math.max(W,H); BL.forEach(b=>{ const cx=W*(.5+.33*Math.sin(idleT*b.sp+b.ph)), cy=H*(.5+.3*Math.cos(idleT*b.sp*.8+b.ph*1.7)); const rr=M*(.2+.06*Math.sin(idleT*.9+b.ph)); const al=idleA*(.5+.5*Math.sin(idleT*.7+b.ph*2.1))*.55; layer(imgs[b.wi%imgs.length],Math.max(0,al),cx,cy,rr,'screen'); }); }
+    if(idleA>.01){ const M=Math.max(W,H); BL.forEach(b=>{ const cx=W*(.5+.33*Math.sin(idleT*b.sp+b.ph)), cy=H*(.5+.3*Math.cos(idleT*b.sp*.8+b.ph*1.7)); const rr=M*(.2+.06*Math.sin(idleT*.9+b.ph)); const al=idleA*(.5+.5*Math.sin(idleT*.7+b.ph*2.1))*.55; layer(imgs[b.wi%imgs.length],Math.max(0,al),cx,cy,rr,'screen'); });
+      // keep his face untouched when nobody is pointing: cut a soft oval out of the glimpses
+      g.save(); g.globalCompositeOperation='destination-out'; g.translate(W*.5,H*.38); g.scale(1,1.3); const fg=g.createRadialGradient(0,0,0,0,0,W*.2); fg.addColorStop(0,'rgba(0,0,0,1)'); fg.addColorStop(.7,'rgba(0,0,0,1)'); fg.addColorStop(1,'rgba(0,0,0,0)'); g.fillStyle=fg; g.beginPath(); g.arc(0,0,W*.2,0,6.283); g.fill(); g.restore(); }
     if(r>.5){ const wf=travel/(Math.max(W,H)*2.2); const i=Math.floor(wf)%WORLDS.length, j=(i+1)%WORLDS.length, bl=wf-Math.floor(wf); const e=bl*bl*(3-2*bl); layer(imgs[i],1,px,py,r); layer(imgs[j],e,px,py,r); label(e<.5?i:j); }
     const b=port.getBoundingClientRect(), vis=b.bottom>0&&b.top<innerHeight;
     if(vis&&(idleA>.01||Math.abs(tr-r)>.3||Math.abs(tx-px)>.3||Math.abs(ty-py)>.3)) raf=requestAnimationFrame(frame); }
