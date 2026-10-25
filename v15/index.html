@@ -14,7 +14,10 @@
   --line:rgba(242,240,234,.14); --pill:rgba(242,240,234,.08); --ease:cubic-bezier(.22,.9,.24,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
 html,body{background:var(--bg);color:var(--fg);font-family:"Archivo",system-ui,sans-serif;font-size:14px;line-height:1.4;-webkit-font-smoothing:antialiased}
 body{background-image:radial-gradient(rgba(242,240,234,.055) 1px,transparent 1px);background-size:28px 28px;background-position:center;overflow-x:hidden}
 body.lock{overflow:hidden}
@@ -59,6 +62,8 @@ h2.t{font-size:clamp(34px,5vw,76px);font-weight:700;font-stretch:112%;letter-spa
 #work{position:relative;height:380vh}
 body.list #work{height:auto}
 #stage{position:sticky;top:0;height:100vh;overflow:hidden}
+#stage .fd{transition:none}
+.rev{transition-delay:var(--d,0s)}
 body.list #stage{position:relative;height:auto;min-height:100vh;overflow:visible}
 #gl{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2;touch-action:pan-y;cursor:grab}
 #gl.drag{cursor:grabbing}
@@ -123,7 +128,24 @@ body.list #list{display:block}
 .certs button:hover img{opacity:1}
 .certs b{display:block;font-size:12px;font-weight:600;line-height:1.25}
 .certs small{display:block;font-size:11px;color:var(--mute);margin-top:2px}
-.clients{font-size:13px;line-height:1.7;color:var(--mute);max-width:52em}
+.clients{display:flex;flex-wrap:wrap;gap:6px 0;margin:0 -4px}
+.clients span,.clients button{font-size:clamp(15px,1.5vw,21px);font-weight:500;letter-spacing:-.01em;padding:4px 10px;border-radius:999px;line-height:1.2}
+.clients span{color:var(--dim)}
+.clients button{color:var(--fg);border:1px solid var(--line);transition:background .3s,color .3s,border-color .3s}
+.clients button em{font-style:normal;font-size:11px;color:var(--mute);margin-left:6px;vertical-align:middle}
+.clients button:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.clients button:hover em{color:rgba(10,10,10,.6)}
+.clients .key{width:100%;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:0 10px 8px}
+#cl .wrap{max-width:1500px}
+#cl h1{font-size:clamp(34px,5vw,76px);font-weight:700;font-stretch:112%;letter-spacing:-.02em;line-height:.95;text-transform:uppercase;margin-bottom:10px}
+#cl .n{margin-bottom:36px}
+#cl .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+#cl .grid button{text-align:left}
+#cl .im{aspect-ratio:3/2;border-radius:10px;overflow:hidden;background:#111}
+#cl .im img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:opacity .4s,transform .8s var(--ease)}
+#cl .grid button:hover .im img{opacity:1;transform:scale(1.03)}
+#cl b{display:block;margin-top:12px;font-weight:600;font-size:16px}
+#cl small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
 
 /* contact */
 #contact{min-height:90vh;display:grid;align-content:center;padding:14vh 6vw 120px;text-align:center}
@@ -168,7 +190,7 @@ body.list #list{display:block}
 #mn .foot{margin-top:48px;display:flex;gap:28px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
 #mn .foot a:hover{color:var(--fg)}
 
-@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 
 @media (max-width:1100px){
   #proj .wrap{grid-template-columns:1fr;gap:28px}
@@ -238,7 +260,7 @@ body.list #list{display:block}
       <span>AI image enhancement</span><span>OpenArt</span><span>Monday</span><span>Google Sheets</span>
     </div></div>
     <div class="sec"><h3 class="lab">Certificates</h3><div class="certs" id="certs"></div></div>
-    <div class="sec"><h3 class="lab">Clients</h3><div class="clients">PepsiCo (three editions of MDL Beast), Saudi Broadcasting Authority, McDonald's, Gold's Gym, Othaim Mall, DJI Enterprise, Monshaat, Misk, GOSI, SIMAH, Seder Group, Al Rajhi Takaful, Bank Al Jazira, Thiqah, Urpay, neoleap, Looptech, The Financial Academy, Quality of Life Program, SCE, JDA, MOMAH, LCGPA.</div></div>
+    <div class="sec"><h3 class="lab">Clients</h3><div class="clients" id="clients"></div></div>
   </div>
 </section>
 
@@ -267,7 +289,7 @@ body.list #list{display:block}
     <div class="rows">
       <a href="https://wa.me/966557905388" target="_blank" rel="noopener">WhatsApp +966 55 790 5388</a>
       <a href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance</a>
-      <span class="tf">LinkedIn · to fill</span>
+      <a href="https://www.linkedin.com/in/yasser-kobeissi-31085822a/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
     <div class="ft">Yasser Kobeissi · Riyadh · 2026</div>
   </div>
@@ -287,6 +309,10 @@ body.list #list{display:block}
     <div class="strip"></div>
   </div>
 </section>
+<section id="cl" class="ov" role="dialog" aria-modal="true">
+  <button class="x pill" data-close>close <i></i></button>
+  <div class="wrap"><h1></h1><div class="n lab"></div><div class="grid"></div></div>
+</section>
 <section id="cert" class="ov" role="dialog" aria-modal="true">
   <button class="x pill" data-close>close <i></i></button>
   <div class="wrap"><img alt=""></div>
@@ -295,11 +321,12 @@ body.list #list{display:block}
   <button class="x pill" data-close>close <i></i></button>
   <div class="wrap">
     <nav><a href="#about" data-close>About</a><a href="#work" data-close>Work</a><a href="#motion" data-close>Motion</a><a href="#contact" data-close>Contact</a></nav>
-    <div class="foot"><a href="mailto:yasserkobeissi98@gmail.com">yasserkobeissi98@gmail.com</a><a href="https://wa.me/966557905388" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance</a><span>Riyadh</span></div>
+    <div class="foot"><a href="mailto:yasserkobeissi98@gmail.com">yasserkobeissi98@gmail.com</a><a href="https://wa.me/966557905388" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/yasser-kobeissi-31085822a/" target="_blank" rel="noopener">LinkedIn</a><span>Riyadh</span></div>
   </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
 (async function(){
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -311,16 +338,23 @@ const clk=$('#clock b');
 const tick=()=>{clk.textContent=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Riyadh'}).format(new Date());};
 tick(); setInterval(tick,15000);
 
+/* smooth scroll */
+const lenis=reduce?null:new Lenis({lerp:.085,smoothWheel:true,syncTouch:false});
+if(lenis){ (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})(0); }
+function goTo(sel){ const el=$(sel); if(!el)return; if(lenis) lenis.scrollTo(el,{duration:1.6,easing:x=>1-Math.pow(1-x,4)}); else el.scrollIntoView(); }
+$$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const h=a.getAttribute('href'); if(h.length>1&&$(h)){ e.preventDefault(); setTimeout(()=>goTo(h),a.closest('.ov')?80:0); } }));
+
 /* reveals */
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.15});
 $$('.rev').forEach(e=>io.observe(e));
+$$('.chips span,.certs button').forEach((e,i)=>{e.classList.add('rev');e.style.setProperty('--d',(i%12)*.05+'s');io.observe(e);});
 
 /* ===== hero: portrait as points ===== */
 (function(){
   const cv=$('#dots'), ctx=cv.getContext('2d'); let pts=[], W=0,H=0, mx=-1e4,my=-1e4, scat=0;
   const img=new Image(); img.src='../site/img/portrait-4x.jpg';
   img.onload=()=>{
-    const S=150, oc=document.createElement('canvas'); oc.width=oc.height=S; const o=oc.getContext('2d'); o.drawImage(img,0,0,S,S);
+    const S=230, oc=document.createElement('canvas'); oc.width=oc.height=S; const o=oc.getContext('2d'); o.drawImage(img,0,0,S,S);
     const d=o.getImageData(0,0,S,S).data, lum=new Float32Array(S*S);
     for(let i=0;i<S*S;i++) lum[i]=(d[i*4]*.299+d[i*4+1]*.587+d[i*4+2]*.114)/255;
     // tone-based: the darker the pixel, the denser and brighter the points; a soft oval fades the square away
@@ -330,9 +364,9 @@ $$('.rev').forEach(e=>io.observe(e));
       const u=(x+.5)/S, v=(y+.5)/S, rx=(u-.5)/.5, ry=(v-.56)/.56, rr=Math.sqrt(rx*rx+ry*ry);
       const vig=rr<.62?1:rr>1?0:1-(rr-.62)/.38;
       if(vig<=0)continue;
-      const dark=Math.pow((hi-lum[i])/(hi-lo),1.5);
-      if(Math.random()>dark*vig*.9)continue;
-      pts.push({u,v,a:(.2+dark*.8)*vig,r:Math.random()*6.28,s:.5+Math.random()*.9,ox:(Math.random()-.5),oy:(Math.random()-.5),dx:0,dy:0});}
+      const dark=Math.pow((hi-lum[i])/(hi-lo),1.15);
+      if(Math.random()>Math.min(1,.08+dark*1.25)*vig)continue;
+      pts.push({u,v,a:(.18+dark*.82)*vig,r:Math.random()*6.28,s:.45+Math.random()*.8,ox:(Math.random()-.5),oy:(Math.random()-.5),dx:0,dy:0});}
     size(); loop();
   };
   function size(){W=cv.clientWidth;H=cv.clientHeight;const r=Math.min(devicePixelRatio,2);cv.width=W*r;cv.height=H*r;ctx.setTransform(r,0,0,r,0,0);}
@@ -435,7 +469,12 @@ function frame(){
   requestAnimationFrame(frame);
   const r=stageEl.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight||document.body.classList.contains('list')) return;
   const dt=Math.min(clock.getDelta(),.05); t+=dt;
-  if(!started){started=true; if(!reduce){ring.scale.setScalar(.6); const s0=performance.now(); (function g(){const p=Math.min(1,(performance.now()-s0)/1500), e=1-Math.pow(1-p,3); ring.scale.setScalar(.6+.4*e); if(p<1)requestAnimationFrame(g);})();}}
+  // arrive and leave softly: the stage fades and the ring grows in from below
+  const fadeIn=Math.min(1,Math.max(0,1-r.top/(innerHeight*.9))), fadeOut=Math.min(1,Math.max(0,r.bottom/(innerHeight*.9)));
+  const fd=Math.min(fadeIn,fadeOut), fe=fd*fd*(3-2*fd);
+  canvas.style.opacity=fe; $('#big').style.opacity=fe; $('#cats').style.opacity=fe; $('#hint').style.opacity=fe; $('#view').style.opacity=fe;
+  ring.position.y=(1-fe)*(r.top>0?-2.2:2.2); if(started) ring.scale.setScalar(.82+.18*fe);
+  if(!started) started=true;
   spT=sectionProg()*Math.PI*2.2; sp+=(spT-sp)*(1-Math.pow(.002,dt));
   if(!drag){ vel*=Math.pow(.08,dt); if(!reduce) rot+=.04*dt; }
   rot+=vel;
@@ -477,15 +516,15 @@ function buildList(){
 }
 addEventListener('pointermove',e=>{peek.style.left=e.clientX+'px';peek.style.top=e.clientY+'px';});
 buildList();
-$$('#view button').forEach(b=>b.onclick=()=>{const v=b.dataset.view; document.body.classList.toggle('list',v==='list'); $$('#view button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.view===v)); peek.classList.remove('on'); $('#work').scrollIntoView(); if(v==='ring') fit();});
+$$('#view button').forEach(b=>b.onclick=()=>{const v=b.dataset.view; document.body.classList.toggle('list',v==='list'); $$('#view button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.view===v)); peek.classList.remove('on'); goTo('#work'); if(v==='ring') fit();});
 
 /* motion strip */
 const reel=$('#reel');
 clips.forEach(c=>{const b=document.createElement('button'); b.innerHTML='<div class="im"><img loading="lazy" alt="" src="'+c.tex+'"><div class="pl"></div></div><b>'+c.title+'</b><small>'+c.kind.replace('Motion · ','')+'</small>'; b.onclick=()=>open(c); reel.appendChild(b);});
 
 /* overlays */
-function show(id){ $('#'+id).classList.add('open'); $('#'+id).scrollTop=0; document.body.classList.add('lock'); }
-function hide(el){ el.classList.remove('open'); if(!$('.ov.open')){document.body.classList.remove('lock'); if(location.hash.startsWith('#p/')) history.replaceState(null,'',location.pathname);} }
+function show(id){ $('#'+id).classList.add('open'); $('#'+id).scrollTop=0; document.body.classList.add('lock'); if(lenis) lenis.stop(); }
+function hide(el){ el.classList.remove('open'); if(!$('.ov.open')){document.body.classList.remove('lock'); if(lenis) lenis.start(); if(location.hash.startsWith('#p/')) history.replaceState(null,'',location.pathname);} }
 $$('[data-close]').forEach(b=>b.addEventListener('click',()=>hide(b.closest('.ov'))));
 addEventListener('keydown',e=>{ if(e.key==='Escape'){const o=$$('.ov.open').pop(); if(o)hide(o);} if($('#proj').classList.contains('open')){ if(e.key==='ArrowRight')step(1); if(e.key==='ArrowLeft')step(-1);} });
 $('#mbtn').onclick=()=>show('mn');
@@ -517,6 +556,22 @@ stage.addEventListener('click',()=>{ if(cur&&!cur.vimeo&&cur.count>1) pick(img%c
 /* certificates */
 const CERTS=[['lau-bsc-2011','BSc Graphic Design','Lebanese American University · 2011'],['mastery-marketing-2022','Marketing training diploma','Mastery Academy · 2022'],['cpd-leadership-2026','Managerial leadership · CPD','CPD Standards Office · 2026'],['managerial-leadership-diploma-2026','Managerial leadership diploma','Mastery Academy · 2026'],['leadership-practitioner-2026','Certified leadership practitioner','Mastery Academy · 2026'],['managerial-leadership-skills-2026','Principles and skills of managerial leadership','Mastery Academy · 2026'],['planning-specialist-2026','Planning specialist','Mastery Academy · 2026']];
 CERTS.forEach(([k,t,s])=>{const b=document.createElement('button'); b.innerHTML='<div class="im"><img loading="lazy" alt="" src="../site/img/certs/'+k+'.jpg"></div><b>'+t+'</b><small>'+s+'</small>'; b.onclick=()=>{$('#cert img').src='../site/img/certs/'+k+'.jpg'; show('cert');}; $('#certs').appendChild(b);});
+
+/* clients: a name opens its projects when I have them here */
+const CLIENTS=[['PepsiCo','three editions of MDL Beast'],['Saudi Broadcasting Authority'],["McDonald's"],["Gold's Gym"],['Othaim Mall'],['DJI Enterprise'],['Monshaat',null,['biban']],['Misk',null,['misk']],['GOSI',null,['gosi26','gosi25']],['SIMAH',null,['simah']],['Seder Group',null,['big5','seder']],['Al Rajhi Takaful',null,['takaful']],['Bank Al Jazira',null,['aljazira']],['Thiqah',null,['thiqah']],['Urpay',null,['urpay']],['neoleap',null,['urpay']],['Looptech',null,['looptech']],['The Financial Academy'],['Quality of Life Program',null,['qol']],['SCE',null,['sce']],['JDA',null,['jda']],['MOMAH',null,['momah']],['LCGPA',null,['lcgpa']]];
+const clEl=$('#clients');
+clEl.innerHTML='<div class="key">Names with a count open the work I did for them here</div>';
+CLIENTS.forEach(([name,note,keys])=>{
+  const ps=(keys||[]).map(k=>items.find(i=>i.key===k)).filter(Boolean);
+  if(!ps.length){const sp=document.createElement('span'); sp.textContent=name+(note?' · '+note:''); clEl.appendChild(sp); return;}
+  const b=document.createElement('button'); b.innerHTML=name+'<em>'+ps.length+'</em>';
+  b.onclick=()=>{ if(ps.length===1) return open(ps[0]);
+    $('#cl h1').textContent=name; $('#cl .n').textContent=ps.length+' projects';
+    const g=$('#cl .grid'); g.innerHTML='';
+    ps.forEach(it=>{const c=document.createElement('button'); c.innerHTML='<div class="im"><img loading="lazy" alt="" src="'+it.tex+'"></div><b>'+it.title+'</b><small>'+it.kind+'</small>'; c.onclick=()=>open(it); g.appendChild(c);});
+    show('cl'); };
+  clEl.appendChild(b);
+});
 
 /* deep link */
 if(location.hash.startsWith('#p/')){const it=[...items,...clips].find(i=>i.key===location.hash.slice(3)); if(it) open(it);}
