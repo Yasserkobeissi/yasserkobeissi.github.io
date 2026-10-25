@@ -83,8 +83,10 @@ body.list #gl{display:none}
 #big small{transition:opacity .35s var(--ease)}
 #big span{display:block;font-weight:700;font-stretch:118%;letter-spacing:-.01em;text-transform:uppercase;line-height:.9;font-size:clamp(44px,8.5vw,150px);color:var(--fg);opacity:.92}
 #stage #big>div{transition:transform .9s var(--ease)}
-#stage.spiral #big>div{transform:translateY(6vh)}
-#stage.spiral #big span{font-size:clamp(26px,4.2vw,60px)}
+#stage.spiral #big{z-index:3}
+#stage.spiral #big>div{transform:translateY(-15vh)}
+#stage.spiral #big span{text-shadow:0 2px 24px rgba(10,10,10,.9)}
+#stage.spiral #big span{font-size:clamp(24px,3.6vw,52px)}
 #big span{transition:font-size .9s var(--ease),opacity .35s var(--ease),transform .35s var(--ease)}
 #big small{display:block;margin-top:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-stretch:100%;font-weight:500}
 body.list #big{display:none}
@@ -263,7 +265,8 @@ body.list #list{display:block}
   #hint{left:18px;bottom:22px}
   #big span{font-size:clamp(36px,13vw,70px)}
   #big{padding-bottom:60px}
-  #stage.spiral #big>div{transform:translateY(4vh)}
+  #stage.spiral #big>div{transform:translateY(-19vh)}
+  #stage.spiral #big span{font-size:clamp(22px,8vw,40px)}
   #list{padding:90px 5vw 60px}
   #peek{width:70vw}
   #motion .hd{flex-direction:column;align-items:start}
@@ -533,13 +536,14 @@ layout();
 /* turning: scroll through the section + drag */
 let rot=0, vel=0, drag=false, px=0, moved=0, hot=null, front=null, sp=0, spT=0, sW=0, sWT=0, sIdx=0, sIdxT=0;
 const ray=new THREE.Raycaster(), ptr=new THREE.Vector2(-9,-9);
-canvas.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;moved=0;canvas.classList.add('drag');canvas.setPointerCapture(e.pointerId);});
+function aim(e){ const r=canvas.getBoundingClientRect(); ptr.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1); }
+canvas.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;moved=0;aim(e);canvas.classList.add('drag');canvas.setPointerCapture(e.pointerId);});
 canvas.addEventListener('pointermove',e=>{
   const r=canvas.getBoundingClientRect();
   ptr.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1);
   if(drag){const dx=e.clientX-px;px=e.clientX;moved+=Math.abs(dx);vel=dx*.0045;}
 });
-const up=e=>{if(!drag)return;drag=false;canvas.classList.remove('drag');if(moved<6&&hot)open(hot.userData);};
+const up=e=>{if(!drag)return;drag=false;canvas.classList.remove('drag');if(moved<8){ aim(e); ray.setFromCamera(ptr,camera); const hs=ray.intersectObjects(items.filter(i=>i.on&&i.s>.5).map(i=>i.mesh)); if(hs.length) open(hs[0].object.userData); } if(e.pointerType!=='mouse') ptr.set(-9,-9);};
 canvas.addEventListener('pointerup',up); canvas.addEventListener('pointercancel',up);
 canvas.addEventListener('pointerleave',()=>{if(!drag)ptr.set(-9,-9);});
 function sectionProg(){ const r=$('#work').getBoundingClientRect(); const len=r.height-innerHeight; return len>0?Math.min(1,Math.max(0,-r.top/len)):0; }
@@ -567,7 +571,7 @@ function frame(){
     const k=1-Math.pow(.0015,dt);
     it.a+=(it.ta-it.a)*k; it.s+=(it.ts-it.s)*k;
     const a0=it.a+rot+sp, aw=Math.atan2(Math.sin(a0),Math.cos(a0)), a=aw*K, m=it.mesh;
-    const oi=on.indexOf(it); let d=oi-sIdx; d=((d%n)+n)%n; if(d>n/2)d-=n;
+    const oi=on.indexOf(it); let d=oi-(sIdx-rot*n/(Math.PI*2)); d=((d%n)+n)%n; if(d>n/2)d-=n;
     const y=Math.sin(t*.7+it.a*3)*.06 + d*pitch*sE;
     m.position.set(Math.sin(a)*Rh, y, Math.cos(a)*Rh); m.rotation.set(0,a,0);
     const near=Math.max(0,1-Math.abs(d)/(n*.5));
