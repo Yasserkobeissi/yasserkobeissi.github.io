@@ -212,7 +212,7 @@ body.list #list{display:block}
 #about{padding:14vh 6vw;display:grid;grid-template-columns:minmax(240px,.7fr) minmax(0,1.3fr);gap:64px;align-items:start;max-width:1500px;margin:0 auto}
 #about .port{border-radius:12px;overflow:hidden;aspect-ratio:1;background:#111;position:sticky;top:96px;cursor:crosshair;user-select:none;-webkit-user-select:none;touch-action:none}
 #about .port img.base{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-#about .port img.base.real{filter:grayscale(1) contrast(1.05)}
+#about .port img.base.real{filter:none}
 #about .port canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 #about .port .wl{position:absolute;left:14px;bottom:12px;z-index:2;display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);background:rgba(10,10,10,.55);padding:7px 11px;border-radius:999px;backdrop-filter:blur(8px)}
 #about .port .wl i{width:5px;height:5px;border-radius:50%;background:var(--fg);display:block}
@@ -744,15 +744,15 @@ $$('#view button').forEach(b=>b.onclick=()=>{const v=b.dataset.view; document.bo
   const oc=document.createElement('canvas'), og=oc.getContext('2d');
   function size(){ const b=port.getBoundingClientRect(); const dpr=Math.min(devicePixelRatio,2); W=Math.max(1,Math.round(b.width*dpr)); H=Math.max(1,Math.round(b.height*dpr)); cv.width=W; cv.height=H; oc.width=W; oc.height=H; }
   function label(i){ if(i===shown)return; shown=i; lab.textContent=WORLDS[i][1]; dots.querySelectorAll('b').forEach((b,j)=>b.classList.toggle('on',j===i)); }
-  function layer(im,alpha,cx,cy,rad){ if(!im.complete||!im.naturalWidth||alpha<=0)return; og.clearRect(0,0,W,H); og.globalCompositeOperation='source-over'; const al=ALIGN[WORLDS[imgs.indexOf(im)]?.[0]]||[1,0,0]; og.drawImage(im,W/2-al[0]*W/2+al[1]*W,H/2-al[0]*H/2+al[2]*H,W*al[0],H*al[0]); og.globalCompositeOperation='destination-in'; const grad=og.createRadialGradient(cx,cy,0,cx,cy,rad); grad.addColorStop(0,'rgba(0,0,0,1)'); grad.addColorStop(.42,'rgba(0,0,0,1)'); grad.addColorStop(.78,'rgba(0,0,0,.35)'); grad.addColorStop(1,'rgba(0,0,0,0)'); og.fillStyle=grad; og.fillRect(0,0,W,H); g.globalAlpha=alpha; g.drawImage(oc,0,0); g.globalAlpha=1; }
+  function layer(im,alpha,cx,cy,rad,mode){ if(!im.complete||!im.naturalWidth||alpha<=0)return; og.clearRect(0,0,W,H); og.globalCompositeOperation='source-over'; const al=ALIGN[WORLDS[imgs.indexOf(im)]?.[0]]||[1,0,0]; og.drawImage(im,W/2-al[0]*W/2+al[1]*W,H/2-al[0]*H/2+al[2]*H,W*al[0],H*al[0]); og.globalCompositeOperation='destination-in'; const grad=og.createRadialGradient(cx,cy,0,cx,cy,rad); grad.addColorStop(0,'rgba(0,0,0,1)'); grad.addColorStop(.42,'rgba(0,0,0,1)'); grad.addColorStop(.78,'rgba(0,0,0,.35)'); grad.addColorStop(1,'rgba(0,0,0,0)'); og.fillStyle=grad; og.fillRect(0,0,W,H); g.globalAlpha=alpha; g.globalCompositeOperation=mode||'source-over'; g.drawImage(oc,0,0); g.globalCompositeOperation='source-over'; g.globalAlpha=1; }
   // idle: liquid patches of other worlds drift across the photo until the pointer arrives
-  const BL=[0,1,3,5,2].map((wi,j)=>({wi,ph:j*1.3,sp:.25+j*.07}));
+  const BL=[2,3,5,7,0].map((wi,j)=>({wi,ph:j*1.3,sp:.22+j*.06}));
   let idleT=0, lastT=0, idleA=0;
   function frame(now){ raf=0; now=now||performance.now(); const dt=Math.min(.05,(now-lastT)/1000||.016); lastT=now; idleT+=dt;
     px+=(tx-px)*(1-Math.pow(.0005,dt)); py+=(ty-py)*(1-Math.pow(.0005,dt)); r+=(tr-r)*(1-Math.pow(.004,dt));
     const wantIdle=tr<=0&&!reduce; idleA+=((wantIdle?1:0)-idleA)*(1-Math.pow(.02,dt));
     g.clearRect(0,0,W,H);
-    if(idleA>.01){ const M=Math.max(W,H); BL.forEach(b=>{ const cx=W*(.5+.33*Math.sin(idleT*b.sp+b.ph)), cy=H*(.5+.3*Math.cos(idleT*b.sp*.8+b.ph*1.7)); const rr=M*(.16+.05*Math.sin(idleT*.9+b.ph)); const al=idleA*(.55+.45*Math.sin(idleT*.7+b.ph*2.1))*.7; layer(imgs[b.wi%imgs.length],Math.max(0,al),cx,cy,rr); }); }
+    if(idleA>.01){ const M=Math.max(W,H); BL.forEach(b=>{ const cx=W*(.5+.33*Math.sin(idleT*b.sp+b.ph)), cy=H*(.5+.3*Math.cos(idleT*b.sp*.8+b.ph*1.7)); const rr=M*(.2+.06*Math.sin(idleT*.9+b.ph)); const al=idleA*(.5+.5*Math.sin(idleT*.7+b.ph*2.1))*.55; layer(imgs[b.wi%imgs.length],Math.max(0,al),cx,cy,rr,'screen'); }); }
     if(r>.5){ const wf=travel/(Math.max(W,H)*2.2); const i=Math.floor(wf)%WORLDS.length, j=(i+1)%WORLDS.length, bl=wf-Math.floor(wf); const e=bl*bl*(3-2*bl); layer(imgs[i],1,px,py,r); layer(imgs[j],e,px,py,r); label(e<.5?i:j); }
     const b=port.getBoundingClientRect(), vis=b.bottom>0&&b.top<innerHeight;
     if(vis&&(idleA>.01||Math.abs(tr-r)>.3||Math.abs(tx-px)>.3||Math.abs(ty-py)>.3)) raf=requestAnimationFrame(frame); }
@@ -867,6 +867,10 @@ function cplayer(host,opts){
   pick(films[0],false);
   P.v.addEventListener('ended',()=>{ const i=films.indexOf(cur); pick(films[(i+1)%films.length],true); });
 })();
+
+/* certificates */
+const CERTS=[['lau-bsc-2011','BSc Graphic Design','Lebanese American University · 2011'],['mastery-marketing-2022','Marketing training diploma','Mastery Academy · 2022'],['cpd-leadership-2026','Managerial leadership · CPD','CPD Standards Office · 2026'],['managerial-leadership-diploma-2026','Managerial leadership diploma','Mastery Academy · 2026'],['leadership-practitioner-2026','Certified leadership practitioner','Mastery Academy · 2026'],['managerial-leadership-skills-2026','Principles and skills of managerial leadership','Mastery Academy · 2026'],['planning-specialist-2026','Planning specialist','Mastery Academy · 2026']];
+CERTS.forEach(([k,t,s])=>{const b=document.createElement('button'); b.innerHTML='<div class="im"><img loading="lazy" alt="" src="img/certs/'+k+'.jpg"></div><b>'+t+'</b><small>'+s+'</small>'; b.onclick=()=>{$('#cert img').src='img/certs/'+k+'.jpg'; show('cert');}; $('#certs').appendChild(b);});
 
 /* clients: a strip of marks; the lit ones open the work I did for them */
 const CLIENTS=[['Hail Region Development Authority','hail',['hail','hail2']],['National Cybersecurity Authority','nca',['nca']],['CQR','cqr',['cqr']],['Council of Health Insurance','chi',['chi']],['New Murabba','murabba',['murabba']],['BSF','bsf',['bsf']],['SCA','sca',['sca']],['Dr. Sulaiman Al Habib','alhabib',['alhabib']],['The Financial Academy','finacademy',['finacademy']],['PepsiCo','pepsico'],['Saudi Broadcasting Authority','sba'],["McDonald's",'mcdonalds'],["Gold's Gym",'goldsgym'],['Othaim Mall','othaim'],['DJI Enterprise','dji'],['Monshaat','monshaat',['biban']],['Misk','misk',['misk']],['GOSI','gosi',['gosi26','gosi25']],['SIMAH','simah',['simah']],['Seder Group','seder',['big5','seder']],['Al Rajhi Takaful','takaful',['takaful']],['Bank Al Jazira','aljazira',['aljazira']],['Thiqah','thiqah',['thiqah']],['Boutique Group','boutique',['boutique']],['Urpay','urpay',['urpay']],['neoleap','neoleap',['urpay']],['Looptech','looptech',['looptech']],['Quality of Life Program',null,['qol']],['SCE','sce',['sce']],['JDA','jda',['jda']],['MOMAH','momah',['momah']],['LCGPA','lcgpa',['lcgpa']]];
