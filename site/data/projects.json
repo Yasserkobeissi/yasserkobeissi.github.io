@@ -15,6 +15,21 @@
   "cat": "exhibitions"
  },
  {
+  "key": "nca",
+  "title": "National Cybersecurity Authority",
+  "kind": "Event design · gate, stage, dinner and majlis",
+  "url": null,
+  "count": 12,
+  "client": "National Cybersecurity Authority",
+  "city": null,
+  "hall": null,
+  "date": null,
+  "area": null,
+  "built": null,
+  "line": null,
+  "cat": "events"
+ },
+ {
   "key": "qol",
   "title": "Quality of Life Program",
   "kind": "Exhibition stand · 2026",
