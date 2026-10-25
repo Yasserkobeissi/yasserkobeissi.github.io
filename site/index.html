@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yasser Kobeissi</title>
-<meta name="description" content="Yasser Kobeissi, creative director in Riyadh. Events, exhibitions, objects, motion.">
+<meta name="description" content="Yasser Kobeissi, head of creative at Sovyal Events, Riyadh. Events, exhibitions, objects, motion.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..800;1,62..125,300..800&display=swap" rel="stylesheet">
@@ -57,6 +57,8 @@ h2.t{font-size:clamp(34px,5vw,76px);font-weight:700;font-stretch:112%;letter-spa
 /* intro */
 #intro{min-height:70vh;display:grid;place-items:center;padding:12vh 6vw;text-align:center}
 #intro p{font-size:clamp(22px,3.2vw,44px);font-weight:500;font-stretch:104%;letter-spacing:-.015em;line-height:1.18;max-width:22em}
+#intro p{color:var(--mute)}
+#intro p strong{color:var(--fg);font-weight:800}
 #intro p em{font-style:normal;color:var(--mute)}
 #intro p i{font-style:inherit;display:inline-block;opacity:0;transform:translateY(.4em);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d)}
 #intro .on p i{opacity:1;transform:none}
@@ -267,14 +269,14 @@ body.list #list{display:block}
 
 <section id="hero" aria-label="Yasser Kobeissi">
   <canvas id="dots" aria-hidden="true"></canvas>
-  <div class="l"><b>Yasser Kobeissi</b><span>Creative director</span></div>
+  <div class="l"><b>Yasser Kobeissi</b><span>Head of creative · Sovyal Events</span></div>
   <div class="r">Riyadh<span>from Beirut</span></div>
   <div class="dn">scroll</div>
 </section>
 
 <section id="intro">
   <div class="rev">
-    <p>I design events, exhibition stands, the gift items that go with them and the screen content that plays on them. <em>Twenty years in, from Beirut production houses to the big halls in Riyadh.</em></p>
+    <p>I am a design <strong>expert</strong>. <em>Events, exhibition stands, the gift items that go with them and the screen content that plays on them. Twenty years in, from Beirut production houses to the big halls in Riyadh.</em></p>
     <div class="facts">
       <div><b>Sovyal Events</b>head of creative</div>
       <div><b>Riyadh</b>since 2019</div>
@@ -291,7 +293,7 @@ body.list #list{display:block}
     <p>I design events, exhibition stands and the gift items that go with them, and I produce the screen content that plays on them. Before that I spent ten years on motion design in Beirut production houses and ran the creative for four television channels in Riyadh.</p>
     <p class="m">I studied graphic design at the Lebanese American University. I'm crazy about cars, I drift, and I like a big operation with a big team.</p>
     <div class="sec"><h3 class="lab">Where I've worked</h3><ul class="cv">
-      <li><div class="y">2024 · now</div><div><b>Sovyal Events, Riyadh</b><span>Creative director. Events, exhibition stands, gift items and screen content.</span></div></li>
+      <li><div class="y">2024 · now</div><div><b>Sovyal Events, Riyadh</b><span>Head of creative. Events, exhibition stands, gift items and screen content.</span></div></li>
       <li><div class="y">2022 · 2024</div><div><b>Thakwa Events, Riyadh</b><span>Art director and chief executive.</span></div></li>
       <li><div class="y">2021 · 2022</div><div><b>Lezof-Hi Deer</b><span>Creative strategist.</span></div></li>
       <li><div class="y">2019 · 2021</div><div><b>Maestro Group, for the Saudi Broadcasting Authority</b><span>Head of creative across four television channels.</span></div></li>
@@ -400,7 +402,7 @@ $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const h=a.getAttri
 /* reveals */
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.15});
 $$('.rev').forEach(e=>io.observe(e));
-(function(){const p=$('#intro p'); let i=0; p.innerHTML=p.innerHTML.replace(/(<em>|<\/em>)|([^\s<>]+)/g,(m,tag,w)=>tag?tag:'<i style="--d:'+(i++*.045).toFixed(3)+'s">'+w+'</i>');})();
+(function(){const p=$('#intro p'); let i=0; p.innerHTML=p.innerHTML.replace(/(<\/?(?:em|strong)>)|([^\s<>]+)/g,(m,tag,w)=>tag?tag:'<i style="--d:'+(i++*.045).toFixed(3)+'s">'+w+'</i>');})();
 $$('.chips span,.certs button').forEach((e,i)=>{e.classList.add('rev');e.style.setProperty('--d',(i%12)*.05+'s');io.observe(e);});
 
 /* ===== hero: portrait as points ===== */
