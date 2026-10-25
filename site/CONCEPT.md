@@ -92,6 +92,10 @@ Every sheet has a life of its own while you read, and scrolling adds to it rathe
 - Phone pass at 375 × 812: the cover keeps its text above the title block and is no longer dimmed by the desktop parallax; the map's city labels stay inside the sheet; the issue stamp is a small corner stamp instead of a box across the page; the chassis lens can be dragged with a finger; the hall has a "Look around with one finger" button that switches a one-finger drag from scrolling to turning the booth, and back.
 - "Send the brief" opens a form page (`#brief`) that mails the brief through Web3Forms; the access key goes in `data-brief-key` on `<html>`; without it the form opens a mail draft with the brief typed out.
 
+## Round 12 (25 Oct): paper and motion
+- Sheet 04 Certificates: the LAU degree (2011), the marketing diploma (2022) and the five 2026 leadership and planning papers as seven scans on the sheet, each opening large; under them the tools (Photoshop, Illustrator, After Effects, Premiere Pro, Cinema 4D, Lumion, D5 Render) and what the work runs on (Monday, Google Sheets, AI image enhancement, OpenArt). Sheets renumbered again.
+- Motion: his ten Vimeo pieces (`data/motion.json`, titles and thumbnails from Vimeo's oEmbed) play inline on the Motion category page.
+
 ## System
 - Sheets are sticky; a spacer after each one drives its scene, so every scene has its own scroll length and the next sheet slides over the last. On phones the stack is off and sheets flow.
 - Crosshair cursor with live coordinates, labels on anything you can open or drag. Plotter progress line under the nav, sheet tabs, Riyadh clock.
