@@ -1,0 +1,106 @@
+[
+ {
+  "id": "sicli",
+  "file": "video/sicli.mp4",
+  "poster": "img/motion/sicli.jpg",
+  "title": "Saudi SICLI",
+  "kind": "A film made with AI, 2026",
+  "duration": 90
+ },
+ {
+  "id": "f01",
+  "file": "video/films/f01.mp4",
+  "poster": "img/films/f01.jpg",
+  "title": "Ferre",
+  "kind": "Shemagh commercial",
+  "duration": 42
+ },
+ {
+  "id": "f06",
+  "file": "video/films/f06.mp4",
+  "poster": "img/films/f06.jpg",
+  "title": "Gianfranco Ferre",
+  "kind": "Shemagh commercial, Riyadh",
+  "duration": 45
+ },
+ {
+  "id": "f05",
+  "file": "video/films/f05.mp4",
+  "poster": "img/films/f05.jpg",
+  "title": "Pierre Cardin",
+  "kind": "Shemagh commercial",
+  "duration": 40
+ },
+ {
+  "id": "f09",
+  "file": "video/films/f09.mp4",
+  "poster": "img/films/f09.jpg",
+  "title": "Haramain High Speed Railway",
+  "kind": "Launch film for SAR",
+  "duration": 155
+ },
+ {
+  "id": "f07",
+  "file": "video/films/f07.mp4",
+  "poster": "img/films/f07.jpg",
+  "title": "Tawuniya",
+  "kind": "Corporate film",
+  "duration": 131
+ },
+ {
+  "id": "f08",
+  "file": "video/films/f08.mp4",
+  "poster": "img/films/f08.jpg",
+  "title": "Sakani",
+  "kind": "Housing app commercial",
+  "duration": 58
+ },
+ {
+  "id": "f02",
+  "file": "video/films/f02.mp4",
+  "poster": "img/films/f02.jpg",
+  "title": "Saudi Awards",
+  "kind": "Promo with presenter",
+  "duration": 49
+ },
+ {
+  "id": "f12",
+  "file": "video/films/f12.mp4",
+  "poster": "img/films/f12.jpg",
+  "title": "Saffori Land",
+  "kind": "Reopening film",
+  "duration": 54
+ },
+ {
+  "id": "f10",
+  "file": "video/films/f10.mp4",
+  "poster": "img/films/f10.jpg",
+  "title": "National Day",
+  "kind": "Vision 2030 film",
+  "duration": 61
+ },
+ {
+  "id": "f03",
+  "file": "video/films/f03.mp4",
+  "poster": "img/films/f03.jpg",
+  "title": "Travel film",
+  "kind": "Montage",
+  "duration": 45
+ },
+ {
+  "id": "f04",
+  "file": "video/films/f04.mp4",
+  "poster": "img/films/f04.jpg",
+  "title": "Mother nature",
+  "kind": "Short film",
+  "duration": 59
+ },
+ {
+  "id": "f11",
+  "file": "video/films/f11.mp4",
+  "poster": "img/films/f11.jpg",
+  "title": "Cooking show",
+  "kind": "Television segment",
+  "duration": 203
+ }
+]
