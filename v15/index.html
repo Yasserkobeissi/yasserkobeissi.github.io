@@ -42,7 +42,8 @@ h2.t{font-size:clamp(34px,5vw,76px);font-weight:700;font-stretch:112%;letter-spa
 
 /* hero */
 #hero{position:relative;height:100vh;min-height:620px}
-#dots{position:absolute;inset:0;width:100%;height:100%;display:block}
+#dots{position:fixed;inset:0;width:100%;height:100vh;display:block;z-index:0;pointer-events:none}
+#intro{position:relative;z-index:1}
 #hero .l,#hero .r{position:absolute;top:50%;transform:translateY(-50%);font-size:13px;line-height:1.5}
 #hero .l{left:28px}
 #hero .r{right:28px;text-align:right;color:var(--mute)}
@@ -55,6 +56,8 @@ h2.t{font-size:clamp(34px,5vw,76px);font-weight:700;font-stretch:112%;letter-spa
 #intro{min-height:70vh;display:grid;place-items:center;padding:12vh 6vw;text-align:center}
 #intro p{font-size:clamp(22px,3.2vw,44px);font-weight:500;font-stretch:104%;letter-spacing:-.015em;line-height:1.18;max-width:22em}
 #intro p em{font-style:normal;color:var(--mute)}
+#intro p i{font-style:inherit;display:inline-block;opacity:0;transform:translateY(.4em);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d)}
+#intro .on p i{opacity:1;transform:none}
 #intro .facts{margin-top:40px;display:flex;gap:36px;justify-content:center;flex-wrap:wrap;font-size:12px;color:var(--mute);letter-spacing:.04em}
 #intro .facts b{display:block;color:var(--fg);font-weight:600;letter-spacing:0;font-size:13px}
 
@@ -70,6 +73,10 @@ body.list #stage{position:relative;height:auto;min-height:100vh;overflow:visible
 #gl.hot{cursor:pointer}
 body.list #gl{display:none}
 #big{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;pointer-events:none;padding:0 6vw}
+#big span{transition:opacity .35s var(--ease),transform .35s var(--ease)}
+#big.sw span{opacity:0;transform:translateY(10px)}
+#big.sw small{opacity:0}
+#big small{transition:opacity .35s var(--ease)}
 #big span{display:block;font-weight:700;font-stretch:118%;letter-spacing:-.01em;text-transform:uppercase;line-height:.9;font-size:clamp(44px,8.5vw,150px);color:var(--fg);opacity:.92}
 #big small{display:block;margin-top:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-stretch:100%;font-weight:500}
 body.list #big{display:none}
@@ -99,6 +106,8 @@ body.list #list{display:block}
 #motion{padding:14vh 0 10vh}
 #motion .hd{display:flex;justify-content:space-between;align-items:end;padding:0 6vw;margin-bottom:34px;gap:20px}
 #motion .hd p{color:var(--mute);max-width:26em;font-size:14px}
+#pl{position:fixed;top:0;left:0;right:0;height:2px;background:var(--fg);transform-origin:0 50%;transform:scaleX(0);z-index:31;opacity:.6;pointer-events:none}
+#reel{cursor:grab;user-select:none}
 #reel{display:flex;gap:16px;overflow-x:auto;padding:0 6vw 20px;scroll-snap-type:x proximity;scrollbar-width:none}
 #reel::-webkit-scrollbar{display:none}
 #reel button{flex:0 0 auto;width:min(420px,72vw);scroll-snap-align:start;text-align:left}
@@ -159,6 +168,7 @@ body.list #list{display:block}
 #contact .lab{margin-bottom:22px}
 #contact .mail{font-size:clamp(26px,5.2vw,86px);font-weight:600;font-stretch:108%;letter-spacing:-.025em;line-height:1;display:inline-block;transition:color .3s;word-break:break-all}
 #contact .mail:hover{color:var(--mute)}
+#contact .cp{display:block;margin-top:14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);transition:color .3s;min-height:1.2em}
 #contact .rows{margin:48px auto 0;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--mute)}
 #contact .rows a:hover{color:var(--fg)}
 #contact .ft{margin-top:14vh;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
@@ -186,6 +196,17 @@ body.list #list{display:block}
 #proj .strip button img{width:100%;height:100%;object-fit:cover;display:block}
 #proj .strip button:hover{opacity:.8}
 #proj .strip button[aria-current=true]{opacity:1;border-color:var(--fg)}
+#proj .ar{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(10,10,10,.55);backdrop-filter:blur(6px);display:grid;place-items:center;opacity:0;transition:opacity .3s}
+#proj .stage:hover .ar{opacity:1}
+#proj .ar.l{left:12px}#proj .ar.r{right:12px}
+#proj .ar:before{content:"";width:9px;height:9px;border-top:1.5px solid var(--fg);border-right:1.5px solid var(--fg);transform:rotate(45deg);margin-left:-3px}
+#proj .ar.l:before{transform:rotate(-135deg);margin-left:3px}
+#proj .desc{margin:26px 0 0;font-size:15px;line-height:1.5;color:var(--mute)}
+#proj .desc.tf{display:inline-block}
+#proj .nxt{grid-column:1/-1;margin-top:10px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:20px}
+#proj .nxt button{font-size:clamp(22px,3vw,40px);font-weight:600;font-stretch:110%;letter-spacing:-.02em;text-transform:uppercase;text-align:left;transition:color .3s}
+#proj .nxt button:hover{color:var(--mute)}
+@media (max-width:720px){#proj .ar{opacity:1}}
 #proj .count{position:absolute;left:14px;bottom:12px;font-size:11px;letter-spacing:.14em;color:var(--fg);background:rgba(10,10,10,.6);padding:5px 9px;border-radius:999px;backdrop-filter:blur(6px);font-variant-numeric:tabular-nums}
 #cert{z-index:50}
 #cert .wrap{display:grid;place-items:center;padding:80px 4vw}
@@ -246,7 +267,7 @@ body.list #list{display:block}
 
 <section id="intro">
   <div class="rev">
-    <p>I design events, exhibition stands and the objects that live inside them. <em>Twenty years in, from Beirut production houses to the big halls in Riyadh.</em></p>
+    <p>I design events, exhibition stands, the gift items that go with them and the screen content that plays on them. <em>Twenty years in, from Beirut production houses to the big halls in Riyadh.</em></p>
     <div class="facts">
       <div><b>Sovyal Events</b>head of creative</div>
       <div><b>Riyadh</b>since 2019</div>
@@ -260,10 +281,10 @@ body.list #list{display:block}
   <div class="rev">
     <h2 class="t">About</h2>
     <p>I'm Yasser. I grew up in Beirut and I work in Riyadh, where I lead the creative at Sovyal Events.</p>
-    <p>I design events, exhibition stands and the objects inside them. Before that I spent ten years on motion design in Beirut production houses and ran the creative for four television channels in Riyadh.</p>
+    <p>I design events, exhibition stands and the gift items that go with them, and I produce the screen content that plays on them. Before that I spent ten years on motion design in Beirut production houses and ran the creative for four television channels in Riyadh.</p>
     <p class="m">I studied graphic design at the Lebanese American University. I'm crazy about cars, I drift, and I like a big operation with a big team.</p>
     <div class="sec"><h3 class="lab">Where I've worked</h3><ul class="cv">
-      <li><div class="y">2024 · now</div><div><b>Sovyal Events, Riyadh</b><span>Creative director. Events, exhibition stands and the objects inside them.</span></div></li>
+      <li><div class="y">2024 · now</div><div><b>Sovyal Events, Riyadh</b><span>Creative director. Events, exhibition stands, gift items and screen content.</span></div></li>
       <li><div class="y">2022 · 2024</div><div><b>Thakwa Events, Riyadh</b><span>Art director and chief executive.</span></div></li>
       <li><div class="y">2021 · 2022</div><div><b>Lezof-Hi Deer</b><span>Creative strategist.</span></div></li>
       <li><div class="y">2019 · 2021</div><div><b>Maestro Group, for the Saudi Broadcasting Authority</b><span>Head of creative across four television channels.</span></div></li>
@@ -272,7 +293,7 @@ body.list #list{display:block}
       <li><div class="y">2006 · 2008</div><div><b>Maliks Book Shop, Beirut</b><span>Graphic designer. The first job.</span></div></li>
     </ul></div>
     <div class="sec"><h3 class="lab">Also</h3><div class="also">
-      <div><b>Studied</b>Graphic design at the Lebanese American University, Beirut. First in the class.</div>
+      <div><b>Studied</b>Graphic design at the Lebanese American University, Beirut, first in the class. Short film direction at UCMT, Beirut.</div>
       <div><b>Cars</b>A car design programme in 2022 with a designer from the Volkswagen Audi Group. Time in carbon-fibre manufacturing.</div>
       <div><b>On the side</b>Jewelry design. Drifting, as a driver, not a spectator.</div>
       <div><b>Languages</b>Arabic, English, and French when the room allows it.</div>
@@ -308,6 +329,7 @@ body.list #list{display:block}
   <div class="rev">
     <div class="lab">Get in touch</div>
     <a class="mail" href="mailto:yasserkobeissi98@gmail.com">yasserkobeissi98@gmail.com</a>
+    <span class="cp" id="cp">click to write, or copy</span>
     <div class="rows">
       <a href="https://wa.me/966557905388" target="_blank" rel="noopener">WhatsApp +966 55 790 5388</a>
       <a href="https://www.behance.net/yaserkobeissi" target="_blank" rel="noopener">Behance</a>
@@ -318,7 +340,7 @@ body.list #list{display:block}
 </section>
 
 <!-- project -->
-<section id="proj" class="ov" role="dialog" aria-modal="true" aria-labelledby="pt">
+<section id="proj" class="ov" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="pt">
   <button class="x pill" data-close>close <i></i></button>
   <div class="wrap">
     <div class="stage"></div>
@@ -329,17 +351,18 @@ body.list #list{display:block}
       <div class="nav"><button class="pill" data-prev>previous</button><button class="pill" data-next>next <i></i></button></div>
     </div>
     <div class="strip"></div>
+    <div class="nxt"><span class="lab">Next up</span><button data-next></button></div>
   </div>
 </section>
-<section id="cl" class="ov" role="dialog" aria-modal="true">
+<section id="cl" class="ov" data-lenis-prevent role="dialog" aria-modal="true">
   <button class="x pill" data-close>close <i></i></button>
   <div class="wrap"><h1></h1><div class="n lab"></div><div class="grid"></div></div>
 </section>
-<section id="cert" class="ov" role="dialog" aria-modal="true">
+<section id="cert" class="ov" data-lenis-prevent role="dialog" aria-modal="true">
   <button class="x pill" data-close>close <i></i></button>
   <div class="wrap"><img alt=""></div>
 </section>
-<section id="mn" class="ov" role="dialog" aria-modal="true">
+<section id="mn" class="ov" data-lenis-prevent role="dialog" aria-modal="true">
   <button class="x pill" data-close>close <i></i></button>
   <div class="wrap">
     <nav><a href="#about" data-close>About</a><a href="#work" data-close>Work</a><a href="#motion" data-close>Motion</a><a href="#contact" data-close>Contact</a></nav>
@@ -369,46 +392,56 @@ $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const h=a.getAttri
 /* reveals */
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.15});
 $$('.rev').forEach(e=>io.observe(e));
+(function(){const p=$('#intro p'); let i=0; p.innerHTML=p.innerHTML.replace(/(<em>|<\/em>)|([^\s<>]+)/g,(m,tag,w)=>tag?tag:'<i style="--d:'+(i++*.045).toFixed(3)+'s">'+w+'</i>');})();
 $$('.chips span,.certs button').forEach((e,i)=>{e.classList.add('rev');e.style.setProperty('--d',(i%12)*.05+'s');io.observe(e);});
 
 /* ===== hero: portrait as points ===== */
 (function(){
-  const cv=$('#dots'), ctx=cv.getContext('2d'); let pts=[], W=0,H=0, mx=-1e4,my=-1e4, scat=0;
+  const cv=$('#dots'), ctx=cv.getContext('2d'); let pts=[], W=0,H=0, mx=-1e4,my=-1e4, scat=0, ia=1, iaT=0;
   const img=new Image(); img.src='../site/img/portrait-4x.jpg';
   img.onload=()=>{
     const S=230, oc=document.createElement('canvas'); oc.width=oc.height=S; const o=oc.getContext('2d'); o.drawImage(img,0,0,S,S);
     const d=o.getImageData(0,0,S,S).data, lum=new Float32Array(S*S);
     for(let i=0;i<S*S;i++) lum[i]=(d[i*4]*.299+d[i*4+1]*.587+d[i*4+2]*.114)/255;
-    // tone-based: the darker the pixel, the denser and brighter the points; a soft oval fades the square away
-    let lo=1,hi=0; for(let i=0;i<S*S;i++){lo=Math.min(lo,lum[i]);hi=Math.max(hi,lum[i]);}
+    // the photo background is a smooth gradient: grow it from the edges over neighbours of similar tone
+    const bg=new Uint8Array(S*S), q=[];
+    for(let x=0;x<S;x++){ [x, (S-1)*S+x].forEach(i=>{bg[i]=1;q.push(i);}); }
+    for(let y=0;y<S;y++){ [y*S, y*S+S-1].forEach(i=>{bg[i]=1;q.push(i);}); }
+    while(q.length){const i=q.pop(), x=i%S, y=(i-x)/S; [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy])=>{const nx=x+dx,ny=y+dy; if(nx<0||ny<0||nx>=S||ny>=S)return; const j=ny*S+nx; if(!bg[j]&&Math.abs(lum[j]-lum[i])<.005&&!(lum[j]>.8&&ny>S*.5)){bg[j]=1;q.push(j);}});}
+    let nbg=0; for(let i=0;i<S*S;i++) nbg+=bg[i]; const masked=nbg>S*S*.15&&nbg<S*S*.9;
+    let lo=1,hi=0; for(let i=0;i<S*S;i++){ if(masked&&bg[i])continue; lo=Math.min(lo,lum[i]);hi=Math.max(hi,lum[i]);}
     pts=[];
+    // inverted on him: the light parts carry the dense bright points, the dark parts thin out
     for(let y=0;y<S;y++)for(let x=0;x<S;x++){const i=y*S+x;
+      if(masked&&bg[i])continue;
       const u=(x+.5)/S, v=(y+.5)/S, rx=(u-.5)/.5, ry=(v-.56)/.56, rr=Math.sqrt(rx*rx+ry*ry);
-      const vig=rr<.62?1:rr>1?0:1-(rr-.62)/.38;
+      const vig=masked?(rr<.9?1:rr>1.15?0:1-(rr-.9)/.25):(rr<.62?1:rr>1?0:1-(rr-.62)/.38);
       if(vig<=0)continue;
-      const dark=Math.pow((hi-lum[i])/(hi-lo),1.15);
-      if(Math.random()>Math.min(1,.08+dark*1.25)*vig)continue;
-      pts.push({u,v,a:(.18+dark*.82)*vig,r:Math.random()*6.28,s:.45+Math.random()*.8,ox:(Math.random()-.5),oy:(Math.random()-.5),dx:0,dy:0});}
+      const light=Math.pow((lum[i]-lo)/(hi-lo),1.15);
+      if(Math.random()>Math.min(1,.08+light*1.25)*vig)continue;
+      pts.push({u,v,a:(.18+light*.82)*vig,r:Math.random()*6.28,s:.45+Math.random()*.8,ox:(Math.random()-.5),oy:(Math.random()-.5),dx:0,dy:0});}
+    window.__mask={masked,cover:nbg/(S*S)};
     size(); loop();
   };
   function size(){W=cv.clientWidth;H=cv.clientHeight;const r=Math.min(devicePixelRatio,2);cv.width=W*r;cv.height=H*r;ctx.setTransform(r,0,0,r,0,0);}
   addEventListener('resize',size);
   addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
-  addEventListener('scroll',()=>{scat=Math.min(1,scrollY/(innerHeight*.9));},{passive:true});
+  addEventListener('scroll',()=>{scat=Math.min(1,scrollY/(innerHeight*1.6));},{passive:true});
   let t=0;
   function loop(){
-    requestAnimationFrame(loop); if(scrollY>innerHeight)return; t+=.016;
+    requestAnimationFrame(loop); if(scrollY>innerHeight*1.7){ if(cv.style.display!=='none'){ctx.clearRect(0,0,W,H);cv.style.display='none';} return;} cv.style.display=''; t+=.016;
     ctx.clearRect(0,0,W,H);
     const side=Math.min(W,H)*(narrow()?.92:.86), x0=(W-side)/2, y0=(H-side)/2+side*.06;
-    const e=scat*scat;
+    if(iaT===0) iaT=performance.now(); const ip=Math.min(1,(performance.now()-iaT)/2200); ia=reduce?0:Math.pow(1-ip,3);
+    const e=ia;
     ctx.fillStyle='#f2f0ea';
     for(const p of pts){
       let x=x0+p.u*side+Math.sin(t*.6+p.r)*1.2, y=y0+p.v*side+Math.cos(t*.5+p.r)*1.2;
-      x+=p.ox*side*1.6*e; y+=p.oy*side*1.6*e+e*side*.3;
-      const dx=x-mx, dy=y-my, dd=dx*dx+dy*dy, R=110;
-      if(dd<R*R){const d=Math.sqrt(dd)||1,f=(1-d/R)*18;p.dx+=dx/d*f;p.dy+=dy/d*f;}
-      p.dx*=.86;p.dy*=.86; x+=p.dx;y+=p.dy;
-      ctx.globalAlpha=p.a*(1-e*.9); ctx.fillRect(x,y,p.s,p.s);
+      const sx=scat, se=sx*sx*(3-2*sx);
+      x+=p.ox*side*2.2*se; y+=p.oy*side*1.4*se-se*H*.9*(.4+p.s*.4);
+      const dx=x-mx, dy=y-my, dd=dx*dx+dy*dy, R=90;
+      if(dd<R*R&&scat<.3){const d=Math.sqrt(dd)||1, k=(1-d/R); const push=k*k*34*(1-scat/.3); x+=dx/d*push; y+=dy/d*push;}
+      ctx.globalAlpha=p.a*(1-ia*.5)*(1-ia*.4)*Math.max(0,1-Math.pow(scat,1.6)); ctx.fillRect(x,y,p.s,p.s);
     }
     ctx.globalAlpha=1;
   }
@@ -416,19 +449,19 @@ $$('.chips span,.certs button').forEach((e,i)=>{e.classList.add('rev');e.style.s
 
 /* ===== data ===== */
 const [projects,motion]=await Promise.all([
-  fetch('../site/data/projects.json').then(r=>r.json()),
-  fetch('../site/data/motion.json').then(r=>r.json())
+  fetch('../site/data/projects.json?v='+Date.now()).then(r=>r.json()),
+  fetch('../site/data/motion.json?v='+Date.now()).then(r=>r.json())
 ]);
 const items=projects.map(p=>({key:p.key,title:p.title,kind:p.kind,cat:p.cat,count:p.count,client:p.client,city:p.city,date:p.date,
    tex:'img/ring/'+p.key+'.jpg', gal:i=>'../site/img/projects/'+p.key+'/'+String(i).padStart(2,'0')+'.jpg'}));
 const clips=motion.map(m=>({key:'m'+m.id,title:m.title.replace(/\b\w/g,c=>c.toUpperCase()),kind:'Motion · '+Math.round(m.duration)+' s · '+m.date.slice(0,4),cat:'motion',count:1,vimeo:m.id,tex:'img/motion/'+m.id+'.jpg'}));
-const CATS=[['all','All'],['events','Events'],['exhibitions','Exhibitions'],['objects','Objects']];
+const CATS=[['all','All'],['events','Events'],['exhibitions','Exhibitions'],['objects','Gift items']];
 let cat='all';
 const inCat=it=>cat==='all'||it.cat===cat;
 
 /* ===== ring ===== */
 const big=$('#big span'), bigN=$('#big small');
-function setBig(t,n){big.textContent=t; bigN.textContent=n||'';}
+let bigTimer=0; function setBig(t,n){ const el=$('#big'); if(big.textContent===t)return; el.classList.add('sw'); clearTimeout(bigTimer); bigTimer=setTimeout(()=>{big.textContent=t; bigN.textContent=n||''; el.classList.remove('sw');},180); }
 $('#cats').innerHTML='<div class="lab">Selected work</div>';
 CATS.forEach(([k,l])=>{
   const n=items.filter(i=>k==='all'||i.cat===k).length;
@@ -519,7 +552,7 @@ function frame(){
   });
   if(best&&!hot) front=best;
   const show=hot?hot.userData:front;
-  if(show&&big.textContent!==show.title){setBig(show.title,show.kind);}
+  if(show&&big.dataset.t!==show.title){big.dataset.t=show.title; setBig(show.title,show.kind);}
   renderer.render(scene,camera);
 }
 frame();
@@ -559,28 +592,40 @@ function open(it){
   $('#pt').textContent=it.title; $('#proj .kind').textContent=it.kind;
   const f=$('#proj .facts'); f.innerHTML='';
   const rows=it.vimeo?[['Piece','Motion graphics'],['Source','Vimeo']]:[['Client',it.client],['City',it.city],['Date',it.date],['Pictures',it.count]];
-  rows.forEach(([k,v])=>{const d=document.createElement('div'); d.innerHTML='<span>'+k+'</span><span'+(v==null?' class="tf">to fill':'>'+v)+'</span>'; f.appendChild(d);});
+  rows.filter(([k,v])=>v!=null).forEach(([k,v])=>{const d=document.createElement('div'); d.innerHTML='<span>'+k+'</span><span>'+v+'</span>'; f.appendChild(d);});
   strip.innerHTML='';
   if(it.vimeo){
     stage.innerHTML='<iframe src="https://player.vimeo.com/video/'+it.vimeo+'?dnt=1&title=0&byline=0&portrait=0&autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
   } else {
-    stage.innerHTML='<img alt=""><div class="count"></div>';
+    stage.innerHTML='<img alt=""><div class="count"></div>'+(it.count>1?'<button class="ar l" aria-label="Previous picture"></button><button class="ar r" aria-label="Next picture"></button>':'');
     for(let i=1;i<=it.count;i++){const b=document.createElement('button'); b.innerHTML='<img loading="lazy" alt="" src="'+it.gal(i)+'">'; b.onclick=()=>pick(i); strip.appendChild(b);}
     pick(1);
   }
+  const nx=pool[(pool.indexOf(it)+1)%pool.length]; $('#proj .nxt button').textContent=nx&&nx!==it?nx.title:''; $('#proj .nxt').style.display=nx&&nx!==it?'':'none';
   show('proj'); history.replaceState(null,'',location.pathname+'#p/'+it.key);
 }
-function pick(i){ img=i; const im=stage.querySelector('img'); im.src=cur.gal(i); stage.querySelector('.count').textContent=String(i).padStart(2,'0')+' / '+String(cur.count).padStart(2,'0'); $$('#proj .strip button').forEach((b,j)=>b.setAttribute('aria-current',j+1===i)); }
+function pick(i){ img=i; const im=stage.querySelector('img'); im.src=cur.gal(i); stage.querySelector('.count').textContent=String(i).padStart(2,'0')+' / '+String(cur.count).padStart(2,'0'); $$('#proj .strip button').forEach((b,j)=>{b.setAttribute('aria-current',j+1===i); if(j+1===i) b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});}); }
 function step(d){ let i=pool.indexOf(cur); if(i<0)i=0; open(pool[(i+d+pool.length)%pool.length]); }
-$('[data-prev]').onclick=()=>step(-1); $('[data-next]').onclick=()=>step(1);
-stage.addEventListener('click',()=>{ if(cur&&!cur.vimeo&&cur.count>1) pick(img%cur.count+1); });
+$('[data-prev]').onclick=()=>step(-1); $$('[data-next]').forEach(b=>b.onclick=()=>step(1));
+stage.addEventListener('click',e=>{ if(!cur||cur.vimeo||cur.count<2)return; const d=e.target.classList.contains('l')?-1:1; pick(((img-1+d)%cur.count+cur.count)%cur.count+1); });
+
+/* email copy */
+$('#contact .mail').addEventListener('click',e=>{ if(!navigator.clipboard)return; navigator.clipboard.writeText('yasserkobeissi98@gmail.com').then(()=>{const c=$('#cp'); c.textContent='copied'; c.style.color='var(--fg)'; setTimeout(()=>{c.textContent='click to write, or copy'; c.style.color='';},1800);}); });
+
+/* progress line */
+const pl=document.createElement('div'); pl.id='pl'; document.body.appendChild(pl);
+const upPl=()=>{ const m=document.documentElement.scrollHeight-innerHeight; pl.style.transform='scaleX('+(m>0?scrollY/m:0)+')'; };
+addEventListener('scroll',upPl,{passive:true}); upPl();
+
+/* reel: drag to scroll */
+(function(){ let d=false,x0=0,s0=0,mv=0; reel.addEventListener('pointerdown',e=>{d=true;x0=e.clientX;s0=reel.scrollLeft;mv=0;}); addEventListener('pointermove',e=>{ if(!d)return; const dx=e.clientX-x0; mv+=Math.abs(dx); reel.scrollLeft=s0-dx; }); addEventListener('pointerup',()=>{ if(d&&mv>8) reel.dataset.drag='1'; d=false; }); reel.addEventListener('click',e=>{ if(reel.dataset.drag){e.stopPropagation();e.preventDefault();delete reel.dataset.drag;} },true); })();
 
 /* certificates */
 const CERTS=[['lau-bsc-2011','BSc Graphic Design','Lebanese American University · 2011'],['mastery-marketing-2022','Marketing training diploma','Mastery Academy · 2022'],['cpd-leadership-2026','Managerial leadership · CPD','CPD Standards Office · 2026'],['managerial-leadership-diploma-2026','Managerial leadership diploma','Mastery Academy · 2026'],['leadership-practitioner-2026','Certified leadership practitioner','Mastery Academy · 2026'],['managerial-leadership-skills-2026','Principles and skills of managerial leadership','Mastery Academy · 2026'],['planning-specialist-2026','Planning specialist','Mastery Academy · 2026']];
 CERTS.forEach(([k,t,s])=>{const b=document.createElement('button'); b.innerHTML='<div class="im"><img loading="lazy" alt="" src="../site/img/certs/'+k+'.jpg"></div><b>'+t+'</b><small>'+s+'</small>'; b.onclick=()=>{$('#cert img').src='../site/img/certs/'+k+'.jpg'; show('cert');}; $('#certs').appendChild(b);});
 
 /* clients: a name opens its projects when I have them here */
-const CLIENTS=[['PepsiCo','three editions of MDL Beast'],['Saudi Broadcasting Authority'],["McDonald's"],["Gold's Gym"],['Othaim Mall'],['DJI Enterprise'],['Monshaat',null,['biban']],['Misk',null,['misk']],['GOSI',null,['gosi26','gosi25']],['SIMAH',null,['simah']],['Seder Group',null,['big5','seder']],['Al Rajhi Takaful',null,['takaful']],['Bank Al Jazira',null,['aljazira']],['Thiqah',null,['thiqah']],['Urpay',null,['urpay']],['neoleap',null,['urpay']],['Looptech',null,['looptech']],['The Financial Academy'],['Quality of Life Program',null,['qol']],['SCE',null,['sce']],['JDA',null,['jda']],['MOMAH',null,['momah']],['LCGPA',null,['lcgpa']]];
+const CLIENTS=[['CQR',null,['cqr']],['PepsiCo','three editions of MDL Beast'],['Saudi Broadcasting Authority'],["McDonald's"],["Gold's Gym"],['Othaim Mall'],['DJI Enterprise'],['Monshaat',null,['biban']],['Misk',null,['misk']],['GOSI',null,['gosi26','gosi25']],['SIMAH',null,['simah']],['Seder Group',null,['big5','seder']],['Al Rajhi Takaful',null,['takaful']],['Bank Al Jazira',null,['aljazira']],['Thiqah',null,['thiqah']],['Urpay',null,['urpay']],['neoleap',null,['urpay']],['Looptech',null,['looptech']],['The Financial Academy'],['Quality of Life Program',null,['qol']],['SCE',null,['sce']],['JDA',null,['jda']],['MOMAH',null,['momah']],['LCGPA',null,['lcgpa']]];
 const clEl=$('#clients');
 clEl.innerHTML='<div class="key">Names with a count open the work I did for them here</div>';
 CLIENTS.forEach(([name,note,keys])=>{

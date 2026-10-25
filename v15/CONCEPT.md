@@ -30,3 +30,8 @@ First person, warm, no superlatives, facts only from the handover. Placeholders 
 - `v15/img/ring/` — 900 px covers for the ring textures
 - `v15/img/motion/` — Vimeo thumbnails, 900 px
 - reads `../site/data/projects.json`, `../site/data/motion.json`, galleries from `../site/img/projects/`, portrait and certificates from `../site/img/` (served from the repo root, launch config `v15`, port 8083)
+
+
+## Round 2 (25 Oct, later)
+
+About second, career list from the handover, clients as a wall of names that open their work, inertial scroll with a soft arrive/leave on the ring, portrait inverted on him (light parts dense) with the photo background masked, points drift across the intro instead of cutting at the section edge, no placeholders anywhere. New project CQR at Black Hat 2026 from two renders (A0002, A0006). Objects became Gift items; screen content and UCMT short film direction added.
