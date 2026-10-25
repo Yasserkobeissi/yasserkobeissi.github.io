@@ -78,6 +78,8 @@ h2.t{font-size:clamp(34px,5vw,76px);font-weight:700;font-stretch:112%;letter-spa
 #lead .pil>div{border-top:1px solid var(--line);padding-top:18px}
 #lead .pil b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:12px}
 #lead .pil p{font-size:clamp(16px,1.35vw,19px);line-height:1.45}
+#lead q{display:block;margin-top:18px;font-size:clamp(18px,1.7vw,24px);font-weight:600;font-stretch:108%;letter-spacing:-.015em;line-height:1.25;quotes:none}
+#lead q:before{content:"";display:block;width:28px;height:1px;background:var(--fg);margin-bottom:12px}
 #lead .cs{display:flex;gap:10px;margin-top:18px}
 #lead .cs button{width:84px;border-radius:6px;overflow:hidden;background:#111;position:relative}
 #lead .cs button img{width:100%;height:auto;display:block;opacity:.8;transition:opacity .3s}
@@ -174,7 +176,7 @@ body.list #list{display:block}
 .cp .tm{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
 
 /* deck */
-#deck{position:relative;height:clamp(240px,34vw,420px);perspective:1400px;perspective-origin:50% 45%;user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:grab}
+#deck{position:relative;overflow:hidden;height:clamp(240px,34vw,420px);perspective:1400px;perspective-origin:50% 45%;user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:grab}
 #deck.drag{cursor:grabbing}
 #deck .cards{position:absolute;inset:0;transform-style:preserve-3d}
 #deck .card{position:absolute;left:50%;top:46%;width:min(46vw,540px);aspect-ratio:16/9;margin-left:calc(min(46vw,540px) / -2);margin-top:calc(min(46vw,540px) * -9 / 32);border-radius:12px;overflow:hidden;background:#111;box-shadow:0 30px 70px rgba(0,0,0,.6);transition:box-shadow .3s;will-change:transform}
@@ -437,9 +439,9 @@ body.list #list{display:block}
 <section id="lead">
   <div class="hd"><div><div class="lab">How I lead</div><h2 class="t rev" style="margin-top:10px">Teams, plans<br>and the long game</h2></div><p class="rev">Creative work on this scale is run, not just drawn. I have led creative departments for a decade, and I keep training for it.</p></div>
   <div class="pil">
-    <div class="rev"><b>Leadership</b><p>I lead the creative team at Sovyal Events today. Before that I ran the creative department at SBA Group across four television channels, and I was art director and chief executive at Thakwa Events.</p><div class="cs" data-certs="managerial-leadership-diploma-2026,leadership-practitioner-2026"></div></div>
-    <div class="rev"><b>Planning</b><p>A booth or an event is a schedule before it is a picture. I plan the build, the crews and the days, and I hold the plan when the brief moves.</p><div class="cs" data-certs="planning-specialist-2026,cpd-leadership-2026"></div></div>
-    <div class="rev"><b>Management</b><p>Big operations, big teams, many suppliers. I keep the work moving and the client calm, from the first sketch to the last screw.</p><div class="cs" data-certs="managerial-leadership-skills-2026,mastery-marketing-2022"></div></div>
+    <div class="rev"><b>Leadership</b><p>Leadership, for me, is making the room braver than it was when I walked in. I lead the creative team at Sovyal Events today; before that I ran the creative department at SBA Group across four television channels, and I was art director and chief executive at Thakwa Events.</p><q>A team that trusts the plan will take the risk with you.</q></div>
+    <div class="rev"><b>Planning</b><p>A booth or an event is a schedule before it is a picture. I plan the build, the crews and the days, and I hold the plan when the brief moves. I trained as a planning specialist because a good idea on a bad timeline is still a bad idea.</p><q>The render is the easy part. The calendar is the design.</q></div>
+    <div class="rev"><b>Management</b><p>Big operations, big teams, many suppliers. I keep the work moving and the client calm, from the first sketch to the last screw. The managerial leadership diplomas above are the theory; twenty years of opening nights are the practice.</p><q>Calm is a deliverable.</q></div>
   </div>
 </section>
 
